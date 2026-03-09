@@ -1,6 +1,6 @@
 # Decision Log
 
-Last updated: 2026-03-06
+Last updated: 2026-03-09
 
 Use this file to record architecture and product decisions once made.
 
@@ -214,3 +214,30 @@ Use this file to record architecture and product decisions once made.
 - Why: Prevents inconsistent telemetry and rework in reporting pipelines.
 - Consequences: Runtime and generation features must emit required event fields from day one.
 - Related docs: `07_event_and_analytics_spec.md`, `10_open_questions.md`, `09_execution_roadmap.md`
+
+### DEC-023
+
+- Date: 2026-03-09
+- Status: accepted
+- Decision: V2 must not take runtime or content dependencies on V1 product modules.
+- Why: Shared legacy product paths are the fastest way to recreate V1 coupling inside the rebuild.
+- Consequences: Any reused product logic must be copied or wrapped into V2-owned modules; V1 remains a reference source, not a runtime dependency.
+- Related docs: `02_target_architecture.md`, `08_migration_strategy.md`, `16_architecture_guardrails.md`, `19_non_negotiables_for_v2.md`
+
+### DEC-024
+
+- Date: 2026-03-09
+- Status: accepted
+- Decision: V2 domain actions must flow through owned service/database transition paths rather than ad hoc table updates in route/page handlers.
+- Why: State integrity and auditability degrade quickly when transitions are implemented as convenience field writes.
+- Consequences: Publish/review/retry/mastery/review-item state changes require explicit transition ownership and idempotent side effects.
+- Related docs: `03_domain_model_and_schema_v2.md`, `05_admin_ops.md`, `18_data_invariants_and_state_machines.md`
+
+### DEC-025
+
+- Date: 2026-03-09
+- Status: accepted
+- Decision: Mixed V1/V2 deploy mode is a transition aid only and is not a valid steady-state production architecture.
+- Why: Keeping mixed mode around as a default makes boundary erosion too easy during delivery.
+- Consequences: Production targets should run in explicit `v1` or `v2` mode; any temporary mixed mode must be treated as operational debt.
+- Related docs: `13_deployment_split.md`, `16_architecture_guardrails.md`, `19_non_negotiables_for_v2.md`

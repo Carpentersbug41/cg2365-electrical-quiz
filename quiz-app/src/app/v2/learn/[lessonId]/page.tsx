@@ -2,19 +2,20 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getV2PublishedLessonByCode } from '@/lib/v2/publishedLessons';
 import V2Shell from '@/components/v2/V2Shell';
+import V2RuntimeEventTracker from '@/components/v2/V2RuntimeEventTracker';
 import type {
-  Block,
-  DiagramBlockContent,
-  ExplanationBlockContent,
-  GuidedPracticeBlockContent,
-  MicrobreakContent,
-  OutcomesBlockContent,
-  PracticeBlockContent,
-  SocraticBlockContent,
-  SpacedReviewBlockContent,
-  VocabBlockContent,
-  WorkedExampleBlockContent,
-} from '@/data/lessons/types';
+  V2Block as Block,
+  V2DiagramBlockContent as DiagramBlockContent,
+  V2ExplanationBlockContent as ExplanationBlockContent,
+  V2GuidedPracticeBlockContent as GuidedPracticeBlockContent,
+  V2MicrobreakContent as MicrobreakContent,
+  V2OutcomesBlockContent as OutcomesBlockContent,
+  V2PracticeBlockContent as PracticeBlockContent,
+  V2SocraticBlockContent as SocraticBlockContent,
+  V2SpacedReviewBlockContent as SpacedReviewBlockContent,
+  V2VocabBlockContent as VocabBlockContent,
+  V2WorkedExampleBlockContent as WorkedExampleBlockContent,
+} from '@/lib/v2/contentTypes';
 
 interface PageProps {
   params: Promise<{ lessonId: string }>;
@@ -27,6 +28,7 @@ export default async function V2LessonPage({ params }: PageProps) {
 
   return (
     <V2Shell title={lesson.title} subtitle={lesson.id}>
+      <V2RuntimeEventTracker lessonId={lesson.id} eventType="lesson_started" />
       <p>
         <Link href="/v2/learn">Back to V2 Lessons</Link>
       </p>

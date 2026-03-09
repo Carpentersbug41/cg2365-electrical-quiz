@@ -13,6 +13,7 @@ export default function V2AuthGate({ children }: V2AuthGateProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [authorized, setAuthorized] = useState(false);
+  const [gateError, setGateError] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -32,6 +33,17 @@ export default function V2AuthGate({ children }: V2AuthGateProps) {
         router.replace(`/auth/sign-in?next=${encodeURIComponent(next)}`);
         return;
       }
+      const enrollmentResponse = await fetch('/api/v2/enrollment/ensure', { method: 'POST' });
+      if (!active) return;
+      if (!enrollmentResponse.ok) {
+        const payload = await enrollmentResponse.json().catch(() => null);
+        setGateError(
+          payload?.message && typeof payload.message === 'string'
+            ? payload.message
+            : 'This account does not have V2 access.'
+        );
+        return;
+      }
       setAuthorized(true);
     };
 
@@ -40,6 +52,15 @@ export default function V2AuthGate({ children }: V2AuthGateProps) {
       active = false;
     };
   }, [pathname, router, searchParams]);
+
+  if (gateError) {
+    return (
+      <main>
+        <h1>V2 access blocked</h1>
+        <p>{gateError}</p>
+      </main>
+    );
+  }
 
   if (!authorized) {
     return (
@@ -51,4 +72,3 @@ export default function V2AuthGate({ children }: V2AuthGateProps) {
 
   return <>{children}</>;
 }
-

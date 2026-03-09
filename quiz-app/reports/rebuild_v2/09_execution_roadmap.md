@@ -1,6 +1,6 @@
 # Execution Roadmap
 
-Last updated: 2026-03-06
+Last updated: 2026-03-09
 
 ## 0-30 Days
 
@@ -15,6 +15,7 @@ Exit criteria:
 - docs approved
 - first schema draft approved
 - rebuild scope reduced to one achievable slice
+- architecture guardrails, dependency rules, and non-negotiables approved
 
 ## 30-60 Days
 
@@ -30,6 +31,8 @@ Exit criteria:
 - one learner can complete one lesson and one quiz on v2
 - attempts and progress are server-backed and queryable
 - one operator can run a lesson generation job that produces a reviewable draft
+- learner runtime reads published V2 content only
+- no V2 feature in this slice depends on V1 runtime/content code paths
 
 ## 60-90 Days
 
@@ -43,6 +46,7 @@ Exit criteria:
 - one course slice runs end to end in v2
 - content can be drafted, reviewed, published, consumed, and measured
 - AI generation is part of the demo slice without writing to published content directly
+- core state transitions and invariants are enforced via V2-owned service/database paths
 
 ## After 90 Days
 
@@ -57,6 +61,8 @@ Exit criteria:
 - preserving prototype route structure in the new system
 - rebuilding generation before content/versioning foundations
 - shipping without event instrumentation
+- allowing “temporary” shared legacy dependencies to become permanent
+- building pages faster than domain contracts
 
 ## Phase 1 Implementation Backlog (Ordered)
 
@@ -73,3 +79,5 @@ Definition of done for Phase 1:
 - learner can complete the full loop (`lesson -> quiz -> review -> outcomes`)
 - operator can generate drafts and publish through approval gates
 - reporting shows agreed institutional metrics from canonical events
+- V2 routes/services are not dependent on V1 runtime/content paths
+- the architecture guardrail docs remain true in the implementation

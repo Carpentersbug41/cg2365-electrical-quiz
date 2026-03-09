@@ -1,6 +1,6 @@
 # Rebuild V2 Progress Tracker
 
-Last updated: 2026-03-08
+Last updated: 2026-03-09
 Owner: Carpe + Codex
 Scope: V2 rebuild only (no V1 reuse)
 
@@ -8,6 +8,7 @@ Scope: V2 rebuild only (no V1 reuse)
 
 V2 is established as a separate architecture baseline (schema + core APIs), with isolated learner and admin routes in place.
 V2 now has a minimal end-to-end content workflow (draft/review/approve/publish) plus a Phase 1 generation-job skeleton.
+V2 admin now has release-readiness, intervention, and access-control visibility on top of the content workflow.
 
 ## 2. Completed
 
@@ -15,6 +16,15 @@ V2 now has a minimal end-to-end content workflow (draft/review/approve/publish) 
 - [x] V2 rebuild documentation set created (`00` to `11`).
 - [x] Decision direction set: V2 is a clean architecture, not a refactor of V1.
 - [x] Constraint confirmed: no V1 fallback/content reuse for V2 runtime.
+- [x] Architecture guardrail layer added:
+  - [x] `16_architecture_guardrails.md`
+  - [x] `17_module_dependency_matrix.md`
+  - [x] `18_data_invariants_and_state_machines.md`
+  - [x] `19_non_negotiables_for_v2.md`
+- [x] Completion audit added:
+  - [x] `20_v2_completion_audit.md`
+- [x] Ranked execution backlog added:
+  - [x] `21_ranked_implementation_backlog.md`
 
 ### 2.2 Data and backend foundations
 - [x] V2 schema/migrations added (separate `v2_*` tables).
@@ -30,6 +40,11 @@ V2 now has a minimal end-to-end content workflow (draft/review/approve/publish) 
   - [x] `/api/admin/v2/generation-jobs/run-queued`
 - [x] V2 outcomes summary API:
   - [x] `/api/admin/v2/outcomes/summary`
+  - [x] `/api/admin/v2/outcomes/timeseries`
+  - [x] `/api/admin/v2/outcomes/refresh`
+- [x] V2 question version admin APIs:
+  - [x] `/api/admin/v2/question-versions`
+  - [x] `/api/admin/v2/question-versions/status`
 
 ### 2.3 Isolation work completed in this session
 - [x] Removed biology route fallback from V2 path to legacy lesson JSON.
@@ -57,6 +72,11 @@ V2 now has a minimal end-to-end content workflow (draft/review/approve/publish) 
   - [x] `/v2/admin`
   - [x] lesson version transitions: `draft -> needs_review -> approved -> published` and retire/revert support.
   - [x] generation job queue + manual run to create AI-sourced draft lesson versions.
+- [x] Added V2 question-bank moderation surface in `/v2/admin`:
+  - [x] question version listing/filtering by lesson/status
+  - [x] question version transitions with moderation + publish gate
+- [x] Added V2-owned content/runtime types and question runtime adapters.
+- [x] Contained legacy lesson generation dependency behind a V2-owned generation engine adapter.
 
 ## 3. In Progress
 
@@ -76,11 +96,27 @@ V2 now has a minimal end-to-end content workflow (draft/review/approve/publish) 
 - [x] `/v2/review` page for due items and completion loop.
 - [x] `/v2/progress` page for learner mastery/attempt summaries.
 - [x] V2 onboarding/auth gate across `/v2/*`.
+- [x] V2 learner access now requires an explicit active V2 enrollment; learner routes no longer auto-create demo enrollment on first visit.
 
 ### 4.2 V2 operations and admin
 - [x] V2 admin content workflow UI (draft -> review -> approved -> published).
 - [x] V2 analytics dashboard UX for learning/behavior/operations outcomes (in `/admin/users`).
 - [x] V2 analytics dashboard cards/table in `/v2/admin` backed by V2-only metrics.
+- [x] V2 outcomes reporting now refreshes and reads aggregate tables (`v2_daily_user_metrics`, `v2_daily_ops_metrics`) instead of request-time scans over attempts/review/job tables.
+- [x] V2 admin outcomes dashboard now includes cohort breakdown tables by lesson and unit (`/api/admin/v2/outcomes/breakdown`).
+- [x] V2 admin now includes enrollment access controls:
+  - list current V2 enrollments
+  - grant access by email
+  - withdraw access without touching V1
+- [x] V2 admin now includes readiness and intervention views:
+  - `/api/admin/v2/readiness`
+  - `/api/admin/v2/outcomes/interventions`
+  - filter/sort/limit controls on `/api/admin/v2/outcomes/breakdown`
+- [x] V2 admin dashboard now shows:
+  - content readiness gaps (missing published lessons / question coverage)
+  - enrollment status filtering and access counts
+  - operational readiness including last queue run and retry exhaustion
+  - at-risk learner and lesson intervention tables
 - [~] V2 generation worker endpoint now exists (`run-queued`) but still needs scheduler wiring/ops hardening.
 - [~] V2 generation worker endpoint now exists (`run-queued`) and daily Vercel cron wiring is in place; needs production frequency upgrade/ops hardening.
 - [x] V2 generation runner now calls the shared lesson generation engine (Phase 1-9 path via `FileGenerator`) with context-aware request shaping from latest lesson version metadata/content.
@@ -153,11 +189,46 @@ Completed in this slice:
 - [x] Added batch lesson generation queueing for content expansion:
   - API accepts `lessonCodes[]` and de-duplicates active queued/running jobs
   - V2 admin supports comma/newline batch code entry and one-click queueing
+- [x] Added question-bank backfill tooling for existing published V2 lessons:
+  - new admin API: `/api/admin/v2/question-bank/backfill`
+  - new V2 admin action to sync published lesson content into `v2_questions` / `v2_question_versions`
 - [x] Verified test/build status after hardening:
   - `45 passed / 45 files` (`173 passed` tests)
   - production build successful
 - [x] Deployed reliability + publish-gate slice to V2 production URL:
   - `https://quiz-app-v2-n1ncwwldz-carpentersbugs-projects.vercel.app`
+- [x] Replaced request-time outcomes scans with aggregate-backed reporting:
+  - added refresh endpoint: `/api/admin/v2/outcomes/refresh`
+  - `summary` and `timeseries` now read `v2_daily_user_metrics` / `v2_daily_ops_metrics`
+  - admin dashboard refreshes aggregates before loading outcomes
+  - remote migration applied: `202603090001_v2_outcomes_aggregates.sql`
+- [x] Added V2 question moderation workflow primitives:
+  - aggregate-backed question bank remains sourced from published lesson/question records
+  - new question publish gate validates stem, accepted answers, styling neutrality, quality threshold
+  - atomic question-version transition RPC added and applied remotely: `202603090002_v2_apply_question_version_transition.sql`
+- [x] Hardened version-write integrity for V2 content publishing/generation:
+  - draft question generation no longer displaces current published question versions
+  - published question sync now detects MCQ metadata changes (including `options`)
+  - atomic DB helpers added/applied for lesson publish, published question sync, and question draft insertion: `202603090004_v2_atomic_version_writes.sql`
+- [x] Verified current validation status after aggregate reporting + V2 isolation pass:
+  - full test suite: `58 files`, `198 tests`
+  - production build successful
+- [x] Verified focused access-control slice after explicit enrollment hardening:
+  - focused V2 tests: `8 files`, `19 tests`
+  - production build successful
+- [x] Added V2 readiness endpoint aggregating content, access, and operations health.
+- [x] Added V2 intervention endpoint for at-risk learners and lessons.
+- [x] Extended V2 outcomes breakdown API with lesson/unit filters, sorting, and row limits.
+- [x] Added queue-run audit event logging so readiness can report the last successful admin queue sweep.
+- [x] Removed false UI affordance for unimplemented question-draft queueing in `/v2/admin`.
+- [x] Added minimal `src/pages/_error.tsx` fallback so the repo-wide Next.js build completes reliably.
+- [x] Continued V2 isolation pass:
+  - moved V2 scope filtering off shared curriculum helpers into `src/lib/v2/scope.ts`
+  - reduced remaining non-V2 dependencies in V2-owned paths to low-level Supabase wrappers and the intentional legacy generation adapter
+- [x] Verified current validation status after readiness/admin expansion:
+  - focused V2 tests: `6 files`, `8 tests`
+  - full test suite: `63 files`, `205 tests`
+  - production build successful
 
 ## 5. Guardrails (Must Hold)
 
@@ -168,7 +239,7 @@ Completed in this slice:
 
 ## 6. Immediate Next Build Slice
 
-1. Expand V2-native biology lesson inventory for demo breadth and publish pipeline QA.
-2. Run Phase 1 release checklist and sign off go/no-go criteria.
-3. Expand V2 biology inventory and run final Phase 1 release sign-off checklist.
-4. Add optional background worker cadence upgrade (hourly) after observing queue reliability for one full day.
+1. Expand V2 Biology content inventory and surface lesson readiness against the target Phase 1 Biology set.
+2. Implement question generation and question moderation properly, then re-enable that admin path.
+3. Harden operational workflow around enrollments, generation jobs, and publish audits.
+4. Continue V2 wrapper isolation until only low-level infra and the intentional generation adapter remain.

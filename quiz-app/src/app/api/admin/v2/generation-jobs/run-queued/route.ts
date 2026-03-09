@@ -131,6 +131,17 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    await adminClient.from('v2_event_log').insert({
+      event_type: 'admin_generation_queue_run',
+      source_context: cronAccess ? 'cron-worker' : 'admin-worker',
+      payload: {
+        attempted: queuedJobs?.length ?? 0,
+        succeeded: processed.filter((row) => row.status === 'succeeded').length,
+        failed: failedCount,
+        skipped: processed.filter((row) => row.status === 'skipped').length,
+      },
+    });
+
     return NextResponse.json({
       success: true,
       attempted: queuedJobs?.length ?? 0,

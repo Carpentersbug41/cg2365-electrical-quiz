@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { createV2AdminClient, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
-import type { Lesson } from '@/data/lessons/types';
+import type { V2Lesson } from '@/lib/v2/contentTypes';
+import { syncPublishedLessonQuestions } from '@/lib/v2/questionBank';
 
 const ORG_CODE = 'demo-org';
 const ORG_NAME = 'Demo Organization';
@@ -39,18 +40,18 @@ function toStableJson(value: unknown): string {
   return JSON.stringify(value);
 }
 
-function loadBiologyLessonsFromDisk(): Lesson[] {
+function loadBiologyLessonsFromDisk(): V2Lesson[] {
   // V2 content source must be isolated from legacy/V1 lesson JSON.
   const baseDir = path.join(process.cwd(), 'src', 'data', 'v2', 'gcse', 'biology');
   if (!fs.existsSync(baseDir)) return [];
 
   const files = fs.readdirSync(baseDir).filter((name) => name.endsWith('.json')).sort((a, b) => a.localeCompare(b));
-  const lessons: Lesson[] = [];
+  const lessons: V2Lesson[] = [];
 
   for (const fileName of files) {
     const fullPath = path.join(baseDir, fileName);
     const raw = fs.readFileSync(fullPath, 'utf-8');
-    const parsed = JSON.parse(raw) as Lesson;
+    const parsed = JSON.parse(raw) as V2Lesson;
     if (!parsed?.id || !/^BIO-/i.test(parsed.id)) continue;
     lessons.push(parsed);
   }
@@ -246,11 +247,18 @@ export async function POST(request: NextRequest) {
 
       const latestVersionQuery = await adminClient
         .from('v2_lesson_versions')
-        .select('id, version_no, content_json')
+        .select('id, version_no, status, source, quality_score, content_json')
         .eq('lesson_id', lessonRowId)
         .order('version_no', { ascending: false })
         .limit(1)
-        .maybeSingle<{ id: string; version_no: number; content_json: unknown }>();
+        .maybeSingle<{
+          id: string;
+          version_no: number;
+          status: 'draft' | 'needs_review' | 'approved' | 'published' | 'retired';
+          source: 'human' | 'ai';
+          quality_score: number | null;
+          content_json: unknown;
+        }>();
       if (latestVersionQuery.error && !dryRun) throw latestVersionQuery.error;
 
       const latestVersion = latestVersionQuery.data;
@@ -258,6 +266,16 @@ export async function POST(request: NextRequest) {
         !latestVersion || toStableJson(latestVersion.content_json) !== toStableJson(lesson);
 
       if (!contentChanged) {
+        if (!dryRun && latestVersion?.id && latestVersion.status === 'published') {
+          await syncPublishedLessonQuestions(adminClient, {
+            lessonId: lessonRowId,
+            lessonCode: lesson.id,
+            lessonVersionId: latestVersion.id,
+            contentJson: latestVersion.content_json,
+            source: latestVersion.source,
+            qualityScore: latestVersion.quality_score,
+          });
+        }
         runStats.versionsSkippedUnchanged += 1;
         lessonResults.push({
           lessonCode: lesson.id,
@@ -278,31 +296,30 @@ export async function POST(request: NextRequest) {
         continue;
       }
 
-      const nextVersion = (latestVersion?.version_no ?? 0) + 1;
+      const { data: insertedVersion, error: insertVersionError } = await adminClient.rpc(
+        'v2_insert_published_lesson_version',
+        {
+          target_lesson_id: lessonRowId,
+          version_source: 'human',
+          version_quality_score: 100,
+          version_content_json: lesson,
+          actor_user_id: null,
+          publish_ts: new Date().toISOString(),
+        }
+      );
+      if (insertVersionError) throw insertVersionError;
+      if (!Array.isArray(insertedVersion) || insertedVersion.length === 0) {
+        throw new Error(`Failed to publish seeded lesson version for ${lesson.id}.`);
+      }
 
-      const retire = await adminClient
-        .from('v2_lesson_versions')
-        .update({
-          is_current: false,
-          status: 'retired',
-        })
-        .eq('lesson_id', lessonRowId)
-        .eq('status', 'published');
-      if (retire.error) throw retire.error;
-
-      const insertVersion = await adminClient.from('v2_lesson_versions').insert({
-        lesson_id: lessonRowId,
-        version_no: nextVersion,
-        status: 'published',
+      await syncPublishedLessonQuestions(adminClient, {
+        lessonId: lessonRowId,
+        lessonCode: lesson.id,
+        lessonVersionId: insertedVersion[0].id,
+        contentJson: lesson,
         source: 'human',
-        quality_score: 100,
-        content_json: lesson,
-        is_current: true,
-        created_by: null,
-        approved_by: null,
-        published_at: new Date().toISOString(),
+        qualityScore: 100,
       });
-      if (insertVersion.error) throw insertVersion.error;
 
       runStats.versionsInserted += 1;
       lessonResults.push({

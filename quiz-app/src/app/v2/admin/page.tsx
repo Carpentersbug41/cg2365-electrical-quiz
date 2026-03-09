@@ -34,6 +34,29 @@ type VersionRow = {
   } | null;
 };
 
+type QuestionVersionRow = {
+  id: string;
+  question_id: string;
+  version_no: number;
+  status: ContentStatus;
+  source: 'human' | 'ai';
+  quality_score: number | null;
+  is_current: boolean;
+  published_at: string | null;
+  created_at: string;
+  stem: string;
+  question: {
+    id: string;
+    stable_key: string;
+    question_type: 'mcq' | 'short' | 'numeric' | 'other';
+  } | null;
+  lesson: {
+    id: string;
+    code: string;
+    title: string;
+  } | null;
+};
+
 type GenerationJob = {
   id: string;
   kind: 'lesson_draft' | 'question_draft';
@@ -106,6 +129,87 @@ type TimeSeriesPoint = {
   review_active_backlog: number;
 };
 
+type OutcomesLessonRow = {
+  lesson_id: string;
+  lesson_code: string;
+  lesson_title: string;
+  unit_code: string | null;
+  unit_name: string | null;
+  learners_started: number;
+  learners_mastered: number;
+  mastery_rate_pct: number | null;
+  average_best_score_pct: number | null;
+  average_attempts: number | null;
+};
+
+type OutcomesUnitRow = {
+  unit_code: string;
+  unit_name: string;
+  lessons_tracked: number;
+  learners_started: number;
+  learners_mastered: number;
+  mastery_rate_pct: number | null;
+  average_best_score_pct: number | null;
+  average_attempts: number | null;
+};
+
+type OutcomesLessonSortField = 'mastery_rate' | 'average_best_score' | 'average_attempts' | 'learners_started' | 'lesson_code';
+type OutcomesUnitSortField = 'mastery_rate' | 'average_best_score' | 'average_attempts' | 'learners_started' | 'unit_code';
+type OutcomesSortDir = 'asc' | 'desc';
+
+type InterventionLearnerRow = {
+  user_id: string;
+  display_name: string | null;
+  attempts_total: number;
+  accuracy_pct: number | null;
+  completion_rate_pct: number | null;
+  mastery_rate_pct: number | null;
+  review_backlog: number;
+  review_resolved_rate_pct: number | null;
+  risk_score: number;
+  risk_reasons: string[];
+};
+
+type InterventionLessonRow = {
+  lesson_id: string;
+  lesson_code: string;
+  lesson_title: string;
+  learners_started: number;
+  learners_mastered: number;
+  mastery_rate_pct: number | null;
+  average_best_score_pct: number | null;
+  average_attempts: number | null;
+  risk_score: number;
+  risk_reasons: string[];
+};
+
+type ReadinessPayload = {
+  content: {
+    lessons_total: number;
+    lessons_with_published_versions: number;
+    lessons_missing_published: Array<{ id: string; code: string; title: string }>;
+    lessons_missing_question_coverage: Array<{ id: string; code: string; title: string }>;
+    lesson_versions_by_status: Record<string, number>;
+    question_versions_by_status: Record<string, number>;
+  };
+  access: {
+    total_enrollments: number;
+    enrollments_by_status: Record<string, number>;
+  };
+  operations: {
+    generation_jobs_by_status: Record<string, number>;
+    retry_exhausted_jobs: number;
+    last_successful_job_at: string | null;
+    last_queue_run: {
+      event_ts: string;
+      attempted: number;
+      succeeded: number;
+      failed: number;
+      skipped: number;
+    } | null;
+  };
+};
+
 type ApprovalDecisionRow = {
   id: string;
   decision: 'approved' | 'rejected' | 'override_publish';
@@ -127,6 +231,17 @@ type ApprovalDecisionRow = {
   } | null;
 };
 
+type EnrollmentRow = {
+  user_id: string;
+  email: string | null;
+  display_name: string | null;
+  role: 'student' | 'admin';
+  status: 'active' | 'completed' | 'withdrawn';
+  enrolled_at: string;
+  completed_at: string | null;
+  updated_at: string;
+};
+
 type ModerationPayload = {
   objectivesVerified: boolean;
   factualCheckPassed: boolean;
@@ -146,12 +261,22 @@ export default function V2AdminContentPage() {
   const [versions, setVersions] = useState<VersionRow[]>([]);
   const [statusFilter, setStatusFilter] = useState<'all' | ContentStatus>('all');
   const [lessonFilter, setLessonFilter] = useState('');
+  const [questionVersions, setQuestionVersions] = useState<QuestionVersionRow[]>([]);
+  const [questionStatusFilter, setQuestionStatusFilter] = useState<'all' | ContentStatus>('all');
+  const [questionLessonFilter, setQuestionLessonFilter] = useState('');
   const [loading, setLoading] = useState(true);
+  const [loadingQuestionVersions, setLoadingQuestionVersions] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [busyVersionId, setBusyVersionId] = useState<string | null>(null);
+  const [busyQuestionVersionId, setBusyQuestionVersionId] = useState<string | null>(null);
   const [jobs, setJobs] = useState<GenerationJob[]>([]);
   const [loadingJobs, setLoadingJobs] = useState(false);
   const [busyJobId, setBusyJobId] = useState<string | null>(null);
+  const [backfillingQuestions, setBackfillingQuestions] = useState(false);
+  const [enrollments, setEnrollments] = useState<EnrollmentRow[]>([]);
+  const [loadingEnrollments, setLoadingEnrollments] = useState(false);
+  const [busyEnrollmentUserId, setBusyEnrollmentUserId] = useState<string | null>(null);
+  const [newEnrollmentEmail, setNewEnrollmentEmail] = useState('');
   const [newJobLessonCode, setNewJobLessonCode] = useState('');
   const [newJobLessonCodesBulk, setNewJobLessonCodesBulk] = useState('');
   const [newJobPrompt, setNewJobPrompt] = useState('');
@@ -159,6 +284,19 @@ export default function V2AdminContentPage() {
   const [loadingOutcomes, setLoadingOutcomes] = useState(false);
   const [outcomesSummary, setOutcomesSummary] = useState<V2OutcomesSummary | null>(null);
   const [outcomesUsers, setOutcomesUsers] = useState<V2OutcomesUserRow[]>([]);
+  const [outcomesLessons, setOutcomesLessons] = useState<OutcomesLessonRow[]>([]);
+  const [outcomesUnits, setOutcomesUnits] = useState<OutcomesUnitRow[]>([]);
+  const [interventionLearners, setInterventionLearners] = useState<InterventionLearnerRow[]>([]);
+  const [interventionLessons, setInterventionLessons] = useState<InterventionLessonRow[]>([]);
+  const [loadingReadiness, setLoadingReadiness] = useState(false);
+  const [readiness, setReadiness] = useState<ReadinessPayload | null>(null);
+  const [outcomesLessonCodeFilter, setOutcomesLessonCodeFilter] = useState('');
+  const [outcomesUnitCodeFilter, setOutcomesUnitCodeFilter] = useState('');
+  const [outcomesLessonSortBy, setOutcomesLessonSortBy] = useState<OutcomesLessonSortField>('mastery_rate');
+  const [outcomesUnitSortBy, setOutcomesUnitSortBy] = useState<OutcomesUnitSortField>('mastery_rate');
+  const [outcomesSortDir, setOutcomesSortDir] = useState<OutcomesSortDir>('desc');
+  const [outcomesLimit, setOutcomesLimit] = useState(25);
+  const [enrollmentStatusFilter, setEnrollmentStatusFilter] = useState<'all' | EnrollmentRow['status']>('all');
   const [selectedUser, setSelectedUser] = useState<V2OutcomesUserRow | null>(null);
   const [selectedUserTimeline, setSelectedUserTimeline] = useState<TimeSeriesPoint[]>([]);
   const [loadingUserTimeline, setLoadingUserTimeline] = useState(false);
@@ -199,6 +337,30 @@ export default function V2AdminContentPage() {
     }
   }
 
+  async function loadQuestionVersions() {
+    setLoadingQuestionVersions(true);
+    setError(null);
+    try {
+      const params = new URLSearchParams();
+      if (questionStatusFilter !== 'all') params.set('status', questionStatusFilter);
+      if (questionLessonFilter.trim()) params.set('lessonCode', questionLessonFilter.trim());
+      const query = params.toString();
+      const response = await v2AuthedFetch(`/api/admin/v2/question-versions${query ? `?${query}` : ''}`, {
+        cache: 'no-store',
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to load V2 question versions.');
+      }
+      setQuestionVersions(Array.isArray(payload.versions) ? payload.versions : []);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Failed to load V2 question versions.');
+      setQuestionVersions([]);
+    } finally {
+      setLoadingQuestionVersions(false);
+    }
+  }
+
   async function loadJobs() {
     setLoadingJobs(true);
     setError(null);
@@ -221,19 +383,81 @@ export default function V2AdminContentPage() {
     setLoadingOutcomes(true);
     setError(null);
     try {
+      const refreshResponse = await v2AuthedFetch(`/api/admin/v2/outcomes/refresh?days=${days}`, {
+        method: 'POST',
+        cache: 'no-store',
+      });
+      const refreshPayload = await refreshResponse.json();
+      if (!refreshResponse.ok || refreshPayload.success === false) {
+        throw new Error(refreshPayload.message || 'Failed to refresh V2 outcomes aggregates.');
+      }
+
       const response = await v2AuthedFetch(`/api/admin/v2/outcomes/summary?days=${days}`, { cache: 'no-store' });
       const payload = await response.json();
       if (!response.ok || payload.success === false) {
         throw new Error(payload.message || 'Failed to load V2 outcomes summary.');
       }
+
+      const breakdownParams = new URLSearchParams({ days: String(days), sortDir: outcomesSortDir, limit: String(outcomesLimit) });
+      if (outcomesLessonCodeFilter.trim()) breakdownParams.set('lessonCode', outcomesLessonCodeFilter.trim());
+      if (outcomesUnitCodeFilter.trim()) breakdownParams.set('unitCode', outcomesUnitCodeFilter.trim());
+      breakdownParams.set('lessonSortBy', outcomesLessonSortBy);
+      breakdownParams.set('unitSortBy', outcomesUnitSortBy);
+
+      const breakdownResponse = await v2AuthedFetch(`/api/admin/v2/outcomes/breakdown?${breakdownParams.toString()}`, {
+        cache: 'no-store',
+      });
+      const breakdownPayload = await breakdownResponse.json();
+      if (!breakdownResponse.ok || breakdownPayload.success === false) {
+        throw new Error(breakdownPayload.message || 'Failed to load V2 outcomes breakdown.');
+      }
+
+      const interventionsResponse = await v2AuthedFetch(
+        `/api/admin/v2/outcomes/interventions?days=${days}&limit=${encodeURIComponent(String(outcomesLimit))}`,
+        { cache: 'no-store' }
+      );
+      const interventionsPayload = await interventionsResponse.json();
+      if (!interventionsResponse.ok || interventionsPayload.success === false) {
+        throw new Error(interventionsPayload.message || 'Failed to load V2 interventions.');
+      }
+
       setOutcomesSummary(payload.summary ?? null);
       setOutcomesUsers(Array.isArray(payload.users) ? payload.users : []);
+      setOutcomesLessons(Array.isArray(breakdownPayload.lessons) ? breakdownPayload.lessons : []);
+      setOutcomesUnits(Array.isArray(breakdownPayload.units) ? breakdownPayload.units : []);
+      setInterventionLearners(Array.isArray(interventionsPayload.learners) ? interventionsPayload.learners : []);
+      setInterventionLessons(Array.isArray(interventionsPayload.lessons) ? interventionsPayload.lessons : []);
+      if (selectedUser) {
+        await loadSelectedUserTimeline(selectedUser.user_id, days);
+      }
     } catch (loadError) {
       setError(loadError instanceof Error ? loadError.message : 'Failed to load V2 outcomes summary.');
       setOutcomesSummary(null);
       setOutcomesUsers([]);
+      setOutcomesLessons([]);
+      setOutcomesUnits([]);
+      setInterventionLearners([]);
+      setInterventionLessons([]);
     } finally {
       setLoadingOutcomes(false);
+    }
+  }
+
+  async function loadReadiness() {
+    setLoadingReadiness(true);
+    setError(null);
+    try {
+      const response = await v2AuthedFetch('/api/admin/v2/readiness', { cache: 'no-store' });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to load V2 readiness.');
+      }
+      setReadiness(payload as ReadinessPayload);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Failed to load V2 readiness.');
+      setReadiness(null);
+    } finally {
+      setLoadingReadiness(false);
     }
   }
 
@@ -283,6 +507,52 @@ export default function V2AdminContentPage() {
     }
   }
 
+  async function loadEnrollments() {
+    setLoadingEnrollments(true);
+    setError(null);
+    try {
+      const response = await v2AuthedFetch('/api/admin/v2/enrollments', { cache: 'no-store' });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to load V2 enrollments.');
+      }
+      setEnrollments(Array.isArray(payload.enrollments) ? payload.enrollments : []);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Failed to load V2 enrollments.');
+      setEnrollments([]);
+    } finally {
+      setLoadingEnrollments(false);
+    }
+  }
+
+  async function updateEnrollment(action: 'grant' | 'withdraw', userId?: string, email?: string) {
+    setBusyEnrollmentUserId(userId ?? email ?? 'new');
+    setError(null);
+    try {
+      const response = await v2AuthedFetch('/api/admin/v2/enrollments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action,
+          userId,
+          email,
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to update V2 enrollment.');
+      }
+      if (action === 'grant') {
+        setNewEnrollmentEmail('');
+      }
+      await Promise.all([loadEnrollments(), loadReadiness()]);
+    } catch (updateError) {
+      setError(updateError instanceof Error ? updateError.message : 'Failed to update V2 enrollment.');
+    } finally {
+      setBusyEnrollmentUserId(null);
+    }
+  }
+
   function exportApprovalDecisionsCsv() {
     if (approvalDecisions.length === 0) return;
     const escape = (value: string) => `"${value.replace(/"/g, '""')}"`;
@@ -317,8 +587,15 @@ export default function V2AdminContentPage() {
   }, [statusFilter]);
 
   useEffect(() => {
+    void loadQuestionVersions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [questionStatusFilter]);
+
+  useEffect(() => {
     void loadJobs();
     void loadApprovalDecisions();
+    void loadEnrollments();
+    void loadReadiness();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -331,11 +608,18 @@ export default function V2AdminContentPage() {
     if (!selectedUser) return;
     void loadSelectedUserTimeline(selectedUser.user_id, outcomesWindowDays);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedUser, outcomesWindowDays]);
+  }, [selectedUser]);
 
   const publishedCount = useMemo(
     () => versions.filter((version) => version.status === 'published').length,
     [versions]
+  );
+  const filteredEnrollments = useMemo(
+    () =>
+      enrollmentStatusFilter === 'all'
+        ? enrollments
+        : enrollments.filter((row) => row.status === enrollmentStatusFilter),
+    [enrollmentStatusFilter, enrollments]
   );
   const retryExhaustedJobs = useMemo(
     () => jobs.filter((job) => job.status === 'failed' && job.attempts_made >= job.max_attempts),
@@ -405,11 +689,46 @@ export default function V2AdminContentPage() {
         }
         throw new Error(payload.message || 'Failed to transition version.');
       }
-      await loadVersions();
+      await Promise.all([loadVersions(), loadReadiness()]);
     } catch (transitionError) {
       setError(transitionError instanceof Error ? transitionError.message : 'Failed to transition version.');
     } finally {
       setBusyVersionId(null);
+    }
+  }
+
+  async function transitionQuestionVersion(versionId: string, action: UpdateAction) {
+    setBusyQuestionVersionId(versionId);
+    setError(null);
+    try {
+      const moderation = collectModerationPayloadIfRequired(action);
+      if ((action === 'approve' || action === 'publish') && !moderation) {
+        throw new Error('Moderation checklist was not completed.');
+      }
+
+      const response = await v2AuthedFetch('/api/admin/v2/question-versions/status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ versionId, action, moderation }),
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        const gateIssues = Array.isArray(payload?.gate?.issues)
+          ? payload.gate.issues
+              .filter((issue: { severity?: string; message?: string }) => issue?.severity === 'error')
+              .map((issue: { message?: string }) => issue.message)
+              .filter((message: unknown): message is string => typeof message === 'string' && message.length > 0)
+          : [];
+        if (gateIssues.length > 0) {
+          throw new Error(`Question publish gate failed: ${gateIssues.join(' | ')}`);
+        }
+        throw new Error(payload.message || 'Failed to transition question version.');
+      }
+      await Promise.all([loadQuestionVersions(), loadReadiness()]);
+    } catch (transitionError) {
+      setError(transitionError instanceof Error ? transitionError.message : 'Failed to transition question version.');
+    } finally {
+      setBusyQuestionVersionId(null);
     }
   }
 
@@ -429,10 +748,33 @@ export default function V2AdminContentPage() {
       if (!response.ok || payload.success === false) {
         throw new Error(payload.message || 'Failed to create generation job.');
       }
-      await loadJobs();
+      await Promise.all([loadJobs(), loadReadiness()]);
       setNewJobPrompt('');
     } catch (createError) {
       setError(createError instanceof Error ? createError.message : 'Failed to create generation job.');
+    }
+  }
+
+  async function createQuestionDraftJob() {
+    setError(null);
+    try {
+      const response = await v2AuthedFetch('/api/admin/v2/generation-jobs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          kind: 'question_draft',
+          lessonCode: newJobLessonCode.trim(),
+          prompt: newJobPrompt.trim(),
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to create question generation job.');
+      }
+      await Promise.all([loadJobs(), loadQuestionVersions(), loadReadiness()]);
+      setNewJobPrompt('');
+    } catch (createError) {
+      setError(createError instanceof Error ? createError.message : 'Failed to create question generation job.');
     }
   }
 
@@ -459,11 +801,42 @@ export default function V2AdminContentPage() {
       if (!response.ok || payload.success === false) {
         throw new Error(payload.message || 'Failed to create batch generation jobs.');
       }
-      await loadJobs();
+      await Promise.all([loadJobs(), loadReadiness()]);
       setNewJobLessonCodesBulk('');
       setNewJobPrompt('');
     } catch (createError) {
       setError(createError instanceof Error ? createError.message : 'Failed to create batch generation jobs.');
+    }
+  }
+
+  async function createBatchQuestionDraftJobs() {
+    setError(null);
+    try {
+      const lessonCodes = newJobLessonCodesBulk
+        .split(/\r?\n|,/)
+        .map((entry) => entry.trim())
+        .filter((entry) => entry.length > 0);
+      if (lessonCodes.length === 0) {
+        throw new Error('Enter one or more lesson codes for batch queueing.');
+      }
+      const response = await v2AuthedFetch('/api/admin/v2/generation-jobs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          kind: 'question_draft',
+          lessonCodes,
+          prompt: newJobPrompt.trim(),
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to create batch question generation jobs.');
+      }
+      await Promise.all([loadJobs(), loadQuestionVersions(), loadReadiness()]);
+      setNewJobLessonCodesBulk('');
+      setNewJobPrompt('');
+    } catch (createError) {
+      setError(createError instanceof Error ? createError.message : 'Failed to create batch question generation jobs.');
     }
   }
 
@@ -478,11 +851,30 @@ export default function V2AdminContentPage() {
       if (!response.ok || payload.success === false) {
         throw new Error(payload.message || 'Failed to run generation job.');
       }
-      await Promise.all([loadJobs(), loadVersions()]);
+      await Promise.all([loadJobs(), loadVersions(), loadReadiness()]);
     } catch (runError) {
       setError(runError instanceof Error ? runError.message : 'Failed to run generation job.');
     } finally {
       setBusyJobId(null);
+    }
+  }
+
+  async function backfillQuestionBank() {
+    setBackfillingQuestions(true);
+    setError(null);
+    try {
+      const response = await v2AuthedFetch('/api/admin/v2/question-bank/backfill', {
+        method: 'POST',
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to backfill published question bank.');
+      }
+      await Promise.all([loadVersions(), loadReadiness()]);
+    } catch (backfillError) {
+      setError(backfillError instanceof Error ? backfillError.message : 'Failed to backfill published question bank.');
+    } finally {
+      setBackfillingQuestions(false);
     }
   }
 
@@ -491,6 +883,86 @@ export default function V2AdminContentPage() {
       <p>Use this page to manage V2 lesson version status without any V1 fallback.</p>
       <p>Total versions: {versions.length}</p>
       <p>Published versions: {publishedCount}</p>
+
+      <h2>V2 Access</h2>
+      <p>V2 learner access is now explicit. Accounts must have an active V2 enrollment to enter learner routes.</p>
+      <p>
+        <label htmlFor="newEnrollmentEmail">Grant by email: </label>
+        <input
+          id="newEnrollmentEmail"
+          value={newEnrollmentEmail}
+          onChange={(event) => setNewEnrollmentEmail(event.target.value)}
+          placeholder="student@example.com"
+        />{' '}
+        <button
+          type="button"
+          onClick={() => void updateEnrollment('grant', undefined, newEnrollmentEmail.trim())}
+          disabled={!newEnrollmentEmail.trim() || busyEnrollmentUserId === 'new'}
+        >
+          {busyEnrollmentUserId === 'new' ? 'Granting...' : 'Grant access'}
+        </button>{' '}
+        <button type="button" onClick={() => void loadEnrollments()} disabled={loadingEnrollments}>
+          {loadingEnrollments ? 'Loading enrollments...' : 'Refresh access list'}
+        </button>
+      </p>
+      <p>
+        <label htmlFor="enrollmentStatusFilter">Status filter: </label>
+        <select
+          id="enrollmentStatusFilter"
+          value={enrollmentStatusFilter}
+          onChange={(event) => setEnrollmentStatusFilter(event.target.value as 'all' | EnrollmentRow['status'])}
+        >
+          <option value="all">all</option>
+          <option value="active">active</option>
+          <option value="completed">completed</option>
+          <option value="withdrawn">withdrawn</option>
+        </select>
+      </p>
+      {filteredEnrollments.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th align="left">User</th>
+              <th align="left">Role</th>
+              <th align="left">Status</th>
+              <th align="left">Updated</th>
+              <th align="left">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredEnrollments.map((row) => (
+              <tr key={row.user_id}>
+                <td>
+                  <div>{row.display_name ?? row.user_id}</div>
+                  <div>{row.email ?? row.user_id}</div>
+                </td>
+                <td>{row.role}</td>
+                <td>{row.status}</td>
+                <td>{new Date(row.updated_at).toLocaleString()}</td>
+                <td>
+                  {row.status !== 'active' ? (
+                    <button
+                      type="button"
+                      onClick={() => void updateEnrollment('grant', row.user_id)}
+                      disabled={busyEnrollmentUserId === row.user_id}
+                    >
+                      {busyEnrollmentUserId === row.user_id ? 'Updating...' : 'Grant'}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => void updateEnrollment('withdraw', row.user_id)}
+                      disabled={busyEnrollmentUserId === row.user_id}
+                    >
+                      {busyEnrollmentUserId === row.user_id ? 'Updating...' : 'Withdraw'}
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
 
       <p>
         <label htmlFor="statusFilter">Status filter: </label>
@@ -568,6 +1040,162 @@ export default function V2AdminContentPage() {
         </table>
       )}
 
+      <h2>V2 Question Bank</h2>
+      <p>Review and transition versioned quiz questions independently from lesson versions.</p>
+      <p>
+        <label htmlFor="questionStatusFilter">Question status filter: </label>
+        <select
+          id="questionStatusFilter"
+          value={questionStatusFilter}
+          onChange={(event) => setQuestionStatusFilter(event.target.value as 'all' | ContentStatus)}
+        >
+          <option value="all">all</option>
+          <option value="draft">draft</option>
+          <option value="needs_review">needs_review</option>
+          <option value="approved">approved</option>
+          <option value="published">published</option>
+          <option value="retired">retired</option>
+        </select>
+      </p>
+      <p>
+        <label htmlFor="questionLessonFilter">Lesson code filter: </label>
+        <input
+          id="questionLessonFilter"
+          value={questionLessonFilter}
+          onChange={(event) => setQuestionLessonFilter(event.target.value)}
+          placeholder="BIO-101-1A"
+        />{' '}
+        <button type="button" onClick={() => void loadQuestionVersions()}>
+          Apply
+        </button>
+      </p>
+      {loadingQuestionVersions && <p>Loading V2 question versions...</p>}
+      {!loadingQuestionVersions && questionVersions.length === 0 && <p>No V2 question versions found for this filter.</p>}
+      {questionVersions.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th align="left">Question</th>
+              <th align="left">Lesson</th>
+              <th align="left">Version</th>
+              <th align="left">Status</th>
+              <th align="left">Current</th>
+              <th align="left">Source</th>
+              <th align="left">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {questionVersions.map((version) => (
+              <tr key={version.id}>
+                <td>
+                  <div>{version.question?.stable_key ?? version.question_id}</div>
+                  <div>{version.stem}</div>
+                </td>
+                <td>{version.lesson?.code ?? '-'}</td>
+                <td>v{version.version_no}</td>
+                <td>{version.status}</td>
+                <td>{version.is_current ? 'yes' : 'no'}</td>
+                <td>{version.source}</td>
+                <td>
+                  {allowedActions(version.status).map((action) => (
+                    <button
+                      key={`${version.id}-${action}`}
+                      type="button"
+                      disabled={busyQuestionVersionId === version.id}
+                      onClick={() => void transitionQuestionVersion(version.id, action)}
+                    >
+                      {action}
+                    </button>
+                  ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      <h2>V2 Readiness</h2>
+      <p>Check whether content, access, and operations are ready for a stable Biology demo.</p>
+      <p>
+        <button type="button" onClick={() => void loadReadiness()} disabled={loadingReadiness}>
+          {loadingReadiness ? 'Loading readiness...' : 'Refresh readiness'}
+        </button>
+      </p>
+      {readiness && (
+        <>
+          <h3>Content readiness</h3>
+          <p>
+            Published lessons: {readiness.content.lessons_with_published_versions}/{readiness.content.lessons_total}
+          </p>
+          <p>Missing published lessons: {readiness.content.lessons_missing_published.length}</p>
+          <p>Missing question coverage: {readiness.content.lessons_missing_question_coverage.length}</p>
+          <p>Lesson versions by status: {JSON.stringify(readiness.content.lesson_versions_by_status)}</p>
+          <p>Question versions by status: {JSON.stringify(readiness.content.question_versions_by_status)}</p>
+          {readiness.content.lessons_missing_published.length > 0 && (
+            <>
+              <h4>Lessons missing published versions</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th align="left">Code</th>
+                    <th align="left">Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {readiness.content.lessons_missing_published.map((lesson) => (
+                    <tr key={`missing-published-${lesson.id}`}>
+                      <td>{lesson.code}</td>
+                      <td>{lesson.title}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
+          {readiness.content.lessons_missing_question_coverage.length > 0 && (
+            <>
+              <h4>Lessons missing question coverage</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th align="left">Code</th>
+                    <th align="left">Title</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {readiness.content.lessons_missing_question_coverage.map((lesson) => (
+                    <tr key={`missing-questions-${lesson.id}`}>
+                      <td>{lesson.code}</td>
+                      <td>{lesson.title}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
+
+          <h3>Access readiness</h3>
+          <p>Total enrollments: {readiness.access.total_enrollments}</p>
+          <p>Enrollments by status: {JSON.stringify(readiness.access.enrollments_by_status)}</p>
+
+          <h3>Operational readiness</h3>
+          <p>Generation jobs by status: {JSON.stringify(readiness.operations.generation_jobs_by_status)}</p>
+          <p>Retry exhausted jobs: {readiness.operations.retry_exhausted_jobs}</p>
+          <p>
+            Last successful generation job:{' '}
+            {readiness.operations.last_successful_job_at
+              ? new Date(readiness.operations.last_successful_job_at).toLocaleString()
+              : '-'}
+          </p>
+          <p>
+            Last queue run:{' '}
+            {readiness.operations.last_queue_run
+              ? `${new Date(readiness.operations.last_queue_run.event_ts).toLocaleString()} | attempted ${readiness.operations.last_queue_run.attempted} | succeeded ${readiness.operations.last_queue_run.succeeded} | failed ${readiness.operations.last_queue_run.failed} | skipped ${readiness.operations.last_queue_run.skipped}`
+              : '-'}
+          </p>
+        </>
+      )}
+
       <h2>V2 Outcomes Dashboard</h2>
       <p>Track learning, behavior, and operations metrics for V2 users only.</p>
       <p>
@@ -584,8 +1212,70 @@ export default function V2AdminContentPage() {
           <option value={90}>90</option>
         </select>{' '}
         <button type="button" onClick={() => void loadOutcomes(outcomesWindowDays)} disabled={loadingOutcomes}>
-          {loadingOutcomes ? 'Loading outcomes...' : 'Refresh outcomes'}
+          {loadingOutcomes ? 'Refreshing aggregates...' : 'Refresh outcomes'}
         </button>
+      </p>
+      <p>
+        <label htmlFor="outcomesLessonCodeFilter">Lesson code filter: </label>
+        <input
+          id="outcomesLessonCodeFilter"
+          value={outcomesLessonCodeFilter}
+          onChange={(event) => setOutcomesLessonCodeFilter(event.target.value)}
+          placeholder="BIO-104"
+        />{' '}
+        <label htmlFor="outcomesUnitCodeFilter">Unit code filter: </label>
+        <input
+          id="outcomesUnitCodeFilter"
+          value={outcomesUnitCodeFilter}
+          onChange={(event) => setOutcomesUnitCodeFilter(event.target.value)}
+          placeholder="BIO-CELL"
+        />
+      </p>
+      <p>
+        <label htmlFor="outcomesLessonSortBy">Lesson sort: </label>
+        <select
+          id="outcomesLessonSortBy"
+          value={outcomesLessonSortBy}
+          onChange={(event) => setOutcomesLessonSortBy(event.target.value as OutcomesLessonSortField)}
+        >
+          <option value="mastery_rate">mastery rate</option>
+          <option value="average_best_score">average best score</option>
+          <option value="average_attempts">average attempts</option>
+          <option value="learners_started">learners started</option>
+          <option value="lesson_code">lesson code</option>
+        </select>{' '}
+        <label htmlFor="outcomesUnitSortBy">Unit sort: </label>
+        <select
+          id="outcomesUnitSortBy"
+          value={outcomesUnitSortBy}
+          onChange={(event) => setOutcomesUnitSortBy(event.target.value as OutcomesUnitSortField)}
+        >
+          <option value="mastery_rate">mastery rate</option>
+          <option value="average_best_score">average best score</option>
+          <option value="average_attempts">average attempts</option>
+          <option value="learners_started">learners started</option>
+          <option value="unit_code">unit code</option>
+        </select>{' '}
+        <label htmlFor="outcomesSortDir">Direction: </label>
+        <select
+          id="outcomesSortDir"
+          value={outcomesSortDir}
+          onChange={(event) => setOutcomesSortDir(event.target.value as OutcomesSortDir)}
+        >
+          <option value="desc">desc</option>
+          <option value="asc">asc</option>
+        </select>{' '}
+        <label htmlFor="outcomesLimit">Rows: </label>
+        <select
+          id="outcomesLimit"
+          value={outcomesLimit}
+          onChange={(event) => setOutcomesLimit(Number(event.target.value))}
+        >
+          <option value={10}>10</option>
+          <option value={25}>25</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+        </select>
       </p>
 
       {outcomesSummary && (
@@ -612,6 +1302,73 @@ export default function V2AdminContentPage() {
               ? '-'
               : `${Math.round(outcomesSummary.operations.average_generation_duration_ms / 1000)}s`}
           </p>
+        </>
+      )}
+
+      {interventionLearners.length > 0 && (
+        <>
+          <h3>Intervention learners</h3>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">Learner</th>
+                <th align="left">Risk</th>
+                <th align="left">Accuracy</th>
+                <th align="left">Completion</th>
+                <th align="left">Mastery</th>
+                <th align="left">Review backlog</th>
+                <th align="left">Reasons</th>
+              </tr>
+            </thead>
+            <tbody>
+              {interventionLearners.map((row) => (
+                <tr key={`intervention-learner-${row.user_id}`}>
+                  <td>{row.display_name ?? row.user_id}</td>
+                  <td>{row.risk_score}</td>
+                  <td>{formatPct(row.accuracy_pct)}</td>
+                  <td>{formatPct(row.completion_rate_pct)}</td>
+                  <td>{formatPct(row.mastery_rate_pct)}</td>
+                  <td>{row.review_backlog}</td>
+                  <td>{row.risk_reasons.join(', ') || '-'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+
+      {interventionLessons.length > 0 && (
+        <>
+          <h3>Intervention lessons</h3>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">Lesson</th>
+                <th align="left">Risk</th>
+                <th align="left">Learners</th>
+                <th align="left">Mastery</th>
+                <th align="left">Avg best score</th>
+                <th align="left">Avg attempts</th>
+                <th align="left">Reasons</th>
+              </tr>
+            </thead>
+            <tbody>
+              {interventionLessons.map((row) => (
+                <tr key={`intervention-lesson-${row.lesson_id}`}>
+                  <td>
+                    <div>{row.lesson_code}</div>
+                    <div>{row.lesson_title}</div>
+                  </td>
+                  <td>{row.risk_score}</td>
+                  <td>{row.learners_started}</td>
+                  <td>{formatPct(row.mastery_rate_pct)}</td>
+                  <td>{formatPct(row.average_best_score_pct)}</td>
+                  <td>{row.average_attempts == null ? '-' : row.average_attempts.toFixed(1)}</td>
+                  <td>{row.risk_reasons.join(', ') || '-'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </>
       )}
 
@@ -653,6 +1410,76 @@ export default function V2AdminContentPage() {
             ))}
           </tbody>
         </table>
+      )}
+
+      {outcomesLessons.length > 0 && (
+        <>
+          <h3>Lesson Breakdown</h3>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">Lesson</th>
+                <th align="left">Unit</th>
+                <th align="left">Learners</th>
+                <th align="left">Mastery</th>
+                <th align="left">Avg best score</th>
+                <th align="left">Avg attempts</th>
+              </tr>
+            </thead>
+            <tbody>
+              {outcomesLessons.map((row) => (
+                <tr key={row.lesson_id}>
+                  <td>
+                    <div>{row.lesson_code}</div>
+                    <div>{row.lesson_title}</div>
+                  </td>
+                  <td>{row.unit_code ?? '-'}</td>
+                  <td>{row.learners_started}</td>
+                  <td>
+                    {row.learners_mastered}/{row.learners_started} ({formatPct(row.mastery_rate_pct)})
+                  </td>
+                  <td>{formatPct(row.average_best_score_pct)}</td>
+                  <td>{row.average_attempts == null ? '-' : row.average_attempts.toFixed(1)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+
+      {outcomesUnits.length > 0 && (
+        <>
+          <h3>Unit Breakdown</h3>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">Unit</th>
+                <th align="left">Lessons</th>
+                <th align="left">Learners</th>
+                <th align="left">Mastery</th>
+                <th align="left">Avg best score</th>
+                <th align="left">Avg attempts</th>
+              </tr>
+            </thead>
+            <tbody>
+              {outcomesUnits.map((row) => (
+                <tr key={row.unit_code}>
+                  <td>
+                    <div>{row.unit_code}</div>
+                    <div>{row.unit_name}</div>
+                  </td>
+                  <td>{row.lessons_tracked}</td>
+                  <td>{row.learners_started}</td>
+                  <td>
+                    {row.learners_mastered}/{row.learners_started} ({formatPct(row.mastery_rate_pct)})
+                  </td>
+                  <td>{formatPct(row.average_best_score_pct)}</td>
+                  <td>{row.average_attempts == null ? '-' : row.average_attempts.toFixed(1)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
       )}
 
       {selectedUser && (
@@ -793,7 +1620,12 @@ export default function V2AdminContentPage() {
       )}
 
       <h2>AI Generation Jobs (Phase 1 skeleton)</h2>
-      <p>Create queued lesson draft jobs, then run them to produce V2 draft lesson versions.</p>
+      <p>Create queued lesson or question draft jobs, then run them to produce V2 draft content for moderation.</p>
+      <p>
+        <button type="button" onClick={() => void backfillQuestionBank()} disabled={backfillingQuestions}>
+          {backfillingQuestions ? 'Backfilling question bank...' : 'Backfill question bank from published lessons'}
+        </button>
+      </p>
       {retryExhaustedJobs.length > 0 && (
         <>
           <h3>Alert: Retry Exhausted Jobs</h3>
@@ -832,10 +1664,22 @@ export default function V2AdminContentPage() {
         </button>{' '}
         <button
           type="button"
+          disabled
+        >
+          Queue question draft job (not implemented)
+        </button>{' '}
+        <button
+          type="button"
           onClick={() => void createBatchLessonDraftJobs()}
           disabled={!newJobLessonCodesBulk.trim()}
         >
           Queue batch jobs
+        </button>{' '}
+        <button
+          type="button"
+          disabled
+        >
+          Queue batch question jobs (not implemented)
         </button>{' '}
         <button type="button" onClick={() => void loadJobs()} disabled={loadingJobs}>
           {loadingJobs ? 'Loading jobs...' : 'Refresh jobs'}

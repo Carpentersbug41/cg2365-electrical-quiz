@@ -1,6 +1,6 @@
 # Rebuild V2 Documentation Set
 
-Last updated: 2026-03-06
+Last updated: 2026-03-09
 Status: Working draft for ground-up rebuild planning
 
 ## Purpose
@@ -23,6 +23,16 @@ The current application has validated the product direction. These docs are for 
 10. `09_execution_roadmap.md`
 11. `10_open_questions.md`
 12. `11_decision_log.md`
+13. `12_progress_tracker.md`
+14. `13_deployment_split.md`
+15. `14_phase1_release_checklist.md`
+16. `15_tester_access_runbook.md`
+17. `16_architecture_guardrails.md`
+18. `17_module_dependency_matrix.md`
+19. `18_data_invariants_and_state_machines.md`
+20. `19_non_negotiables_for_v2.md`
+21. `20_v2_completion_audit.md`
+22. `21_ranked_implementation_backlog.md`
 
 ## Principles
 
@@ -31,6 +41,9 @@ The current application has validated the product direction. These docs are for 
 - Use a single source of truth for content and learner progress.
 - Make published content immutable and versioned.
 - Make AI asynchronous, reviewable, and operationally observable.
+- Treat V2 as its own bounded system, not a convenient extension of V1/shared legacy paths.
+- Define allowed dependencies and write ownership explicitly.
+- Record non-negotiable anti-regression rules before implementation pressure creates shortcuts.
 
 ## Expected Output
 
@@ -43,3 +56,6 @@ When this doc set is complete, it should answer:
 - What is intentionally left out of v2
 - What decisions are still unresolved
 - What decisions have been formally made
+- What V2 modules may depend on
+- What data invariants and state transitions are enforced
+- What implementation shortcuts are forbidden even if they appear faster

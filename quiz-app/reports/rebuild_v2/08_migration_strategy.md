@@ -1,10 +1,12 @@
 # Migration Strategy
 
-Last updated: 2026-03-06
+Last updated: 2026-03-09
 
 ## Overall Approach
 
 Build V2 in parallel. Do not try to transform the prototype into the final architecture in place.
+
+Treat V1 as a reference source and migration source, not as a runtime dependency for V2.
 
 ## Migration Phases
 
@@ -56,3 +58,12 @@ Explicitly not migrating:
 - file-based registries
 - operational shortcuts used only in the prototype
 - any content without publish-quality confidence
+
+## Anti-Corruption Rule
+
+Migration work must not create a hidden dependency from V2 back into V1.
+
+- export from V1, then import into V2-owned schema/processes
+- do not leave V2 reading V1 tables/files “temporarily”
+- do not preserve legacy IDs or route assumptions unless they are intentionally mapped
+- any reused logic from V1 should be copied or wrapped into a V2-owned module if it carries product behavior

@@ -5,18 +5,17 @@ const DB_PAGE_SIZE = 1000;
 const DEFAULT_DAYS = 30;
 const MAX_DAYS = 365;
 
-type AttemptRow = {
+type DailyMetricRow = {
+  day: string;
   user_id: string;
-  is_correct: boolean;
-  created_at: string;
-};
-
-type ReviewRow = {
-  user_id: string;
-  status: 'due' | 'completed' | 'resolved';
-  due_at: string;
-  resolved_at: string | null;
-  updated_at: string;
+  attempts_count: number;
+  attempts_correct: number;
+  lessons_started: number;
+  lessons_completed: number;
+  review_due: number;
+  review_resolved: number;
+  review_on_time: number;
+  review_backlog: number;
 };
 
 type ProfileRow = {
@@ -45,25 +44,20 @@ function isUuid(value: string): boolean {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
 }
 
-function toDayKey(value: string | null | undefined): string | null {
-  if (!value) return null;
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return null;
-  return date.toISOString().slice(0, 10);
-}
-
 function toPercent(numerator: number, denominator: number): number | null {
   if (denominator <= 0) return null;
   return Math.round((numerator / denominator) * 1000) / 10;
 }
 
-function buildSinceIso(days: number): string {
-  return new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+function buildStartDate(days: number): string {
+  const date = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  date.setUTCHours(0, 0, 0, 0);
+  return date.toISOString().slice(0, 10);
 }
 
-function listDayKeys(sinceIso: string): string[] {
+function listDayKeys(startDate: string): string[] {
   const out: string[] = [];
-  const since = new Date(sinceIso);
+  const since = new Date(`${startDate}T00:00:00.000Z`);
   const end = new Date();
   since.setUTCHours(0, 0, 0, 0);
   end.setUTCHours(0, 0, 0, 0);
@@ -112,8 +106,9 @@ export async function GET(request: NextRequest) {
         { status: 400 }
       );
     }
-    const sinceIso = buildSinceIso(days);
-    const dayKeys = listDayKeys(sinceIso);
+
+    const startDate = buildStartDate(days);
+    const dayKeys = listDayKeys(startDate);
     let includedUserIds: Set<string> | null = null;
 
     if (!userId) {
@@ -131,6 +126,18 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    const metricRows = await fetchAllRows<DailyMetricRow>(async (from, to) => {
+      let query = adminClient
+        .from('v2_daily_user_metrics')
+        .select(
+          'day, user_id, attempts_count, attempts_correct, lessons_started, lessons_completed, review_due, review_resolved, review_on_time, review_backlog'
+        )
+        .gte('day', startDate);
+      if (userId) query = query.eq('user_id', userId);
+      const { data, error } = await query.range(from, to);
+      return { data: data as DailyMetricRow[] | null, error: error as Error | null };
+    });
+
     const buckets = new Map<string, DayBucket>();
     for (const day of dayKeys) {
       buckets.set(day, {
@@ -145,73 +152,27 @@ export async function GET(request: NextRequest) {
       });
     }
 
-    const [attempts, reviews] = await Promise.all([
-      fetchAllRows<AttemptRow>(async (from, to) => {
-        let query = adminClient
-          .from('v2_attempts')
-          .select('user_id, is_correct, created_at')
-          .gte('created_at', sinceIso);
-        if (userId) query = query.eq('user_id', userId);
-        const { data, error } = await query.range(from, to);
-        return { data: data as AttemptRow[] | null, error: error as Error | null };
-      }),
-      fetchAllRows<ReviewRow>(async (from, to) => {
-        let query = adminClient
-          .from('v2_review_items')
-          .select('user_id, status, due_at, resolved_at, updated_at')
-          .or(`updated_at.gte.${sinceIso},due_at.gte.${sinceIso},resolved_at.gte.${sinceIso}`);
-        if (userId) query = query.eq('user_id', userId);
-        const { data, error } = await query.range(from, to);
-        return { data: data as ReviewRow[] | null, error: error as Error | null };
-      }),
-    ]);
-
-    for (const row of attempts) {
+    for (const row of metricRows) {
       if (includedUserIds && !includedUserIds.has(row.user_id)) continue;
-      const day = toDayKey(row.created_at);
-      if (!day) continue;
-      const bucket = buckets.get(day);
+      const bucket = buckets.get(row.day);
       if (!bucket) continue;
-      bucket.attemptsTotal += 1;
-      if (row.is_correct) bucket.attemptsCorrect += 1;
-      bucket.activeUsers.add(row.user_id);
-    }
+      bucket.attemptsTotal += row.attempts_count ?? 0;
+      bucket.attemptsCorrect += row.attempts_correct ?? 0;
+      bucket.reviewDue += row.review_due ?? 0;
+      bucket.reviewResolved += row.review_resolved ?? 0;
+      bucket.reviewOnTime += row.review_on_time ?? 0;
+      bucket.reviewBacklog += row.review_backlog ?? 0;
 
-    for (const row of reviews) {
-      if (includedUserIds && !includedUserIds.has(row.user_id)) continue;
-      const dueDay = toDayKey(row.due_at);
-      if (dueDay) {
-        const dueBucket = buckets.get(dueDay);
-        if (dueBucket) dueBucket.reviewDue += 1;
+      const isActive =
+        (row.attempts_count ?? 0) > 0 ||
+        (row.lessons_started ?? 0) > 0 ||
+        (row.lessons_completed ?? 0) > 0 ||
+        (row.review_due ?? 0) > 0 ||
+        (row.review_resolved ?? 0) > 0 ||
+        (row.review_backlog ?? 0) > 0;
+      if (isActive) {
+        bucket.activeUsers.add(row.user_id);
       }
-      const resolvedDay = toDayKey(row.resolved_at);
-      if (resolvedDay) {
-        const resolvedBucket = buckets.get(resolvedDay);
-        if (resolvedBucket) {
-          resolvedBucket.reviewResolved += 1;
-          if (row.resolved_at && row.resolved_at <= row.due_at) {
-            resolvedBucket.reviewOnTime += 1;
-          }
-        }
-      }
-    }
-
-    for (const day of dayKeys) {
-      const dayEndIso = `${day}T23:59:59.999Z`;
-      let activeCount = 0;
-      for (const row of reviews) {
-        if (includedUserIds && !includedUserIds.has(row.user_id)) continue;
-        if (row.due_at > dayEndIso) continue;
-        if (row.status !== 'resolved') {
-          activeCount += 1;
-          continue;
-        }
-        if (!row.resolved_at || row.resolved_at > dayEndIso) {
-          activeCount += 1;
-        }
-      }
-      const bucket = buckets.get(day);
-      if (bucket) bucket.reviewBacklog = activeCount;
     }
 
     const timeline = dayKeys.map((day) => {
@@ -230,7 +191,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      window: { days, since_iso: sinceIso, now_iso: new Date().toISOString() },
+      window: { days, start_date: startDate, now_iso: new Date().toISOString() },
       user_id: userId,
       timeline,
     });

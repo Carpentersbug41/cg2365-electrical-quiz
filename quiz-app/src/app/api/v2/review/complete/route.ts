@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireV2Session } from '@/lib/v2/session';
+import { requireV2EnrolledSession } from '@/lib/v2/session';
 
 type CompletePayload = {
   reviewItemId?: string;
@@ -7,7 +7,7 @@ type CompletePayload = {
 };
 
 export async function POST(request: NextRequest) {
-  const { session, response } = await requireV2Session(request);
+  const { session, response } = await requireV2EnrolledSession(request);
   if (!session) return response!;
 
   let body: CompletePayload;
@@ -65,6 +65,33 @@ export async function POST(request: NextRequest) {
   });
   if (eventError) {
     return NextResponse.json({ error: eventError.message }, { status: 500 });
+  }
+
+  const canonicalEvents = [
+    {
+      event_type: 'review_item_completed',
+      user_id: userId,
+      source_context: 'v2_review_page',
+      payload: {
+        reviewItemId,
+        questionStableId: existing.question_stable_id,
+        correct,
+      },
+    },
+    {
+      event_type: correct ? 'review_item_resolved' : 'review_item_due',
+      user_id: userId,
+      source_context: 'v2_review_page',
+      payload: {
+        reviewItemId,
+        questionStableId: existing.question_stable_id,
+      },
+    },
+  ];
+
+  const { error: canonicalEventError } = await client.from('v2_event_log').insert(canonicalEvents);
+  if (canonicalEventError) {
+    return NextResponse.json({ error: canonicalEventError.message }, { status: 500 });
   }
 
   return NextResponse.json({ success: true });

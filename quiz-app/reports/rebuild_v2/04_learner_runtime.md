@@ -1,6 +1,6 @@
 # Learner Runtime Specification
 
-Last updated: 2026-03-06
+Last updated: 2026-03-09
 
 ## Scope
 
@@ -32,6 +32,16 @@ This spec defines the learner-facing product in V2.
 - review due state is computed server-side, not in the client
 - phase 1 uses soft prerequisite guidance instead of hard progression locks
 
+## Runtime Boundary Rules
+
+The learner runtime is a consumer of approved/published content, not a content authoring surface.
+
+- runtime pages and APIs read from published V2 content only
+- runtime does not inspect draft or needs-review versions
+- runtime does not call V1 lesson registries, file loaders, or legacy progress helpers
+- runtime does not infer institutional metrics directly; it emits canonical events for reporting
+- client code is presentation only; grading, mastery, and review scheduling remain server-owned
+
 ## Mastery Model
 
 Phase 1 uses a simple mastery model:
@@ -62,7 +72,15 @@ Each review item should have:
 - times seen
 - times corrected
 
+Only the review domain may mutate review-item lifecycle state.
+
 ## Personalization Scope (Phase 1)
 
 - personalization influences tutor tone and examples only
 - it does not alter lesson sequencing, gating, or grading rules
+
+## Runtime Non-Goals
+
+- no dual source of truth between client state and server state
+- no hidden use of unpublished content for learner rendering
+- no runtime-specific exceptions that bypass content versioning

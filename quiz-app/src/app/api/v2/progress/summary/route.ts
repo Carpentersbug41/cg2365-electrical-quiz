@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireV2Session } from '@/lib/v2/session';
+import { requireV2EnrolledSession } from '@/lib/v2/session';
 
 type MasteryRow = {
   lesson_id: string;
@@ -16,7 +16,7 @@ function isMissingTableError(error: unknown): boolean {
 }
 
 export async function GET(request: NextRequest) {
-  const { session, response } = await requireV2Session(request);
+  const { session, response } = await requireV2EnrolledSession(request);
   if (!session) return response!;
 
   const client = session.client;

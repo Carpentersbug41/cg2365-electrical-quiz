@@ -29,38 +29,35 @@ describe('GET /api/admin/v2/outcomes/timeseries', () => {
       }),
     };
 
-    const attemptsQuery = {
+    const metricsQuery = {
       select: vi.fn().mockReturnThis(),
       gte: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
       range: vi.fn().mockResolvedValue({
         data: [
-          { user_id: 'student-1', is_correct: true, created_at: '2026-03-08T10:00:00.000Z' },
-          { user_id: 'admin-1', is_correct: false, created_at: '2026-03-08T11:00:00.000Z' },
-        ],
-        error: null,
-      }),
-    };
-
-    const reviewsQuery = {
-      select: vi.fn().mockReturnThis(),
-      or: vi.fn().mockReturnThis(),
-      eq: vi.fn().mockReturnThis(),
-      range: vi.fn().mockResolvedValue({
-        data: [
           {
+            day: '2026-03-08',
             user_id: 'student-1',
-            status: 'resolved',
-            due_at: '2026-03-08T09:00:00.000Z',
-            resolved_at: '2026-03-08T08:30:00.000Z',
-            updated_at: '2026-03-08T08:30:00.000Z',
+            attempts_count: 2,
+            attempts_correct: 1,
+            lessons_started: 1,
+            lessons_completed: 0,
+            review_due: 1,
+            review_resolved: 1,
+            review_on_time: 1,
+            review_backlog: 0,
           },
           {
+            day: '2026-03-08',
             user_id: 'admin-1',
-            status: 'resolved',
-            due_at: '2026-03-08T12:00:00.000Z',
-            resolved_at: '2026-03-08T12:30:00.000Z',
-            updated_at: '2026-03-08T12:30:00.000Z',
+            attempts_count: 10,
+            attempts_correct: 0,
+            lessons_started: 1,
+            lessons_completed: 1,
+            review_due: 4,
+            review_resolved: 0,
+            review_on_time: 0,
+            review_backlog: 4,
           },
         ],
         error: null,
@@ -70,8 +67,7 @@ describe('GET /api/admin/v2/outcomes/timeseries', () => {
     createV2AdminClient.mockReturnValue({
       from: vi.fn((table: string) => {
         if (table === 'profiles') return profilesQuery;
-        if (table === 'v2_attempts') return attemptsQuery;
-        if (table === 'v2_review_items') return reviewsQuery;
+        if (table === 'v2_daily_user_metrics') return metricsQuery;
         throw new Error(`Unexpected table ${table}`);
       }),
     });
@@ -82,9 +78,11 @@ describe('GET /api/admin/v2/outcomes/timeseries', () => {
 
     expect(response.status).toBe(200);
     const targetDay = payload.timeline.find((row: { date: string }) => row.date === '2026-03-08');
-    expect(targetDay.attempts_total).toBe(1);
-    expect(targetDay.accuracy_pct).toBe(100);
+    expect(targetDay.attempts_total).toBe(2);
+    expect(targetDay.accuracy_pct).toBe(50);
     expect(targetDay.review_due).toBe(1);
     expect(targetDay.review_resolved).toBe(1);
+    expect(targetDay.review_active_backlog).toBe(0);
+    expect(targetDay.active_users).toBe(1);
   });
 });

@@ -17,18 +17,20 @@ function getTokenFromRequest(request: NextRequest | Request): string | null {
 
 export async function guardQuestionAdminAccess(request: NextRequest | Request): Promise<NextResponse | null> {
   const expectedToken = process.env.QUESTION_ADMIN_TOKEN ?? process.env.MODULE_PLANNER_ADMIN_TOKEN;
+  const isAdmin = await isAdminRequest(request);
   if (expectedToken && expectedToken.trim().length > 0) {
     const provided = getTokenFromRequest(request);
+    if (provided === expectedToken.trim() || isAdmin) {
+      return null;
+    }
     if (provided !== expectedToken.trim()) {
       return NextResponse.json(
         { success: false, code: 'UNAUTHORIZED', message: 'Missing or invalid question admin token.' },
         { status: 401 }
       );
     }
-    return null;
   }
 
-  const isAdmin = await isAdminRequest(request);
   if (!isAdmin) {
     return NextResponse.json(
       { success: false, code: 'UNAUTHORIZED', message: 'Admin role required.' },

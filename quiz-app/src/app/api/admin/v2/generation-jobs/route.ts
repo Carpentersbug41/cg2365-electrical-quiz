@@ -110,12 +110,6 @@ export async function POST(request: NextRequest) {
 
     const body = (await request.json().catch(() => ({}))) as CreatePayload;
     const kind = body.kind === 'question_draft' ? 'question_draft' : 'lesson_draft';
-    if (kind !== 'lesson_draft') {
-      return NextResponse.json(
-        { success: false, code: 'NOT_IMPLEMENTED', message: 'Only lesson_draft jobs are supported.' },
-        { status: 400 }
-      );
-    }
     const lessonCode = typeof body.lessonCode === 'string' ? body.lessonCode.trim() : '';
     const lessonCodes = Array.isArray(body.lessonCodes)
       ? body.lessonCodes
@@ -126,9 +120,9 @@ export async function POST(request: NextRequest) {
 
     const effectiveLessonCodes = Array.from(new Set([lessonCode, ...lessonCodes].filter((entry) => entry.length > 0)));
 
-    if (kind === 'lesson_draft' && effectiveLessonCodes.length === 0) {
+    if (effectiveLessonCodes.length === 0) {
       return NextResponse.json(
-        { success: false, code: 'INVALID_INPUT', message: 'lessonCode or lessonCodes is required for lesson_draft jobs.' },
+        { success: false, code: 'INVALID_INPUT', message: 'lessonCode or lessonCodes is required for generation jobs.' },
         { status: 400 }
       );
     }
@@ -165,6 +159,7 @@ export async function POST(request: NextRequest) {
       const { data: existingJobs, error: existingError } = await adminClient
         .from('v2_generation_jobs')
         .select('id, lesson_id, status')
+        .eq('kind', kind)
         .in('lesson_id', targetLessonIds)
         .in('status', ['queued', 'running'])
         .returns<Array<{ id: string; lesson_id: string | null; status: GenerationStatus }>>();

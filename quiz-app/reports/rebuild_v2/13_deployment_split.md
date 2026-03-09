@@ -1,16 +1,18 @@
 # Deployment Split (V1 vs V2)
 
-Last updated: 2026-03-08
+Last updated: 2026-03-09
 
 ## Goal
 
 Run V1 and V2 as separate deploy surfaces so V2 demos cannot accidentally show V1 runtime/content.
 
+Mixed mode exists only to support transition work. It should be treated as temporary operational debt, not part of the target architecture.
+
 ## Runtime Mode Flag
 
 Use `APP_SURFACE_MODE`:
 
-- `all` (default): current mixed mode for local/dev transition.
+- `all`: current mixed mode for local/dev transition only; not valid as a steady-state production target.
 - `v1`: blocks `/v2` and `/api/v2` surfaces.
 - `v2`: allows only `/v2`, `/api/v2`, `/api/admin/v2`, and auth/static routes.
 
@@ -71,6 +73,12 @@ V2 project env:
    - `/api/v1/*` returns not found
 4. Keep V1 deployment with `APP_SURFACE_MODE=v1`.
 5. Publish internal URL handover doc for testers.
+
+Production rule:
+
+- V1 production deploys should run `v1`
+- V2 production deploys should run `v2`
+- `all` should be limited to local/dev or explicitly time-boxed transition environments
 
 ## Verification Status
 

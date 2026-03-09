@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import GameWrapper from '../GameWrapper';
 import { ArrowUp, ArrowDown, CheckCircle, CheckCircle2, XCircle, GripVertical, Clock, RotateCcw, ArrowRight, SkipForward, X, AlertCircle, Sparkles } from 'lucide-react';
 import { Reorder, motion, AnimatePresence, LayoutGroup, useReducedMotion } from 'motion/react';
+import ClassifyTwoBinsReplacementGame from './ClassifyTwoBinsReplacementGame';
 import DiagnosisRankedReplacementGame from './DiagnosisRankedReplacementGame';
 import IsCorrectWhyReplacementGame from './IsCorrectWhyReplacementGame';
 import {
@@ -102,7 +103,13 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
   const completionNotifiedRef = useRef(false);
   const defaultTimerSeconds = 30;
   const safeTimerSeconds = typeof content.timerSeconds === 'number' && content.timerSeconds > 0 ? content.timerSeconds : defaultTimerSeconds;
-  const useLocalHeaderAndTimer = content.gameType === 'sequencing' || content.gameType === 'fill-gap' || content.gameType === 'formula-build' || content.gameType === 'is-correct-why';
+  const useLocalHeaderAndTimer =
+    content.gameType === 'sequencing' ||
+    content.gameType === 'fill-gap' ||
+    content.gameType === 'formula-build' ||
+    content.gameType === 'is-correct-why' ||
+    content.gameType === 'diagnosis-ranked' ||
+    content.gameType === 'classify-two-bins';
   const [timeLeft, setTimeLeft] = useState<number | null>(useLocalHeaderAndTimer ? null : safeTimerSeconds);
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -1664,7 +1671,7 @@ function AdvancedGameBody(props: {
     case 'diagnosis-ranked':
       return <DiagnosisRankedReplacementGame {...props} content={props.content} />;
     case 'classify-two-bins':
-      return <ClassifyTwoBinsGame {...props} content={props.content} />;
+      return <ClassifyTwoBinsReplacementGame {...props} content={props.content} />;
     case 'scenario-match':
       return <ScenarioMatchGame {...props} content={props.content} />;
     case 'formula-build':

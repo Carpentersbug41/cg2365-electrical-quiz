@@ -1,6 +1,6 @@
 # Admin Operations Specification
 
-Last updated: 2026-03-06
+Last updated: 2026-03-09
 
 ## Purpose
 
@@ -33,6 +33,8 @@ Do not collapse all privileged behavior into one admin role if operationally avo
 - when it changed
 - what generation job produced it
 - what published version is live
+- what checklist/evidence justified approval
+- whether the transition used a normal or exceptional path
 
 ## Lesson Lifecycle
 
@@ -48,6 +50,8 @@ Version states:
 
 Publishing swaps which approved version is live. Editing always creates a new version.
 
+Transitions must be executed via V2-owned service/database transition paths, not direct table updates from UI handlers.
+
 ## Approval Gate
 
 Default rule for AI-generated lesson drafts:
@@ -55,8 +59,16 @@ Default rule for AI-generated lesson drafts:
 - publishing eligibility requires a final quality score of at least 92/100
 - drafts below threshold remain in review state and require improvement/regeneration
 
+## Admin Boundary Rules
+
+- admin tools orchestrate domain actions; they do not bypass domain invariants
+- admin pages do not write operational rows directly from form handlers when a service transition exists
+- admin tools must not query V1 content/runtime state to fill V2 workflow gaps
+- emergency/manual override paths, if ever added, must be explicit, rare, and auditable
+
 ## V1 Prototype Behavior to Replace
 
 - direct edits that blur draft vs published state
 - operator tools writing too close to learner runtime data
 - weak auditability around content mutation
+- “temporary” admin shortcuts that become production behavior

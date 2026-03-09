@@ -1,4 +1,3 @@
 export function isAuthProgressEnabled(): boolean {
-  return process.env.AUTH_PROGRESS_ENABLED?.toLowerCase() === 'true';
+  return process.env.AUTH_PROGRESS_ENABLED?.trim().toLowerCase() === 'true';
 }
-

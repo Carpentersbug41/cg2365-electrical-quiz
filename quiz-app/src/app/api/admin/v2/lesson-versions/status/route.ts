@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createV2AdminClient, getV2ActorUserId, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
 import { validateLessonVersionForPublish } from '@/lib/v2/content/publishGate';
+import { syncPublishedLessonQuestions } from '@/lib/v2/questionBank';
 
 type ContentStatus = 'draft' | 'needs_review' | 'approved' | 'published' | 'retired';
 type UpdateAction = 'submit_review' | 'approve' | 'publish' | 'retire' | 'revert_draft';
@@ -187,6 +188,18 @@ export async function POST(request: NextRequest) {
     }
     const transitionedVersion = updatedVersion[0] as TransitionedVersionRow;
 
+    let questionSync: { questionCount: number; syncedCount: number; retiredCount: number } | null = null;
+    if (nextStatus === 'published') {
+      questionSync = await syncPublishedLessonQuestions(adminClient, {
+        lessonId: version.lesson_id,
+        lessonCode: lesson.code,
+        lessonVersionId: version.id,
+        contentJson: version.content_json,
+        source: version.source,
+        qualityScore: version.quality_score,
+      });
+    }
+
     if (actorUserId && (action === 'approve' || action === 'revert_draft' || action === 'publish')) {
       const decision =
         action === 'approve' ? 'approved' : action === 'publish' ? 'override_publish' : 'rejected';
@@ -218,10 +231,29 @@ export async function POST(request: NextRequest) {
         to: nextStatus,
         reason: reason || null,
         moderation: action === 'approve' || action === 'publish' ? moderation : null,
+        questionSync,
       },
     });
     if (eventError) {
       console.warn('[V2 Admin] Failed to write audit event for lesson transition:', eventError);
+    }
+
+    if (nextStatus === 'published') {
+      const { error: publishedEventError } = await adminClient.from('v2_event_log').insert({
+        event_type: 'content_published',
+        user_id: actorUserId,
+        lesson_id: version.lesson_id,
+        lesson_version_id: version.id,
+        source_context: 'admin_v2',
+        payload: {
+          lessonCode: lesson.code,
+          action,
+          questionSync,
+        },
+      });
+      if (publishedEventError) {
+        console.warn('[V2 Admin] Failed to write content_published event:', publishedEventError);
+      }
     }
 
     return NextResponse.json({
@@ -232,6 +264,7 @@ export async function POST(request: NextRequest) {
         from: version.status,
         to: nextStatus,
       },
+      questionSync,
     });
   } catch (error) {
     return toV2AdminError(error);

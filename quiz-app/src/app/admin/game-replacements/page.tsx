@@ -6,6 +6,7 @@ import SortingGame from '@/components/learning/microbreaks/games/SortingGame';
 import AdvancedTextGame from '@/components/learning/microbreaks/games/AdvancedTextGame';
 import QuickWinSprintGame from '@/components/learning/microbreaks/games/QuickWinSprintGame';
 import {
+  ClassifyTwoBinsGameContent,
   DiagnosisRankedGameContent,
   FillGapGameContent,
   FormulaBuildGameContent,
@@ -157,6 +158,24 @@ const diagnosisRankedContent: DiagnosisRankedGameContent = {
   correctRankedIndices: [0, 1],
   rationale:
     'In a series path, one open circuit can stop current everywhere. After identifying likely open-circuit behavior, confirm source voltage before deeper component-level checks.',
+};
+
+const classifyTwoBinsContent: ClassifyTwoBinsGameContent = {
+  breakType: 'game',
+  gameType: 'classify-two-bins',
+  prompt: 'Sort each statement into the correct circuit family.',
+  instructions: 'Place every card into the left or right lane, then check your sort.',
+  timerSeconds: 55,
+  leftLabel: 'Series Circuit',
+  rightLabel: 'Parallel Circuit',
+  items: [
+    { text: 'Single current path through all loads', correctBin: 'left' },
+    { text: 'Each branch gets the full supply voltage', correctBin: 'right' },
+    { text: 'One failed lamp stops the whole loop', correctBin: 'left' },
+    { text: 'Current splits between branches', correctBin: 'right' },
+    { text: 'Components are arranged one after another', correctBin: 'left' },
+    { text: 'Other branches can keep working if one lamp fails', correctBin: 'right' },
+  ],
 };
 
 const fillGapQuestions: FillGapGameContent[] = [
@@ -323,6 +342,7 @@ export default function GameReplacementsPage() {
   const [fillGapResult, setFillGapResult] = useState<ResultState>({ status: 'idle' });
   const [isCorrectWhyResult, setIsCorrectWhyResult] = useState<ResultState>({ status: 'idle' });
   const [diagnosisRankedResult, setDiagnosisRankedResult] = useState<ResultState>({ status: 'idle' });
+  const [classifyTwoBinsResult, setClassifyTwoBinsResult] = useState<ResultState>({ status: 'idle' });
   const [matchingKey, setMatchingKey] = useState(0);
   const [sortingKey, setSortingKey] = useState(0);
   const [sequencingKey, setSequencingKey] = useState(0);
@@ -331,6 +351,7 @@ export default function GameReplacementsPage() {
   const [fillGapKey, setFillGapKey] = useState(0);
   const [isCorrectWhyKey, setIsCorrectWhyKey] = useState(0);
   const [diagnosisRankedKey, setDiagnosisRankedKey] = useState(0);
+  const [classifyTwoBinsKey, setClassifyTwoBinsKey] = useState(0);
   const [fillGapIndex, setFillGapIndex] = useState(0);
   const [fillGapCompleted, setFillGapCompleted] = useState<Array<{ score?: number; accuracy?: number }>>([]);
   const [fillGapHandledIndex, setFillGapHandledIndex] = useState<number | null>(null);
@@ -340,16 +361,17 @@ export default function GameReplacementsPage() {
       <div className="space-y-2">
         <h1 className="text-2xl font-bold text-slate-900">Completed Game Replacements</h1>
         <p className="text-sm text-slate-600">
-          Test page for in-app microbreak ports: Matching, Sorting, Sequencing, Is Correct Why, Diagnosis Ranked, Quick Win, Fill Gap, and Formula Build.
+          Test page for in-app microbreak ports: Matching, Sorting, Sequencing, Is Correct Why, Diagnosis Ranked, Classify Two Bins, Quick Win, Fill Gap, and Formula Build.
         </p>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-8">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-9">
         <ResultBadge label="Matching" result={matchingResult} />
         <ResultBadge label="Sorting" result={sortingResult} />
         <ResultBadge label="Sequencing" result={sequencingResult} />
         <ResultBadge label="Is Correct Why" result={isCorrectWhyResult} />
         <ResultBadge label="Diagnosis Ranked" result={diagnosisRankedResult} />
+        <ResultBadge label="Classify Two Bins" result={classifyTwoBinsResult} />
         <ResultBadge label="Quick Win" result={quickWinResult} />
         <ResultBadge label="Formula Build" result={formulaBuildResult} />
         <ResultBadge label="Fill Gap" result={fillGapResult} />
@@ -531,6 +553,27 @@ export default function GameReplacementsPage() {
           content={diagnosisRankedContent}
           onComplete={(score, accuracy) => setDiagnosisRankedResult({ status: 'completed', score, accuracy })}
           onSkip={() => setDiagnosisRankedResult({ status: 'skipped' })}
+        />
+      </section>
+
+      <section className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900">Classify Two Bins</h2>
+          <button
+            onClick={() => {
+              setClassifyTwoBinsKey((k) => k + 1);
+              setClassifyTwoBinsResult({ status: 'idle' });
+            }}
+            className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100"
+          >
+            Reset Classify Two Bins
+          </button>
+        </div>
+        <AdvancedTextGame
+          key={`classify-two-bins-${classifyTwoBinsKey}`}
+          content={classifyTwoBinsContent}
+          onComplete={(score, accuracy) => setClassifyTwoBinsResult({ status: 'completed', score, accuracy })}
+          onSkip={() => setClassifyTwoBinsResult({ status: 'skipped' })}
         />
       </section>
 

@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { isAnswerCorrect, type V2QuizQuestion } from '@/lib/v2/lessonQuestions';
-import { authedFetch } from '@/lib/api/authedFetch';
+import { isAnswerCorrect, type V2QuizQuestion } from '@/lib/v2/questionRuntime';
+import { v2AuthedFetch } from '@/lib/v2/client';
 
 interface V2QuizRunnerProps {
   lessonId: string;
@@ -18,6 +18,12 @@ interface SubmitResult {
   masteryAchieved: boolean;
 }
 
+function resolveSelectedAnswerIndex(options: string[] | null | undefined, answer: string): number | null {
+  if (!options || options.length === 0) return null;
+  const index = options.findIndex((option) => option === answer);
+  return index >= 0 ? index : null;
+}
+
 export default function V2QuizRunner({ lessonId, questions }: V2QuizRunnerProps) {
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [checked, setChecked] = useState<Record<string, boolean>>({});
@@ -27,18 +33,23 @@ export default function V2QuizRunner({ lessonId, questions }: V2QuizRunnerProps)
 
   const attempts = useMemo(() => {
     return questions.map((question) => {
-      const answer = answers[question.stableId] ?? '';
-      const correct = isAnswerCorrect(answer, question.acceptedAnswers);
       return {
+        questionId: question.questionId,
+        questionVersionId: question.questionVersionId,
         questionStableId: question.stableId,
-        isCorrect: correct,
+        responseText: answers[question.stableId] ?? '',
+        selectedAnswer: resolveSelectedAnswerIndex(question.options, answers[question.stableId] ?? ''),
       };
     });
   }, [answers, questions]);
 
   const incorrectCount = useMemo(
-    () => attempts.filter((attempt) => !attempt.isCorrect).length,
-    [attempts]
+    () =>
+      questions.filter((question) => {
+        const answer = answers[question.stableId] ?? '';
+        return !isAnswerCorrect(answer, question.acceptedAnswers);
+      }).length,
+    [answers, questions]
   );
 
   const unansweredCount = useMemo(() => {
@@ -50,7 +61,7 @@ export default function V2QuizRunner({ lessonId, questions }: V2QuizRunnerProps)
     setResult(null);
     setIsSubmitting(true);
     try {
-      const response = await authedFetch('/api/v2/runtime/lesson-quiz/submit', {
+      const response = await v2AuthedFetch('/api/v2/runtime/lesson-quiz/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -90,16 +101,37 @@ export default function V2QuizRunner({ lessonId, questions }: V2QuizRunnerProps)
               <li key={question.stableId}>
                 <p>Q{index + 1}</p>
                 <p>{question.prompt}</p>
-                <input
-                  type="text"
-                  value={answer}
-                  onChange={(event) =>
-                    setAnswers((prev) => ({
-                      ...prev,
-                      [question.stableId]: event.target.value,
-                    }))
-                  }
-                />
+                {question.options && question.options.length > 0 ? (
+                  <div>
+                    {question.options.map((option) => (
+                      <label key={`${question.stableId}-${option}`}>
+                        <input
+                          type="radio"
+                          name={question.stableId}
+                          checked={answer === option}
+                          onChange={() =>
+                            setAnswers((prev) => ({
+                              ...prev,
+                              [question.stableId]: option,
+                            }))
+                          }
+                        />
+                        {option}
+                      </label>
+                    ))}
+                  </div>
+                ) : (
+                  <input
+                    type="text"
+                    value={answer}
+                    onChange={(event) =>
+                      setAnswers((prev) => ({
+                        ...prev,
+                        [question.stableId]: event.target.value,
+                      }))
+                    }
+                  />
+                )}
                 <div>
                   <button
                     type="button"

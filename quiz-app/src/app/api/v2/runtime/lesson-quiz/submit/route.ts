@@ -1,9 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireV2Session } from '@/lib/v2/session';
+import { isAnswerCorrect } from '@/lib/v2/questionRuntime';
+import { requireV2EnrolledSession } from '@/lib/v2/session';
 
 type AttemptInput = {
-  questionId?: string;
+  questionVersionId?: string | null;
+  questionId?: string | null;
   questionStableId?: string | null;
+  responseText?: string | null;
   isCorrect?: boolean;
   selectedAnswer?: number | null;
   correctAnswer?: number;
@@ -15,13 +18,23 @@ type SubmitPayload = {
   sourceContext?: string;
 };
 
+type PublishedQuestionRow = {
+  id: string;
+  question_id: string;
+  answer_key: { acceptedAnswers?: unknown } | null;
+  v2_questions?: {
+    stable_key?: string;
+    lesson_id?: string;
+  } | null;
+};
+
 function isMissingTableError(error: unknown): boolean {
   if (!error || typeof error !== 'object') return false;
   return (error as { code?: unknown }).code === '42P01';
 }
 
 export async function POST(request: NextRequest) {
-  const { session, response } = await requireV2Session(request);
+  const { session, response } = await requireV2EnrolledSession(request);
   if (!session) {
     return response!;
   }
@@ -46,31 +59,6 @@ export async function POST(request: NextRequest) {
   if (attempts.length === 0) {
     return NextResponse.json({ error: 'attempts must contain at least one item' }, { status: 400 });
   }
-
-  const normalizedAttempts = attempts.map((attempt, index) => {
-    const stable =
-      typeof attempt.questionStableId === 'string' && attempt.questionStableId.trim().length > 0
-        ? attempt.questionStableId.trim()
-        : typeof attempt.questionId === 'string' && attempt.questionId.trim().length > 0
-          ? attempt.questionId.trim()
-          : `q-${index + 1}`;
-    const isCorrect = Boolean(attempt.isCorrect);
-    return {
-      question_stable_id: stable,
-      attempt_no: 1,
-      is_correct: isCorrect,
-      score: isCorrect ? 1 : 0,
-      max_score: 1,
-      response_json: {
-        selectedAnswer: attempt.selectedAnswer ?? null,
-        correctAnswer: attempt.correctAnswer ?? null,
-      },
-    };
-  });
-
-  const correctCount = normalizedAttempts.filter((attempt) => attempt.is_correct).length;
-  const percentage = (correctCount / normalizedAttempts.length) * 100;
-  const masteryAchieved = percentage >= 80;
 
   const client = session.client;
   const userId = session.user.id;
@@ -115,6 +103,85 @@ export async function POST(request: NextRequest) {
 
   const lessonVersionId = lessonVersionRow.id;
 
+  const normalizedAttempts = attempts.map((attempt, index) => {
+    const stable =
+      typeof attempt.questionStableId === 'string' && attempt.questionStableId.trim().length > 0
+        ? attempt.questionStableId.trim()
+        : typeof attempt.questionId === 'string' && attempt.questionId.trim().length > 0
+          ? attempt.questionId.trim()
+          : `q-${index + 1}`;
+    return {
+      question_id:
+        typeof attempt.questionId === 'string' && attempt.questionId.trim().length > 0
+          ? attempt.questionId.trim()
+          : null,
+      question_version_id:
+        typeof attempt.questionVersionId === 'string' && attempt.questionVersionId.trim().length > 0
+          ? attempt.questionVersionId.trim()
+          : null,
+      question_stable_id: stable,
+      attempt_no: 1,
+      response_text: typeof attempt.responseText === 'string' ? attempt.responseText.trim() : '',
+      fallback_is_correct: attempt.isCorrect === true,
+      response_json: {
+        responseText: typeof attempt.responseText === 'string' ? attempt.responseText.trim() : '',
+        selectedAnswer: attempt.selectedAnswer ?? null,
+        correctAnswer: attempt.correctAnswer ?? null,
+      },
+    };
+  });
+
+  const { data: publishedQuestions, error: publishedQuestionsError } = await client
+    .from('v2_question_versions')
+    .select('id, question_id, answer_key, v2_questions!inner(stable_key, lesson_id)')
+    .eq('status', 'published')
+    .eq('is_current', true)
+    .eq('v2_questions.lesson_id', lessonId)
+    .returns<PublishedQuestionRow[]>();
+  if (publishedQuestionsError && !isMissingTableError(publishedQuestionsError)) {
+    return NextResponse.json({ error: publishedQuestionsError.message }, { status: 500 });
+  }
+
+  const questionByVersionId = new Map(
+    (publishedQuestions ?? []).map((row) => [row.id, row])
+  );
+  const questionByStableId = new Map(
+    (publishedQuestions ?? [])
+      .filter((row) => typeof row.v2_questions?.stable_key === 'string')
+      .map((row) => [row.v2_questions!.stable_key as string, row])
+  );
+
+  const gradedAttempts = normalizedAttempts.map((attempt) => {
+    const publishedQuestion =
+      (attempt.question_version_id ? questionByVersionId.get(attempt.question_version_id) : null) ??
+      questionByStableId.get(attempt.question_stable_id) ??
+      null;
+    const acceptedAnswers = Array.isArray(publishedQuestion?.answer_key?.acceptedAnswers)
+      ? publishedQuestion.answer_key!.acceptedAnswers.filter(
+          (entry): entry is string => typeof entry === 'string'
+        )
+      : [];
+    const isCorrect =
+      acceptedAnswers.length > 0
+        ? isAnswerCorrect(attempt.response_text, acceptedAnswers)
+        : attempt.fallback_is_correct;
+
+    return {
+      question_id: publishedQuestion?.question_id ?? attempt.question_id,
+      question_version_id: publishedQuestion?.id ?? attempt.question_version_id,
+      question_stable_id: publishedQuestion?.v2_questions?.stable_key ?? attempt.question_stable_id,
+      attempt_no: 1,
+      is_correct: isCorrect,
+      score: isCorrect ? 1 : 0,
+      max_score: 1,
+      response_json: attempt.response_json,
+    };
+  });
+
+  const correctCount = gradedAttempts.filter((attempt) => attempt.is_correct).length;
+  const percentage = (correctCount / gradedAttempts.length) * 100;
+  const masteryAchieved = percentage >= 80;
+
   const { data: lessonSessionRow, error: lessonSessionError } = await client
     .from('v2_lesson_sessions')
     .insert({
@@ -151,7 +218,7 @@ export async function POST(request: NextRequest) {
 
   const quizSessionId = quizSessionRow.id;
 
-  const attemptsToInsert = normalizedAttempts.map((attempt) => ({
+  const attemptsToInsert = gradedAttempts.map((attempt) => ({
     ...attempt,
     quiz_session_id: quizSessionId,
     user_id: userId,
@@ -163,7 +230,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: attemptsError.message }, { status: 500 });
   }
 
-  for (const attempt of normalizedAttempts) {
+  const reviewEventRows: Array<{
+    event_type: string;
+    user_id: string;
+    lesson_id: string;
+    lesson_version_id: string;
+    question_id: string | null;
+    question_version_id: string | null;
+    session_id: string;
+    source_context: string;
+    payload: Record<string, unknown>;
+  }> = [];
+
+  for (const attempt of attemptsToInsert) {
     const { data: existingReview, error: reviewFetchError } = await client
       .from('v2_review_items')
       .select('id, times_wrong, times_right, status')
@@ -193,7 +272,23 @@ export async function POST(request: NextRequest) {
           review_item_id: updatedReview.id,
           user_id: userId,
           event_type: 'due',
-          payload: { questionStableId: attempt.question_stable_id, sourceContext: sourceContext },
+          payload: { questionStableId: attempt.question_stable_id, sourceContext },
+        });
+        reviewEventRows.push({
+          event_type: 'review_item_due',
+          user_id: userId,
+          lesson_id: lessonId,
+          lesson_version_id: lessonVersionId,
+          question_id: attempt.question_id,
+          question_version_id: attempt.question_version_id,
+          session_id: quizSessionId,
+          source_context: sourceContext,
+          payload: {
+            reviewItemId: updatedReview.id,
+            questionStableId: attempt.question_stable_id,
+            reason: 'wrong_answer',
+            reopened: true,
+          },
         });
       } else {
         const { data: insertedReview, error: insertReviewError } = await client
@@ -215,7 +310,37 @@ export async function POST(request: NextRequest) {
           review_item_id: insertedReview.id,
           user_id: userId,
           event_type: 'due',
-          payload: { questionStableId: attempt.question_stable_id, sourceContext: sourceContext },
+          payload: { questionStableId: attempt.question_stable_id, sourceContext },
+        });
+        reviewEventRows.push({
+          event_type: 'review_item_created',
+          user_id: userId,
+          lesson_id: lessonId,
+          lesson_version_id: lessonVersionId,
+          question_id: attempt.question_id,
+          question_version_id: attempt.question_version_id,
+          session_id: quizSessionId,
+          source_context: sourceContext,
+          payload: {
+            reviewItemId: insertedReview.id,
+            questionStableId: attempt.question_stable_id,
+            reason: 'wrong_answer',
+          },
+        });
+        reviewEventRows.push({
+          event_type: 'review_item_due',
+          user_id: userId,
+          lesson_id: lessonId,
+          lesson_version_id: lessonVersionId,
+          question_id: attempt.question_id,
+          question_version_id: attempt.question_version_id,
+          session_id: quizSessionId,
+          source_context: sourceContext,
+          payload: {
+            reviewItemId: insertedReview.id,
+            questionStableId: attempt.question_stable_id,
+            reason: 'wrong_answer',
+          },
         });
       }
       continue;
@@ -238,7 +363,21 @@ export async function POST(request: NextRequest) {
         review_item_id: resolvedReview.id,
         user_id: userId,
         event_type: 'resolved',
-        payload: { questionStableId: attempt.question_stable_id, sourceContext: sourceContext },
+        payload: { questionStableId: attempt.question_stable_id, sourceContext },
+      });
+      reviewEventRows.push({
+        event_type: 'review_item_resolved',
+        user_id: userId,
+        lesson_id: lessonId,
+        lesson_version_id: lessonVersionId,
+        question_id: attempt.question_id,
+        question_version_id: attempt.question_version_id,
+        session_id: quizSessionId,
+        source_context: sourceContext,
+        payload: {
+          reviewItemId: resolvedReview.id,
+          questionStableId: attempt.question_stable_id,
+        },
       });
     }
   }
@@ -291,11 +430,13 @@ export async function POST(request: NextRequest) {
   }
 
   const eventRows = [
-    ...normalizedAttempts.map((attempt) => ({
+    ...attemptsToInsert.map((attempt) => ({
       event_type: 'question_attempted',
       user_id: userId,
       lesson_id: lessonId,
       lesson_version_id: lessonVersionId,
+      question_id: attempt.question_id,
+      question_version_id: attempt.question_version_id,
       session_id: quizSessionId,
       source_context: sourceContext,
       payload: {
@@ -312,7 +453,7 @@ export async function POST(request: NextRequest) {
       session_id: quizSessionId,
       source_context: sourceContext,
       payload: {
-        attemptsCount: normalizedAttempts.length,
+        attemptsCount: attemptsToInsert.length,
         correctCount,
         percentage,
       },
@@ -329,6 +470,7 @@ export async function POST(request: NextRequest) {
         masteryAchieved: masteryAchieved || bestScore >= 80,
       },
     },
+    ...reviewEventRows,
   ];
 
   const { error: eventError } = await client.from('v2_event_log').insert(eventRows);
@@ -342,7 +484,7 @@ export async function POST(request: NextRequest) {
     lessonCode,
     percentage,
     correctCount,
-    attemptsCount: normalizedAttempts.length,
+    attemptsCount: attemptsToInsert.length,
     masteryAchieved: masteryAchieved || bestScore >= 80,
   });
 }

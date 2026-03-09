@@ -30,17 +30,73 @@ describe('POST /api/admin/v2/generation-jobs', () => {
     expect(response.status).toBe(400);
   });
 
-  it('returns 400 for unsupported question_draft jobs', async () => {
-    createV2AdminClient.mockReturnValue({});
+  it('accepts question_draft jobs when a lesson code is provided', async () => {
+    const lessonLookup = {
+      select: vi.fn().mockReturnThis(),
+      in: vi.fn().mockReturnThis(),
+      returns: vi.fn().mockResolvedValue({
+        data: [{ id: 'lesson-1', code: 'BIO-101-1A' }],
+        error: null,
+      }),
+    };
+
+    const existingJobsLookup = {
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      in: vi.fn().mockReturnThis(),
+      returns: vi.fn().mockResolvedValue({
+        data: [],
+        error: null,
+      }),
+    };
+
+    const insertQuery = {
+      insert: vi.fn().mockReturnThis(),
+      select: vi.fn().mockReturnThis(),
+      returns: vi.fn().mockResolvedValue({
+        data: [{
+          id: 'job-1',
+          kind: 'question_draft',
+          status: 'queued',
+          lesson_id: 'lesson-1',
+          payload: { lessonCode: 'BIO-101-1A' },
+          attempts_made: 0,
+          max_attempts: 3,
+          error_message: null,
+          queued_at: '2026-03-09T12:00:00.000Z',
+          started_at: null,
+          finished_at: null,
+          created_at: '2026-03-09T12:00:00.000Z',
+        }],
+        error: null,
+      }),
+    };
+
+    const eventInsert = {
+      insert: vi.fn().mockResolvedValue({ error: null }),
+    };
+
+    createV2AdminClient.mockReturnValue({
+      from: vi.fn((table: string) => {
+        if (table === 'v2_lessons') return lessonLookup;
+        if (table === 'v2_generation_jobs') {
+          return existingJobsLookup.in.mock.calls.length === 0 ? existingJobsLookup : insertQuery;
+        }
+        if (table === 'v2_event_log') return eventInsert;
+        throw new Error(`Unexpected table ${table}`);
+      }),
+    });
+
     const { POST } = await import('./route');
     const response = await POST(new NextRequest('http://localhost/api/admin/v2/generation-jobs', {
       method: 'POST',
-      body: JSON.stringify({ kind: 'question_draft' }),
+      body: JSON.stringify({ kind: 'question_draft', lessonCode: 'BIO-101-1A' }),
     }));
 
     const payload = await response.json();
-    expect(response.status).toBe(400);
-    expect(payload.code).toBe('NOT_IMPLEMENTED');
+    expect(response.status).toBe(200);
+    expect(payload.jobs).toHaveLength(1);
+    expect(payload.jobs[0].kind).toBe('question_draft');
   });
 
   it('returns 503 when admin client is unavailable', async () => {
@@ -63,6 +119,7 @@ describe('POST /api/admin/v2/generation-jobs', () => {
 
     const existingJobsLookup = {
       select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
       in: vi.fn().mockReturnThis(),
       returns: vi.fn().mockResolvedValue({
         data: [],

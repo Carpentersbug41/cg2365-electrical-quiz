@@ -1,17 +1,25 @@
-import type { Lesson } from '@/data/lessons/types';
-import { isLessonIdAllowedForScope, type CurriculumScope } from '@/lib/routing/curriculumScope';
+import type { V2Lesson } from '@/lib/v2/contentTypes';
+import { isLessonIdAllowedForV2Scope, type V2CurriculumScope } from '@/lib/v2/scope';
 import { createV2SupabaseAdminClient } from '@/lib/v2/supabase';
 
 interface PublishedLessonRow {
+  id?: string;
+  lesson_id?: string;
   content_json?: unknown;
   v2_lessons?: {
     code?: unknown;
   } | null;
 }
 
-function isLessonShape(value: unknown): value is Lesson {
+export interface V2PublishedLessonRecord {
+  lessonId: string;
+  lessonVersionId: string;
+  lesson: V2Lesson;
+}
+
+function isLessonShape(value: unknown): value is V2Lesson {
   if (!value || typeof value !== 'object') return false;
-  const candidate = value as Partial<Lesson>;
+  const candidate = value as Partial<V2Lesson>;
   return (
     typeof candidate.id === 'string' &&
     typeof candidate.title === 'string' &&
@@ -21,7 +29,7 @@ function isLessonShape(value: unknown): value is Lesson {
   );
 }
 
-function normalizeLessonPayload(value: unknown): Lesson | null {
+function normalizeLessonPayload(value: unknown): V2Lesson | null {
   if (!isLessonShape(value)) return null;
   return value;
 }
@@ -32,13 +40,20 @@ function isMissingTableError(error: unknown): boolean {
   return code === '42P01';
 }
 
-export async function getV2PublishedLessonByCode(lessonCode: string): Promise<Lesson | null> {
+export async function getV2PublishedLessonByCode(lessonCode: string): Promise<V2Lesson | null> {
+  const record = await getV2PublishedLessonRecordByCode(lessonCode);
+  return record?.lesson ?? null;
+}
+
+export async function getV2PublishedLessonRecordByCode(
+  lessonCode: string
+): Promise<V2PublishedLessonRecord | null> {
   const client = createV2SupabaseAdminClient();
   if (!client) return null;
 
   const { data, error } = await client
     .from('v2_lesson_versions')
-    .select('content_json, v2_lessons!inner(code)')
+    .select('id, lesson_id, content_json, v2_lessons!inner(code)')
     .eq('status', 'published')
     .eq('v2_lessons.code', lessonCode)
     .limit(1)
@@ -51,10 +66,19 @@ export async function getV2PublishedLessonByCode(lessonCode: string): Promise<Le
     return null;
   }
 
-  return normalizeLessonPayload(data?.content_json);
+  const lesson = normalizeLessonPayload(data?.content_json);
+  if (!lesson || typeof data?.id !== 'string' || typeof data?.lesson_id !== 'string') {
+    return null;
+  }
+
+  return {
+    lesson,
+    lessonId: data.lesson_id,
+    lessonVersionId: data.id,
+  };
 }
 
-export async function listV2PublishedLessons(scope: CurriculumScope): Promise<Lesson[]> {
+export async function listV2PublishedLessons(scope: V2CurriculumScope): Promise<V2Lesson[]> {
   const client = createV2SupabaseAdminClient();
   if (!client) return [];
 
@@ -74,6 +98,6 @@ export async function listV2PublishedLessons(scope: CurriculumScope): Promise<Le
 
   return (data ?? [])
     .map((row) => normalizeLessonPayload(row.content_json))
-    .filter((lesson): lesson is Lesson => Boolean(lesson))
-    .filter((lesson) => isLessonIdAllowedForScope(lesson.id, scope));
+    .filter((lesson): lesson is V2Lesson => Boolean(lesson))
+    .filter((lesson) => isLessonIdAllowedForV2Scope(lesson.id, scope));
 }

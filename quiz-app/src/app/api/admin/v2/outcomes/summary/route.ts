@@ -11,33 +11,32 @@ type ProfileRow = {
   role: 'student' | 'admin';
 };
 
-type AttemptRow = {
+type DailyMetricRow = {
+  day: string;
   user_id: string;
-  is_correct: boolean;
-  created_at: string;
+  attempts_count: number;
+  attempts_correct: number;
+  lessons_started: number;
+  lessons_completed: number;
+  review_due: number;
+  review_resolved: number;
+  review_on_time: number;
+  review_recovery_denominator: number;
+  review_recovery_numerator: number;
 };
 
-type LessonSessionRow = {
-  user_id: string;
-  status: 'started' | 'completed' | 'abandoned';
-  created_at: string;
-  completed_at: string | null;
+type DailyOpsMetricRow = {
+  day: string;
+  generation_jobs_total: number;
+  generation_jobs_succeeded: number;
+  generation_jobs_failed: number;
+  generation_duration_ms_sum: number;
+  generation_duration_count: number;
 };
 
-type ReviewRow = {
+type MasteryRow = {
   user_id: string;
-  status: 'due' | 'completed' | 'resolved';
-  due_at: string;
-  resolved_at: string | null;
-  times_wrong: number;
-  times_right: number;
-};
-
-type JobRow = {
-  status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled';
-  started_at: string | null;
-  finished_at: string | null;
-  created_at: string;
+  mastery_status: 'pending' | 'achieved';
 };
 
 function parseDays(raw: string | null): number {
@@ -53,6 +52,12 @@ function toPercent(numerator: number, denominator: number): number | null {
 
 function buildSinceIso(days: number): string {
   return new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
+}
+
+function buildStartDate(days: number): string {
+  const date = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+  date.setUTCHours(0, 0, 0, 0);
+  return date.toISOString().slice(0, 10);
 }
 
 async function fetchAllRows<T>(
@@ -87,9 +92,11 @@ export async function GET(request: NextRequest) {
 
     const days = parseDays(request.nextUrl.searchParams.get('days'));
     const sinceIso = buildSinceIso(days);
+    const startDate = buildStartDate(days);
+    const endDate = new Date().toISOString().slice(0, 10);
     const nowIso = new Date().toISOString();
 
-    const [profiles, attempts, sessions, reviews, jobs] = await Promise.all([
+    const [profiles, dailyMetrics, dailyOps] = await Promise.all([
       fetchAllRows<ProfileRow>(async (from, to) => {
         const { data, error } = await adminClient
           .from('profiles')
@@ -97,77 +104,75 @@ export async function GET(request: NextRequest) {
           .range(from, to);
         return { data: data as ProfileRow[] | null, error: error as Error | null };
       }),
-      fetchAllRows<AttemptRow>(async (from, to) => {
+      fetchAllRows<DailyMetricRow>(async (from, to) => {
         const { data, error } = await adminClient
-          .from('v2_attempts')
-          .select('user_id, is_correct, created_at')
-          .gte('created_at', sinceIso)
+          .from('v2_daily_user_metrics')
+          .select(
+            'day, user_id, attempts_count, attempts_correct, lessons_started, lessons_completed, review_due, review_resolved, review_on_time, review_recovery_denominator, review_recovery_numerator'
+          )
+          .gte('day', startDate)
+          .lte('day', endDate)
           .range(from, to);
-        return { data: data as AttemptRow[] | null, error: error as Error | null };
+        return { data: data as DailyMetricRow[] | null, error: error as Error | null };
       }),
-      fetchAllRows<LessonSessionRow>(async (from, to) => {
+      fetchAllRows<DailyOpsMetricRow>(async (from, to) => {
         const { data, error } = await adminClient
-          .from('v2_lesson_sessions')
-          .select('user_id, status, created_at, completed_at')
-          .or(`created_at.gte.${sinceIso},completed_at.gte.${sinceIso}`)
+          .from('v2_daily_ops_metrics')
+          .select(
+            'day, generation_jobs_total, generation_jobs_succeeded, generation_jobs_failed, generation_duration_ms_sum, generation_duration_count'
+          )
+          .gte('day', startDate)
+          .lte('day', endDate)
           .range(from, to);
-        return { data: data as LessonSessionRow[] | null, error: error as Error | null };
-      }),
-      fetchAllRows<ReviewRow>(async (from, to) => {
-        const { data, error } = await adminClient
-          .from('v2_review_items')
-          .select('user_id, status, due_at, resolved_at, times_wrong, times_right')
-          .or(`due_at.gte.${sinceIso},resolved_at.gte.${sinceIso}`)
-          .range(from, to);
-        return { data: data as ReviewRow[] | null, error: error as Error | null };
-      }),
-      fetchAllRows<JobRow>(async (from, to) => {
-        const { data, error } = await adminClient
-          .from('v2_generation_jobs')
-          .select('status, started_at, finished_at, created_at')
-          .gte('created_at', sinceIso)
-          .range(from, to);
-        return { data: data as JobRow[] | null, error: error as Error | null };
+        return { data: data as DailyOpsMetricRow[] | null, error: error as Error | null };
       }),
     ]);
 
     const students = profiles.filter((profile) => profile.role !== 'admin');
     const studentSet = new Set(students.map((student) => student.user_id));
+    const studentMetrics = dailyMetrics.filter((row) => studentSet.has(row.user_id));
 
-    const studentAttempts = attempts.filter((row) => studentSet.has(row.user_id));
-    const correctAttempts = studentAttempts.filter((row) => row.is_correct).length;
-    const overallAccuracyPct = toPercent(correctAttempts, studentAttempts.length);
+    const byUser = new Map<
+      string,
+      {
+        attempts_total: number;
+        attempts_correct: number;
+        lessons_started: number;
+        lessons_completed: number;
+        review_due: number;
+        review_resolved: number;
+        review_on_time: number;
+        review_recovery_denominator: number;
+        review_recovery_numerator: number;
+      }
+    >();
 
-    const startedSessions = sessions.filter(
-      (row) => studentSet.has(row.user_id) && (row.status === 'started' || row.status === 'completed' || row.status === 'abandoned')
-    );
-    const completedSessions = sessions.filter(
-      (row) => studentSet.has(row.user_id) && (row.status === 'completed' || row.completed_at != null)
-    );
+    for (const row of studentMetrics) {
+      const bucket =
+        byUser.get(row.user_id) ??
+        {
+          attempts_total: 0,
+          attempts_correct: 0,
+          lessons_started: 0,
+          lessons_completed: 0,
+          review_due: 0,
+          review_resolved: 0,
+          review_on_time: 0,
+          review_recovery_denominator: 0,
+          review_recovery_numerator: 0,
+        };
 
-    const dueReviewItems = reviews.filter(
-      (row) => studentSet.has(row.user_id) && row.due_at >= sinceIso && row.due_at <= nowIso
-    );
-    const resolvedReviewItems = dueReviewItems.filter((row) => row.status === 'resolved' || row.resolved_at != null);
-    const onTimeReviewItems = dueReviewItems.filter(
-      (row) => row.resolved_at != null && row.resolved_at <= row.due_at
-    );
-    const wrongItems = reviews.filter((row) => studentSet.has(row.user_id) && row.times_wrong > 0);
-    const recoveredItems = wrongItems.filter((row) => row.times_right > 0);
-
-    const jobsSucceeded = jobs.filter((row) => row.status === 'succeeded').length;
-    const jobsFailed = jobs.filter((row) => row.status === 'failed').length;
-    const runDurationsMs = jobs
-      .map((row) => {
-        if (!row.started_at || !row.finished_at) return null;
-        const start = new Date(row.started_at).getTime();
-        const end = new Date(row.finished_at).getTime();
-        if (Number.isNaN(start) || Number.isNaN(end) || end < start) return null;
-        return end - start;
-      })
-      .filter((value): value is number => typeof value === 'number');
-    const avgJobDurationMs =
-      runDurationsMs.length > 0 ? Math.round(runDurationsMs.reduce((a, b) => a + b, 0) / runDurationsMs.length) : null;
+      bucket.attempts_total += row.attempts_count ?? 0;
+      bucket.attempts_correct += row.attempts_correct ?? 0;
+      bucket.lessons_started += row.lessons_started ?? 0;
+      bucket.lessons_completed += row.lessons_completed ?? 0;
+      bucket.review_due += row.review_due ?? 0;
+      bucket.review_resolved += row.review_resolved ?? 0;
+      bucket.review_on_time += row.review_on_time ?? 0;
+      bucket.review_recovery_denominator += row.review_recovery_denominator ?? 0;
+      bucket.review_recovery_numerator += row.review_recovery_numerator ?? 0;
+      byUser.set(row.user_id, bucket);
+    }
 
     const masteryByUser = new Map<string, { achieved: number; total: number }>();
     for (const student of students) {
@@ -180,62 +185,73 @@ export async function GET(request: NextRequest) {
       .or(`last_attempt_at.gte.${sinceIso},first_attempt_at.gte.${sinceIso},achieved_at.gte.${sinceIso}`);
     if (masteryError) throw masteryError;
 
-    for (const row of masteryRows ?? []) {
-      const userId = (row as { user_id?: string }).user_id;
-      if (!userId || !studentSet.has(userId)) continue;
-      const state = masteryByUser.get(userId);
+    for (const row of (masteryRows ?? []) as MasteryRow[]) {
+      if (!studentSet.has(row.user_id)) continue;
+      const state = masteryByUser.get(row.user_id);
       if (!state) continue;
       state.total += 1;
-      if ((row as { mastery_status?: string }).mastery_status === 'achieved') {
-        state.achieved += 1;
+      if (row.mastery_status === 'achieved') state.achieved += 1;
+    }
+
+    const attemptsTotal = studentMetrics.reduce((sum, row) => sum + (row.attempts_count ?? 0), 0);
+    const attemptsCorrect = studentMetrics.reduce((sum, row) => sum + (row.attempts_correct ?? 0), 0);
+    const lessonsStarted = studentMetrics.reduce((sum, row) => sum + (row.lessons_started ?? 0), 0);
+    const lessonsCompleted = studentMetrics.reduce((sum, row) => sum + (row.lessons_completed ?? 0), 0);
+    const reviewDue = studentMetrics.reduce((sum, row) => sum + (row.review_due ?? 0), 0);
+    const reviewResolved = studentMetrics.reduce((sum, row) => sum + (row.review_resolved ?? 0), 0);
+    const reviewOnTime = studentMetrics.reduce((sum, row) => sum + (row.review_on_time ?? 0), 0);
+    const reviewRecoveryDenominator = studentMetrics.reduce(
+      (sum, row) => sum + (row.review_recovery_denominator ?? 0),
+      0
+    );
+    const reviewRecoveryNumerator = studentMetrics.reduce(
+      (sum, row) => sum + (row.review_recovery_numerator ?? 0),
+      0
+    );
+
+    const opsTotals = dailyOps.reduce(
+      (acc, row) => {
+        acc.generation_jobs_total += row.generation_jobs_total ?? 0;
+        acc.generation_jobs_succeeded += row.generation_jobs_succeeded ?? 0;
+        acc.generation_jobs_failed += row.generation_jobs_failed ?? 0;
+        acc.generation_duration_ms_sum += row.generation_duration_ms_sum ?? 0;
+        acc.generation_duration_count += row.generation_duration_count ?? 0;
+        return acc;
+      },
+      {
+        generation_jobs_total: 0,
+        generation_jobs_succeeded: 0,
+        generation_jobs_failed: 0,
+        generation_duration_ms_sum: 0,
+        generation_duration_count: 0,
       }
-    }
-
-    const attemptsByUser = new Map<string, AttemptRow[]>();
-    for (const attempt of studentAttempts) {
-      const list = attemptsByUser.get(attempt.user_id) ?? [];
-      list.push(attempt);
-      attemptsByUser.set(attempt.user_id, list);
-    }
-
-    const sessionsByUser = new Map<string, LessonSessionRow[]>();
-    for (const session of sessions.filter((row) => studentSet.has(row.user_id))) {
-      const list = sessionsByUser.get(session.user_id) ?? [];
-      list.push(session);
-      sessionsByUser.set(session.user_id, list);
-    }
-
-    const reviewByUser = new Map<string, ReviewRow[]>();
-    for (const review of reviews.filter((row) => studentSet.has(row.user_id))) {
-      const list = reviewByUser.get(review.user_id) ?? [];
-      list.push(review);
-      reviewByUser.set(review.user_id, list);
-    }
+    );
 
     const users = students.map((student) => {
-      const userAttempts = attemptsByUser.get(student.user_id) ?? [];
-      const userCorrect = userAttempts.filter((attempt) => attempt.is_correct).length;
-      const userSessions = sessionsByUser.get(student.user_id) ?? [];
-      const userStarted = userSessions.filter((session) => session.status !== 'abandoned').length;
-      const userCompleted = userSessions.filter(
-        (session) => session.status === 'completed' || session.completed_at != null
-      ).length;
-      const userReviews = reviewByUser.get(student.user_id) ?? [];
-      const userDue = userReviews.filter((review) => review.due_at >= sinceIso && review.due_at <= nowIso);
-      const userResolved = userDue.filter((review) => review.status === 'resolved' || review.resolved_at != null);
+      const metrics = byUser.get(student.user_id) ?? {
+        attempts_total: 0,
+        attempts_correct: 0,
+        lessons_started: 0,
+        lessons_completed: 0,
+        review_due: 0,
+        review_resolved: 0,
+        review_on_time: 0,
+        review_recovery_denominator: 0,
+        review_recovery_numerator: 0,
+      };
       const mastery = masteryByUser.get(student.user_id) ?? { achieved: 0, total: 0 };
 
       return {
         user_id: student.user_id,
         display_name: student.display_name,
-        attempts_total: userAttempts.length,
-        accuracy_pct: toPercent(userCorrect, userAttempts.length),
-        lessons_started: userStarted,
-        lessons_completed: userCompleted,
-        completion_rate_pct: toPercent(userCompleted, userStarted),
-        review_due: userDue.length,
-        review_resolved: userResolved.length,
-        review_resolved_rate_pct: toPercent(userResolved.length, userDue.length),
+        attempts_total: metrics.attempts_total,
+        accuracy_pct: toPercent(metrics.attempts_correct, metrics.attempts_total),
+        lessons_started: metrics.lessons_started,
+        lessons_completed: metrics.lessons_completed,
+        completion_rate_pct: toPercent(metrics.lessons_completed, metrics.lessons_started),
+        review_due: metrics.review_due,
+        review_resolved: metrics.review_resolved,
+        review_resolved_rate_pct: toPercent(metrics.review_resolved, metrics.review_due),
         mastery_achieved_lessons: mastery.achieved,
         mastery_rate_pct: toPercent(mastery.achieved, mastery.total),
       };
@@ -245,28 +261,34 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      window: { days, since_iso: sinceIso, now_iso: nowIso },
+      window: { days, since_iso: sinceIso, now_iso: nowIso, start_date: startDate, end_date: endDate },
       summary: {
         learning: {
-          attempts_total: studentAttempts.length,
-          accuracy_pct: overallAccuracyPct,
+          attempts_total: attemptsTotal,
+          accuracy_pct: toPercent(attemptsCorrect, attemptsTotal),
           mastery_rate_pct: toPercent(
             Array.from(masteryByUser.values()).reduce((sum, row) => sum + row.achieved, 0),
             Array.from(masteryByUser.values()).reduce((sum, row) => sum + row.total, 0)
           ),
         },
         behavior: {
-          lesson_completion_rate_pct: toPercent(completedSessions.length, startedSessions.length),
-          review_adherence_pct: toPercent(resolvedReviewItems.length, dueReviewItems.length),
-          review_on_time_pct: toPercent(onTimeReviewItems.length, dueReviewItems.length),
-          error_recovery_pct: toPercent(recoveredItems.length, wrongItems.length),
+          lesson_completion_rate_pct: toPercent(lessonsCompleted, lessonsStarted),
+          review_adherence_pct: toPercent(reviewResolved, reviewDue),
+          review_on_time_pct: toPercent(reviewOnTime, reviewDue),
+          error_recovery_pct: toPercent(reviewRecoveryNumerator, reviewRecoveryDenominator),
         },
         operations: {
-          generation_jobs_total: jobs.length,
-          generation_jobs_succeeded: jobsSucceeded,
-          generation_jobs_failed: jobsFailed,
-          generation_success_rate_pct: toPercent(jobsSucceeded, jobsSucceeded + jobsFailed),
-          average_generation_duration_ms: avgJobDurationMs,
+          generation_jobs_total: opsTotals.generation_jobs_total,
+          generation_jobs_succeeded: opsTotals.generation_jobs_succeeded,
+          generation_jobs_failed: opsTotals.generation_jobs_failed,
+          generation_success_rate_pct: toPercent(
+            opsTotals.generation_jobs_succeeded,
+            opsTotals.generation_jobs_succeeded + opsTotals.generation_jobs_failed
+          ),
+          average_generation_duration_ms:
+            opsTotals.generation_duration_count > 0
+              ? Math.round(opsTotals.generation_duration_ms_sum / opsTotals.generation_duration_count)
+              : null,
         },
       },
       users,

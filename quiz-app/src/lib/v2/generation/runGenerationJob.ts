@@ -1,6 +1,8 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { FileGenerator } from '@/lib/generation/fileGenerator';
-import type { GenerationRequest, Lesson } from '@/lib/generation/types';
+import type { V2Lesson } from '@/lib/v2/contentTypes';
+import { generateV2LessonDraft, type V2GenerationRequest } from '@/lib/v2/generation/engine';
+import { generateV2QuestionDrafts } from '@/lib/v2/generation/questionEngine';
+import { createV2QuestionDraftVersions } from '@/lib/v2/questionBank';
 
 type GenerationStatus = 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled';
 
@@ -36,11 +38,7 @@ type LessonRow = {
 export type RunGenerationJobResult = {
   jobId: string;
   status: 'succeeded';
-  output: {
-    generatedLessonVersionId: string;
-    baseVersionNo: number | null;
-    generatedVersionNo: number;
-  };
+  output: Record<string, unknown>;
 };
 
 export class GenerationJobError extends Error {
@@ -146,7 +144,7 @@ function toStringArray(value: unknown): string[] {
     .filter((entry) => entry.length > 0);
 }
 
-function toV2GenerationRequest(lesson: LessonRow, promptText: string): GenerationRequest {
+function toV2GenerationRequest(lesson: LessonRow, promptText: string): V2GenerationRequest {
   const parsed = parseLessonCode(lesson.code);
   if (!parsed) {
     throw new GenerationJobError(
@@ -175,7 +173,7 @@ function toContextAwareGenerationRequest(
   lesson: LessonRow,
   payload: Record<string, unknown>,
   baseVersionContent: Record<string, unknown> | null
-): GenerationRequest {
+): V2GenerationRequest {
   const promptText = typeof payload?.prompt === 'string' ? payload.prompt.trim() : '';
   const fallbackRequest = toV2GenerationRequest(lesson, promptText);
   if (!baseVersionContent) return fallbackRequest;
@@ -221,15 +219,19 @@ async function generateDraftLessonContent(
   lesson: LessonRow,
   payload: Record<string, unknown>,
   baseVersionContent: Record<string, unknown> | null
-): Promise<Lesson> {
+): Promise<V2Lesson> {
   const request = toContextAwareGenerationRequest(lesson, payload, baseVersionContent);
+  return generateV2LessonDraft(request);
+}
 
-  const generator = new FileGenerator();
-  const generated = await generator.generateLesson(request);
-  if (!generated.success || !generated.content) {
-    throw new Error(generated.error || 'Generation pipeline failed to produce lesson content.');
-  }
-  return generated.content;
+async function generateDraftQuestionContent(
+  lesson: LessonRow,
+  payload: Record<string, unknown>,
+  baseVersionContent: Record<string, unknown> | null,
+  jobId: string
+) {
+  const request = toContextAwareGenerationRequest(lesson, payload, baseVersionContent);
+  return generateV2QuestionDrafts(request, `${lesson.code}:${jobId}`);
 }
 
 export async function runGenerationJobById(
@@ -254,17 +256,17 @@ export async function runGenerationJobById(
       409
     );
   }
-  if (job.kind !== 'lesson_draft') {
+  if (job.kind !== 'lesson_draft' && job.kind !== 'question_draft') {
     throw new GenerationJobError(
       'NOT_IMPLEMENTED',
-      'Only lesson_draft jobs are supported in Phase 1.',
+      'Unsupported generation job kind.',
       400
     );
   }
   if (!job.lesson_id) {
     throw new GenerationJobError(
       'INVALID_JOB',
-      'lesson_id missing for lesson_draft job.',
+      'lesson_id missing for generation job.',
       400
     );
   }
@@ -308,7 +310,21 @@ export async function runGenerationJobById(
     console.warn('[V2 Admin] Failed to write generation start audit event:', startedEventError);
   }
 
+  await adminClient.from('v2_event_log').insert({
+    event_type: 'generation_job_started',
+    lesson_id: job.lesson_id,
+    source_context: 'admin_v2',
+    payload: {
+      jobId: job.id,
+      kind: job.kind,
+      lockOwner,
+    },
+  });
+
   let insertedVersionId: string | null = null;
+  let insertedQuestionVersionIds: string[] = [];
+  let insertedQuestionIds: string[] = [];
+  const stepKey = job.kind === 'question_draft' ? 'create_question_draft' : 'create_lesson_draft';
 
   try {
     const { data: lesson, error: lessonError } = await adminClient
@@ -328,41 +344,70 @@ export async function runGenerationJobById(
       .maybeSingle<LessonVersionRow>();
     if (latestVersionError) throw latestVersionError;
 
-    const nextVersionNo = (latestVersion?.version_no ?? 0) + 1;
-    const contentJson = await generateDraftLessonContent(
-      lesson,
-      job.payload ?? {},
-      latestVersion?.content_json ?? null
-    );
+    let output: Record<string, unknown>;
 
-    const { data: insertedVersion, error: insertVersionError } = await adminClient
-      .from('v2_lesson_versions')
-      .insert({
-        lesson_id: job.lesson_id,
-        version_no: nextVersionNo,
-        status: 'draft',
+    if (job.kind === 'lesson_draft') {
+      const nextVersionNo = (latestVersion?.version_no ?? 0) + 1;
+      const contentJson = await generateDraftLessonContent(
+        lesson,
+        job.payload ?? {},
+        latestVersion?.content_json ?? null
+      );
+
+      const { data: insertedVersion, error: insertVersionError } = await adminClient
+        .from('v2_lesson_versions')
+        .insert({
+          lesson_id: job.lesson_id,
+          version_no: nextVersionNo,
+          status: 'draft',
+          source: 'ai',
+          quality_score: null,
+          content_json: contentJson,
+          is_current: false,
+          created_by: null,
+          approved_by: null,
+          published_at: null,
+        })
+        .select('id')
+        .single<{ id: string }>();
+      if (insertVersionError) throw insertVersionError;
+      insertedVersionId = insertedVersion.id;
+
+      output = {
+        generatedLessonVersionId: insertedVersion.id,
+        baseVersionNo: latestVersion?.version_no ?? null,
+        generatedVersionNo: nextVersionNo,
+      };
+    } else {
+      const drafts = await generateDraftQuestionContent(
+        lesson,
+        job.payload ?? {},
+        latestVersion?.content_json ?? null,
+        job.id
+      );
+      const questionDraftOutput = await createV2QuestionDraftVersions(adminClient, {
+        lessonId: job.lesson_id,
+        lessonCode: lesson.code,
+        drafts,
         source: 'ai',
-        quality_score: null,
-        content_json: contentJson,
-        is_current: false,
-        created_by: null,
-        approved_by: null,
-        published_at: null,
-      })
-      .select('id')
-      .single<{ id: string }>();
-    if (insertVersionError) throw insertVersionError;
-    insertedVersionId = insertedVersion.id;
-
-    const output = {
-      generatedLessonVersionId: insertedVersion.id,
-      baseVersionNo: latestVersion?.version_no ?? null,
-      generatedVersionNo: nextVersionNo,
-    };
+        qualityScore: null,
+        metadata: {
+          sourceGenerationJobId: job.id,
+          sourceLessonVersionNo: latestVersion?.version_no ?? null,
+        },
+      });
+      insertedQuestionVersionIds = questionDraftOutput.questionVersionIds;
+      insertedQuestionIds = questionDraftOutput.questionIds;
+      output = {
+        generatedQuestionCount: questionDraftOutput.questionCount,
+        createdQuestionVersions: questionDraftOutput.createdCount,
+        questionVersionIds: questionDraftOutput.questionVersionIds,
+      };
+    }
 
     const { error: stepError } = await adminClient.from('v2_generation_job_steps').insert({
       job_id: job.id,
-      step_key: 'create_lesson_draft',
+      step_key: stepKey,
       status: 'succeeded',
       input_json: job.payload ?? {},
       output_json: output,
@@ -372,7 +417,7 @@ export async function runGenerationJobById(
 
     const { error: artifactError } = await adminClient.from('v2_generation_artifacts').insert({
       job_id: job.id,
-      artifact_type: 'lesson_draft',
+      artifact_type: job.kind,
       artifact_json: output,
     });
     if (artifactError) throw artifactError;
@@ -402,6 +447,17 @@ export async function runGenerationJobById(
     if (successEventError) {
       console.warn('[V2 Admin] Failed to write generation success audit event:', successEventError);
     }
+
+    await adminClient.from('v2_event_log').insert({
+      event_type: 'generation_job_completed',
+      lesson_id: job.lesson_id,
+      source_context: 'admin_v2',
+      payload: {
+        jobId: job.id,
+        status: 'succeeded',
+        output,
+      },
+    });
 
     return {
       jobId: job.id,
@@ -436,7 +492,7 @@ export async function runGenerationJobById(
 
     await adminClient.from('v2_generation_job_steps').insert({
       job_id: job.id,
-      step_key: 'create_lesson_draft',
+      step_key: stepKey,
       status: 'failed',
       input_json: job.payload ?? {},
       output_json: {
@@ -463,6 +519,19 @@ export async function runGenerationJobById(
       },
     });
 
+    await adminClient.from('v2_event_log').insert({
+      event_type: 'generation_job_completed',
+      lesson_id: job.lesson_id,
+      source_context: 'admin_v2',
+      payload: {
+        jobId: job.id,
+        status: nextStatus,
+        errorCode,
+        error: errorMessage,
+        retryScheduled: canRetry,
+      },
+    });
+
     if (insertedVersionId) {
       const { error: cleanupError } = await adminClient
         .from('v2_lesson_versions')
@@ -470,6 +539,41 @@ export async function runGenerationJobById(
         .eq('id', insertedVersionId);
       if (cleanupError) {
         console.warn('[V2 Generation] Failed to clean up draft version after run failure:', cleanupError);
+      }
+    }
+
+    if (insertedQuestionVersionIds.length > 0) {
+      const { error: cleanupQuestionVersionsError } = await adminClient
+        .from('v2_question_versions')
+        .delete()
+        .in('id', insertedQuestionVersionIds);
+      if (cleanupQuestionVersionsError) {
+        console.warn(
+          '[V2 Generation] Failed to clean up draft question versions after run failure:',
+          cleanupQuestionVersionsError
+        );
+      }
+    }
+
+    if (insertedQuestionIds.length > 0) {
+      for (const questionId of insertedQuestionIds) {
+        const { data: remainingVersions, error: remainingVersionsError } = await adminClient
+          .from('v2_question_versions')
+          .select('id')
+          .eq('question_id', questionId)
+          .limit(1);
+        if (remainingVersionsError) {
+          console.warn('[V2 Generation] Failed to inspect question versions after cleanup:', remainingVersionsError);
+          continue;
+        }
+        if ((remainingVersions ?? []).length > 0) continue;
+        const { error: cleanupQuestionError } = await adminClient
+          .from('v2_questions')
+          .delete()
+          .eq('id', questionId);
+        if (cleanupQuestionError) {
+          console.warn('[V2 Generation] Failed to clean up orphan question after run failure:', cleanupQuestionError);
+        }
       }
     }
 
