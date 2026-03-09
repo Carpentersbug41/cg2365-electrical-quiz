@@ -67,6 +67,11 @@ export default function OnboardingPage() {
     );
   };
 
+  const redirectToSignIn = () => {
+    const nextTarget = explicitNextTarget ? `/onboarding?next=${encodeURIComponent(explicitNextTarget)}` : '/onboarding';
+    router.replace(`/auth/sign-in?next=${encodeURIComponent(nextTarget)}`);
+  };
+
   const startInterview = async () => {
     setError(null);
     setIsLoadingQuestion(true);
@@ -76,6 +81,10 @@ export default function OnboardingPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'next-question', transcript: [] }),
       });
+      if (qResponse.status === 401) {
+        redirectToSignIn();
+        return;
+      }
       const qData = await readJsonPayload<{ success?: boolean; message?: string; question?: string }>(qResponse);
       if (!qResponse.ok || qData.success === false || typeof qData.question !== 'string') {
         throw new Error(qData.message ?? 'Failed to start onboarding interview.');
@@ -95,6 +104,10 @@ export default function OnboardingPage() {
       setError(null);
       try {
         const statusResponse = await authedFetch('/api/onboarding/profile', { cache: 'no-store' });
+        if (statusResponse.status === 401) {
+          redirectToSignIn();
+          return;
+        }
         const statusData = await readJsonPayload<{
           success?: boolean;
           message?: string;
@@ -145,6 +158,10 @@ export default function OnboardingPage() {
           transcript,
         }),
       });
+      if (response.status === 401) {
+        redirectToSignIn();
+        return;
+      }
       const data = await readJsonPayload<{ success?: boolean; message?: string; question?: string }>(response);
       if (!response.ok || data.success === false || typeof data.question !== 'string') {
         throw new Error(data.message ?? 'Failed to fetch next onboarding question.');
@@ -169,6 +186,10 @@ export default function OnboardingPage() {
           transcript,
         }),
       });
+      if (response.status === 401) {
+        redirectToSignIn();
+        return;
+      }
       const data = await readJsonPayload<{ success?: boolean; message?: string; profileSummary?: string }>(
         response
       );

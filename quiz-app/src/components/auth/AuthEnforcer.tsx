@@ -77,7 +77,7 @@ export default function AuthEnforcer({ children }: AuthEnforcerProps) {
 
   useEffect(() => {
     const currentPath = normalizedPathname || '/';
-    if (isPublicPath(currentPath) || isV2Path(currentPath)) {
+    if (isPublicPath(currentPath) || isV2Path(currentPath) || isOnboardingPath(currentPath)) {
       setAuthorized(true);
       return;
     }
