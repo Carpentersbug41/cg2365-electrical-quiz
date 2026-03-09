@@ -19,20 +19,30 @@ export default function V2AuthGate({ children }: V2AuthGateProps) {
   useEffect(() => {
     let active = true;
     const run = async () => {
+      const qs = searchParams.toString();
+      const next = `${pathname || '/v2'}${qs ? `?${qs}` : ''}`;
       const client = getSupabaseBrowserClient();
       if (!client) {
-        const qs = searchParams.toString();
-        const next = `${pathname || '/v2'}${qs ? `?${qs}` : ''}`;
         router.replace(`/auth/sign-in?next=${encodeURIComponent(next)}`);
         return;
       }
       const { data, error } = await client.auth.getSession();
       if (!active) return;
       if (error || !data.session?.user) {
-        const qs = searchParams.toString();
-        const next = `${pathname || '/v2'}${qs ? `?${qs}` : ''}`;
         router.replace(`/auth/sign-in?next=${encodeURIComponent(next)}`);
         return;
+      }
+      const onboardingResponse = await v2AuthedFetch('/api/onboarding/profile', {
+        method: 'GET',
+        cache: 'no-store',
+      });
+      if (!active) return;
+      if (onboardingResponse.ok) {
+        const onboardingPayload = await onboardingResponse.json().catch(() => null);
+        if (onboardingPayload && onboardingPayload.onboardingComplete === false) {
+          router.replace(`/onboarding?next=${encodeURIComponent(next)}`);
+          return;
+        }
       }
       const enrollmentResponse = await v2AuthedFetch('/api/v2/enrollment/ensure', { method: 'POST' });
       if (!active) return;

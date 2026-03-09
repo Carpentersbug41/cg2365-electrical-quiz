@@ -10,14 +10,43 @@ describe('isSafeAppRedirect', () => {
 });
 
 describe('resolveDefaultPostAuthTarget', () => {
+  it('prefers onboarding when the profile is incomplete', async () => {
+    const fetcher = vi
+      .fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        json: vi.fn().mockResolvedValue({ onboardingComplete: false }),
+      });
+
+    await expect(resolveDefaultPostAuthTarget(fetcher)).resolves.toBe('/onboarding');
+    expect(fetcher).toHaveBeenCalledTimes(1);
+    expect(fetcher).toHaveBeenCalledWith(
+      '/api/onboarding/profile',
+      expect.objectContaining({ method: 'GET' })
+    );
+  });
+
   it('prefers V2 learn when enrollment check succeeds', async () => {
-    const fetcher = vi.fn().mockResolvedValue({ ok: true });
+    const fetcher = vi
+      .fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        json: vi.fn().mockResolvedValue({ onboardingComplete: true }),
+      })
+      .mockResolvedValueOnce({ ok: true });
+
     await expect(resolveDefaultPostAuthTarget(fetcher)).resolves.toBe('/v2/learn');
   });
 
   it('falls back to null when enrollment check fails', async () => {
-    const fetcher = vi.fn().mockResolvedValue({ ok: false });
+    const fetcher = vi
+      .fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        json: vi.fn().mockResolvedValue({ onboardingComplete: true }),
+      })
+      .mockResolvedValueOnce({ ok: false });
+
     await expect(resolveDefaultPostAuthTarget(fetcher)).resolves.toBeNull();
   });
 });
-
