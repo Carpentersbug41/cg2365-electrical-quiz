@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { v2AuthedFetch } from '@/lib/v2/client';
 
 interface V2AuthGateProps {
   children: ReactNode;
@@ -33,7 +34,7 @@ export default function V2AuthGate({ children }: V2AuthGateProps) {
         router.replace(`/auth/sign-in?next=${encodeURIComponent(next)}`);
         return;
       }
-      const enrollmentResponse = await fetch('/api/v2/enrollment/ensure', { method: 'POST' });
+      const enrollmentResponse = await v2AuthedFetch('/api/v2/enrollment/ensure', { method: 'POST' });
       if (!active) return;
       if (!enrollmentResponse.ok) {
         const payload = await enrollmentResponse.json().catch(() => null);

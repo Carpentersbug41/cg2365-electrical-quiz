@@ -28,6 +28,10 @@ function isPublicPath(pathname: string): boolean {
   return PUBLIC_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
+function isV2Path(pathname: string): boolean {
+  return pathname === '/v2' || pathname.startsWith('/v2/');
+}
+
 function isOnboardingPath(pathname: string): boolean {
   return pathname === ONBOARDING_PATH || pathname.startsWith(`${ONBOARDING_PATH}/`);
 }
@@ -73,7 +77,7 @@ export default function AuthEnforcer({ children }: AuthEnforcerProps) {
 
   useEffect(() => {
     const currentPath = normalizedPathname || '/';
-    if (isPublicPath(currentPath)) {
+    if (isPublicPath(currentPath) || isV2Path(currentPath)) {
       setAuthorized(true);
       return;
     }

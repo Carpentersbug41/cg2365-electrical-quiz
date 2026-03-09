@@ -39,6 +39,15 @@ type InsertedQuestionVersionRow = {
   published_at: string | null;
 };
 
+type TransitionedQuestionVersionRow = {
+  id: string;
+  question_id: string;
+  status: 'draft' | 'needs_review' | 'approved' | 'published' | 'retired';
+  version_no: number;
+  is_current: boolean;
+  published_at: string | null;
+};
+
 function isLessonShape(value: unknown): value is V2Lesson {
   if (!value || typeof value !== 'object') return false;
   const candidate = value as Partial<V2Lesson>;
@@ -93,6 +102,62 @@ function toQuestionVersionMetadata(
     ...(input.sourceLessonVersionId ? { sourceLessonVersionId: input.sourceLessonVersionId } : {}),
     ...(input.extraMetadata ?? {}),
   };
+}
+
+async function createPublishedQuestionVersion(
+  adminClient: SupabaseClient,
+  input: {
+    questionId: string;
+    source: 'human' | 'ai';
+    qualityScore: number | null;
+    prompt: string;
+    answerKey: { acceptedAnswers: string[] };
+    metadata: Record<string, unknown>;
+  }
+): Promise<TransitionedQuestionVersionRow> {
+  const { data: latestVersion, error: latestVersionError } = await adminClient
+    .from('v2_question_versions')
+    .select('version_no')
+    .eq('question_id', input.questionId)
+    .order('version_no', { ascending: false })
+    .limit(1)
+    .maybeSingle<{ version_no: number }>();
+  if (latestVersionError) throw latestVersionError;
+
+  const nextVersionNo = (latestVersion?.version_no ?? 0) + 1;
+  const publishTs = new Date().toISOString();
+
+  const { error: retireError } = await adminClient
+    .from('v2_question_versions')
+    .update({
+      status: 'retired',
+      is_current: false,
+    })
+    .eq('question_id', input.questionId)
+    .eq('is_current', true);
+  if (retireError) throw retireError;
+
+  const { data: insertedVersion, error: insertVersionError } = await adminClient
+    .from('v2_question_versions')
+    .insert({
+      question_id: input.questionId,
+      version_no: nextVersionNo,
+      status: 'published',
+      source: input.source,
+      quality_score: input.qualityScore,
+      stem: input.prompt,
+      answer_key: input.answerKey,
+      metadata: input.metadata,
+      is_current: true,
+      created_by: null,
+      approved_by: null,
+      published_at: publishTs,
+    })
+    .select('id, question_id, status, version_no, is_current, published_at')
+    .single<TransitionedQuestionVersionRow>();
+  if (insertVersionError) throw insertVersionError;
+
+  return insertedVersion;
 }
 
 export async function listV2PublishedQuizQuestions(lessonId: string): Promise<V2QuizQuestion[]> {
@@ -224,23 +289,14 @@ export async function syncPublishedLessonQuestions(
       continue;
     }
 
-    const { data: insertedVersion, error: insertVersionError } = await adminClient.rpc(
-      'v2_insert_published_question_version',
-      {
-        target_question_id: question.id,
-        version_source: input.source,
-        version_quality_score: input.qualityScore,
-        version_stem: draft.prompt,
-        version_answer_key: nextAnswerKey,
-        version_metadata: nextMetadata,
-        actor_user_id: null,
-        publish_ts: new Date().toISOString(),
-      }
-    );
-    if (insertVersionError) throw insertVersionError;
-    if (!Array.isArray(insertedVersion) || insertedVersion.length === 0) {
-      throw new Error(`Failed to create published question version for ${draft.stableKey}.`);
-    }
+    await createPublishedQuestionVersion(adminClient, {
+      questionId: question.id,
+      source: input.source,
+      qualityScore: input.qualityScore,
+      prompt: draft.prompt,
+      answerKey: nextAnswerKey,
+      metadata: nextMetadata,
+    });
     syncedCount += 1;
   }
 

@@ -145,18 +145,36 @@ describe('questionBank', () => {
       },
       error: null,
     });
-    const rpc = vi.fn().mockResolvedValue({
-      data: [
-        {
-          id: 'version-2',
-          question_id: 'question-1',
-          version_no: 2,
-          status: 'published',
-          is_current: true,
-          published_at: '2026-03-09T00:00:00.000Z',
-        },
-      ],
+    const nextVersionSelect = createSelectChain<{ version_no: number } | null>({
+      data: { version_no: 1 },
       error: null,
+    });
+    const updateEq = vi.fn().mockResolvedValue({ error: null });
+    const updateChain = {
+      eq: vi.fn(() => ({
+        eq: updateEq,
+      })),
+    };
+    const insertSingle = vi.fn().mockResolvedValue({
+      data: {
+        id: 'version-2',
+        question_id: 'question-1',
+        version_no: 2,
+        status: 'published',
+        is_current: true,
+        published_at: '2026-03-09T00:00:00.000Z',
+      },
+      error: null,
+    });
+    const insertPayloads: any[] = [];
+    const insertChain = {
+      select: vi.fn(() => ({
+        single: insertSingle,
+      })),
+    };
+    const insert = vi.fn((payload: any) => {
+      insertPayloads.push(payload);
+      return insertChain;
     });
 
     const adminClient = {
@@ -168,12 +186,15 @@ describe('questionBank', () => {
         }
         if (table === 'v2_question_versions') {
           return {
-            select: vi.fn(() => latestVersionSelect),
+            select: vi.fn()
+              .mockReturnValueOnce(latestVersionSelect)
+              .mockReturnValueOnce(nextVersionSelect),
+            update: vi.fn(() => updateChain),
+            insert,
           };
         }
         throw new Error(`Unexpected table ${table}`);
       }),
-      rpc,
     } as any;
 
     await syncPublishedLessonQuestions(adminClient, {
@@ -185,12 +206,15 @@ describe('questionBank', () => {
       qualityScore: 100,
     });
 
-    expect(rpc).toHaveBeenCalledWith(
-      'v2_insert_published_question_version',
+    expect(updateEq).toHaveBeenCalledWith('is_current', true);
+    expect(insertPayloads[0]).toEqual(
       expect.objectContaining({
-        target_question_id: 'question-1',
-        version_source: 'human',
-        version_metadata: expect.objectContaining({
+        question_id: 'question-1',
+        version_no: 2,
+        status: 'published',
+        source: 'human',
+        stem: 'Which organelle contains genetic material?',
+        metadata: expect.objectContaining({
           lessonCode: 'BIO-101-1A',
           sourceLessonVersionId: 'lesson-version-2',
           sourceBlockId: 'block-1',
@@ -199,5 +223,6 @@ describe('questionBank', () => {
         }),
       })
     );
+    expect(insertSingle).toHaveBeenCalled();
   });
 });
