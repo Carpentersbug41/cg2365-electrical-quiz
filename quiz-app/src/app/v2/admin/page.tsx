@@ -678,6 +678,64 @@ export default function V2AdminContentPage() {
       }),
     [jobs]
   );
+  const prioritizedLessonQueue = useMemo(() => {
+    const statusRank: Record<ContentStatus, number> = {
+      needs_review: 3,
+      approved: 2,
+      draft: 1,
+      published: 0,
+      retired: 0,
+    };
+
+    return versions
+      .filter((version) => statusRank[version.status] > 0)
+      .map((version) => {
+        const ageHours = Math.max(
+          0,
+          Math.round((Date.now() - new Date(version.created_at).getTime()) / (60 * 60 * 1000))
+        );
+        return {
+          version,
+          ageHours,
+          priority:
+            statusRank[version.status] * 100 +
+            (version.source === 'ai' ? 20 : 0) +
+            Math.min(ageHours, 72) +
+            Math.round(version.quality_score ?? 0) / 10,
+        };
+      })
+      .sort((a, b) => b.priority - a.priority)
+      .slice(0, 8);
+  }, [versions]);
+  const prioritizedQuestionQueue = useMemo(() => {
+    const statusRank: Record<ContentStatus, number> = {
+      needs_review: 3,
+      approved: 2,
+      draft: 1,
+      published: 0,
+      retired: 0,
+    };
+
+    return questionVersions
+      .filter((version) => statusRank[version.status] > 0)
+      .map((version) => {
+        const ageHours = Math.max(
+          0,
+          Math.round((Date.now() - new Date(version.created_at).getTime()) / (60 * 60 * 1000))
+        );
+        return {
+          version,
+          ageHours,
+          priority:
+            statusRank[version.status] * 100 +
+            (version.source === 'ai' ? 20 : 0) +
+            Math.min(ageHours, 72) +
+            Math.round(version.quality_score ?? 0) / 10,
+        };
+      })
+      .sort((a, b) => b.priority - a.priority)
+      .slice(0, 8);
+  }, [questionVersions]);
 
   function collectModerationPayloadIfRequired(action: UpdateAction): ModerationPayload | null {
     if (action !== 'approve' && action !== 'publish') return null;
@@ -947,6 +1005,94 @@ export default function V2AdminContentPage() {
       <p>Use this page to manage V2 lesson version status without any V1 fallback.</p>
       <p>Total versions: {versions.length}</p>
       <p>Published versions: {publishedCount}</p>
+
+      <h2>Priority Queue</h2>
+      <p>Top moderation actions ranked by review state, AI origin, and age.</p>
+      {prioritizedLessonQueue.length > 0 && (
+        <>
+          <h3>Lesson action queue</h3>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">Lesson</th>
+                <th align="left">Version</th>
+                <th align="left">Status</th>
+                <th align="left">Source</th>
+                <th align="left">Age</th>
+                <th align="left">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {prioritizedLessonQueue.map(({ version, ageHours }) => (
+                <tr key={`lesson-queue-${version.id}`}>
+                  <td>
+                    <div>{version.lesson?.code ?? version.lesson_id}</div>
+                    <div>{version.lesson?.title ?? 'Untitled lesson'}</div>
+                  </td>
+                  <td>v{version.version_no}</td>
+                  <td>{version.status}</td>
+                  <td>{version.source}</td>
+                  <td>{ageHours}h</td>
+                  <td>
+                    {allowedActions(version.status).slice(0, 2).map((action) => (
+                      <button
+                        key={`queue-${version.id}-${action}`}
+                        type="button"
+                        disabled={busyVersionId === version.id}
+                        onClick={() => void transitionVersion(version.id, action)}
+                      >
+                        {action}
+                      </button>
+                    ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+      {prioritizedQuestionQueue.length > 0 && (
+        <>
+          <h3>Question action queue</h3>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">Question</th>
+                <th align="left">Lesson</th>
+                <th align="left">Version</th>
+                <th align="left">Status</th>
+                <th align="left">Source</th>
+                <th align="left">Age</th>
+                <th align="left">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {prioritizedQuestionQueue.map(({ version, ageHours }) => (
+                <tr key={`question-queue-${version.id}`}>
+                  <td>{version.question?.stable_key ?? version.question_id}</td>
+                  <td>{version.lesson?.code ?? '-'}</td>
+                  <td>v{version.version_no}</td>
+                  <td>{version.status}</td>
+                  <td>{version.source}</td>
+                  <td>{ageHours}h</td>
+                  <td>
+                    {allowedActions(version.status).slice(0, 2).map((action) => (
+                      <button
+                        key={`queue-question-${version.id}-${action}`}
+                        type="button"
+                        disabled={busyQuestionVersionId === version.id}
+                        onClick={() => void transitionQuestionVersion(version.id, action)}
+                      >
+                        {action}
+                      </button>
+                    ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
 
       <h2>V2 Access</h2>
       <p>V2 learner access is now explicit. Accounts must have an active V2 enrollment to enter learner routes.</p>
