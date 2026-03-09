@@ -1,11 +1,11 @@
 'use client';
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Mic, Square } from 'lucide-react';
 import AudioVisualizer from '@/app/simulations/Echo-Questions/components/AudioVisualizer';
 import { useSpeechToText } from '@/app/simulations/Echo-Questions/hooks/useSpeechToText';
-import { getAudioContext, speakNativeWithEvents } from '@/app/simulations/Echo-Questions/utils/audioUtils';
+import { getAudioContext } from '@/app/simulations/Echo-Questions/utils/audioUtils';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { isSafeAppRedirect, resolveDefaultPostAuthTarget } from '@/lib/onboarding/navigation';
 
@@ -56,10 +56,6 @@ export default function OnboardingPage() {
   const [isCheckingStatus, setIsCheckingStatus] = useState(true);
   const [finalSummary, setFinalSummary] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [speakingAmplitude, setSpeakingAmplitude] = useState(0.06);
-  const speechTokenRef = useRef(0);
-  const boundaryEnergyRef = useRef(0);
   const {
     isListening,
     transcript,
@@ -86,32 +82,6 @@ export default function OnboardingPage() {
   const redirectToSignIn = () => {
     const nextTarget = explicitNextTarget ? `/onboarding?next=${encodeURIComponent(explicitNextTarget)}` : '/onboarding';
     router.replace(`/auth/sign-in?next=${encodeURIComponent(nextTarget)}`);
-  };
-
-  const speakText = (text: string) => {
-    const safeText = text.trim();
-    if (!safeText) return;
-
-    const token = speechTokenRef.current + 1;
-    speechTokenRef.current = token;
-    setIsSpeaking(true);
-    speakNativeWithEvents(
-      safeText,
-      () => {
-        if (speechTokenRef.current !== token) return;
-        setIsSpeaking(false);
-        setSpeakingAmplitude(0.06);
-        boundaryEnergyRef.current = 0;
-      },
-      {
-        onStart: () => {
-          boundaryEnergyRef.current = 0.24;
-        },
-        onBoundary: () => {
-          boundaryEnergyRef.current = Math.min(1, boundaryEnergyRef.current + 0.3);
-        },
-      }
-    );
   };
 
   const toggleRecording = () => {
@@ -145,7 +115,6 @@ export default function OnboardingPage() {
         throw new Error(qData.message ?? 'Failed to start onboarding interview.');
       }
       setMessages([{ role: 'assistant', content: qData.question }]);
-      speakText(qData.question);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to start onboarding.');
     } finally {
@@ -214,36 +183,6 @@ export default function OnboardingPage() {
     setError(`Speech input error: ${sttError}`);
   }, [sttError]);
 
-  useEffect(() => {
-    let frame = 0;
-    const tick = () => {
-      boundaryEnergyRef.current *= 0.86;
-      setSpeakingAmplitude(Math.min(1, 0.05 + boundaryEnergyRef.current));
-      frame = window.requestAnimationFrame(tick);
-    };
-
-    if (isSpeaking) {
-      frame = window.requestAnimationFrame(tick);
-    } else {
-      setSpeakingAmplitude(0.06);
-    }
-
-    return () => {
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, [isSpeaking]);
-
-  useEffect(() => {
-    return () => {
-      speechTokenRef.current += 1;
-      setIsSpeaking(false);
-      boundaryEnergyRef.current = 0;
-      if (typeof window !== 'undefined' && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
-    };
-  }, []);
-
   const requestNextQuestion = async (transcript: OnboardingMessage[]) => {
     setIsLoadingQuestion(true);
     setError(null);
@@ -265,7 +204,6 @@ export default function OnboardingPage() {
         throw new Error(data.message ?? 'Failed to fetch next onboarding question.');
       }
       setMessages((prev) => [...prev, { role: 'assistant', content: data.question }]);
-      speakText(data.question);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch next onboarding question.');
     } finally {
@@ -352,6 +290,7 @@ export default function OnboardingPage() {
   const canFinalize = userTurnCount >= MIN_RESPONSES_TO_ENABLE_BUTTON && !isLoadingQuestion && !isFinalizing;
   const interviewCapped = userTurnCount >= TARGET_INTERVIEW_RESPONSES;
   const progressPercent = Math.min(100, Math.max(10, Math.round((userTurnCount / TARGET_INTERVIEW_RESPONSES) * 100)));
+  const activeStep = isFinalizing ? 3 : messages.length === 0 && !isLoadingQuestion ? 1 : 2;
   const activeStageLabel = isCheckingStatus
     ? 'Checking your tutor profile'
     : isFinalizing
@@ -376,7 +315,7 @@ export default function OnboardingPage() {
         </header>
 
         <section className="rounded-2xl border border-slate-700 bg-slate-900 p-4">
-          <div data-testid="onboarding-progress" className="mb-4 overflow-hidden rounded-2xl border border-slate-800 bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.22),_transparent_38%),linear-gradient(135deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98))] p-4">
+          <div data-testid="onboarding-progress" className="mb-4 overflow-hidden rounded-3xl border border-slate-800 bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.28),_transparent_32%),radial-gradient(circle_at_bottom_right,_rgba(34,211,238,0.16),_transparent_28%),linear-gradient(135deg,rgba(15,23,42,0.98),rgba(2,6,23,0.99))] p-5 shadow-[0_24px_80px_rgba(15,23,42,0.38)]">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-indigo-200/80">
@@ -391,31 +330,35 @@ export default function OnboardingPage() {
                       : 'Short answers are enough. The tutor only needs a quick sense of your goals and preferences.'}
                 </p>
               </div>
-              <div className="grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(99,102,241,0.18)]">
-                <div className="relative h-8 w-8">
-                  <span className="absolute inset-0 rounded-full border border-indigo-300/40" />
-                  <span className="absolute inset-1 rounded-full border border-indigo-300/30" />
-                  <span className={`absolute inset-2 rounded-full bg-indigo-400/90 ${isLoadingQuestion || isFinalizing || isCheckingStatus ? 'animate-pulse' : ''}`} />
+              <div className="grid h-16 w-16 place-items-center rounded-[1.4rem] border border-white/10 bg-white/5 shadow-[0_0_50px_rgba(99,102,241,0.22)]">
+                <div className="relative h-10 w-10">
+                  <span className={`absolute inset-0 rounded-full border border-indigo-300/40 ${isLoadingQuestion || isFinalizing || isCheckingStatus ? 'animate-ping' : ''}`} />
+                  <span className="absolute inset-1 rounded-full border border-cyan-300/25" />
+                  <span className={`absolute inset-2 rounded-full bg-gradient-to-br from-indigo-300 to-cyan-300 ${isLoadingQuestion || isFinalizing || isCheckingStatus ? 'animate-pulse' : ''}`} />
                 </div>
               </div>
             </div>
             <div className="mt-4 space-y-3">
-              <div className="h-2 overflow-hidden rounded-full bg-white/10">
+              <div className="relative h-3 overflow-hidden rounded-full bg-white/10">
                 <div
                   className={`h-full rounded-full bg-gradient-to-r from-sky-400 via-indigo-400 to-cyan-300 transition-all duration-700 ${
                     isLoadingQuestion || isFinalizing || isCheckingStatus ? 'animate-pulse' : ''
                   }`}
                   style={{ width: `${isFinalizing ? 100 : isCheckingStatus ? 15 : progressPercent}%` }}
                 />
+                <div
+                  className="absolute inset-y-0 w-20 bg-gradient-to-r from-transparent via-white/35 to-transparent opacity-80 animate-[pulse_1.2s_ease-in-out_infinite]"
+                  style={{ left: `calc(${isFinalizing ? 100 : isCheckingStatus ? 15 : progressPercent}% - 5rem)` }}
+                />
               </div>
               <div className="grid grid-cols-3 gap-2 text-xs text-slate-300">
-                <div className={`rounded-xl border px-3 py-2 ${messages.length > 0 || isLoadingQuestion || isCheckingStatus ? 'border-indigo-400/40 bg-indigo-400/10 text-indigo-100' : 'border-white/10 bg-white/5'}`}>
+                <div className={`rounded-2xl border px-3 py-2.5 transition ${activeStep === 1 ? 'scale-[1.03] border-indigo-300/50 bg-indigo-400/15 text-indigo-50 shadow-[0_0_30px_rgba(129,140,248,0.18)]' : messages.length > 0 || isLoadingQuestion || isCheckingStatus ? 'border-indigo-400/40 bg-indigo-400/10 text-indigo-100' : 'border-white/10 bg-white/5'}`}>
                   1. Start
                 </div>
-                <div className={`rounded-xl border px-3 py-2 ${userTurnCount > 0 || isLoadingQuestion ? 'border-sky-400/40 bg-sky-400/10 text-sky-100' : 'border-white/10 bg-white/5'}`}>
+                <div className={`rounded-2xl border px-3 py-2.5 transition ${activeStep === 2 ? 'scale-[1.03] border-sky-300/50 bg-sky-400/15 text-sky-50 shadow-[0_0_30px_rgba(56,189,248,0.18)]' : userTurnCount > 0 || isLoadingQuestion ? 'border-sky-400/40 bg-sky-400/10 text-sky-100' : 'border-white/10 bg-white/5'}`}>
                   2. Answer
                 </div>
-                <div className={`rounded-xl border px-3 py-2 ${isFinalizing || finalSummary ? 'border-emerald-400/40 bg-emerald-400/10 text-emerald-100' : 'border-white/10 bg-white/5'}`}>
+                <div className={`rounded-2xl border px-3 py-2.5 transition ${activeStep === 3 ? 'scale-[1.03] border-emerald-300/50 bg-emerald-400/15 text-emerald-50 shadow-[0_0_30px_rgba(52,211,153,0.18)]' : isFinalizing || finalSummary ? 'border-emerald-400/40 bg-emerald-400/10 text-emerald-100' : 'border-white/10 bg-white/5'}`}>
                   3. Build profile
                 </div>
               </div>
@@ -437,18 +380,16 @@ export default function OnboardingPage() {
                   Generating your next question
                 </p>
               </>
-            ) : isListening || isSpeaking ? (
+            ) : isListening ? (
               <>
                 <AudioVisualizer
                   isActive
                   height="h-20"
-                  theme={isListening ? 'ocean' : 'indigo'}
-                  mode={isListening ? 'recording' : 'playback'}
-                  simulate={isListening || isSpeaking}
-                  forcedAmplitude={isSpeaking ? speakingAmplitude : undefined}
+                  theme="ocean"
+                  mode="recording"
                 />
                 <p className="mt-2 text-center text-xs font-semibold uppercase tracking-widest text-slate-300">
-                  {isListening ? 'Listening' : 'Tutor speaking'}
+                  Listening
                 </p>
                 {interimTranscript && (
                   <p className="mt-1 text-center text-xs text-cyan-300">Listening: {interimTranscript}</p>
@@ -533,16 +474,26 @@ export default function OnboardingPage() {
               type="button"
               onClick={toggleRecording}
               disabled={isLoadingQuestion || isFinalizing}
-              className={`inline-flex items-center justify-center rounded-lg border px-3 py-2 text-sm font-semibold transition ${
+              className={`group relative inline-flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl border transition ${
                 isListening
-                  ? 'border-emerald-400/50 bg-emerald-500/20 text-emerald-200 hover:bg-emerald-500/30'
-                  : 'border-indigo-400/40 bg-indigo-500/20 text-indigo-200 hover:bg-indigo-500/30'
+                  ? 'border-emerald-300/60 bg-[radial-gradient(circle_at_top,_rgba(110,231,183,0.42),_rgba(5,46,22,0.9))] text-white shadow-[0_0_35px_rgba(16,185,129,0.35)]'
+                  : 'border-indigo-300/45 bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.34),_rgba(15,23,42,0.98))] text-white shadow-[0_0_35px_rgba(99,102,241,0.28)] hover:shadow-[0_0_45px_rgba(99,102,241,0.34)]'
               } disabled:cursor-not-allowed disabled:opacity-40`}
               aria-label={isListening ? 'Stop recording' : 'Start recording'}
+              data-testid="onboarding-mic"
             >
-              {isListening ? <Square className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
+              <span className={`absolute inset-0 rounded-2xl ${isListening ? 'animate-pulse bg-white/10' : 'bg-transparent group-hover:bg-white/5'}`} />
+              <span className={`absolute inset-[-6px] rounded-[1.25rem] border ${isListening ? 'border-emerald-300/30 animate-ping' : 'border-indigo-300/15'}`} />
+              <span className="relative flex h-10 w-10 items-center justify-center rounded-2xl bg-black/15 backdrop-blur-sm">
+                {isListening ? <Square className="h-5 w-5 fill-current" /> : <Mic className="h-6 w-6" />}
+              </span>
             </button>
           </form>
+          <div className="mt-3 flex items-center justify-end">
+            <p className={`text-xs font-semibold uppercase tracking-[0.22em] ${isListening ? 'text-emerald-300' : 'text-indigo-300/80'}`}>
+              {isListening ? 'Mic live' : 'Tap mic to answer by voice'}
+            </p>
+          </div>
 
           <div className="mt-4 flex items-center justify-between gap-2">
             <p data-testid="onboarding-counter" className="text-xs text-slate-400">
