@@ -31,6 +31,7 @@ function getPrefixFromReferer(req: NextRequest) {
 function isAllowedInV2Mode(pathname: string) {
   if (pathname === '/' || pathname.startsWith('/v2')) return true;
   if (pathname.startsWith('/api/v2') || pathname.startsWith('/api/admin/v2')) return true;
+  if (pathname.startsWith('/api/onboarding')) return true;
   if (pathname.startsWith('/auth')) return true;
   if (pathname.startsWith('/_next')) return true;
   if (SKIP_PATHS.includes(pathname)) return true;

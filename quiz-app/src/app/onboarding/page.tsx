@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { courseHref } from '@/lib/routing/courseHref';
+import { isSafeAppRedirect, resolveDefaultPostAuthTarget } from '@/lib/onboarding/navigation';
 
 type OnboardingRole = 'assistant' | 'user';
 
@@ -33,6 +34,15 @@ async function authedFetch(path: string, init?: RequestInit): Promise<Response> 
   });
 }
 
+async function readJsonPayload<T>(response: Response): Promise<T> {
+  const raw = await response.text();
+  try {
+    return JSON.parse(raw) as T;
+  } catch {
+    throw new Error('The server returned an invalid response. Please refresh and try again.');
+  }
+}
+
 export default function OnboardingPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -40,13 +50,22 @@ export default function OnboardingPage() {
   const [input, setInput] = useState('');
   const [isLoadingQuestion, setIsLoadingQuestion] = useState(false);
   const [isFinalizing, setIsFinalizing] = useState(false);
+  const [isCheckingStatus, setIsCheckingStatus] = useState(true);
   const [finalSummary, setFinalSummary] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const nextTarget = useMemo(() => {
+  const explicitNextTarget = useMemo(() => {
     const next = searchParams.get('next');
-    return next && next.startsWith('/') ? next : courseHref('/learn');
+    return isSafeAppRedirect(next) ? next : null;
   }, [searchParams]);
+
+  const resolveNextTarget = async () => {
+    if (explicitNextTarget) return explicitNextTarget;
+    return (
+      (await resolveDefaultPostAuthTarget(async (path, init) => authedFetch(path, init))) ??
+      '/v2/learn'
+    );
+  };
 
   const startInterview = async () => {
     setError(null);
@@ -57,7 +76,7 @@ export default function OnboardingPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'next-question', transcript: [] }),
       });
-      const qData = await qResponse.json();
+      const qData = await readJsonPayload<{ success?: boolean; message?: string; question?: string }>(qResponse);
       if (!qResponse.ok || qData.success === false || typeof qData.question !== 'string') {
         throw new Error(qData.message ?? 'Failed to start onboarding interview.');
       }
@@ -76,7 +95,11 @@ export default function OnboardingPage() {
       setError(null);
       try {
         const statusResponse = await authedFetch('/api/onboarding/profile', { cache: 'no-store' });
-        const statusData = await statusResponse.json();
+        const statusData = await readJsonPayload<{
+          success?: boolean;
+          message?: string;
+          onboardingComplete?: boolean;
+        }>(statusResponse);
         if (!statusResponse.ok || statusData.success === false) {
           throw new Error(statusData.message ?? 'Failed to load onboarding status.');
         }
@@ -84,6 +107,7 @@ export default function OnboardingPage() {
         if (cancelled) return;
 
         if (statusData.onboardingComplete) {
+          const nextTarget = await resolveNextTarget();
           router.replace(nextTarget);
           return;
         }
@@ -95,6 +119,10 @@ export default function OnboardingPage() {
       } catch (err) {
         if (cancelled) return;
         setError(err instanceof Error ? err.message : 'Failed to start onboarding.');
+      } finally {
+        if (!cancelled) {
+          setIsCheckingStatus(false);
+        }
       }
     };
 
@@ -103,7 +131,7 @@ export default function OnboardingPage() {
     return () => {
       cancelled = true;
     };
-  }, [nextTarget, router]);
+  }, [explicitNextTarget, router]);
 
   const requestNextQuestion = async (transcript: OnboardingMessage[]) => {
     setIsLoadingQuestion(true);
@@ -117,7 +145,7 @@ export default function OnboardingPage() {
           transcript,
         }),
       });
-      const data = await response.json();
+      const data = await readJsonPayload<{ success?: boolean; message?: string; question?: string }>(response);
       if (!response.ok || data.success === false || typeof data.question !== 'string') {
         throw new Error(data.message ?? 'Failed to fetch next onboarding question.');
       }
@@ -141,11 +169,14 @@ export default function OnboardingPage() {
           transcript,
         }),
       });
-      const data = await response.json();
+      const data = await readJsonPayload<{ success?: boolean; message?: string; profileSummary?: string }>(
+        response
+      );
       if (!response.ok || data.success === false || typeof data.profileSummary !== 'string') {
         throw new Error(data.message ?? 'Failed to finalize onboarding.');
       }
       setFinalSummary(data.profileSummary);
+      const nextTarget = await resolveNextTarget();
       setTimeout(() => {
         router.replace(nextTarget);
       }, 1000);
@@ -198,6 +229,18 @@ export default function OnboardingPage() {
   const userTurnCount = messages.filter((msg) => msg.role === 'user').length;
   const canFinalize = userTurnCount >= MIN_RESPONSES_TO_ENABLE_BUTTON && !isLoadingQuestion && !isFinalizing;
   const interviewCapped = userTurnCount >= TARGET_INTERVIEW_RESPONSES;
+  const progressPercent = Math.min(100, Math.max(10, Math.round((userTurnCount / TARGET_INTERVIEW_RESPONSES) * 100)));
+  const activeStageLabel = isCheckingStatus
+    ? 'Checking your tutor profile'
+    : isFinalizing
+      ? 'Building your tutor profile'
+      : isLoadingQuestion
+        ? 'Generating the next question'
+        : messages.length === 0
+          ? 'Ready to begin'
+          : interviewCapped
+            ? 'Interview complete'
+            : 'Interview in progress';
 
   return (
     <main className="min-h-screen bg-slate-950 px-4 py-8 text-slate-100">
@@ -211,13 +254,60 @@ export default function OnboardingPage() {
         </header>
 
         <section className="rounded-2xl border border-slate-700 bg-slate-900 p-4">
-          <div className="max-h-[55vh] space-y-3 overflow-y-auto rounded-xl border border-slate-800 bg-slate-950 p-4">
+          <div data-testid="onboarding-progress" className="mb-4 overflow-hidden rounded-2xl border border-slate-800 bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.22),_transparent_38%),linear-gradient(135deg,rgba(15,23,42,0.96),rgba(2,6,23,0.98))] p-4">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-indigo-200/80">
+                  Tutor Calibration
+                </p>
+                <h2 className="mt-2 text-lg font-semibold text-white">{activeStageLabel}</h2>
+                <p className="mt-1 text-sm text-slate-300">
+                  {isFinalizing
+                    ? 'The tutor is turning your answers into a learning profile and preferred teaching style.'
+                    : isLoadingQuestion || isCheckingStatus
+                      ? 'The system is preparing the next step. This can take a few seconds.'
+                      : 'Short answers are enough. The tutor only needs a quick sense of your goals and preferences.'}
+                </p>
+              </div>
+              <div className="grid h-14 w-14 place-items-center rounded-2xl border border-white/10 bg-white/5 shadow-[0_0_40px_rgba(99,102,241,0.18)]">
+                <div className="relative h-8 w-8">
+                  <span className="absolute inset-0 rounded-full border border-indigo-300/40" />
+                  <span className="absolute inset-1 rounded-full border border-indigo-300/30" />
+                  <span className={`absolute inset-2 rounded-full bg-indigo-400/90 ${isLoadingQuestion || isFinalizing || isCheckingStatus ? 'animate-pulse' : ''}`} />
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 space-y-3">
+              <div className="h-2 overflow-hidden rounded-full bg-white/10">
+                <div
+                  className={`h-full rounded-full bg-gradient-to-r from-sky-400 via-indigo-400 to-cyan-300 transition-all duration-700 ${
+                    isLoadingQuestion || isFinalizing || isCheckingStatus ? 'animate-pulse' : ''
+                  }`}
+                  style={{ width: `${isFinalizing ? 100 : isCheckingStatus ? 15 : progressPercent}%` }}
+                />
+              </div>
+              <div className="grid grid-cols-3 gap-2 text-xs text-slate-300">
+                <div className={`rounded-xl border px-3 py-2 ${messages.length > 0 || isLoadingQuestion || isCheckingStatus ? 'border-indigo-400/40 bg-indigo-400/10 text-indigo-100' : 'border-white/10 bg-white/5'}`}>
+                  1. Start
+                </div>
+                <div className={`rounded-xl border px-3 py-2 ${userTurnCount > 0 || isLoadingQuestion ? 'border-sky-400/40 bg-sky-400/10 text-sky-100' : 'border-white/10 bg-white/5'}`}>
+                  2. Answer
+                </div>
+                <div className={`rounded-xl border px-3 py-2 ${isFinalizing || finalSummary ? 'border-emerald-400/40 bg-emerald-400/10 text-emerald-100' : 'border-white/10 bg-white/5'}`}>
+                  3. Build profile
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div data-testid="onboarding-thread" className="max-h-[55vh] space-y-3 overflow-y-auto rounded-xl border border-slate-800 bg-slate-950 p-4">
             {messages.length === 0 && !isLoadingQuestion && (
               <div className="space-y-3">
                 <p className="text-sm text-slate-300">
                   Start the interview to let the tutor ask its first question.
                 </p>
                 <button
+                  data-testid="onboarding-start"
                   type="button"
                   onClick={() => void startInterview()}
                   className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white"
@@ -229,6 +319,7 @@ export default function OnboardingPage() {
             {messages.map((message, idx) => (
               <div
                 key={`${message.role}-${idx}-${message.content.slice(0, 12)}`}
+                data-testid={`onboarding-message-${message.role}`}
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <div
@@ -243,12 +334,25 @@ export default function OnboardingPage() {
               </div>
             ))}
             {isLoadingQuestion && (
-              <p className="text-xs text-slate-400">Interviewer is preparing the next question...</p>
+              <div className="rounded-2xl border border-indigo-400/20 bg-indigo-400/10 p-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1">
+                    <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-indigo-300 [animation-delay:-0.2s]" />
+                    <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-sky-300 [animation-delay:-0.1s]" />
+                    <span className="h-2.5 w-2.5 animate-bounce rounded-full bg-cyan-300" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-indigo-100">Generating your next question</p>
+                    <p className="text-xs text-slate-300">Adapting tone, pace, and examples from what you have said so far.</p>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
 
           <form onSubmit={onSubmit} className="mt-4 flex gap-2">
             <input
+              data-testid="onboarding-input"
               type="text"
               value={input}
               onChange={(event) => setInput(event.target.value)}
@@ -257,6 +361,7 @@ export default function OnboardingPage() {
               disabled={isLoadingQuestion || isFinalizing}
             />
             <button
+              data-testid="onboarding-send"
               type="submit"
               disabled={!input.trim() || isLoadingQuestion || isFinalizing}
               className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
@@ -266,10 +371,11 @@ export default function OnboardingPage() {
           </form>
 
           <div className="mt-4 flex items-center justify-between gap-2">
-            <p className="text-xs text-slate-400">
+            <p data-testid="onboarding-counter" className="text-xs text-slate-400">
               Responses captured: {userTurnCount}/{TARGET_INTERVIEW_RESPONSES}
             </p>
             <button
+              data-testid="onboarding-complete"
               type="button"
               onClick={onFinalize}
               disabled={!canFinalize}
@@ -281,9 +387,10 @@ export default function OnboardingPage() {
 
           {error && (
             <div className="mt-3 space-y-2 text-sm text-rose-300">
-              <p>{error}</p>
+              <p data-testid="onboarding-error">{error}</p>
               {messages.length === 0 && (
                 <button
+                  data-testid="onboarding-retry"
                   type="button"
                   onClick={() => void startInterview()}
                   className="rounded-lg border border-rose-400 px-4 py-2 text-sm font-semibold text-rose-200"

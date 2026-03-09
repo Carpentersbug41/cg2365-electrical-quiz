@@ -30,4 +30,13 @@ describe('middleware surface mode', () => {
     expect(response.status).toBe(200);
     expect(response.headers.get('location')).toBeNull();
   });
+
+  it('allows onboarding api routes when APP_SURFACE_MODE=v2', async () => {
+    vi.resetModules();
+    process.env.APP_SURFACE_MODE = 'v2';
+    const { middleware } = await import('./middleware');
+
+    const response = middleware(new NextRequest('http://localhost/api/onboarding/interview'));
+    expect(response.status).toBe(200);
+  });
 });

@@ -392,7 +392,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { profileJson, profileSummary, usedFallbackParser } = await finalizeProfile(transcript);
+    let profileJson: Record<string, unknown>;
+    let profileSummary: string;
+    let usedFallbackParser = false;
+
+    try {
+      const finalized = await finalizeProfile(transcript);
+      profileJson = finalized.profileJson;
+      profileSummary = finalized.profileSummary;
+      usedFallbackParser = finalized.usedFallbackParser;
+    } catch (error) {
+      console.warn(
+        '[OnboardingFinalizeFallback]',
+        error instanceof Error ? error.message : 'unknown finalize error'
+      );
+      const fallback = buildTutorProfile(null, transcript);
+      profileJson = fallback.profileJson;
+      profileSummary = fallback.profileSummary;
+      usedFallbackParser = true;
+    }
 
     const { error: upsertError } = await session.client
       .from('profiles')

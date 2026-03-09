@@ -6,11 +6,28 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import type { User } from '@supabase/supabase-js';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { courseHref } from '@/lib/routing/courseHref';
+import { isSafeAppRedirect, resolveDefaultPostAuthTarget } from '@/lib/onboarding/navigation';
 
 type AuthMode = 'sign-in' | 'sign-up';
 
-function isSafeRedirect(value: string | null): value is string {
-  return typeof value === 'string' && value.startsWith('/');
+function EyeIcon({ open }: { open: boolean }) {
+  if (open) {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-2">
+        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current stroke-2">
+      <path d="M3 3l18 18" />
+      <path d="M10.6 10.7a3 3 0 0 0 4.2 4.2" />
+      <path d="M9.9 5.2A10.8 10.8 0 0 1 12 5c6.5 0 10 7 10 7a18.5 18.5 0 0 1-4 4.8" />
+      <path d="M6.2 6.3C3.7 8.1 2 12 2 12s3.5 7 10 7a10.7 10.7 0 0 0 2.1-.2" />
+    </svg>
+  );
 }
 
 function friendlyAuthError(message: string, mode: AuthMode): string {
@@ -50,8 +67,10 @@ export default function SignInPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [mode, setMode] = useState<AuthMode>('sign-in');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSendingReset, setIsSendingReset] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
@@ -87,9 +106,7 @@ export default function SignInPage() {
     }
 
     setIsSubmitting(true);
-    const nextTarget = isSafeRedirect(searchParams.get('next'))
-      ? searchParams.get('next')!
-      : courseHref('/onboarding');
+    const explicitNextTarget = isSafeAppRedirect(searchParams.get('next')) ? searchParams.get('next')! : null;
 
     if (mode === 'sign-up' && password !== confirmPassword) {
       setIsSubmitting(false);
@@ -100,13 +117,25 @@ export default function SignInPage() {
     let error: string | null = null;
 
     if (mode === 'sign-in') {
-      const { error: signInError } = await client.auth.signInWithPassword({
+      const { data: signInData, error: signInError } = await client.auth.signInWithPassword({
         email,
         password,
       });
       if (signInError) {
         error = signInError.message;
       } else {
+        const nextTarget =
+          explicitNextTarget ??
+          (await resolveDefaultPostAuthTarget(async (path, init) => {
+            const token = signInData.session?.access_token ?? '';
+            const headers = new Headers(init?.headers);
+            if (token) headers.set('Authorization', `Bearer ${token}`);
+            return fetch(path, {
+              ...init,
+              headers,
+            });
+          })) ??
+          courseHref('/onboarding');
         setIsSubmitting(false);
         router.replace(nextTarget);
         return;
@@ -119,6 +148,7 @@ export default function SignInPage() {
       if (signUpError) {
         error = signUpError.message;
       } else if (data.session) {
+        const nextTarget = explicitNextTarget ?? courseHref('/onboarding');
         setIsSubmitting(false);
         router.replace(nextTarget);
         return;
@@ -135,6 +165,36 @@ export default function SignInPage() {
       setErrorMessage(friendlyAuthError(error, mode));
       return;
     }
+  };
+
+  const handleForgotPassword = async () => {
+    setStatusMessage(null);
+    setErrorMessage(null);
+
+    if (!email.trim()) {
+      setErrorMessage('Enter your email address first, then use Forgot password.');
+      return;
+    }
+
+    const client = getSupabaseBrowserClient();
+    if (!client) {
+      setErrorMessage('Supabase environment variables are missing.');
+      return;
+    }
+
+    setIsSendingReset(true);
+    const redirectTo =
+      typeof window === 'undefined' ? undefined : `${window.location.origin}/auth/reset-password`;
+
+    const { error } = await client.auth.resetPasswordForEmail(email.trim(), { redirectTo });
+    setIsSendingReset(false);
+
+    if (error) {
+      setErrorMessage(friendlyAuthError(error.message, 'sign-in'));
+      return;
+    }
+
+    setStatusMessage('Password reset email sent. Check your inbox and spam folder.');
   };
 
   const handleSignOut = async () => {
@@ -180,6 +240,7 @@ export default function SignInPage() {
                   setErrorMessage(null);
                   setPassword('');
                   setConfirmPassword('');
+                  setShowPassword(false);
                 }}
                 className={`rounded-md px-3 py-2 text-sm font-semibold transition ${
                   mode === 'sign-in'
@@ -197,6 +258,7 @@ export default function SignInPage() {
                   setErrorMessage(null);
                   setPassword('');
                   setConfirmPassword('');
+                  setShowPassword(false);
                 }}
                 className={`rounded-md px-3 py-2 text-sm font-semibold transition ${
                   mode === 'sign-up'
@@ -221,33 +283,67 @@ export default function SignInPage() {
               />
             </label>
             <label className="block">
-              <span className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200">
-                Password
-              </span>
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-slate-900 dark:text-slate-100"
-                placeholder="Enter password"
-                minLength={6}
-              />
+              <div className="mb-1 flex items-center justify-between gap-3">
+                <span className="block text-sm font-medium text-slate-700 dark:text-slate-200">
+                  Password
+                </span>
+                {mode === 'sign-in' && (
+                  <button
+                    type="button"
+                    onClick={() => void handleForgotPassword()}
+                    disabled={isSendingReset}
+                    className="text-xs font-medium text-indigo-600 hover:underline disabled:cursor-not-allowed disabled:opacity-60 dark:text-indigo-400"
+                  >
+                    {isSendingReset ? 'Sending...' : 'Forgot password?'}
+                  </button>
+                )}
+              </div>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 pr-11 text-slate-900 dark:text-slate-100"
+                  placeholder="Enter password"
+                  minLength={6}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((current) => !current)}
+                  className="absolute inset-y-0 right-0 inline-flex items-center px-3 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-pressed={showPassword}
+                >
+                  <EyeIcon open={showPassword} />
+                </button>
+              </div>
             </label>
             {mode === 'sign-up' && (
               <label className="block">
                 <span className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200">
                   Confirm password
                 </span>
-                <input
-                  type="password"
-                  required
-                  value={confirmPassword}
-                  onChange={(event) => setConfirmPassword(event.target.value)}
-                  className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-slate-900 dark:text-slate-100"
-                  placeholder="Re-enter password"
-                  minLength={6}
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={confirmPassword}
+                    onChange={(event) => setConfirmPassword(event.target.value)}
+                    className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 pr-11 text-slate-900 dark:text-slate-100"
+                    placeholder="Re-enter password"
+                    minLength={6}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((current) => !current)}
+                    className="absolute inset-y-0 right-0 inline-flex items-center px-3 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    aria-pressed={showPassword}
+                  >
+                    <EyeIcon open={showPassword} />
+                  </button>
+                </div>
               </label>
             )}
             <button
