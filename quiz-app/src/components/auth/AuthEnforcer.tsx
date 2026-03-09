@@ -4,22 +4,24 @@ import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { courseHref } from '@/lib/routing/courseHref';
+import { SUPPORTED_COURSE_PREFIXES } from '@/lib/routing/curricula';
 
 interface AuthEnforcerProps {
   children: ReactNode;
 }
 
-const COURSE_PREFIX = '/2365';
 const PUBLIC_PATH_PREFIXES = ['/auth'];
 const ONBOARDING_PATH = '/onboarding';
 const SESSION_CHECK_TIMEOUT_MS = 8000;
 
-function normalizePathname(pathname: string): string {
-  if (pathname === COURSE_PREFIX) {
-    return '/';
-  }
-  if (pathname.startsWith(`${COURSE_PREFIX}/`)) {
-    return pathname.slice(COURSE_PREFIX.length);
+export function normalizeProtectedPathname(pathname: string): string {
+  for (const prefix of SUPPORTED_COURSE_PREFIXES) {
+    if (pathname === prefix) {
+      return '/';
+    }
+    if (pathname.startsWith(`${prefix}/`)) {
+      return pathname.slice(prefix.length);
+    }
   }
   return pathname;
 }
@@ -67,7 +69,7 @@ export default function AuthEnforcer({ children }: AuthEnforcerProps) {
   const [authorized, setAuthorized] = useState(false);
 
   const normalizedPathname = useMemo(
-    () => normalizePathname(pathname || '/'),
+    () => normalizeProtectedPathname(pathname || '/'),
     [pathname]
   );
   const nextTarget = useMemo(() => {
