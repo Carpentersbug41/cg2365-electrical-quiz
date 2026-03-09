@@ -1,9 +1,12 @@
 'use client';
 
-import { FormEvent, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Mic, Square } from 'lucide-react';
+import AudioVisualizer from '@/app/simulations/Echo-Questions/components/AudioVisualizer';
+import { useSpeechToText } from '@/app/simulations/Echo-Questions/hooks/useSpeechToText';
+import { getAudioContext, speakNativeWithEvents } from '@/app/simulations/Echo-Questions/utils/audioUtils';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
-import { courseHref } from '@/lib/routing/courseHref';
 import { isSafeAppRedirect, resolveDefaultPostAuthTarget } from '@/lib/onboarding/navigation';
 
 type OnboardingRole = 'assistant' | 'user';
@@ -53,6 +56,19 @@ export default function OnboardingPage() {
   const [isCheckingStatus, setIsCheckingStatus] = useState(true);
   const [finalSummary, setFinalSummary] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [speakingAmplitude, setSpeakingAmplitude] = useState(0.06);
+  const speechTokenRef = useRef(0);
+  const boundaryEnergyRef = useRef(0);
+  const {
+    isListening,
+    transcript,
+    interimTranscript,
+    startListening,
+    stopListening,
+    resetTranscript,
+    error: sttError,
+  } = useSpeechToText();
 
   const explicitNextTarget = useMemo(() => {
     const next = searchParams.get('next');
@@ -70,6 +86,45 @@ export default function OnboardingPage() {
   const redirectToSignIn = () => {
     const nextTarget = explicitNextTarget ? `/onboarding?next=${encodeURIComponent(explicitNextTarget)}` : '/onboarding';
     router.replace(`/auth/sign-in?next=${encodeURIComponent(nextTarget)}`);
+  };
+
+  const speakText = (text: string) => {
+    const safeText = text.trim();
+    if (!safeText) return;
+
+    const token = speechTokenRef.current + 1;
+    speechTokenRef.current = token;
+    setIsSpeaking(true);
+    speakNativeWithEvents(
+      safeText,
+      () => {
+        if (speechTokenRef.current !== token) return;
+        setIsSpeaking(false);
+        setSpeakingAmplitude(0.06);
+        boundaryEnergyRef.current = 0;
+      },
+      {
+        onStart: () => {
+          boundaryEnergyRef.current = 0.24;
+        },
+        onBoundary: () => {
+          boundaryEnergyRef.current = Math.min(1, boundaryEnergyRef.current + 0.3);
+        },
+      }
+    );
+  };
+
+  const toggleRecording = () => {
+    if (isLoadingQuestion || isFinalizing) return;
+
+    if (isListening) {
+      stopListening();
+      return;
+    }
+
+    resetTranscript();
+    getAudioContext().resume();
+    startListening();
   };
 
   const startInterview = async () => {
@@ -90,6 +145,7 @@ export default function OnboardingPage() {
         throw new Error(qData.message ?? 'Failed to start onboarding interview.');
       }
       setMessages([{ role: 'assistant', content: qData.question }]);
+      speakText(qData.question);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to start onboarding.');
     } finally {
@@ -146,6 +202,48 @@ export default function OnboardingPage() {
     };
   }, [explicitNextTarget, router]);
 
+  useEffect(() => {
+    const merged = `${transcript}${interimTranscript ? ` ${interimTranscript}` : ''}`.trim();
+    if (isListening && merged) {
+      setInput(merged);
+    }
+  }, [interimTranscript, isListening, transcript]);
+
+  useEffect(() => {
+    if (!sttError) return;
+    setError(`Speech input error: ${sttError}`);
+  }, [sttError]);
+
+  useEffect(() => {
+    let frame = 0;
+    const tick = () => {
+      boundaryEnergyRef.current *= 0.86;
+      setSpeakingAmplitude(Math.min(1, 0.05 + boundaryEnergyRef.current));
+      frame = window.requestAnimationFrame(tick);
+    };
+
+    if (isSpeaking) {
+      frame = window.requestAnimationFrame(tick);
+    } else {
+      setSpeakingAmplitude(0.06);
+    }
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [isSpeaking]);
+
+  useEffect(() => {
+    return () => {
+      speechTokenRef.current += 1;
+      setIsSpeaking(false);
+      boundaryEnergyRef.current = 0;
+      if (typeof window !== 'undefined' && window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
   const requestNextQuestion = async (transcript: OnboardingMessage[]) => {
     setIsLoadingQuestion(true);
     setError(null);
@@ -167,6 +265,7 @@ export default function OnboardingPage() {
         throw new Error(data.message ?? 'Failed to fetch next onboarding question.');
       }
       setMessages((prev) => [...prev, { role: 'assistant', content: data.question }]);
+      speakText(data.question);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to fetch next onboarding question.');
     } finally {
@@ -233,11 +332,13 @@ export default function OnboardingPage() {
         setMessages(transcript);
       }
       setInput('');
+      resetTranscript();
       return;
     }
 
     setMessages(transcript);
     setInput('');
+    resetTranscript();
 
     await requestNextQuestion(transcript);
   };
@@ -321,6 +422,45 @@ export default function OnboardingPage() {
             </div>
           </div>
 
+          <div className="mb-4 rounded-2xl border border-slate-800 bg-slate-950/80 p-4">
+            {isLoadingQuestion ? (
+              <>
+                <AudioVisualizer
+                  isActive
+                  height="h-20"
+                  theme="indigo"
+                  mode="playback"
+                  simulate
+                  forcedAmplitude={0.22}
+                />
+                <p className="mt-2 text-center text-xs font-semibold uppercase tracking-widest text-indigo-300">
+                  Generating your next question
+                </p>
+              </>
+            ) : isListening || isSpeaking ? (
+              <>
+                <AudioVisualizer
+                  isActive
+                  height="h-20"
+                  theme={isListening ? 'ocean' : 'indigo'}
+                  mode={isListening ? 'recording' : 'playback'}
+                  simulate={isListening || isSpeaking}
+                  forcedAmplitude={isSpeaking ? speakingAmplitude : undefined}
+                />
+                <p className="mt-2 text-center text-xs font-semibold uppercase tracking-widest text-slate-300">
+                  {isListening ? 'Listening' : 'Tutor speaking'}
+                </p>
+                {interimTranscript && (
+                  <p className="mt-1 text-center text-xs text-cyan-300">Listening: {interimTranscript}</p>
+                )}
+              </>
+            ) : (
+              <p className="py-6 text-center text-xs font-semibold uppercase tracking-widest text-slate-500">
+                Voice ready
+              </p>
+            )}
+          </div>
+
           <div data-testid="onboarding-thread" className="max-h-[55vh] space-y-3 overflow-y-auto rounded-xl border border-slate-800 bg-slate-950 p-4">
             {messages.length === 0 && !isLoadingQuestion && (
               <div className="space-y-3">
@@ -388,6 +528,19 @@ export default function OnboardingPage() {
               className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
             >
               Send
+            </button>
+            <button
+              type="button"
+              onClick={toggleRecording}
+              disabled={isLoadingQuestion || isFinalizing}
+              className={`inline-flex items-center justify-center rounded-lg border px-3 py-2 text-sm font-semibold transition ${
+                isListening
+                  ? 'border-emerald-400/50 bg-emerald-500/20 text-emerald-200 hover:bg-emerald-500/30'
+                  : 'border-indigo-400/40 bg-indigo-500/20 text-indigo-200 hover:bg-indigo-500/30'
+              } disabled:cursor-not-allowed disabled:opacity-40`}
+              aria-label={isListening ? 'Stop recording' : 'Start recording'}
+            >
+              {isListening ? <Square className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
             </button>
           </form>
 
