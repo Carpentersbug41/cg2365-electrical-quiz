@@ -5,6 +5,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { findLessonFile } from '@/lib/generation/lessonDetector';
 import { getCurriculumScopeFromHeaderOrReferer, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
+import { getStaticSimulationsRoot } from '@/lib/simulations/paths';
 
 const execFileAsync = promisify(execFile);
 const execAsync = promisify(exec);
@@ -434,7 +435,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const simulationsRoot = path.join(process.cwd(), 'src', 'app', 'simulations');
+    const simulationsRoot = getStaticSimulationsRoot();
     const targetDir = path.join(simulationsRoot, parsed.repo);
     fs.mkdirSync(simulationsRoot, { recursive: true });
 
@@ -584,7 +585,7 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    const simulationsRoot = path.join(process.cwd(), 'src', 'app', 'simulations');
+    const simulationsRoot = getStaticSimulationsRoot();
     const targetDir = path.join(simulationsRoot, repoName);
     const targetRelative = toPosixPath(path.relative(process.cwd(), targetDir));
 

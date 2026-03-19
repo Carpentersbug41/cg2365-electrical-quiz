@@ -6,6 +6,7 @@ import { ArrowUp, ArrowDown, CheckCircle, CheckCircle2, XCircle, GripVertical, C
 import { Reorder, motion, AnimatePresence, LayoutGroup, useReducedMotion } from 'motion/react';
 import ClassifyTwoBinsReplacementGame from './ClassifyTwoBinsReplacementGame';
 import DiagnosisRankedReplacementGame from './DiagnosisRankedReplacementGame';
+import FillGapReplacementGame from './FillGapReplacementGame';
 import IsCorrectWhyReplacementGame from './IsCorrectWhyReplacementGame';
 import {
   ClassifyTwoBinsGameContent,
@@ -119,7 +120,12 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
     if (done || completionNotifiedRef.current) return;
     completionNotifiedRef.current = true;
     setDone(true);
-    if (soundEnabled && content.gameType !== 'formula-build' && content.gameType !== 'is-correct-why') {
+    if (
+      soundEnabled &&
+      content.gameType !== 'formula-build' &&
+      content.gameType !== 'is-correct-why' &&
+      content.gameType !== 'fill-gap'
+    ) {
       if (accuracy >= 99) playSound('success', 0.6);
       else if (accuracy >= 50) playSound('success', 0.3);
       else playSound('failure', 0.35);
@@ -1665,7 +1671,7 @@ function AdvancedGameBody(props: {
     case 'sequencing':
       return <SequencingGame {...props} content={props.content} />;
     case 'fill-gap':
-      return <FillGapGame {...props} content={props.content} />;
+      return <FillGapReplacementGame {...props} content={props.content} />;
     case 'is-correct-why':
       return <IsCorrectWhyReplacementGame {...props} content={props.content} />;
     case 'diagnosis-ranked':

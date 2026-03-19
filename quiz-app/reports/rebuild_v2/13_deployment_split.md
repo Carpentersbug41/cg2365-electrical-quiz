@@ -1,6 +1,6 @@
 # Deployment Split (V1 vs V2)
 
-Last updated: 2026-03-09
+Last updated: 2026-03-10
 
 ## Goal
 
@@ -24,12 +24,12 @@ Enforced in:
 - V1 deploy: root + legacy routes (`/learn`, `/quiz`, `/admin`, course-prefixed URLs).
 - V2 deploy: `/v2/*` only.
 
-Current deployed projects (2026-03-08):
+Current deployed projects (2026-03-09):
 
 - V1 project: `quiz-app`
-  - Production URL: `https://quiz-7ermiufgo-carpentersbugs-projects.vercel.app`
+  - Production URL: `https://quiz-app-coral-iota-99.vercel.app`
 - V2 project: `quiz-app-v2`
-  - Production URL: `https://quiz-app-v2-fl8ifeu7c-carpentersbugs-projects.vercel.app`
+  - Production URL: `https://quiz-app-v2-s2tjyoemn-carpentersbugs-projects.vercel.app`
 
 Recommended:
 
@@ -54,13 +54,16 @@ V2 project env:
 - generation/model envs synced from local `.env`/`.env.local`
 - optional worker auth secret:
   - `V2_GENERATION_CRON_SECRET` or `CRON_SECRET`
+- optional queue-cadence target for readiness/ops signals:
+  - `V2_GENERATION_QUEUE_CADENCE_MINUTES` (defaults to `15`)
 
 ## Cron Worker
 
 - Configured in `vercel.json`:
   - path: `/api/admin/v2/generation-jobs/run-queued`
   - schedule: `0 3 * * *` (daily)
-- Note: on Vercel Hobby, high-frequency cron (e.g. every 5 minutes) is not permitted.
+- `V2_GENERATION_QUEUE_CADENCE_MINUTES` is now set to `1440` in the V2 project env so readiness matches the actual deployed worker cadence.
+- Constraint: this project is on Vercel Hobby, and Hobby rejects cron schedules that run more than once per day. Higher worker cadence requires upgrading the V2 project plan or moving the worker off Vercel cron.
 
 ## Phase 1 Rollout Steps
 
@@ -84,16 +87,18 @@ Production rule:
 
 - Deployment completed successfully for both projects with the current split middleware.
 - V1 split verification (live):
-  - `/` -> `200`
-  - `/learn` -> legacy redirect then `200`
-  - `/v2/learn` -> `404`
-  - `/api/lessons` -> `200`
-  - `/api/v2/*` -> `404`
+  - URL: `https://quiz-app-coral-iota-99.vercel.app`
+  - `/learn` -> `307`
+  - `/v2` -> `404`
+  - `/api/v2/published-lessons` -> `404`
 - V2 split verification (live):
-  - `/` -> `307` to `/v2`
+  - URL: `https://quiz-app-v2-s2tjyoemn-carpentersbugs-projects.vercel.app`
   - `/v2` -> `200`
   - `/v2/learn` -> `200`
   - `/learn` -> `404`
-  - `/api/v2/*` -> reachable
-  - `/api/v1/*` -> `404`
-- V1 project currently still responds with Vercel protection (`401`), so V1 boundary verification needs either protection disabled there too or authenticated Vercel access.
+  - `/api/v1/quiz-sets` -> `404`
+  - `/api/v2/published-lessons` -> `401` unauthenticated (expected because runtime auth applies)
+- Deployed V2 smoke re-verified on 2026-03-10 after the richer Phase 1 biology content replacement:
+  - learner flow passed
+  - admin generation flow passed
+  - browser role management passed

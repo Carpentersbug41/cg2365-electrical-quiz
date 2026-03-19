@@ -1,0 +1,471 @@
+.page {
+  min-height: 100vh;
+  background: #f3f0ea;
+  color: #1e293b;
+  padding: 32px 20px;
+}
+
+.shell {
+  max-width: 880px;
+  margin: 0 auto;
+  background: #fcfbf8;
+  border: 1px solid #ddd7ce;
+  border-radius: 24px;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+  padding: 24px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.headerActions {
+  margin-top: 12px;
+}
+
+.eyebrow,
+.turnRole {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.title {
+  margin: 8px 0 4px;
+  font-size: 32px;
+}
+
+.subtle {
+  margin: 0;
+  color: #64748b;
+}
+
+.thread {
+  min-height: 420px;
+  max-height: 560px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.attachPanel {
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #f6f3ee;
+  border: 1px solid #ddd7ce;
+}
+
+.fileInput {
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+  font: inherit;
+}
+
+.attachMeta {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  font-size: 12px;
+  color: #475569;
+}
+
+.modeRow {
+  margin-top: 10px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.modeOption {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  color: #334155;
+  font-size: 14px;
+}
+
+.lessonControls {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.lessonDownloads {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lessonJumpControls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.lessonJumpPanel {
+  display: grid;
+  gap: 6px;
+}
+
+.jumpField {
+  display: grid;
+  gap: 4px;
+}
+
+.jumpLabel {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.select {
+  min-width: 280px;
+  border: 1px solid #d8d1c7;
+  border-radius: 12px;
+  background: #fff;
+  color: #1e293b;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.downloadButton {
+  border: 1px solid #d8d1c7;
+  border-radius: 12px;
+  background: #fff;
+  color: #1e293b;
+  padding: 10px 12px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.downloadButton:hover:not(:disabled) {
+  background: #f7f4ef;
+}
+
+.downloadButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.downloadButton:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
+.helper {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.statusNotice {
+  margin: 0 0 18px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #eef4ea;
+  border: 1px solid #cddcc4;
+  color: #35512a;
+  font-size: 13px;
+}
+
+.clearButton {
+  border: 0;
+  background: transparent;
+  color: #0f172a;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+}
+
+.clearButton:hover {
+  color: #334155;
+}
+
+.clearButton:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.debugPanel {
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #f6f3ee;
+  border: 1px solid #ddd7ce;
+}
+
+.debugStack {
+  display: grid;
+  gap: 12px;
+}
+
+.debugSection {
+  padding: 12px;
+  border-radius: 12px;
+  background: #fcfbf8;
+  border: 1px solid #e3ddd5;
+}
+
+.debugAttachment {
+  background: #eef4fb;
+  border-color: #cad8ea;
+}
+
+.debugInstruction {
+  background: #f4f1fb;
+  border-color: #d7d0eb;
+}
+
+.debugTitle {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.debugText {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #334155;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.userTurn,
+.assistantTurn {
+  border-radius: 18px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  max-width: 80%;
+  white-space: pre-wrap;
+}
+
+.assistantTurn {
+  background: #f4efe6;
+  border: 1px solid #e2d9cc;
+}
+
+.systemTurn {
+  margin: 0 auto 14px;
+  background: #f7f4ef;
+  border: 1px dashed #d8d1c7;
+}
+
+.userTurn {
+  margin-left: auto;
+  background: #e8eef4;
+  border: 1px solid #d7e1ea;
+}
+
+.turnText {
+  margin-top: 6px;
+  line-height: 1.65;
+}
+
+.loading {
+  color: #64748b;
+  padding: 10px 0 0 0;
+  font-size: 14px;
+}
+
+.loadingCard {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #f4efe6;
+  border: 1px solid #e2d9cc;
+}
+
+.loadingBars {
+  display: grid;
+  gap: 10px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.loadingBar {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(197, 207, 218, 0.34);
+}
+
+.loadingBarFill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: inherit;
+  overflow: hidden;
+  background: linear-gradient(90deg, #a6b6c6 0%, #bac7d4 45%, #9eb0c1 100%);
+  box-shadow: 0 0 0 1px rgba(157, 176, 194, 0.12);
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.3, 0.72, 0.34, 0.98);
+}
+
+.loadingBarFill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.18) 32%,
+    rgba(255, 255, 255, 0.58) 50%,
+    rgba(255, 255, 255, 0.16) 68%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-140%);
+  opacity: var(--loading-bar-shimmer-opacity, 0.56);
+  animation-name: loading-bar-shimmer;
+  animation-duration: var(--loading-bar-shimmer-duration, 1450ms);
+  animation-delay: var(--loading-bar-shimmer-delay, 0ms);
+  animation-timing-function: cubic-bezier(0.42, 0.08, 0.58, 0.92);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes loading-bar-shimmer {
+  0% {
+    transform: translateX(-150%) scaleX(var(--loading-bar-shimmer-scale, 1));
+  }
+
+  100% {
+    transform: translateX(148%) scaleX(calc(var(--loading-bar-shimmer-scale, 1) * 0.92));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingBarFill {
+    transform: translateX(0);
+  }
+
+  .loadingBarFill::after {
+    animation: none;
+    opacity: 0.4;
+    transform: translateX(0);
+  }
+}
+
+.error {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #fff1f2;
+  color: #9f1239;
+  border: 1px solid #fecdd3;
+}
+
+.composer {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.input {
+  flex: 1;
+  resize: vertical;
+  min-height: 84px;
+  border: 1px solid #d8d1c7;
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: #fff;
+  color: #1e293b;
+  font: inherit;
+}
+
+.select:focus-visible,
+.input:focus-visible,
+.fileInput:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
+.button {
+  border: 0;
+  border-radius: 14px;
+  background: #1f2937;
+  color: #fff;
+  padding: 12px 18px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+.resetButton {
+  border: 1px solid #d8d1c7;
+  border-radius: 14px;
+  background: #fff;
+  color: #1e293b;
+  padding: 10px 14px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease, border-color 120ms ease, opacity 120ms ease;
+}
+
+.button:hover:not(:disabled) {
+  background: #111827;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
+}
+
+.resetButton:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #c7d2de;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+}
+
+.button:active:not(:disabled),
+.resetButton:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+}
+
+.button:focus-visible,
+.resetButton:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+@media (max-width: 720px) {
+  .shell {
+    padding: 18px;
+  }
+
+  .userTurn,
+  .assistantTurn,
+  .systemTurn {
+    max-width: 100%;
+  }
+
+  .composer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .lessonJumpControls {
+    width: 100%;
+  }
+}

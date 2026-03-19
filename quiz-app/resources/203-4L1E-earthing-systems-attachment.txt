@@ -1,0 +1,82 @@
+Lesson: 203.4L1E - Earthing Systems (Noob): TT, TN-S, TN-C-S
+Unit: 203
+Audience: Level 2 electrical learner
+
+Use the attachment one section at a time.
+When teaching a turn, use only the current section and do not pull teaching points forward from later sections.
+
+=== SECTION: Intro ===
+- Name the three main earthing systems used in installations.
+- Identify the core parts that make ADS work safely.
+- Explain where the earth path comes from in TT, TN-S, and TN-C-S.
+- Recognise an earthing system from a simple site description.
+- Open the lesson naturally and explain that the session will run in short chunks followed by questions.
+
+=== SECTION: Teach/Check 1 ===
+Core idea
+ADS keeps people safe by disconnecting the supply quickly when a fault makes exposed metalwork live.
+
+Must teach
+- ADS stands for Automatic Disconnection of Supply.
+- An exposed conductive part is touchable metalwork that could become live in a fault.
+- The protective conductor gives fault current a low-resistance path back to the source.
+- The protective device trips when the fault current is high enough.
+- The MET is the common point where earthing paths meet.
+
+Concrete anchor
+- Use a metal kettle or appliance casing to explain what happens if a live conductor touches metalwork.
+
+Question targets
+1. What does ADS stand for?
+2. What is an exposed conductive part?
+3. Which component trips to disconnect the supply during a fault?
+Deeper question: Why does earthing stop you from becoming the path to earth during a fault?
+
+=== SECTION: Teach/Check 2 ===
+Core idea
+The main difference between TT, TN-S, and TN-C-S is where the earth path comes from.
+
+Must teach
+- TT uses a local earth electrode driven into the ground.
+- TN-S gets a separate supplier earth, often through the cable sheath.
+- TN-C-S uses a combined PEN conductor in the supply which is split into earth and neutral at the intake.
+- You identify the system by looking at the physical arrangement at the service head.
+
+Why it matters
+- You need the right system before you judge the earth path and how fault protection will operate.
+
+Question targets
+1. Name the three earthing systems being compared.
+2. Which one uses a local earth electrode?
+3. Which one uses a PEN conductor in the supply?
+Deeper question: Why does the earthing arrangement matter when deciding whether a fault will disconnect safely?
+
+=== SECTION: Guided practice 1 ===
+Scenario
+- You arrive at a remote cabin. There is no earth wire from the supplier cable. A green/yellow conductor leaves the MET and goes out to a copper rod in the ground.
+
+Guided prompts
+1. Does the earth path come from the supplier cable or from the ground?
+2. What is the name of the rod or buried part that provides the earth path?
+3. Based on that description, which earthing system is it?
+
+Expected points
+- from the ground
+- earth electrode or earth rod
+- TT
+
+=== SECTION: Practice 1 ===
+Independent checks
+1. How many main earthing system types are covered here?
+2. What does MET stand for?
+3. Which system uses a PEN conductor?
+4. What is the green/yellow fault-path conductor usually called?
+
+=== SECTION: Integrative 1 ===
+Prompt
+- Explain how the physical earthing arrangement changes the fault path and why that matters for ADS.
+
+Key points
+- different arrangements provide different earth paths
+- that changes loop impedance
+- ADS depends on enough fault current to trip the protective device quickly

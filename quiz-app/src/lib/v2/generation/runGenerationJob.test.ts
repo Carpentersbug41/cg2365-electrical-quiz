@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const generateV2QuestionDrafts = vi.fn();
 const createV2QuestionDraftVersions = vi.fn();
+const writeV2CanonicalEvent = vi.fn();
 
 vi.mock('@/lib/v2/generation/questionEngine', () => ({
   generateV2QuestionDrafts,
@@ -11,9 +12,14 @@ vi.mock('@/lib/v2/questionBank', () => ({
   createV2QuestionDraftVersions,
 }));
 
+vi.mock('@/lib/v2/events', () => ({
+  writeV2CanonicalEvent,
+}));
+
 describe('runGenerationJobById', () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    writeV2CanonicalEvent.mockResolvedValue(undefined);
   });
 
   it('processes question_draft jobs and records question artifact output', async () => {

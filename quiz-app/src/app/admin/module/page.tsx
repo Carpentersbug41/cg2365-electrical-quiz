@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { getCoursePrefixForClient } from '@/lib/routing/curricula';
+import { v2AuthedFetch } from '@/lib/v2/client';
 
 type StageKey = 'M0' | 'M1' | 'M2' | 'M3' | 'M4' | 'M5' | 'M6';
 
@@ -211,7 +213,15 @@ function extractPersistedGenerationReport(payload: unknown): PersistedGeneration
   };
 }
 
+function extractGeneratedLessonForImport(payload: unknown): Record<string, unknown> | null {
+  if (!isRecord(payload)) return null;
+  return isRecord(payload.generatedLesson) ? payload.generatedLesson : null;
+}
+
 export default function ModulePlannerPage() {
+  const pathname = usePathname();
+  const isV2Mode = pathname?.startsWith('/v2') ?? false;
+  const moduleApiBase = isV2Mode ? '/api/admin/v2/module' : '/api/admin/module';
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [enabled, setEnabled] = useState<boolean | null>(null);
   const [units, setUnits] = useState<string[]>([]);
@@ -247,6 +257,7 @@ export default function ModulePlannerPage() {
   const [generatingBlueprintId, setGeneratingBlueprintId] = useState<string | null>(null);
   const [lessonGenerationProgress, setLessonGenerationProgress] = useState<LessonGenerationProgress | null>(null);
   const [deletingBlueprintId, setDeletingBlueprintId] = useState<string | null>(null);
+  const [importingBlueprintId, setImportingBlueprintId] = useState<string | null>(null);
   const [deletingRunId, setDeletingRunId] = useState<string | null>(null);
   const [unitStructure, setUnitStructure] = useState<CanonicalUnitStructure | null>(null);
   const [viewLessonPayload, setViewLessonPayload] = useState<{
@@ -312,8 +323,12 @@ export default function ModulePlannerPage() {
 
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
         let response: Response;
+        const targetUrl = url.startsWith('/api/admin/module') && isV2Mode
+          ? url.replace('/api/admin/module', moduleApiBase)
+          : url;
         try {
-          response = await fetch(url, {
+          const fetchImpl = isV2Mode ? v2AuthedFetch : fetch;
+          response = await fetchImpl(targetUrl, {
             method: requestMethod,
             cache: 'no-store',
             headers: body ? (isFormData ? buildHeaders() : buildHeaders('application/json')) : buildHeaders(),
@@ -323,7 +338,7 @@ export default function ModulePlannerPage() {
           const message = error instanceof Error ? error.message : 'Unknown network failure';
           lastError = new Error(`Network error while calling API: ${message}`);
           if (attempt < maxAttempts) {
-            setRetryNotice(`Retrying request (${attempt + 1}/${maxAttempts}): ${url}`);
+            setRetryNotice(`Retrying request (${attempt + 1}/${maxAttempts}): ${targetUrl}`);
             await sleep(250 * attempt);
             continue;
           }
@@ -346,7 +361,7 @@ export default function ModulePlannerPage() {
                 : { value: parsed };
             } catch {
               if (response.ok) {
-                throw new Error(`Invalid JSON response from ${url}`);
+                throw new Error(`Invalid JSON response from ${targetUrl}`);
               }
               data = { rawBody };
             }
@@ -359,11 +374,11 @@ export default function ModulePlannerPage() {
             if (typeof data.rawBody === 'string' && data.rawBody.trim().length > 0) {
               const bodyText = data.rawBody;
               if (bodyText.includes('<html') || bodyText.includes('<!DOCTYPE')) {
-                return `Request failed (${response.status}) while calling ${url}`;
+                return `Request failed (${response.status}) while calling ${targetUrl}`;
               }
               return bodyText.slice(0, 300);
             }
-            return `Request failed (${response.status}) while calling ${url}`;
+            return `Request failed (${response.status}) while calling ${targetUrl}`;
           })();
           const message =
             (typeof data.message === 'string' && data.message) ||
@@ -374,7 +389,7 @@ export default function ModulePlannerPage() {
             requestMethod === 'GET' &&
             (response.status >= 500 || response.status === 429 || message.toLowerCase().includes('network'));
           if (isTransient && attempt < maxAttempts) {
-            setRetryNotice(`Retrying request (${attempt + 1}/${maxAttempts}): ${url}`);
+            setRetryNotice(`Retrying request (${attempt + 1}/${maxAttempts}): ${targetUrl}`);
             await sleep(300 * attempt);
             continue;
           }
@@ -387,7 +402,7 @@ export default function ModulePlannerPage() {
       setRetryNotice(null);
       throw lastError ?? new Error('Request failed unexpectedly');
     },
-    [buildHeaders]
+    [buildHeaders, isV2Mode, moduleApiBase]
   );
 
   const loadVersionScope = useCallback(async (versionId: string, preferredUnit?: string) => {
@@ -896,6 +911,10 @@ export default function ModulePlannerPage() {
         typeof data.message === 'string' && data.message.trim().length > 0
           ? data.message
           : null;
+      const importedDraftVersionNo =
+        data.importedDraft && typeof data.importedDraft === 'object' && typeof data.importedDraft.versionNo === 'number'
+          ? data.importedDraft.versionNo
+          : null;
       setLessonGenerationProgress({
         blueprintId,
         progress: 100,
@@ -936,7 +955,12 @@ export default function ModulePlannerPage() {
       } else if (generationStatus === 'failed') {
         setError(typeof data.error === 'string' && data.error ? data.error : `Failed to generate ${lessonIdLabel}.`);
       } else {
-        setInfo(generationMessage ?? `Generated ${lessonIdLabel}.`);
+        setInfo(
+          generationMessage ??
+            (isV2Mode && importedDraftVersionNo != null
+              ? `Generated ${lessonIdLabel} and saved to V2 draft v${importedDraftVersionNo}.`
+              : `Generated ${lessonIdLabel}.`)
+        );
       }
     } catch (e) {
       setError(e instanceof Error ? e.message : `Failed to generate ${blueprintId}`);
@@ -981,6 +1005,49 @@ export default function ModulePlannerPage() {
     }
   };
 
+  const handleImportLessonToV2 = async (blueprintId: string, lessonPayload: unknown) => {
+    const generatedLesson = extractGeneratedLessonForImport(lessonPayload);
+    if (!generatedLesson) {
+      setError(`No generated lesson payload is available for ${blueprintId}.`);
+      return;
+    }
+
+    setImportingBlueprintId(blueprintId);
+    setError(null);
+    setInfo(null);
+    try {
+      const response = await v2AuthedFetch('/api/admin/v2/import-lesson-draft', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          lessonCode: blueprintId,
+          generatedLesson,
+          sourcePayload: lessonPayload,
+          sourceContext: 'admin_v2_module_planner',
+        }),
+      });
+      const data = (await response.json().catch(() => ({}))) as {
+        success?: boolean;
+        message?: string;
+        generatedVersionNo?: number;
+      };
+      if (!response.ok || !data.success) {
+        throw new Error(
+          typeof data.message === 'string' && data.message.trim().length > 0
+            ? data.message
+            : `Failed to import ${blueprintId} into V2.`
+        );
+      }
+      setInfo(`Imported ${blueprintId} into V2 draft v${data.generatedVersionNo ?? '?'}.`);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : `Failed to import ${blueprintId} into V2.`);
+    } finally {
+      setImportingBlueprintId(null);
+    }
+  };
+
   const stageOrder: StageKey[] = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5'];
 
   return (
@@ -988,11 +1055,15 @@ export default function ModulePlannerPage() {
       <div className="mx-auto max-w-6xl space-y-6">
         <header className="flex items-center justify-between rounded-lg bg-white p-4 shadow-sm">
           <div>
-            <h1 className="text-2xl font-semibold">Module Planner vNext</h1>
-            <p className="text-sm text-slate-600">Syllabus-versioned module planner pipeline (M0-M5) with manual per-lesson generation</p>
+            <h1 className="text-2xl font-semibold">{isV2Mode ? 'V2 Module Planner' : 'Module Planner vNext'}</h1>
+            <p className="text-sm text-slate-600">
+              {isV2Mode
+                ? 'Run the proven module planner, then import generated lessons into V2 draft versions.'
+                : 'Syllabus-versioned module planner pipeline (M0-M5) with manual per-lesson generation'}
+            </p>
           </div>
           <div className="flex items-center gap-2">
-            <Link href="/generate" className="rounded border border-slate-300 px-3 py-2 text-sm">Lesson</Link>
+            <Link href={isV2Mode ? '/v2/generate' : '/generate'} className="rounded border border-slate-300 px-3 py-2 text-sm">Lesson</Link>
             <span className="rounded bg-slate-900 px-3 py-2 text-sm text-white">Module</span>
           </div>
         </header>
@@ -1419,10 +1490,19 @@ export default function ModulePlannerPage() {
                                     {state !== 'generating' && row && (
                                       <button
                                         onClick={() => void handleDeleteLesson(bp.id)}
-                                        disabled={Boolean(generatingBlueprintId) || Boolean(deletingBlueprintId)}
+                                        disabled={Boolean(generatingBlueprintId) || Boolean(deletingBlueprintId) || Boolean(importingBlueprintId)}
                                         className="rounded border border-rose-300 px-2 py-1 text-xs text-rose-700 disabled:opacity-60"
                                       >
                                         {deletingBlueprintId === bp.id ? 'Deleting...' : 'Delete Lesson'}
+                                      </button>
+                                    )}
+                                    {isV2Mode && row && extractGeneratedLessonForImport(row.lesson_json ?? null) && (
+                                      <button
+                                        onClick={() => void handleImportLessonToV2(bp.id, row.lesson_json ?? null)}
+                                        disabled={Boolean(generatingBlueprintId) || Boolean(deletingBlueprintId) || Boolean(importingBlueprintId)}
+                                        className="rounded border border-emerald-300 px-2 py-1 text-xs text-emerald-700 disabled:opacity-60"
+                                      >
+                                        {importingBlueprintId === bp.id ? 'Importing...' : 'Save to V2 Draft'}
                                       </button>
                                     )}
                                   </div>

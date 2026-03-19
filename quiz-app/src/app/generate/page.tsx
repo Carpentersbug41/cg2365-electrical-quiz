@@ -8,8 +8,10 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { DebugPanel } from '@/components/generate/DebugPanel';
 import { getCoursePrefixForClient } from '@/lib/routing/curricula';
+import { v2AuthedFetch } from '@/lib/v2/client';
 
 interface GenerationForm {
   unit: number;
@@ -142,6 +144,10 @@ interface GenerationStatus {
     commitHash: string;
     commitUrl: string;
     warnings: string[];
+    lessonCode?: string;
+    generatedLessonVersionId?: string;
+    generatedVersionNo?: number;
+    qualityScore?: number | null;
     phases?: PhaseProgress[];
     refinementMetadata?: {
       wasRefined: boolean;
@@ -201,6 +207,8 @@ function inferSectionFromUnit(unit: number): string {
 }
 
 export default function GeneratePage() {
+  const pathname = usePathname();
+  const isV2Mode = pathname?.startsWith('/v2') ?? false;
   const [form, setForm] = useState<GenerationForm>({
     unit: 202,
     lessonId: '',
@@ -426,14 +434,23 @@ export default function GeneratePage() {
       });
 
       // Call API
-      const response = await fetch('/api/lesson-generator', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-course-prefix': getCoursePrefixForClient(),
-        },
-        body: JSON.stringify(request),
-      });
+      const response = isV2Mode
+        ? await v2AuthedFetch('/api/admin/v2/generate/lesson', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-course-prefix': getCoursePrefixForClient(),
+            },
+            body: JSON.stringify(request),
+          })
+        : await fetch('/api/lesson-generator', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-course-prefix': getCoursePrefixForClient(),
+            },
+            body: JSON.stringify(request),
+          });
 
       let data: any = null;
       let rawResponse: string = '';
@@ -521,13 +538,17 @@ export default function GeneratePage() {
       // Success - proceed as normal
       setStatus({
         stage: 'success',
-        message: 'Generation complete!',
+        message: isV2Mode ? 'V2 draft generated and saved.' : 'Generation complete!',
         progress: 100,
         result: {
-          lessonFile: data.lessonFile,
-          quizFile: data.quizFile,
-          commitHash: data.commitHash,
-          commitUrl: data.commitUrl,
+          lessonFile: isV2Mode ? `Draft v${data.generatedVersionNo ?? '?'}` : data.lessonFile,
+          quizFile: isV2Mode ? 'Not generated in this flow' : data.quizFile,
+          commitHash: isV2Mode ? 'N/A' : data.commitHash,
+          commitUrl: isV2Mode ? 'N/A' : data.commitUrl,
+          lessonCode: data.lessonCode,
+          generatedLessonVersionId: data.generatedLessonVersionId,
+          generatedVersionNo: data.generatedVersionNo,
+          qualityScore: typeof data.qualityScore === 'number' ? data.qualityScore : null,
           warnings: data.warnings || [],
           phases: data.phases || [],
           refinementMetadata: data.refinementMetadata,
@@ -1072,8 +1093,9 @@ export default function GeneratePage() {
                   disabled={status.stage === 'generating' || !syllabusVersionId}
                   className="flex-1 px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {status.stage === 'generating' ? 'Generating...' : 'Generate Lesson'}
+                  {status.stage === 'generating' ? 'Generating...' : isV2Mode ? 'Generate V2 Draft' : 'Generate Lesson'}
                 </button>
+                {!isV2Mode && (
                 <button
                   type="button"
                   onClick={() => {
@@ -1106,6 +1128,7 @@ export default function GeneratePage() {
                   </svg>
                   Test Sequential Gen
                 </button>
+                )}
               </div>
             </form>
           ) : status.stage === 'success' ? (
@@ -1120,14 +1143,14 @@ export default function GeneratePage() {
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <h2 className="text-2xl font-bold">Generation Complete!</h2>
+                <h2 className="text-2xl font-bold">{isV2Mode ? 'V2 Draft Ready!' : 'Generation Complete!'}</h2>
               </div>
 
               {/* Results */}
               <div className="space-y-4">
                 <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                    Generated Files:
+                    {isV2Mode ? 'Saved Draft:' : 'Generated Files:'}
                   </h3>
                   <ul className="space-y-1 text-sm text-gray-700 dark:text-slate-300">
                     <li>📄 Lesson: {status.result?.lessonFile}</li>

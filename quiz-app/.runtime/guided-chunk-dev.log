@@ -1,0 +1,367 @@
+
+> cg2365-electrical-quiz@0.1.0 predev
+> node scripts/checkLessonRegistries.js
+
+[Lesson Registry Check] OK (57 lesson JSON files validated)
+
+> cg2365-electrical-quiz@0.1.0 dev
+> node scripts/cleanNextDist.js && next dev
+
+[cleanNextDist] Removed C:\Users\carpe\Desktop\hs_quiz\quiz-app\.next
+   ▲ Next.js 15.5.7
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.1.142:3001
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 3.3s
+ ○ Compiling /guided-chunk/[lessonCode] ...
+ ✓ Compiled /guided-chunk/[lessonCode] in 16.4s (1912 modules)
+ GET /guided-chunk-lab 200 in 17177ms
+ ○ Compiling /api/guided-chunk/sessions/start ...
+ GET /guided-chunk/204-13A 200 in 17879ms
+ ✓ Compiled /api/guided-chunk/sessions/start in 2.5s (1991 modules)
+ POST /api/guided-chunk/sessions/start 200 in 3192ms
+ ✓ Compiled in 998ms (792 modules)
+ ✓ Compiled in 725ms (792 modules)
+ ✓ Compiled in 751ms (893 modules)
+ ✓ Compiled in 1023ms (792 modules)
+ ○ Compiling /api/guided-chunk/frames ...
+ ✓ Compiled /api/guided-chunk/frames in 697ms (497 modules)
+ ✓ Compiled in 452ms (778 modules)
+ GET /api/guided-chunk/frames 200 in 1576ms
+ GET /guided-chunk-lab 200 in 2259ms
+ ✓ Compiled in 1923ms (792 modules)
+ ○ Compiling /api/guided-chunk/generate ...
+ ✓ Compiled /api/guided-chunk/generate in 1161ms (1440 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate 500 in 37848ms
+ ✓ Compiled in 1668ms (792 modules)
+ ✓ Compiled in 990ms (792 modules)
+ GET /api/guided-chunk/frames 200 in 922ms
+ ○ Compiling /guided-chunk/[lessonCode] ...
+ ✓ Compiled /guided-chunk/[lessonCode] in 2.1s (1777 modules)
+ GET /guided-chunk/204-13A-seeded 200 in 2608ms
+ ✓ Compiled /api/guided-chunk/generate in 304ms (1128 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate 500 in 42613ms
+ ✓ Compiled in 900ms (792 modules)
+ ✓ Compiled /api/guided-chunk/generate in 214ms (259 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate 200 in 56321ms
+ ✓ Compiled in 639ms (792 modules)
+ ✓ Compiled in 578ms (792 modules)
+ ✓ Compiled /guided-chunk/[lessonCode] in 283ms (261 modules)
+ ✓ Compiled (1128 modules)
+ GET /api/guided-chunk/frames 200 in 980ms
+ GET /guided-chunk/204-13A-seeded-2 200 in 1586ms
+ ✓ Compiled in 820ms (792 modules)
+ ✓ Compiled in 569ms (792 modules)
+ ✓ Compiled in 566ms (792 modules)
+ ✓ Compiled in 685ms (792 modules)
+ ✓ Compiled in 718ms (792 modules)
+ ✓ Compiled in 591ms (792 modules)
+ ✓ Compiled in 632ms (792 modules)
+ ✓ Compiled in 710ms (792 modules)
+ ✓ Compiled in 1397ms (794 modules)
+ ✓ Compiled /api/guided-chunk/generate in 239ms (261 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate 200 in 41982ms
+ ✓ Compiled in 707ms (794 modules)
+ ✓ Compiled in 580ms (794 modules)
+ ✓ Compiled in 1380ms (794 modules)
+ ✓ Compiled in 1368ms (909 modules)
+ ✓ Compiled /api/guided-chunk/generate in 262ms (261 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate 200 in 34032ms
+ ✓ Compiled in 570ms (794 modules)
+ ✓ Compiled in 549ms (794 modules)
+ ✓ Compiled /api/guided-chunk/generate-biology-phase1 in 405ms (1045 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 661ms (794 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 602ms (794 modules)
+ ✓ Compiled in 459ms (794 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 560ms (794 modules)
+ ✓ Compiled in 550ms (794 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 471ms (794 modules)
+ ✓ Compiled in 600ms (794 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 410ms (794 modules)
+ ✓ Compiled in 490ms (794 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 437ms (794 modules)
+ ✓ Compiled in 454ms (794 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate-biology-phase1 200 in 226130ms
+ ✓ Compiled in 509ms (794 modules)
+ ✓ Compiled in 474ms (794 modules)
+ ○ Compiling /api/guided-chunk/frames ...
+ ✓ Compiled /guided-chunk/[lessonCode] in 3s (1779 modules)
+ GET /api/guided-chunk/frames 200 in 3665ms
+ GET /guided-chunk/BIO-101-1B-gc 200 in 4334ms
+ ✓ Compiled in 635ms (794 modules)
+ ✓ Compiled in 585ms (794 modules)
+ ✓ Compiled in 583ms (794 modules)
+ ✓ Compiled in 674ms (794 modules)
+ ✓ Compiled in 884ms (794 modules)
+ ✓ Compiled in 882ms (794 modules)
+ ✓ Compiled in 571ms (794 modules)
+ ✓ Compiled in 752ms (794 modules)
+ ✓ Compiled in 704ms (794 modules)
+ ✓ Compiled in 547ms (794 modules)
+ ✓ Compiled in 634ms (794 modules)
+ ✓ Compiled in 1452ms (895 modules)
+ ✓ Compiled in 1013ms (794 modules)
+ ○ Compiling /admin/guided-chunk ...
+ ✓ Compiled /admin/guided-chunk in 845ms (198 modules)
+ ✓ Compiled in 810ms (782 modules)
+ GET /gcse/science/biology/admin/guided-chunk 200 in 3746ms
+ GET /api/guided-chunk/frames 200 in 4750ms
+ ○ Compiling /api/guided-chunk/generate ...
+ ✓ Compiled /api/guided-chunk/generate in 1776ms (1071 modules)
+ ✓ Compiled (1208 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ GET /guided-chunk/BIO-101-1A-prodcheck 200 in 3406ms
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate 200 in 41812ms
+ ✓ Compiled in 954ms (796 modules)
+ ✓ Compiled in 915ms (796 modules)
+ ○ Compiling /api/guided-chunk/generate-biology-phase1 ...
+ ✓ Compiled /api/guided-chunk/generate-biology-phase1 in 712ms (1203 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 1390ms (796 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 541ms (796 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 615ms (796 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 479ms (796 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 573ms (796 modules)
+ ✓ Compiled in 724ms (796 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ ✓ Compiled in 529ms (796 modules)
+ ✓ Compiled in 503ms (796 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate-biology-phase1 200 in 329043ms
+ ✓ Compiled in 589ms (796 modules)
+ ✓ Compiled in 481ms (796 modules)
+ ✓ Compiled /api/guided-chunk/generate-biology-phase1 in 434ms (337 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1975ms (1366 modules)
+ POST /api/guided-chunk/generate-biology-phase1 500 in 3244ms
+ ✓ Compiled /admin/guided-chunk in 381ms (1293 modules)
+ ✓ Compiled (1302 modules)
+ GET /guided-chunk/BIO-101-1A-prodcheck 200 in 1935ms
+ GET /gcse/science/biology/admin/guided-chunk 200 in 1921ms
+ GET /api/guided-chunk/frames 200 in 2047ms
+ GET /api/guided-chunk/frames 200 in 194ms
+ ✓ Compiled /api/guided-chunk/generate in 381ms (1304 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate 200 in 45489ms
+ ✓ Compiled in 1129ms (951 modules)
+ ✓ Compiled in 1218ms (951 modules)
+ GET /api/guided-chunk/frames 200 in 872ms
+ ✓ Compiled in 3.4s (1052 modules)
+ ○ Compiling /api/guided-chunk/generate ...
+ ✓ Compiled /api/guided-chunk/generate in 1525ms (427 modules)
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+ POST /api/guided-chunk/generate 200 in 51042ms
+ ✓ Compiled in 1628ms (951 modules)
+ ✓ Compiled in 1613ms (951 modules)

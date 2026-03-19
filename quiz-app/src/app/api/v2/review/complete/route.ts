@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { writeV2CanonicalEvent } from '@/lib/v2/events';
 import { requireV2EnrolledSession } from '@/lib/v2/session';
 
 type CompletePayload = {
@@ -29,10 +30,10 @@ export async function POST(request: NextRequest) {
 
   const { data: existing, error: fetchError } = await client
     .from('v2_review_items')
-    .select('id, times_wrong, times_right, question_stable_id')
+    .select('id, lesson_id, times_wrong, times_right, question_stable_id')
     .eq('id', reviewItemId)
     .eq('user_id', userId)
-    .maybeSingle<{ id: string; times_wrong: number; times_right: number; question_stable_id: string }>();
+    .maybeSingle<{ id: string; lesson_id: string | null; times_wrong: number; times_right: number; question_stable_id: string }>();
   if (fetchError) return NextResponse.json({ error: fetchError.message }, { status: 500 });
   if (!existing) return NextResponse.json({ error: 'Review item not found' }, { status: 404 });
 
@@ -67,31 +68,61 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: eventError.message }, { status: 500 });
   }
 
-  const canonicalEvents = [
-    {
-      event_type: 'review_item_completed',
-      user_id: userId,
-      source_context: 'v2_review_page',
+  let questionId: string | null = null;
+  let questionVersionId: string | null = null;
+  try {
+    const { data: questionRow, error: questionError } = await client
+      .from('v2_questions')
+      .select('id')
+      .eq('stable_key', existing.question_stable_id)
+      .limit(1)
+      .maybeSingle<{ id: string }>();
+    if (questionError) throw questionError;
+    questionId = questionRow?.id ?? null;
+
+    if (questionId) {
+      const { data: versionRow, error: versionError } = await client
+        .from('v2_question_versions')
+        .select('id')
+        .eq('question_id', questionId)
+        .eq('status', 'published')
+        .eq('is_current', true)
+        .limit(1)
+        .maybeSingle<{ id: string }>();
+      if (versionError) throw versionError;
+      questionVersionId = versionRow?.id ?? null;
+    }
+
+    await writeV2CanonicalEvent(client, {
+      eventType: 'review_item_completed',
+      userId,
+      lessonId: existing.lesson_id,
+      questionId,
+      questionVersionId,
+      sourceContext: 'v2_review_page',
       payload: {
         reviewItemId,
         questionStableId: existing.question_stable_id,
         correct,
       },
-    },
-    {
-      event_type: correct ? 'review_item_resolved' : 'review_item_due',
-      user_id: userId,
-      source_context: 'v2_review_page',
+    });
+    await writeV2CanonicalEvent(client, {
+      eventType: correct ? 'review_item_resolved' : 'review_item_due',
+      userId,
+      lessonId: existing.lesson_id,
+      questionId,
+      questionVersionId,
+      sourceContext: 'v2_review_page',
       payload: {
         reviewItemId,
         questionStableId: existing.question_stable_id,
       },
-    },
-  ];
-
-  const { error: canonicalEventError } = await client.from('v2_event_log').insert(canonicalEvents);
-  if (canonicalEventError) {
-    return NextResponse.json({ error: canonicalEventError.message }, { status: 500 });
+    });
+  } catch (canonicalEventError) {
+    return NextResponse.json(
+      { error: canonicalEventError instanceof Error ? canonicalEventError.message : 'Failed to write review events.' },
+      { status: 500 }
+    );
   }
 
   return NextResponse.json({ success: true });

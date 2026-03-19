@@ -12,6 +12,14 @@ export async function v2AuthedFetch(input: RequestInfo | URL, init?: RequestInit
     headers.set('Authorization', `Bearer ${token}`);
   }
 
+  if (
+    typeof window !== 'undefined' &&
+    (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') &&
+    new URLSearchParams(window.location.search).get('devBypassAuth') === '1'
+  ) {
+    headers.set('x-v2-dev-bypass', '1');
+  }
+
   return fetch(input, {
     ...init,
     headers,

@@ -1,6 +1,6 @@
 # Tester Access Runbook (V1 + V2)
 
-Last updated: 2026-03-08
+Last updated: 2026-03-10
 Goal: allow controlled demo/testing access without adding insecure in-app bypass logic.
 
 Read `progress.md` first for the current V2 state and current recommended test entrypoints.
@@ -15,8 +15,8 @@ Do not add custom middleware "admin pass" tokens for production demos.
 
 ## 2. Current Production URLs
 
-- V1: `https://quiz-akgt5dt7u-carpentersbugs-projects.vercel.app`
-- V2: `https://quiz-app-v2-hvzbal8q8-carpentersbugs-projects.vercel.app`
+- V1: `https://quiz-app-coral-iota-99.vercel.app`
+- V2: `https://quiz-app-v2-s2tjyoemn-carpentersbugs-projects.vercel.app`
 
 ## 3. Vercel Settings to Apply (Dashboard)
 
@@ -40,6 +40,21 @@ Expected result:
   - admin demo user
 - Grant admin role in the app data model to the admin user only.
 - Verify both users can sign in on V2 URL and reach expected pages.
+- Verified on 2026-03-09 with automated browser E2E against the deployed V2 URL:
+  - learner flow passes
+  - admin generation flow passes
+  - browser role grant passes
+- Re-verified on 2026-03-10 after the richer Phase 1 biology content replacement:
+  - learner flow still passes on the expanded quiz payloads
+  - admin generation flow still passes
+  - browser role grant still passes
+- Expanded signoff verification on 2026-03-10:
+  - `/v2/learn` shows the exact 7 Phase 1 biology lessons
+  - representative lesson pages render richer V2 block types without fallback text
+  - authenticated `/learn` and `/api/v1/quiz-sets` return `404` on the V2 surface
+  - admin user drilldown loads timeline data from `/api/admin/v2/outcomes/timeseries`
+  - machine-readable signoff report written to `reports/rebuild_v2/phase1_signoff_report.json`
+  - local `npm run build` is green again after the simulation-root cleanup
 
 ## 5. Validation Sequence (After Access Is Enabled)
 
@@ -50,6 +65,7 @@ Expected result:
 3. Surface split check:
    - V1 URL should show V1 surface only.
    - V2 URL should show V2 surface only.
+   - On the V2 URL, authenticated `/learn` and `/api/v1/quiz-sets` should remain blocked.
 4. Record pass/fail against:
    - `reports/rebuild_v2/14_phase1_release_checklist.md`
 

@@ -1,0 +1,26 @@
+<svg width="1400" height="1000" viewBox="0 0 1400 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="1000" rx="52" fill="#101722"/>
+  <rect x="90" y="90" width="1220" height="820" rx="42" fill="#0E1629" stroke="#5BC3E8" stroke-opacity="0.18" stroke-width="2"/>
+  <path d="M276 242H1102" stroke="#5BC3E8" stroke-opacity="0.24" stroke-width="2"/>
+  <path d="M276 500H1102" stroke="#5BC3E8" stroke-opacity="0.18" stroke-width="2"/>
+  <path d="M276 758H1102" stroke="#5BC3E8" stroke-opacity="0.14" stroke-width="2"/>
+  <path d="M410 198V806" stroke="#5BC3E8" stroke-opacity="0.18" stroke-width="2"/>
+  <path d="M706 198V806" stroke="#5BC3E8" stroke-opacity="0.18" stroke-width="2"/>
+  <path d="M1002 198V806" stroke="#5BC3E8" stroke-opacity="0.18" stroke-width="2"/>
+  <rect x="214" y="212" width="176" height="84" rx="22" fill="#121F39" stroke="#5BC3E8" stroke-opacity="0.28"/>
+  <rect x="510" y="212" width="176" height="84" rx="22" fill="#121F39" stroke="#5BC3E8" stroke-opacity="0.28"/>
+  <rect x="806" y="212" width="176" height="84" rx="22" fill="#121F39" stroke="#5BC3E8" stroke-opacity="0.28"/>
+  <rect x="1102" y="212" width="96" height="84" rx="22" fill="#F59A63"/>
+  <path d="M390 254H510" stroke="#5BC3E8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M686 254H806" stroke="#5BC3E8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M982 254H1102" stroke="#F59A63" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="302" cy="254" r="18" fill="#5BC3E8"/>
+  <circle cx="598" cy="254" r="18" fill="#5BC3E8"/>
+  <circle cx="894" cy="254" r="18" fill="#5BC3E8"/>
+  <circle cx="1150" cy="254" r="18" fill="#FDE5D6"/>
+  <rect x="248" y="560" width="856" height="150" rx="30" fill="#13233F" stroke="#5BC3E8" stroke-opacity="0.18"/>
+  <path d="M318 636H1032" stroke="#5BC3E8" stroke-opacity="0.22" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="410" cy="636" r="22" fill="#5BC3E8"/>
+  <circle cx="706" cy="636" r="22" fill="#5BC3E8"/>
+  <circle cx="1002" cy="636" r="22" fill="#F59A63"/>
+</svg>

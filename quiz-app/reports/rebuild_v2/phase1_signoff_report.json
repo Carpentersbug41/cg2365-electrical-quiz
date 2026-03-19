@@ -1,0 +1,170 @@
+{
+  "generatedAt": "2026-03-10T13:23:35.366Z",
+  "targetLessonCodes": [
+    "BIO-101-1A",
+    "BIO-101-1B",
+    "BIO-102-1A",
+    "BIO-102-1B",
+    "BIO-103-1A",
+    "BIO-103-1B",
+    "BIO-104-1A"
+  ],
+  "publishedBiologyLessons": {
+    "codes": [
+      "BIO-101-1A",
+      "BIO-101-1B",
+      "BIO-102-1A",
+      "BIO-102-1B",
+      "BIO-103-1A",
+      "BIO-103-1B",
+      "BIO-104-1A"
+    ],
+    "expectedOnly": true,
+    "missing": [],
+    "extra": []
+  },
+  "publishedLessons": [
+    {
+      "lessonCode": "BIO-101-1A",
+      "lessonId": "62a43d88-5786-488c-9b45-b0c54fa1e06c",
+      "publishedLessonVersionId": "b4462547-a02f-4516-b68a-fa3be8f7aca3",
+      "publishedVersionNo": 2,
+      "qualityScore": 92,
+      "questionCoverage": 18,
+      "publishGateOk": true,
+      "issues": [],
+      "blockCount": 12,
+      "metadataAuthor": "GCSE Science Learning Team"
+    },
+    {
+      "lessonCode": "BIO-101-1B",
+      "lessonId": "d5c9ec67-8f50-4714-9193-a5fb035e6c8d",
+      "publishedLessonVersionId": "d1b3614a-e54a-4174-82fb-8069faff6042",
+      "publishedVersionNo": 2,
+      "qualityScore": 98,
+      "questionCoverage": 18,
+      "publishGateOk": true,
+      "issues": [],
+      "blockCount": 12,
+      "metadataAuthor": "GCSE Science Learning Team"
+    },
+    {
+      "lessonCode": "BIO-102-1A",
+      "lessonId": "c8c14e42-3789-4daa-9d20-ca396d298b51",
+      "publishedLessonVersionId": "841d2175-f777-4651-88cb-3c700318b542",
+      "publishedVersionNo": 2,
+      "qualityScore": 96,
+      "questionCoverage": 18,
+      "publishGateOk": true,
+      "issues": [],
+      "blockCount": 12,
+      "metadataAuthor": "GCSE Science Learning Team"
+    },
+    {
+      "lessonCode": "BIO-102-1B",
+      "lessonId": "7c002fff-db93-49c5-8ec7-33db0cf0336c",
+      "publishedLessonVersionId": "ea291fd6-e2c1-4232-9340-51d11ee1a934",
+      "publishedVersionNo": 2,
+      "qualityScore": 94,
+      "questionCoverage": 18,
+      "publishGateOk": true,
+      "issues": [],
+      "blockCount": 12,
+      "metadataAuthor": "GCSE Science Learning Team"
+    },
+    {
+      "lessonCode": "BIO-103-1A",
+      "lessonId": "3f48343a-5091-4dd8-b4ac-209013b268f0",
+      "publishedLessonVersionId": "d9040857-3b8e-4b20-8bd4-4245eaec1e6e",
+      "publishedVersionNo": 2,
+      "qualityScore": 96,
+      "questionCoverage": 17,
+      "publishGateOk": true,
+      "issues": [],
+      "blockCount": 12,
+      "metadataAuthor": "GCSE Science Learning Team"
+    },
+    {
+      "lessonCode": "BIO-103-1B",
+      "lessonId": "a616a22f-7f84-48a5-9c68-0815886b5736",
+      "publishedLessonVersionId": "8d350981-bb5d-4531-abc3-d4098b20a7eb",
+      "publishedVersionNo": 2,
+      "qualityScore": 96,
+      "questionCoverage": 18,
+      "publishGateOk": true,
+      "issues": [],
+      "blockCount": 12,
+      "metadataAuthor": "GCSE Science Learning Team"
+    },
+    {
+      "lessonCode": "BIO-104-1A",
+      "lessonId": "bdf05578-9f8a-4ce4-8e98-1175e2ed3262",
+      "publishedLessonVersionId": "937c049a-4c80-419b-987f-956a470e56ba",
+      "publishedVersionNo": 5,
+      "qualityScore": 96,
+      "questionCoverage": 18,
+      "publishGateOk": true,
+      "issues": [],
+      "blockCount": 12,
+      "metadataAuthor": "GCSE Science Learning Team"
+    }
+  ],
+  "runtimeEvidence": {
+    "learnerEmail": "e2e.v2.learner@example.com",
+    "learnerUserId": "cee7bec9-6a5b-4c71-953f-f0c0551e509c",
+    "lessonSessions": 17,
+    "quizSessions": 14,
+    "attempts": 117,
+    "reviewItems": 21,
+    "resolvedReviewItems": 0,
+    "usesV2Tables": true
+  },
+  "auditEvidence": {
+    "generationEvents": 15,
+    "transitionEvents": 7,
+    "publishedEvents": 7,
+    "approvalDecisions": 3,
+    "hasRequiredAuditTrail": true
+  },
+  "workflowEvidence": {
+    "tempLessonCode": "BIO-199-SIGNOFF",
+    "lessonId": "09b96e9a-b0a8-4e08-bcc3-f79c5997a2ee",
+    "versionId": "94b7562f-63ce-4bc9-a6fe-2e827a50d31b",
+    "transitions": [
+      {
+        "action": "needs_review",
+        "status": "needs_review"
+      },
+      {
+        "action": "approved",
+        "status": "approved"
+      },
+      {
+        "action": "published",
+        "status": "published"
+      },
+      {
+        "action": "retired",
+        "status": "retired"
+      },
+      {
+        "action": "draft",
+        "status": "draft"
+      }
+    ],
+    "approvalDecisionsWritten": 3,
+    "auditEventsWritten": 5,
+    "questionSync": {
+      "questionCount": 2,
+      "syncedCount": 2,
+      "retiredCount": 0
+    },
+    "cleanedUp": true,
+    "ok": true
+  },
+  "seededDatasetEvidence": {
+    "ok": false,
+    "note": "Automated provenance proof remains partial. Current signoff verifies V2 published/runtime ownership, not historical authorship lineage."
+  },
+  "success": true
+}

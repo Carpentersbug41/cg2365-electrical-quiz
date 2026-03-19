@@ -1,6 +1,6 @@
 # Generation Platform Specification
 
-Last updated: 2026-03-06
+Last updated: 2026-03-10
 
 ## Goal
 
@@ -60,3 +60,19 @@ Notes:
 - idempotency keys
 - queue visibility
 - job-level observability
+
+## Current Phase 1 Reality
+
+- V2 lesson generation is now operational through V2-owned adapters and CLI/admin entrypoints.
+- The full 7-lesson Biology Phase 1 set has been generated/published through the V2 workflow.
+- Current published quality scores for the target set are in the `92-98` range.
+- Published question coverage now exists for all 7 target lessons, with `17-18` current published questions per lesson.
+- Reproducible content workflow helpers now exist:
+  - `scripts/rebuildV2Phase1Lessons.ts`
+  - `scripts/validateV2Phase1Lessons.ts`
+
+What remains unfinished in this subsystem:
+
+- question-generation throughput and moderation speed
+- remaining canonical event cleanup outside the main runtime/publish/generation paths
+- ops hardening beyond the current daily Vercel cron constraint

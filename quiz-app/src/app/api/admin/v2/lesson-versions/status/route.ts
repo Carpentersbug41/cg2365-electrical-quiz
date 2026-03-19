@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createV2AdminClient, getV2ActorUserId, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
 import { validateLessonVersionForPublish } from '@/lib/v2/content/publishGate';
+import { writeV2CanonicalEvent } from '@/lib/v2/events';
 import { syncPublishedLessonQuestions } from '@/lib/v2/questionBank';
 
 type ContentStatus = 'draft' | 'needs_review' | 'approved' | 'published' | 'retired';
@@ -61,7 +62,7 @@ const ALLOWED_TRANSITIONS: Record<ContentStatus, UpdateAction[]> = {
 };
 
 export async function POST(request: NextRequest) {
-  const denied = await guardV2AdminAccess(request);
+  const denied = await guardV2AdminAccess(request, 'content_operator');
   if (denied) return denied;
 
   try {
@@ -239,19 +240,21 @@ export async function POST(request: NextRequest) {
     }
 
     if (nextStatus === 'published') {
-      const { error: publishedEventError } = await adminClient.from('v2_event_log').insert({
-        event_type: 'content_published',
-        user_id: actorUserId,
-        lesson_id: version.lesson_id,
-        lesson_version_id: version.id,
-        source_context: 'admin_v2',
-        payload: {
-          lessonCode: lesson.code,
-          action,
-          questionSync,
-        },
-      });
-      if (publishedEventError) {
+      try {
+        await writeV2CanonicalEvent(adminClient, {
+          eventType: 'content_published',
+          userId: actorUserId,
+          lessonId: version.lesson_id,
+          lessonVersionId: version.id,
+          sourceContext: 'admin_v2',
+          payload: {
+            contentType: 'lesson_version',
+            lessonCode: lesson.code,
+            action,
+            questionSync,
+          },
+        });
+      } catch (publishedEventError) {
         console.warn('[V2 Admin] Failed to write content_published event:', publishedEventError);
       }
     }

@@ -397,7 +397,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
     }
 
     const confirmed = window.confirm(
-      `Delete the linked simulation repo folder for ${selectedLesson.id}? This removes files from src/app/simulations.`
+      `Delete the linked simulation repo folder for ${selectedLesson.id}? This removes files from src/simulations.`
     );
     if (!confirmed) return;
 
@@ -865,7 +865,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
         </div>
 
         <p className="mt-3 text-sm text-gray-600 dark:text-slate-400">
-          Clones into <code>src/app/simulations</code> and updates the selected lesson&apos;s diagram
+          Clones into <code>src/simulations</code> and updates the selected lesson&apos;s diagram
           <code className="ml-1">embedUrl</code>.
         </p>
 

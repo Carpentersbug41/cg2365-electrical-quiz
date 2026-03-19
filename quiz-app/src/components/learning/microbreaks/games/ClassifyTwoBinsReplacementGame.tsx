@@ -103,7 +103,7 @@ export default function ClassifyTwoBinsReplacementGame({
   const assignDirect = (text: string, side: BinSide) => {
     if (done || checked) return;
     setAssignments((prev) => ({ ...prev, [text]: side }));
-    setSelectedItem(text);
+    setSelectedItem(null);
     if (soundEnabled) playClickSound(0.2);
   };
 
@@ -176,7 +176,7 @@ export default function ClassifyTwoBinsReplacementGame({
                 isSelected ? 'bg-white/15 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
               }`}
             >
-              {isSelected ? 'Selected' : 'Pick'}
+              {isSelected ? 'Selected' : item.assignedTo ? 'Move' : 'Select'}
             </button>
           )}
         </div>

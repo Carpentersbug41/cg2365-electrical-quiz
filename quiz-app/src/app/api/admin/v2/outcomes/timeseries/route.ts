@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { listV2PrivilegedUserIds } from '@/lib/v2/access';
 import { createV2AdminClient, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
 
 const DB_PAGE_SIZE = 1000;
@@ -112,16 +113,19 @@ export async function GET(request: NextRequest) {
     let includedUserIds: Set<string> | null = null;
 
     if (!userId) {
-      const profiles = await fetchAllRows<ProfileRow>(async (from, to) => {
+      const [profiles, privilegedUserIds] = await Promise.all([
+        fetchAllRows<ProfileRow>(async (from, to) => {
         const { data, error } = await adminClient
           .from('profiles')
           .select('user_id, role')
           .range(from, to);
         return { data: data as ProfileRow[] | null, error: error as Error | null };
-      });
+        }),
+        listV2PrivilegedUserIds(adminClient),
+      ]);
       includedUserIds = new Set(
         profiles
-          .filter((profile) => profile.role !== 'admin')
+          .filter((profile) => profile.role !== 'admin' && !privilegedUserIds.has(profile.user_id))
           .map((profile) => profile.user_id)
       );
     }

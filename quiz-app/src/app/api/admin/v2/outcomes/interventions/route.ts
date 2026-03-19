@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { listV2PrivilegedUserIds } from '@/lib/v2/access';
 import { createV2AdminClient, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
 
 const DEFAULT_DAYS = 30;
@@ -90,7 +91,7 @@ export async function GET(request: NextRequest) {
     const sinceIso = buildSinceIso(days);
     const startDate = sinceIso.slice(0, 10);
 
-    const [profiles, metrics, masteryRows] = await Promise.all([
+    const [profiles, metrics, masteryRows, privilegedUserIds] = await Promise.all([
       fetchAllRows<ProfileRow>(async (from, to) => {
         const { data, error } = await adminClient
           .from('profiles')
@@ -114,9 +115,12 @@ export async function GET(request: NextRequest) {
           .range(from, to);
         return { data: data as MasteryRow[] | null, error: error as Error | null };
       }),
+      listV2PrivilegedUserIds(adminClient),
     ]);
 
-    const students = profiles.filter((profile) => profile.role !== 'admin');
+    const students = profiles.filter(
+      (profile) => profile.role !== 'admin' && !privilegedUserIds.has(profile.user_id)
+    );
     const studentSet = new Set(students.map((profile) => profile.user_id));
 
     const metricsByUser = new Map<string, DailyMetricRow>();

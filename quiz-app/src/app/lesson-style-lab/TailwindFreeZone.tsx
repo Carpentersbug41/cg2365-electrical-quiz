@@ -1,9 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import styles from './TailwindFreeZone.module.css';
+import type { LessonLabThemeId } from './themeRegistry';
 
 interface Props {
   enabled: boolean;
+  themeId?: LessonLabThemeId;
   children: React.ReactNode;
 }
 
@@ -79,7 +82,16 @@ function stripEmojiText(root: HTMLElement) {
   });
 }
 
-export default function TailwindFreeZone({ enabled, children }: Props) {
+const themeClassNames: Partial<Record<LessonLabThemeId, string>> = {
+  none: styles.none,
+  'luxe-editorial': styles.luxeEditorial,
+  'glass-aurora': styles.glassAurora,
+  'coastal-studio': styles.coastalStudio,
+  'midnight-velvet': styles.midnightVelvet,
+  'mono-atelier': styles.monoAtelier,
+};
+
+export default function TailwindFreeZone({ enabled, themeId = 'none', children }: Props) {
   const hostRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -130,5 +142,11 @@ export default function TailwindFreeZone({ enabled, children }: Props) {
     return () => observer.disconnect();
   }, [enabled]);
 
-  return <div ref={hostRef}>{children}</div>;
+  const themeClassName = enabled ? themeClassNames[themeId] ?? styles.none : '';
+
+  return (
+    <div ref={hostRef} className={`${styles.zone} ${enabled ? styles.enabled : ''} ${themeClassName}`}>
+      {children}
+    </div>
+  );
 }

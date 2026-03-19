@@ -1,21 +1,34 @@
 import {
+  Cormorant_Garamond,
   Fraunces,
   Instrument_Sans,
+  Manrope,
   Newsreader,
   Plus_Jakarta_Sans,
   Space_Mono,
+  Sora,
+  Syne,
 } from 'next/font/google';
 import fs from 'node:fs';
 import path from 'node:path';
 import styles from './styles.module.css';
 import LessonShowcaseExperience from './LessonShowcaseExperience';
 import type { Lesson } from '@/data/lessons/types';
+import { resolveLessonLabTheme, type LessonLabThemeId } from './themeRegistry';
 
 const instrumentSans = Instrument_Sans({ subsets: ['latin'], variable: '--font-instrument-sans' });
 const newsreader = Newsreader({ subsets: ['latin'], variable: '--font-newsreader' });
 const plusJakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-plus-jakarta' });
 const spaceMono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-space-mono' });
 const fraunces = Fraunces({ subsets: ['latin'], variable: '--font-fraunces' });
+const manrope = Manrope({ subsets: ['latin'], variable: '--font-manrope' });
+const sora = Sora({ subsets: ['latin'], variable: '--font-sora' });
+const syne = Syne({ subsets: ['latin'], variable: '--font-syne' });
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-cormorant',
+  weight: ['400', '500', '600', '700'],
+});
 
 type LessonSummary = {
   id: string;
@@ -90,16 +103,7 @@ function loadLessonsFromDisk(): { lessons: Lesson[]; summaries: LessonSummary[] 
 export default async function LessonStyleLabPage({ searchParams }: PageProps) {
   const params = searchParams ? await searchParams : undefined;
   const selectedId = params?.lessonId;
-  const requestedTheme = params?.theme;
-  const theme: 'original' | 'swiss' | 'control' | 'studio' | 'notebook' | 'blueprint' =
-    requestedTheme === 'control' ||
-    requestedTheme === 'studio' ||
-    requestedTheme === 'notebook' ||
-    requestedTheme === 'blueprint' ||
-    requestedTheme === 'swiss' ||
-    requestedTheme === 'original'
-      ? requestedTheme
-      : 'original';
+  const theme: LessonLabThemeId = resolveLessonLabTheme(params?.theme);
   const { lessons, summaries } = loadLessonsFromDisk();
   const mediaEligible = summaries.filter((item) => item.hasMedia);
   const options = mediaEligible.length > 0 ? mediaEligible : summaries;
@@ -112,7 +116,7 @@ export default async function LessonStyleLabPage({ searchParams }: PageProps) {
   if (!lesson) {
     return (
       <main
-        className={`${styles.page} ${instrumentSans.variable} ${newsreader.variable} ${plusJakartaSans.variable} ${spaceMono.variable} ${fraunces.variable}`}
+        className={`${styles.page} ${instrumentSans.variable} ${newsreader.variable} ${plusJakartaSans.variable} ${spaceMono.variable} ${fraunces.variable} ${manrope.variable} ${sora.variable} ${syne.variable} ${cormorant.variable}`}
       >
         <div className={styles.shell}>
           <header className={styles.hero}>
@@ -126,7 +130,7 @@ export default async function LessonStyleLabPage({ searchParams }: PageProps) {
 
   return (
     <main
-      className={`${styles.page} ${instrumentSans.variable} ${newsreader.variable} ${plusJakartaSans.variable} ${spaceMono.variable} ${fraunces.variable}`}
+      className={`${styles.page} ${instrumentSans.variable} ${newsreader.variable} ${plusJakartaSans.variable} ${spaceMono.variable} ${fraunces.variable} ${manrope.variable} ${sora.variable} ${syne.variable} ${cormorant.variable}`}
     >
       <div className={styles.glowA} />
       <div className={styles.glowB} />

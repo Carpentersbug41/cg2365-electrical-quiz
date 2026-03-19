@@ -10,13 +10,18 @@ import SpotTheErrorGame from './games/SpotTheErrorGame';
 import QuickWinSprintGame from './games/QuickWinSprintGame';
 import AdvancedTextGame from './games/AdvancedTextGame';
 
-export default function MicrobreakBlock({ block }: BlockProps) {
+type MicrobreakBlockProps = BlockProps & {
+  onComplete?: (score?: number, accuracy?: number) => void;
+  onSkip?: () => void;
+};
+
+export default function MicrobreakBlock({ block, lessonId, onComplete, onSkip }: MicrobreakBlockProps) {
   const content = block.content as MicrobreakContent;
   const startTime = new Date();
 
   const handleComplete = (score?: number, accuracy?: number) => {
     logMicrobreakTelemetry({
-      lessonId: block.id.split('-')[0], // Extract lesson ID from block ID
+      lessonId: lessonId ?? block.id.split('-')[0], // Extract lesson ID from block ID
       breakId: block.id,
       breakType: content.breakType,
       gameType: content.breakType === 'game' ? content.gameType : undefined,
@@ -26,17 +31,19 @@ export default function MicrobreakBlock({ block }: BlockProps) {
       gameScore: score,
       gameAccuracy: accuracy,
     });
+    onComplete?.(score, accuracy);
   };
 
   const handleSkip = () => {
     logMicrobreakTelemetry({
-      lessonId: block.id.split('-')[0],
+      lessonId: lessonId ?? block.id.split('-')[0],
       breakId: block.id,
       breakType: content.breakType,
       gameType: content.breakType === 'game' ? content.gameType : undefined,
       startedAt: startTime,
       skipped: true,
     });
+    onSkip?.();
   };
 
   if (content.breakType === 'rest') {

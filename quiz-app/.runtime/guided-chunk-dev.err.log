@@ -1,0 +1,7 @@
+ ⚠ Port 3000 is in use by process 18680, using available port 3001 instead.
+ ⨯ SyntaxError: Unexpected non-whitespace character after JSON at position 388 (line 20 column 2)
+    at JSON.parse (<anonymous>) {
+  page: '/api/guided-chunk/generate-biology-phase1'
+}
+ ⚠ You have added a custom /_error page without a custom /404 page. This prevents the 404 page from being auto statically optimized.
+See here for info: https://nextjs.org/docs/messages/custom-error-no-custom-404

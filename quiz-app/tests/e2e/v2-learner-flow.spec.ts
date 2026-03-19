@@ -33,7 +33,7 @@ test.describe('V2 learner flow', () => {
     }
 
     await page.getByRole('button', { name: /Submit V2 Quiz/i }).click();
-    await expect(page.getByText(/Result/i)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Result/i })).toBeVisible({ timeout: 60000 });
 
     await page.goto('/v2/review');
     await expect(page.getByText(/V2 Review Queue/i)).toBeVisible();

@@ -1,8 +1,8 @@
 # Ranked Implementation Backlog
 
-Last updated: 2026-03-09
+Last updated: 2026-03-10
 Owner: Carpe + Codex
-Scope: V2 implementation sequence after completion audit
+Scope: V2 implementation sequence after the current completion audit
 
 For the current operational status and immediate next-step summary, read `progress.md` first.
 
@@ -10,7 +10,7 @@ For the current operational status and immediate next-step summary, read `progre
 
 This document converts the completion audit into an execution order.
 
-It is not a feature wish list. It is the ranked build sequence required to turn V2 from a strong Phase 1 prototype into a real V1 successor.
+It is not a feature wish list. It is the ranked build sequence required to turn V2 from a strong Phase 1 Biology slice into a real V1 successor.
 
 ## Ranking Logic
 
@@ -21,47 +21,23 @@ Work is ranked by:
 3. risk of future rework if delayed
 4. production/institution readiness
 
-## Tier 0: Non-Negotiable Architecture Completion
+## Tier 0: Non-Negotiable Remaining Platform Completion
 
-These items come first because building around them later is expensive and messy.
+These items come first because the Phase 1 content slice is now real, so the main remaining risks are workflow, analytics, access, and ops maturity.
 
-### 0.1 Finish assessment architecture
-
-Status: not finished
-Priority: highest
-
-Problem:
-
-- V2 quiz runtime still derives questions from lesson blocks
-- `v2_questions` and `v2_question_versions` are not yet the real assessment source of truth
-
-Build:
-
-- define the final relationship between lesson content and question bank
-- make published question versions the authoritative runtime source
-- keep lesson blocks as teaching content, not the long-term quiz data source
-- wire attempts to real `question_id` / `question_version_id` consistently
-- add admin workflow for question draft/review/publish
-
-Exit criteria:
-
-- learner quiz runtime can run entirely from published question versions
-- lesson and question versioning are consistent
-- attempts link to real question version records
-
-### 0.2 Finish access model
+### 0.1 Finish access model
 
 Status: partial
 Priority: highest
 
 Problem:
 
-- current V2 is mostly authentication-gated, not access-policy-gated
+- current V2 access is stronger than before, but still not the full institutional operating model
 
 Build:
 
-- enforce enrollment checks for learner runtime routes/APIs
-- define course/scope access rules
+- enforce remaining scope/policy rules for learner runtime routes/APIs
+- define course/scope access rules cleanly
 - separate learner, teacher, content operator, and admin access where needed
 - ensure admin access is role-driven, not effectively global
 
@@ -70,14 +46,14 @@ Exit criteria:
 - learner access depends on enrollment/policy, not just sign-in
 - admin and non-admin responsibilities are cleanly separated
 
-### 0.3 Align events to canonical spec
+### 0.2 Align events to canonical spec
 
 Status: partial
 Priority: highest
 
 Problem:
 
-- events exist, but naming and coverage are inconsistent with the canonical analytics spec
+- events exist, but naming and coverage are still inconsistent with the canonical analytics spec
 
 Build:
 
@@ -90,89 +66,108 @@ Exit criteria:
 - runtime, review, generation, and publish workflows emit canonical events
 - reporting no longer depends on route-specific event interpretation
 
-## Tier 1: Platform Completion For Biology-First V2
+### 0.3 Finish question-generation and moderation throughput
 
-These are the next items required for a strong, credible V2 product.
+Status: partial
+Priority: highest
 
-### 1.1 Replace raw-table dashboard computation with aggregate-backed reporting
+Problem:
+
+- the question-bank runtime split is done, and the full Phase 1 Biology set is published
+- the remaining content-platform gap is operator throughput and moderation speed
+
+Build:
+
+- improve question-draft generation reliability and filters
+- reduce review/publish friction without weakening quality gates
+- make backlog clearance for missing question coverage faster and more observable
+
+Exit criteria:
+
+- operators can generate, review, approve, and publish question coverage at Phase 1 speed
+- readiness debt clears predictably when content is published
+
+## Tier 1: Completion For Biology-First V2
+
+These are the next items required for a strong, credible V2 product beyond the current Phase 1 content replacement.
+
+### 1.1 Complete aggregate-backed reporting
 
 Status: partial
 Priority: high
 
 Problem:
 
-- current outcomes dashboards compute directly from operational tables at request time
+- outcomes reporting is materially improved, but still not fully aligned to the final event/aggregate contract
 
 Build:
 
-- implement daily aggregate jobs/materialized views
-- move summary and timeseries APIs onto canonical event/aggregate reads
-- preserve user drilldown, but reduce page-time reconstruction logic
+- finish moving summary/timeseries/backlog semantics onto canonical event/aggregate reads
+- preserve drilldown, but reduce request-time reconstruction logic
 
 Exit criteria:
 
 - admin outcomes APIs read primarily from stable aggregates
 - metrics match canonical event definitions
 
-### 1.2 Complete question generation and question moderation workflow
-
-Status: not built
-Priority: high
-
-Problem:
-
-- lesson generation exists
-- question generation does not
-
-Build:
-
-- add `question_draft` generation pipeline
-- persist artifacts/evaluations for question generation
-- add question moderation lifecycle and audit
-
-Exit criteria:
-
-- operators can generate, review, approve, and publish question versions
-
-### 1.3 Complete learner runtime robustness
+### 1.2 Complete question-generation and moderation workflow maturity
 
 Status: partial
 Priority: high
 
 Problem:
 
-- core loop exists, but it is still Phase-1-simple
+- lesson generation exists and has replaced all 7 Phase 1 Biology lessons
+- question generation exists, but operator throughput still needs hardening
 
 Build:
 
-- make lesson start/quiz start flows explicit
-- harden retry and duplicate-submit behavior
+- harden `question_draft` generation pipeline
+- persist artifacts/evaluations consistently for question generation
+- improve question moderation lifecycle and audit usability
+
+Exit criteria:
+
+- operators can generate, review, approve, and publish question versions without backlog drag
+
+### 1.3 Complete learner runtime robustness and polish
+
+Status: partial
+Priority: high
+
+Problem:
+
+- core loop exists and passes smoke tests, but it is still not polished to final quality
+
+Build:
+
+- harden repeated-use runtime behavior
 - improve review state transitions and audit
-- finish rendering coverage for lesson block types that still degrade gracefully
+- finish rendering coverage/polish for remaining lesson block shapes
 
 Exit criteria:
 
 - learner loop is reliable under repeated use
 - runtime behavior matches the docs, not just the happy path
 
-### 1.4 Expand and stabilize V2-native Biology content inventory
+### 1.4 Complete Phase 1 signoff and stabilize the Biology slice
 
 Status: partial
 Priority: high
 
 Problem:
 
-- there is enough content for demos, not enough for a finished Biology-first product
+- the full Phase 1 Biology target set is now published, but release evidence and manual signoff are not fully closed
 
 Build:
 
-- publish a coherent Biology slice with consistent structure and question coverage
-- review generated content through the full V2 workflow
-- remove temporary/demo-only content assumptions
+- finish manual authenticated browser checks and checklist evidence
+- document current quality and coverage state of the 7 target lessons
+- confirm the richer content holds up under repeated demo/testing use
 
 Exit criteria:
 
-- V2 Biology can support repeated testing/demo use without thin-content failure
+- Phase 1 can be signed off honestly as a stable Biology-first slice
 
 ## Tier 2: Architecture Conformance And Operational Hardening
 
@@ -203,7 +198,7 @@ Build:
 - strengthen monitoring and alerting
 - document recovery paths and operational playbooks
 - confirm backup/restore expectations
-- harden worker cadence and job reliability under sustained use
+- harden worker/job reliability under sustained use
 
 Exit criteria:
 
@@ -246,31 +241,30 @@ These should not interrupt the items above.
 
 ## Recommended Execution Order
 
-1. assessment architecture
-2. access model
-3. canonical event alignment
-4. aggregate-backed reporting
-5. question generation + moderation
-6. learner runtime hardening
-7. Biology content expansion
-8. guardrail conformance pass
-9. operational hardening
-10. teacher/cohort dashboards
-11. expansion work
+1. access model
+2. canonical event alignment
+3. question generation and moderation throughput
+4. aggregate-backed reporting completion
+5. learner runtime hardening and polish
+6. Phase 1 signoff and Biology slice stabilization
+7. guardrail conformance pass
+8. operational hardening
+9. teacher/cohort dashboards
+10. expansion work
 
 Use this backlog together with `progress.md`:
 
-- `progress.md` = current state + what is working now + immediate next actions
+- `progress.md` = current state, what is working now, immediate next actions
 - `21_ranked_implementation_backlog.md` = ranked long-form implementation order
 
 ## What Not To Do
 
 Do not:
 
-- add more curricula before the assessment/runtime/reporting foundations are complete
-- add more admin surface area before question/content workflows are finished
-- treat current dashboard queries as the final reporting architecture
-- keep lesson-block-derived quiz runtime as the permanent assessment model unless that is explicitly re-decided and documented
+- add more curricula before the workflow, reporting, and access foundations are complete
+- add more admin surface area before question/content throughput is finished
+- treat current dashboard behavior as the final reporting architecture
+- treat the current Phase 1 Biology publication state as still-pending target work
 
 ## Definition Of "V2 Finished Enough"
 
@@ -278,7 +272,7 @@ V2 can be called a real V1 successor when all of these are true:
 
 - learner runtime is versioned and policy-controlled
 - question bank and lesson bank are both real runtime assets
-- generation supports the intended content workflow, not only lesson drafts
+- generation supports the intended content workflow at operator-ready speed
 - reporting is based on canonical events and aggregates
 - admin/operator/teacher boundaries are clear
 - the codebase materially follows the architecture guardrails

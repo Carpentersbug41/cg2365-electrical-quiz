@@ -1,0 +1,339 @@
+.zone {
+  display: block;
+}
+
+.enabled {
+  display: block;
+  color: CanvasText;
+  font-family: serif;
+  line-height: normal;
+}
+
+.enabled :where(
+  div,
+  span,
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  ul,
+  ol,
+  li,
+  dl,
+  dt,
+  dd,
+  blockquote,
+  a,
+  strong,
+  em,
+  small,
+  code,
+  pre,
+  label,
+  button,
+  input,
+  textarea,
+  select,
+  option
+) {
+  color: revert !important;
+  font-family: revert !important;
+  font-size: revert !important;
+  font-style: revert !important;
+  font-weight: revert !important;
+  letter-spacing: normal !important;
+  line-height: revert !important;
+  text-decoration: revert !important;
+  text-transform: none !important;
+}
+
+.enabled :where(div, span, p, h1, h2, h3, h4, h5, h6, li, dt, dd, label) {
+  background: transparent !important;
+}
+
+.enabled :where(code, pre) {
+  white-space: pre-wrap;
+}
+
+.enabled :where(svg[width], svg[height]) {
+  max-width: 100%;
+  height: auto;
+}
+
+.none {
+  color: CanvasText;
+  font-family: serif;
+}
+
+.none :where(h1, h2, h3, h4, h5, h6, p, li, label, input, textarea, select, button, a, strong, em, code, pre, blockquote) {
+  color: revert !important;
+  font-family: revert !important;
+}
+
+.luxeEditorial,
+.glassAurora,
+.coastalStudio,
+.midnightVelvet,
+.monoAtelier {
+  display: block;
+}
+
+.luxeEditorial {
+  color: #4a2e1d;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+.luxeEditorial :where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-cormorant), Georgia, serif !important;
+  color: #3f2618 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.03em !important;
+}
+
+.luxeEditorial :where(h2) {
+  font-size: clamp(2rem, 2vw + 1rem, 3.1rem) !important;
+  margin: 0 0 1rem !important;
+}
+
+.luxeEditorial :where(h3) {
+  font-size: 1.55rem !important;
+  margin: 1.6rem 0 0.85rem !important;
+}
+
+.luxeEditorial :where(p, li, label, input, textarea, select, button) {
+  font-family: var(--font-manrope), system-ui, sans-serif !important;
+  color: #5a4132 !important;
+  font-size: 1rem !important;
+  line-height: 1.85 !important;
+}
+
+.luxeEditorial :where(blockquote) {
+  margin: 1.35rem 0 !important;
+  border-left: 2px solid rgba(163, 107, 54, 0.44) !important;
+  padding: 0.2rem 0 0.2rem 1rem !important;
+  color: #6e523f !important;
+  font-style: italic !important;
+}
+
+.glassAurora {
+  color: #112044;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+.glassAurora :where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-sora), system-ui, sans-serif !important;
+  color: #10204a !important;
+  letter-spacing: -0.04em !important;
+}
+
+.glassAurora :where(h2) {
+  font-size: clamp(1.9rem, 1.8vw + 1rem, 2.8rem) !important;
+  margin: 0 0 1rem !important;
+}
+
+.glassAurora :where(h3) {
+  font-size: 1.2rem !important;
+  margin: 1.4rem 0 0.8rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+
+.glassAurora :where(p, li, label) {
+  font-family: var(--font-manrope), system-ui, sans-serif !important;
+  color: #4d628e !important;
+  font-size: 0.99rem !important;
+  line-height: 1.8 !important;
+}
+
+.glassAurora :where(a) {
+  color: #456cf7 !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(69, 108, 247, 0.36) !important;
+}
+
+.glassAurora :where(button, input, textarea, select) {
+  border: 1px solid rgba(69, 108, 247, 0.14) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-radius: 16px !important;
+  padding: 0.72rem 0.86rem !important;
+  color: #10204a !important;
+  font-family: var(--font-manrope), system-ui, sans-serif !important;
+  box-shadow: 0 14px 40px -28px rgba(69, 108, 247, 0.24) !important;
+}
+
+.glassAurora :where(blockquote) {
+  margin: 1.25rem 0 !important;
+  padding: 1rem 1.1rem !important;
+  border: 1px solid rgba(69, 108, 247, 0.14) !important;
+  border-radius: 18px !important;
+  background: rgba(255, 255, 255, 0.54) !important;
+  color: #38518d !important;
+}
+
+.coastalStudio {
+  color: #19363e;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+.coastalStudio :where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-fraunces), Georgia, serif !important;
+  color: #173640 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.coastalStudio :where(h2) {
+  font-size: clamp(2rem, 1.9vw + 1rem, 3rem) !important;
+  margin: 0 0 1rem !important;
+}
+
+.coastalStudio :where(h3) {
+  font-size: 1.25rem !important;
+  margin: 1.5rem 0 0.7rem !important;
+}
+
+.coastalStudio :where(p, li, label) {
+  color: #56727a !important;
+  font-family: var(--font-manrope), system-ui, sans-serif !important;
+  font-size: 1rem !important;
+  line-height: 1.9 !important;
+}
+
+.coastalStudio :where(ul, ol) {
+  padding-left: 1.15rem !important;
+}
+
+.coastalStudio :where(button, input, textarea, select) {
+  border: 1px solid rgba(76, 167, 150, 0.18) !important;
+  background: #ffffff !important;
+  border-radius: 999px !important;
+  padding: 0.78rem 1rem !important;
+  color: #173640 !important;
+  box-shadow: 0 12px 32px -26px rgba(76, 167, 150, 0.2) !important;
+}
+
+.coastalStudio :where(blockquote) {
+  margin: 1.25rem 0 !important;
+  padding: 1.05rem 1.15rem !important;
+  border-radius: 22px !important;
+  background: #fbf7ef !important;
+  color: #537074 !important;
+}
+
+.midnightVelvet {
+  color: #f7eef8;
+  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
+}
+
+.midnightVelvet :where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-fraunces), Georgia, serif !important;
+  color: #fff4fb !important;
+  letter-spacing: -0.04em !important;
+}
+
+.midnightVelvet :where(h2) {
+  font-size: clamp(2rem, 1.9vw + 1rem, 3rem) !important;
+  margin: 0 0 1rem !important;
+}
+
+.midnightVelvet :where(h3) {
+  font-size: 1.3rem !important;
+  margin: 1.5rem 0 0.8rem !important;
+}
+
+.midnightVelvet :where(p, li, label) {
+  color: #d7bedf !important;
+  font-family: var(--font-plus-jakarta), system-ui, sans-serif !important;
+  font-size: 1rem !important;
+  line-height: 1.88 !important;
+}
+
+.midnightVelvet :where(a) {
+  color: #ffb59f !important;
+}
+
+.midnightVelvet :where(button, input, textarea, select) {
+  border: 1px solid rgba(255, 159, 130, 0.2) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 18px !important;
+  padding: 0.74rem 0.92rem !important;
+  color: #fff3fb !important;
+  font-family: var(--font-plus-jakarta), system-ui, sans-serif !important;
+}
+
+.midnightVelvet :where(blockquote) {
+  margin: 1.25rem 0 !important;
+  padding: 1.05rem 1.15rem !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 159, 130, 0.16) !important;
+  color: #f2d5df !important;
+}
+
+.monoAtelier {
+  color: #111111;
+  font-family: var(--font-instrument-sans), system-ui, sans-serif;
+}
+
+.monoAtelier :where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-syne), system-ui, sans-serif !important;
+  color: #111111 !important;
+  letter-spacing: -0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.monoAtelier :where(h2) {
+  font-size: clamp(2rem, 2vw + 1rem, 3.2rem) !important;
+  margin: 0 0 1rem !important;
+}
+
+.monoAtelier :where(h3) {
+  font-size: 1.1rem !important;
+  margin: 1.4rem 0 0.7rem !important;
+  letter-spacing: 0.08em !important;
+}
+
+.monoAtelier :where(p, li, label) {
+  font-family: var(--font-instrument-sans), system-ui, sans-serif !important;
+  color: #3e3a33 !important;
+  font-size: 0.98rem !important;
+  line-height: 1.82 !important;
+}
+
+.monoAtelier :where(button, input, textarea, select) {
+  border: 1px solid rgba(17, 17, 17, 0.16) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-radius: 6px !important;
+  padding: 0.76rem 0.9rem !important;
+  color: #111111 !important;
+  font-family: var(--font-space-mono), ui-monospace, monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+}
+
+.monoAtelier :where(blockquote) {
+  margin: 1.2rem 0 !important;
+  padding: 0.95rem 1rem !important;
+  border-left: 2px solid rgba(17, 17, 17, 0.4) !important;
+  color: #4e4a43 !important;
+}
+
+.luxeEditorial :where(button:hover, a:hover),
+.glassAurora :where(button:hover, a:hover),
+.coastalStudio :where(button:hover, a:hover),
+.midnightVelvet :where(button:hover, a:hover),
+.monoAtelier :where(button:hover, a:hover) {
+  filter: saturate(1.02);
+}
+
+@media (max-width: 760px) {
+  .glassAurora :where(button, input, textarea, select),
+  .coastalStudio :where(button, input, textarea, select),
+  .midnightVelvet :where(button, input, textarea, select),
+  .monoAtelier :where(button, input, textarea, select),
+  .luxeEditorial :where(button, input, textarea, select) {
+    width: 100% !important;
+  }
+}

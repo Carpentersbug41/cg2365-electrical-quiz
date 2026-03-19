@@ -48,6 +48,7 @@ export interface LLMClient {
  */
 export interface GenerativeModelInterface {
   generateContent(input: string | GenerateContentInput): Promise<GenerateContentResult>;
+  generateContentStream(input: string | GenerateContentInput): Promise<GenerateContentStreamResult>;
   startChat(config?: ChatConfig): ChatInterface;
 }
 
@@ -81,6 +82,21 @@ export interface GenerateContentResult {
       totalTokenCount?: number;
     };
   };
+}
+
+export interface GenerateContentStreamResult {
+  stream: AsyncGenerator<{
+    text(): string;
+    candidates?: Array<{
+      finishReason?: string;
+    }>;
+    usageMetadata?: {
+      candidatesTokenCount?: number;
+      promptTokenCount?: number;
+      totalTokenCount?: number;
+    };
+  }>;
+  response: Promise<GenerateContentResult['response']>;
 }
 
 /**
@@ -144,9 +160,10 @@ class GoogleAIStudioModel implements GenerativeModelInterface {
         },
       };
     } else {
-      // For structured input, convert to Google AI Studio format
-      const prompt = input.contents.map(c => c.parts.map(p => p.text).join('')).join('\n');
-      const result = await this.model.generateContent(prompt);
+      const result = await this.model.generateContent({
+        contents: input.contents,
+        generationConfig: input.generationConfig,
+      });
       const metadata = extractResponseMetadata(result.response);
       return {
         response: {
@@ -156,6 +173,37 @@ class GoogleAIStudioModel implements GenerativeModelInterface {
         },
       };
     }
+  }
+
+  async generateContentStream(input: string | GenerateContentInput): Promise<GenerateContentStreamResult> {
+    const result =
+      typeof input === 'string'
+        ? await this.model.generateContentStream(input)
+        : await this.model.generateContentStream({
+            contents: input.contents,
+            generationConfig: input.generationConfig,
+          });
+
+    return {
+      stream: (async function* () {
+        for await (const chunk of result.stream) {
+          const metadata = extractResponseMetadata(chunk);
+          yield {
+            text: () => chunk.text(),
+            candidates: metadata.candidates,
+            usageMetadata: metadata.usageMetadata,
+          };
+        }
+      })(),
+      response: result.response.then((response) => {
+        const metadata = extractResponseMetadata(response);
+        return {
+          text: () => response.text(),
+          candidates: metadata.candidates,
+          usageMetadata: metadata.usageMetadata,
+        };
+      }),
+    };
   }
 
   startChat(config?: ChatConfig): ChatInterface {
@@ -295,6 +343,47 @@ class VertexAIModel implements GenerativeModelInterface {
         candidates: metadata.candidates,
         usageMetadata: metadata.usageMetadata,
       },
+    };
+  }
+
+  async generateContentStream(input: string | GenerateContentInput): Promise<GenerateContentStreamResult> {
+    const request =
+      typeof input === 'string'
+        ? {
+            contents: [{ role: 'user' as const, parts: [{ text: input }] }],
+            systemInstruction: this.systemInstruction,
+          }
+        : {
+            contents: input.contents,
+            systemInstruction: this.systemInstruction,
+            generationConfig: {
+              responseMimeType: input.generationConfig?.responseMimeType,
+              temperature: input.generationConfig?.temperature,
+              maxOutputTokens: input.generationConfig?.maxOutputTokens,
+            },
+          };
+
+    const result = await this.model.generateContentStream(request);
+
+    return {
+      stream: (async function* () {
+        for await (const chunk of result.stream) {
+          const metadata = extractResponseMetadata(chunk);
+          yield {
+            text: () => extractTextFromVertexAIResponse(chunk),
+            candidates: metadata.candidates,
+            usageMetadata: metadata.usageMetadata,
+          };
+        }
+      })(),
+      response: result.response.then((response) => {
+        const metadata = extractResponseMetadata(response);
+        return {
+          text: () => extractTextFromVertexAIResponse(response),
+          candidates: metadata.candidates,
+          usageMetadata: metadata.usageMetadata,
+        };
+      }),
     };
   }
 

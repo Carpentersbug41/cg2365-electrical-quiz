@@ -1,0 +1,41 @@
+{
+  "clearedAt": "2026-03-12T09:39:51.641Z",
+  "localRemoved": [],
+  "db": {
+    "skipped": false,
+    "results": [
+      {
+        "table": "gc_experiment_changes",
+        "count": 0
+      },
+      {
+        "table": "gc_experiments",
+        "count": 0
+      },
+      {
+        "table": "gc_session_events",
+        "count": 12
+      },
+      {
+        "table": "gc_session_turns",
+        "count": 12
+      },
+      {
+        "table": "gc_session_summaries",
+        "count": 19
+      },
+      {
+        "table": "gc_sessions",
+        "count": 23
+      },
+      {
+        "table": "gc_lesson_versions",
+        "count": 12
+      },
+      {
+        "table": "gc_lessons",
+        "count": 6
+      }
+    ]
+  }
+}

@@ -1,3 +1,6 @@
+import type { SupabaseClient } from '@supabase/supabase-js';
+import { listV2PrivilegedUserIds } from '@/lib/v2/access';
+
 const DB_PAGE_SIZE = 1000;
 
 type V2AdminClient = {
@@ -13,16 +16,16 @@ type ProfileRow = {
   role: 'student' | 'admin';
 };
 
-type AttemptRow = {
+type EventRow = {
+  event_type: string;
   user_id: string;
-  created_at: string;
-  is_correct: boolean;
-};
-
-type LessonSessionRow = {
-  user_id: string;
-  started_at: string;
-  completed_at: string | null;
+  event_ts: string;
+  payload: {
+    isCorrect?: boolean;
+    masteryAchieved?: boolean;
+    status?: string;
+    durationMs?: number;
+  } | null;
 };
 
 type ReviewRow = {
@@ -32,19 +35,6 @@ type ReviewRow = {
   updated_at: string;
   times_wrong: number;
   times_right: number;
-};
-
-type MasteryRow = {
-  user_id: string;
-  achieved_at: string | null;
-};
-
-type JobRow = {
-  requested_by: string | null;
-  status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled';
-  created_at: string;
-  started_at: string | null;
-  finished_at: string | null;
 };
 
 type DailyUserMetricRow = {
@@ -187,27 +177,23 @@ export async function refreshV2DailyMetrics(
     return { data: data as ProfileRow[] | null, error: error as Error | null };
   });
 
+  const privilegedUserIds = await listV2PrivilegedUserIds(adminClient as SupabaseClient);
   const studentUserIds = new Set(
-    profiles.filter((profile) => profile.role !== 'admin').map((profile) => profile.user_id)
+    profiles
+      .filter((profile) => profile.role !== 'admin')
+      .map((profile) => profile.user_id)
+      .filter((userId) => !privilegedUserIds.has(userId))
   );
 
-  const [attempts, lessonSessions, reviewItems, masteryRows, jobs] = await Promise.all([
-    fetchAllRows<AttemptRow>(async (from, to) => {
+  const [events, reviewItems] = await Promise.all([
+    fetchAllRows<EventRow>(async (from, to) => {
       const { data, error } = await adminClient
-        .from('v2_attempts')
-        .select('user_id, created_at, is_correct')
-        .gte('created_at', startIso)
-        .lt('created_at', endExclusiveIso)
+        .from('v2_event_log')
+        .select('event_type, user_id, event_ts, payload')
+        .gte('event_ts', startIso)
+        .lt('event_ts', endExclusiveIso)
         .range(from, to);
-      return { data: data as AttemptRow[] | null, error: error as Error | null };
-    }),
-    fetchAllRows<LessonSessionRow>(async (from, to) => {
-      const { data, error } = await adminClient
-        .from('v2_lesson_sessions')
-        .select('user_id, started_at, completed_at')
-        .or(`started_at.gte.${startIso},completed_at.gte.${startIso}`)
-        .range(from, to);
-      return { data: data as LessonSessionRow[] | null, error: error as Error | null };
+      return { data: data as EventRow[] | null, error: error as Error | null };
     }),
     fetchAllRows<ReviewRow>(async (from, to) => {
       const { data, error } = await adminClient
@@ -217,23 +203,6 @@ export async function refreshV2DailyMetrics(
         .range(from, to);
       return { data: data as ReviewRow[] | null, error: error as Error | null };
     }),
-    fetchAllRows<MasteryRow>(async (from, to) => {
-      const { data, error } = await adminClient
-        .from('v2_mastery_records')
-        .select('user_id, achieved_at')
-        .gte('achieved_at', startIso)
-        .lt('achieved_at', endExclusiveIso)
-        .range(from, to);
-      return { data: data as MasteryRow[] | null, error: error as Error | null };
-    }),
-    fetchAllRows<JobRow>(async (from, to) => {
-      const { data, error } = await adminClient
-        .from('v2_generation_jobs')
-        .select('requested_by, status, created_at, started_at, finished_at')
-        .or(`created_at.gte.${startIso},finished_at.gte.${startIso}`)
-        .range(from, to);
-      return { data: data as JobRow[] | null, error: error as Error | null };
-    }),
   ]);
 
   const userMetrics = new Map<string, DailyUserMetricRow>();
@@ -241,32 +210,49 @@ export async function refreshV2DailyMetrics(
   const dayKeys = listDayKeys(startDate, endDate);
   const dayIndex = new Map(dayKeys.map((day, index) => [day, index]));
 
-  for (const row of attempts) {
-    if (!studentUserIds.has(row.user_id)) continue;
-    const day = toUtcDay(row.created_at);
+  for (const row of events) {
+    const day = toUtcDay(row.event_ts);
     if (!isDayInRange(day, startDate, endDate)) continue;
+    if (row.event_type === 'generation_job_started') {
+      getOpsMetricRow(opsMetrics, day).generation_jobs_total += 1;
+      continue;
+    }
+    if (row.event_type === 'generation_job_completed') {
+      const ops = getOpsMetricRow(opsMetrics, day);
+      const status = typeof row.payload?.status === 'string' ? row.payload.status : '';
+      if (status === 'succeeded') ops.generation_jobs_succeeded += 1;
+      if (status === 'failed') ops.generation_jobs_failed += 1;
+      if (typeof row.payload?.durationMs === 'number' && row.payload.durationMs >= 0) {
+        ops.generation_duration_ms_sum += row.payload.durationMs;
+        ops.generation_duration_count += 1;
+      }
+      continue;
+    }
+    if (!row.user_id || !studentUserIds.has(row.user_id)) continue;
     const metric = getUserMetricRow(userMetrics, day, row.user_id);
-    metric.attempts_count += 1;
-    if (row.is_correct) metric.attempts_correct += 1;
-  }
-
-  for (const row of lessonSessions) {
-    if (!studentUserIds.has(row.user_id)) continue;
-    const startedDay = toUtcDay(row.started_at);
-    if (isDayInRange(startedDay, startDate, endDate)) {
-      getUserMetricRow(userMetrics, startedDay, row.user_id).lessons_started += 1;
+    if (row.event_type === 'question_attempted') {
+      metric.attempts_count += 1;
+      if (row.payload?.isCorrect === true) metric.attempts_correct += 1;
+      continue;
     }
-    const completedDay = toUtcDay(row.completed_at);
-    if (isDayInRange(completedDay, startDate, endDate)) {
-      getUserMetricRow(userMetrics, completedDay, row.user_id).lessons_completed += 1;
+    if (row.event_type === 'lesson_started') {
+      metric.lessons_started += 1;
+      continue;
     }
-  }
-
-  for (const row of masteryRows) {
-    if (!studentUserIds.has(row.user_id)) continue;
-    const achievedDay = toUtcDay(row.achieved_at);
-    if (!isDayInRange(achievedDay, startDate, endDate)) continue;
-    getUserMetricRow(userMetrics, achievedDay, row.user_id).mastered_lessons += 1;
+    if (row.event_type === 'lesson_completed') {
+      metric.lessons_completed += 1;
+      if (row.payload?.masteryAchieved === true) {
+        metric.mastered_lessons += 1;
+      }
+      continue;
+    }
+    if (row.event_type === 'review_item_due') {
+      metric.review_due += 1;
+      continue;
+    }
+    if (row.event_type === 'review_item_resolved') {
+      metric.review_resolved += 1;
+    }
   }
 
   for (const row of reviewItems) {
@@ -306,29 +292,6 @@ export async function refreshV2DailyMetrics(
     for (let index = backlogStartIndex; index <= backlogEndIndex; index += 1) {
       const backlogDay = dayKeys[index];
       getUserMetricRow(userMetrics, backlogDay, row.user_id).review_backlog += 1;
-    }
-  }
-
-  for (const row of jobs) {
-    const createdDay = toUtcDay(row.created_at);
-    if (isDayInRange(createdDay, startDate, endDate)) {
-      getOpsMetricRow(opsMetrics, createdDay).generation_jobs_total += 1;
-    }
-
-    const finishedDay = toUtcDay(row.finished_at);
-    if (isDayInRange(finishedDay, startDate, endDate)) {
-      const ops = getOpsMetricRow(opsMetrics, finishedDay);
-      if (row.status === 'succeeded') ops.generation_jobs_succeeded += 1;
-      if (row.status === 'failed') ops.generation_jobs_failed += 1;
-
-      if (row.started_at && row.finished_at) {
-        const startedTs = new Date(row.started_at).getTime();
-        const finishedTs = new Date(row.finished_at).getTime();
-        if (!Number.isNaN(startedTs) && !Number.isNaN(finishedTs) && finishedTs >= startedTs) {
-          ops.generation_duration_ms_sum += finishedTs - startedTs;
-          ops.generation_duration_count += 1;
-        }
-      }
     }
   }
 

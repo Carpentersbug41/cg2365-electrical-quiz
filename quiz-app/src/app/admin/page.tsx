@@ -1,11 +1,14 @@
 import Link from 'next/link';
-import { courseHref } from '@/lib/routing/courseHref';
+import { headers } from 'next/headers';
+import { getCoursePrefixFromHeader } from '@/lib/routing/curricula';
 
 type AdminLink = {
   title: string;
   description: string;
   href: string;
   badge: string;
+  absolute?: boolean;
+  scope?: 'all' | 'cg2365' | 'biology';
 };
 
 const workspaceLinks: AdminLink[] = [
@@ -20,36 +23,72 @@ const workspaceLinks: AdminLink[] = [
     description: 'Manage drafts, approvals, duplicate resolution, quality runs, and question bank workflows.',
     href: '/admin/questions',
     badge: 'Questions',
+    scope: 'all',
   },
   {
     title: 'Microbreak Games',
     description: 'Generate game content tied to lesson concepts and vocabulary.',
     href: '/admin/generate-games',
     badge: 'Games',
+    scope: 'all',
   },
   {
     title: 'Simulations',
-    description: 'Clone GitHub simulations into src/app/simulations and attach them to lesson iframes.',
+    description: 'Clone GitHub simulations into src/simulations and attach them to lesson iframes.',
     href: '/admin/simulations',
     badge: 'Sim',
+    scope: 'all',
   },
   {
     title: 'Explanation Visuals',
     description: 'Generate 1-2 visual prompts from explanation blocks and place embeds under that block or in the main diagram area.',
     href: '/admin/simulations',
     badge: 'Visuals',
+    scope: 'all',
   },
   {
     title: 'User Profiles',
     description: 'Edit per-user tutor profile injection text used for personalized tone and pacing.',
     href: '/admin/users',
     badge: 'Users',
+    scope: 'all',
   },
   {
     title: 'Prompt Profiles',
     description: 'Edit global profile injections used by lesson generation and tutor/marking/socratic responses.',
     href: '/admin/prompt-profiles',
     badge: 'Prompts',
+    scope: 'all',
+  },
+  {
+    title: 'Guided Chunk Runtime',
+    description: 'Run Biology batch generation, inspect generated frames, and launch guided tutor lessons for review.',
+    href: '/admin/guided-chunk',
+    badge: 'Guided',
+    scope: 'biology',
+  },
+  {
+    title: 'Guided Biology Planner',
+    description: 'Guided lesson planning and generation for GCSE Biology using the module-planner workflow.',
+    href: '/gcse/science/biology/admin/guided-module',
+    badge: 'Guided',
+    absolute: true,
+    scope: 'biology',
+  },
+  {
+    title: 'Guided 2365 Planner',
+    description: 'Guided lesson planning and generation for C&G 2365 using the module-planner workflow.',
+    href: '/2365/admin/guided-module',
+    badge: 'Guided',
+    absolute: true,
+    scope: 'cg2365',
+  },
+  {
+    title: 'Dynamic Module Planner',
+    description: 'Run the staged 2365 module planner, inspect LO and lesson artifacts, then generate native dynamic lesson drafts from the lesson matrix.',
+    href: '/admin/dynamic-module',
+    badge: 'Dynamic',
+    scope: 'cg2365',
   },
 ];
 
@@ -59,18 +98,28 @@ const generatorLinks: AdminLink[] = [
     description: 'Generate a single lesson and quiz pair with full validation and git integration.',
     href: '/generate',
     badge: 'Lessons',
+    scope: 'all',
   },
   {
     title: 'Quiz Generator',
     description: 'Generate or regenerate question sets for lessons.',
     href: '/generate-quiz',
     badge: 'Quiz',
+    scope: 'all',
   },
   {
     title: 'Test Generation',
     description: 'Low-level generation test page for debugging prompts and output behavior.',
     href: '/test-generation',
     badge: 'Debug',
+    scope: 'all',
+  },
+  {
+    title: 'Dynamic Lesson Generator',
+    description: 'Generate one native 2365 dynamic lesson draft directly from grounded source text.',
+    href: '/admin/dynamic-generate',
+    badge: 'Dynamic',
+    scope: 'cg2365',
   },
 ];
 
@@ -122,9 +171,29 @@ function LinkGrid({ title, subtitle, items }: { title: string; subtitle: string;
   );
 }
 
-export default function AdminHomePage() {
+function prefixHref(prefix: string, path: string): string {
+  if (!path.startsWith('/')) return path;
+  if (path.startsWith('/api')) return path;
+  if (path === '/') return prefix;
+  return `${prefix}${path}`;
+}
+
+function filterLinksForScope(links: AdminLink[], prefix: string): AdminLink[] {
+  const scope = prefix === '/2365' ? 'cg2365' : prefix === '/gcse/science/biology' ? 'biology' : 'all';
+  return links.filter((link) => {
+    if (!link.scope || link.scope === 'all') return true;
+    return link.scope === scope;
+  });
+}
+
+export default async function AdminHomePage() {
+  const requestHeaders = await headers();
+  const currentPrefix = getCoursePrefixFromHeader(requestHeaders.get('x-course-prefix'));
   const withPrefix = (links: AdminLink[]): AdminLink[] =>
-    links.map((link) => ({ ...link, href: link.href.startsWith('/api') ? link.href : courseHref(link.href) }));
+    filterLinksForScope(links, currentPrefix).map((link) => ({
+      ...link,
+      href: link.absolute || link.href.startsWith('/api') ? link.href : prefixHref(currentPrefix, link.href),
+    }));
 
   return (
     <main

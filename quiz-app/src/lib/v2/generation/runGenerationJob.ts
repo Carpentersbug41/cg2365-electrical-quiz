@@ -1,6 +1,8 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
-import type { V2Lesson } from '@/lib/v2/contentTypes';
-import { generateV2LessonDraft, type V2GenerationRequest } from '@/lib/v2/generation/engine';
+import { writeV2CanonicalEvent } from '@/lib/v2/events';
+import { type V2GenerationRequest } from '@/lib/v2/generation/engine';
+import { generateV2LessonDraftResult } from '@/lib/v2/generation/service';
+import { persistV2LessonDraft } from '@/lib/v2/generation/persistLessonDraft';
 import { generateV2QuestionDrafts } from '@/lib/v2/generation/questionEngine';
 import { createV2QuestionDraftVersions } from '@/lib/v2/questionBank';
 
@@ -219,9 +221,9 @@ async function generateDraftLessonContent(
   lesson: LessonRow,
   payload: Record<string, unknown>,
   baseVersionContent: Record<string, unknown> | null
-): Promise<V2Lesson> {
+): Promise<Awaited<ReturnType<typeof generateV2LessonDraftResult>>> {
   const request = toContextAwareGenerationRequest(lesson, payload, baseVersionContent);
-  return generateV2LessonDraft(request);
+  return generateV2LessonDraftResult(request);
 }
 
 async function generateDraftQuestionContent(
@@ -310,16 +312,20 @@ export async function runGenerationJobById(
     console.warn('[V2 Admin] Failed to write generation start audit event:', startedEventError);
   }
 
-  await adminClient.from('v2_event_log').insert({
-    event_type: 'generation_job_started',
-    lesson_id: job.lesson_id,
-    source_context: 'admin_v2',
-    payload: {
-      jobId: job.id,
-      kind: job.kind,
-      lockOwner,
-    },
-  });
+  try {
+    await writeV2CanonicalEvent(adminClient, {
+      eventType: 'generation_job_started',
+      lessonId: job.lesson_id,
+      sourceContext: 'admin_v2',
+      payload: {
+        jobId: job.id,
+        kind: job.kind,
+        lockOwner,
+      },
+    });
+  } catch (error) {
+    console.warn('[V2 Admin] Failed to write canonical generation start event:', error);
+  }
 
   let insertedVersionId: string | null = null;
   let insertedQuestionVersionIds: string[] = [];
@@ -347,36 +353,31 @@ export async function runGenerationJobById(
     let output: Record<string, unknown>;
 
     if (job.kind === 'lesson_draft') {
-      const nextVersionNo = (latestVersion?.version_no ?? 0) + 1;
-      const contentJson = await generateDraftLessonContent(
+      const generatedDraft = await generateDraftLessonContent(
         lesson,
         job.payload ?? {},
         latestVersion?.content_json ?? null
       );
-
-      const { data: insertedVersion, error: insertVersionError } = await adminClient
-        .from('v2_lesson_versions')
-        .insert({
-          lesson_id: job.lesson_id,
-          version_no: nextVersionNo,
-          status: 'draft',
-          source: 'ai',
-          quality_score: null,
-          content_json: contentJson,
-          is_current: false,
-          created_by: null,
-          approved_by: null,
-          published_at: null,
-        })
-        .select('id')
-        .single<{ id: string }>();
-      if (insertVersionError) throw insertVersionError;
-      insertedVersionId = insertedVersion.id;
+      const persisted = await persistV2LessonDraft(adminClient, {
+        lessonCode: generatedDraft.lessonCode,
+        generatedLesson: generatedDraft.generatedLesson,
+        actorUserId: null,
+        sourceContext: 'admin_v2_generation_job',
+        importMode: 'queued_generation_job',
+        sourcePayload: {
+          generatorResponse: {
+            refinementMetadata: generatedDraft.refinementMetadata,
+          },
+          phases: generatedDraft.phases,
+        },
+      });
+      insertedVersionId = persisted.versionId;
 
       output = {
-        generatedLessonVersionId: insertedVersion.id,
+        generatedLessonVersionId: persisted.versionId,
         baseVersionNo: latestVersion?.version_no ?? null,
-        generatedVersionNo: nextVersionNo,
+        generatedVersionNo: persisted.versionNo,
+        qualityScore: persisted.qualityScore,
       };
     } else {
       const drafts = await generateDraftQuestionContent(
@@ -448,16 +449,21 @@ export async function runGenerationJobById(
       console.warn('[V2 Admin] Failed to write generation success audit event:', successEventError);
     }
 
-    await adminClient.from('v2_event_log').insert({
-      event_type: 'generation_job_completed',
-      lesson_id: job.lesson_id,
-      source_context: 'admin_v2',
-      payload: {
-        jobId: job.id,
-        status: 'succeeded',
-        output,
-      },
-    });
+    try {
+      await writeV2CanonicalEvent(adminClient, {
+        eventType: 'generation_job_completed',
+        lessonId: job.lesson_id,
+        sourceContext: 'admin_v2',
+        payload: {
+          jobId: job.id,
+          status: 'succeeded',
+          durationMs: toDurationMs(startedAt),
+          output,
+        },
+      });
+    } catch (error) {
+      console.warn('[V2 Admin] Failed to write canonical generation completion event:', error);
+    }
 
     return {
       jobId: job.id,
@@ -519,18 +525,23 @@ export async function runGenerationJobById(
       },
     });
 
-    await adminClient.from('v2_event_log').insert({
-      event_type: 'generation_job_completed',
-      lesson_id: job.lesson_id,
-      source_context: 'admin_v2',
-      payload: {
-        jobId: job.id,
-        status: nextStatus,
-        errorCode,
-        error: errorMessage,
-        retryScheduled: canRetry,
-      },
-    });
+    try {
+      await writeV2CanonicalEvent(adminClient, {
+        eventType: 'generation_job_completed',
+        lessonId: job.lesson_id,
+        sourceContext: 'admin_v2',
+        payload: {
+          jobId: job.id,
+          status: nextStatus,
+          durationMs: toDurationMs(startedAt),
+          errorCode,
+          error: errorMessage,
+          retryScheduled: canRetry,
+        },
+      });
+    } catch (error) {
+      console.warn('[V2 Admin] Failed to write canonical generation failure event:', error);
+    }
 
     if (insertedVersionId) {
       const { error: cleanupError } = await adminClient

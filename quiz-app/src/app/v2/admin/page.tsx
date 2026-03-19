@@ -206,6 +206,11 @@ type ReadinessPayload = {
     last_successful_job_at: string | null;
     queue_run_is_stale: boolean;
     queue_run_age_minutes: number | null;
+    queue_run_target_minutes: number;
+    queue_run_stale_after_minutes: number;
+    queue_run_overdue_minutes: number | null;
+    queued_jobs_pending: number;
+    oldest_queued_job_age_minutes: number | null;
     stuck_running_jobs: Array<{
       id: string;
       kind: 'lesson_draft' | 'question_draft';
@@ -232,6 +237,10 @@ type ReadinessPayload = {
       succeeded: number;
       failed: number;
       skipped: number;
+      queued_total: number;
+      remaining_queued: number;
+      oldest_queued_age_minutes: number | null;
+      cadence_minutes: number;
     } | null;
   };
   phase1_biology: {
@@ -285,6 +294,16 @@ type EnrollmentRow = {
   updated_at: string;
 };
 
+type V2UserRole = 'learner' | 'content_operator' | 'admin';
+
+type RoleRow = {
+  id: string;
+  user_id: string;
+  role: V2UserRole;
+  created_by: string | null;
+  created_at: string;
+};
+
 type ModerationPayload = {
   objectivesVerified: boolean;
   factualCheckPassed: boolean;
@@ -312,6 +331,7 @@ export default function V2AdminContentPage() {
   const [error, setError] = useState<string | null>(null);
   const [busyVersionId, setBusyVersionId] = useState<string | null>(null);
   const [busyQuestionVersionId, setBusyQuestionVersionId] = useState<string | null>(null);
+  const [bulkQuestionAction, setBulkQuestionAction] = useState<UpdateAction | null>(null);
   const [jobs, setJobs] = useState<GenerationJob[]>([]);
   const [loadingJobs, setLoadingJobs] = useState(false);
   const [busyJobId, setBusyJobId] = useState<string | null>(null);
@@ -320,6 +340,11 @@ export default function V2AdminContentPage() {
   const [loadingEnrollments, setLoadingEnrollments] = useState(false);
   const [busyEnrollmentUserId, setBusyEnrollmentUserId] = useState<string | null>(null);
   const [newEnrollmentEmail, setNewEnrollmentEmail] = useState('');
+  const [roles, setRoles] = useState<RoleRow[]>([]);
+  const [loadingRoles, setLoadingRoles] = useState(false);
+  const [busyRoleKey, setBusyRoleKey] = useState<string | null>(null);
+  const [newRoleEmail, setNewRoleEmail] = useState('');
+  const [newRoleValue, setNewRoleValue] = useState<V2UserRole>('content_operator');
   const [newJobLessonCode, setNewJobLessonCode] = useState('');
   const [newJobLessonCodesBulk, setNewJobLessonCodesBulk] = useState('');
   const [newJobPrompt, setNewJobPrompt] = useState('');
@@ -596,6 +621,54 @@ export default function V2AdminContentPage() {
     }
   }
 
+  async function loadRoles() {
+    setLoadingRoles(true);
+    setError(null);
+    try {
+      const response = await v2AuthedFetch('/api/admin/v2/roles', { cache: 'no-store' });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to load V2 roles.');
+      }
+      setRoles(Array.isArray(payload.roles) ? payload.roles : []);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Failed to load V2 roles.');
+      setRoles([]);
+    } finally {
+      setLoadingRoles(false);
+    }
+  }
+
+  async function updateRole(action: 'grant' | 'revoke', role: V2UserRole, userId?: string, email?: string) {
+    const busyKey = `${action}:${role}:${userId ?? email ?? 'new'}`;
+    setBusyRoleKey(busyKey);
+    setError(null);
+    try {
+      const response = await v2AuthedFetch('/api/admin/v2/roles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action,
+          role,
+          userId,
+          email,
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to update V2 role.');
+      }
+      if (action === 'grant') {
+        setNewRoleEmail('');
+      }
+      await loadRoles();
+    } catch (updateError) {
+      setError(updateError instanceof Error ? updateError.message : 'Failed to update V2 role.');
+    } finally {
+      setBusyRoleKey(null);
+    }
+  }
+
   function exportApprovalDecisionsCsv() {
     if (approvalDecisions.length === 0) return;
     const escape = (value: string) => `"${value.replace(/"/g, '""')}"`;
@@ -638,6 +711,7 @@ export default function V2AdminContentPage() {
     void loadJobs();
     void loadApprovalDecisions();
     void loadEnrollments();
+    void loadRoles();
     void loadReadiness();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -664,6 +738,17 @@ export default function V2AdminContentPage() {
         : enrollments.filter((row) => row.status === enrollmentStatusFilter),
     [enrollmentStatusFilter, enrollments]
   );
+  const rolesByUserId = useMemo(() => {
+    const lookup = new Map<string, V2UserRole[]>();
+    for (const row of roles) {
+      const existing = lookup.get(row.user_id) ?? [];
+      if (!existing.includes(row.role)) {
+        existing.push(row.role);
+      }
+      lookup.set(row.user_id, existing);
+    }
+    return lookup;
+  }, [roles]);
   const retryExhaustedJobs = useMemo(
     () => jobs.filter((job) => job.status === 'failed' && job.attempts_made >= job.max_attempts),
     [jobs]
@@ -736,6 +821,41 @@ export default function V2AdminContentPage() {
       .sort((a, b) => b.priority - a.priority)
       .slice(0, 8);
   }, [questionVersions]);
+  const prioritizedGenerationJobs = useMemo(() => {
+    const missingCoverageLessonIds = new Set(
+      readiness?.content.lessons_missing_question_coverage.map((lesson) => lesson.id) ?? []
+    );
+    const phase1MissingCoverageCodes = new Set(readiness?.phase1_biology.missing_question_coverage ?? []);
+    const phase1MissingPublishedCodes = new Set(readiness?.phase1_biology.missing_published ?? []);
+
+    return jobs
+      .slice()
+      .sort((a, b) => {
+        const rank = (job: GenerationJob) => {
+          const lessonCode = job.lesson?.code ?? job.payload?.lessonCode ?? '';
+          const ageMinutes = Math.max(0, Math.round((Date.now() - new Date(job.created_at).getTime()) / 60000));
+          const retryExhausted = job.status === 'failed' && job.attempts_made >= job.max_attempts;
+          const missingCoverage =
+            job.kind === 'question_draft' &&
+            ((job.lesson_id != null && missingCoverageLessonIds.has(job.lesson_id)) ||
+              (lessonCode.length > 0 && phase1MissingCoverageCodes.has(lessonCode)));
+          const phase1LessonDraft = job.kind === 'lesson_draft' && lessonCode.length > 0 && phase1MissingPublishedCodes.has(lessonCode);
+          const staleQueued = job.status === 'queued' && ageMinutes >= (readiness?.operations.queue_run_stale_after_minutes ?? 45);
+          const stuckRunning = job.status === 'running' && ageMinutes >= 20;
+
+          return (
+            (missingCoverage ? 1000 : 0) +
+            (phase1LessonDraft ? 700 : 0) +
+            (retryExhausted ? 500 : 0) +
+            (stuckRunning ? 300 : 0) +
+            (staleQueued ? 200 : 0) +
+            ageMinutes
+          );
+        };
+
+        return rank(b) - rank(a);
+      });
+  }, [jobs, readiness]);
 
   function collectModerationPayloadIfRequired(action: UpdateAction): ModerationPayload | null {
     if (action !== 'approve' && action !== 'publish') return null;
@@ -830,6 +950,53 @@ export default function V2AdminContentPage() {
       setError(transitionError instanceof Error ? transitionError.message : 'Failed to transition question version.');
     } finally {
       setBusyQuestionVersionId(null);
+    }
+  }
+
+  async function transitionQuestionVersionsBulk(action: UpdateAction) {
+    const eligibleVersionIds = questionVersions
+      .filter((version) => allowedActions(version.status).includes(action))
+      .map((version) => version.id);
+
+    if (eligibleVersionIds.length === 0) {
+      setError(`No filtered question versions can run action ${action}.`);
+      return;
+    }
+
+    setBulkQuestionAction(action);
+    setError(null);
+    try {
+      const moderation = collectModerationPayloadIfRequired(action);
+      if ((action === 'approve' || action === 'publish') && !moderation) {
+        throw new Error('Moderation checklist was not completed.');
+      }
+
+      const response = await v2AuthedFetch('/api/admin/v2/question-versions/bulk-status', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          versionIds: eligibleVersionIds,
+          action,
+          moderation,
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        const failedCount = Array.isArray(payload?.failed) ? payload.failed.length : 0;
+        if (failedCount > 0) {
+          const sample = payload.failed
+            .slice(0, 3)
+            .map((entry: { versionId?: string; message?: string }) => `${entry.versionId}: ${entry.message}`)
+            .join(' | ');
+          throw new Error(`Bulk question transition completed with ${failedCount} failure(s). ${sample}`);
+        }
+        throw new Error(payload.message || 'Failed to transition question versions.');
+      }
+      await Promise.all([loadQuestionVersions(), loadReadiness(), loadApprovalDecisions()]);
+    } catch (transitionError) {
+      setError(transitionError instanceof Error ? transitionError.message : 'Failed to transition question versions.');
+    } finally {
+      setBulkQuestionAction(null);
     }
   }
 
@@ -1116,6 +1283,35 @@ export default function V2AdminContentPage() {
         </button>
       </p>
       <p>
+        <label htmlFor="newRoleEmail">Role by email: </label>
+        <input
+          id="newRoleEmail"
+          value={newRoleEmail}
+          onChange={(event) => setNewRoleEmail(event.target.value)}
+          placeholder="operator@example.com"
+        />{' '}
+        <label htmlFor="newRoleValue">Role: </label>
+        <select
+          id="newRoleValue"
+          value={newRoleValue}
+          onChange={(event) => setNewRoleValue(event.target.value as V2UserRole)}
+        >
+          <option value="learner">learner</option>
+          <option value="content_operator">content_operator</option>
+          <option value="admin">admin</option>
+        </select>{' '}
+        <button
+          type="button"
+          onClick={() => void updateRole('grant', newRoleValue, undefined, newRoleEmail.trim())}
+          disabled={!newRoleEmail.trim() || busyRoleKey === `grant:${newRoleValue}:${newRoleEmail.trim()}`}
+        >
+          {busyRoleKey === `grant:${newRoleValue}:${newRoleEmail.trim()}` ? 'Granting role...' : 'Grant role'}
+        </button>{' '}
+        <button type="button" onClick={() => void loadRoles()} disabled={loadingRoles}>
+          {loadingRoles ? 'Loading roles...' : 'Refresh roles'}
+        </button>
+      </p>
+      <p>
         <label htmlFor="enrollmentStatusFilter">Status filter: </label>
         <select
           id="enrollmentStatusFilter"
@@ -1172,6 +1368,66 @@ export default function V2AdminContentPage() {
             ))}
           </tbody>
         </table>
+      )}
+      {filteredEnrollments.length > 0 && (
+        <>
+          <h3>V2 Roles</h3>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">User</th>
+                <th align="left">Enrollment</th>
+                <th align="left">V2 roles</th>
+                <th align="left">Role actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredEnrollments.map((row) => {
+                const userRoles = rolesByUserId.get(row.user_id) ?? [];
+                return (
+                  <tr key={`role-row-${row.user_id}`}>
+                    <td>
+                      <div>{row.display_name ?? row.user_id}</div>
+                      <div>{row.email ?? row.user_id}</div>
+                    </td>
+                    <td>{row.status}</td>
+                    <td>{userRoles.length > 0 ? userRoles.join(', ') : '-'}</td>
+                    <td>
+                      <button
+                        type="button"
+                        onClick={() => void updateRole('grant', 'content_operator', row.user_id)}
+                        disabled={busyRoleKey === `grant:content_operator:${row.user_id}` || userRoles.includes('content_operator')}
+                      >
+                        {busyRoleKey === `grant:content_operator:${row.user_id}` ? 'Updating...' : 'Grant operator'}
+                      </button>{' '}
+                      <button
+                        type="button"
+                        onClick={() => void updateRole('revoke', 'content_operator', row.user_id)}
+                        disabled={busyRoleKey === `revoke:content_operator:${row.user_id}` || !userRoles.includes('content_operator')}
+                      >
+                        {busyRoleKey === `revoke:content_operator:${row.user_id}` ? 'Updating...' : 'Revoke operator'}
+                      </button>{' '}
+                      <button
+                        type="button"
+                        onClick={() => void updateRole('grant', 'admin', row.user_id)}
+                        disabled={busyRoleKey === `grant:admin:${row.user_id}` || userRoles.includes('admin')}
+                      >
+                        {busyRoleKey === `grant:admin:${row.user_id}` ? 'Updating...' : 'Grant admin'}
+                      </button>{' '}
+                      <button
+                        type="button"
+                        onClick={() => void updateRole('revoke', 'admin', row.user_id)}
+                        disabled={busyRoleKey === `revoke:admin:${row.user_id}` || !userRoles.includes('admin')}
+                      >
+                        {busyRoleKey === `revoke:admin:${row.user_id}` ? 'Updating...' : 'Revoke admin'}
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </>
       )}
 
       <p>
@@ -1277,6 +1533,30 @@ export default function V2AdminContentPage() {
         />{' '}
         <button type="button" onClick={() => void loadQuestionVersions()}>
           Apply
+        </button>
+      </p>
+      <p>
+        Bulk moderation for filtered rows:{' '}
+        <button
+          type="button"
+          onClick={() => void transitionQuestionVersionsBulk('submit_review')}
+          disabled={bulkQuestionAction !== null}
+        >
+          {bulkQuestionAction === 'submit_review' ? 'Submitting...' : 'Submit all drafts'}
+        </button>{' '}
+        <button
+          type="button"
+          onClick={() => void transitionQuestionVersionsBulk('approve')}
+          disabled={bulkQuestionAction !== null}
+        >
+          {bulkQuestionAction === 'approve' ? 'Approving...' : 'Approve all review'}
+        </button>{' '}
+        <button
+          type="button"
+          onClick={() => void transitionQuestionVersionsBulk('publish')}
+          disabled={bulkQuestionAction !== null}
+        >
+          {bulkQuestionAction === 'publish' ? 'Publishing...' : 'Publish all approved'}
         </button>
       </p>
       {loadingQuestionVersions && <p>Loading V2 question versions...</p>}
@@ -1452,6 +1732,12 @@ export default function V2AdminContentPage() {
           <p>Stuck running jobs: {readiness.operations.stuck_running_jobs.length}</p>
           <p>Stale queued jobs: {readiness.operations.stale_queued_jobs.length}</p>
           <p>
+            Queue cadence target: every {readiness.operations.queue_run_target_minutes} min
+            {' '}| stale after {readiness.operations.queue_run_stale_after_minutes} min
+            {' '}| pending queued jobs {readiness.operations.queued_jobs_pending}
+            {' '}| oldest queued job {readiness.operations.oldest_queued_job_age_minutes ?? '-'} min
+          </p>
+          <p>
             Last successful generation job:{' '}
             {readiness.operations.last_successful_job_at
               ? new Date(readiness.operations.last_successful_job_at).toLocaleString()
@@ -1460,13 +1746,13 @@ export default function V2AdminContentPage() {
           <p>
             Queue freshness:{' '}
             {readiness.operations.queue_run_is_stale
-              ? `stale (${readiness.operations.queue_run_age_minutes ?? '-'} min since last run)`
+              ? `stale (${readiness.operations.queue_run_age_minutes ?? '-'} min since last run, overdue by ${readiness.operations.queue_run_overdue_minutes ?? '-'} min)`
               : `ok${readiness.operations.queue_run_age_minutes == null ? '' : ` (${readiness.operations.queue_run_age_minutes} min ago)`}`}
           </p>
           <p>
             Last queue run:{' '}
             {readiness.operations.last_queue_run
-              ? `${new Date(readiness.operations.last_queue_run.event_ts).toLocaleString()} | attempted ${readiness.operations.last_queue_run.attempted} | succeeded ${readiness.operations.last_queue_run.succeeded} | failed ${readiness.operations.last_queue_run.failed} | skipped ${readiness.operations.last_queue_run.skipped}`
+              ? `${new Date(readiness.operations.last_queue_run.event_ts).toLocaleString()} | attempted ${readiness.operations.last_queue_run.attempted} | succeeded ${readiness.operations.last_queue_run.succeeded} | failed ${readiness.operations.last_queue_run.failed} | skipped ${readiness.operations.last_queue_run.skipped} | remaining ${readiness.operations.last_queue_run.remaining_queued}`
               : '-'}
           </p>
           {readiness.operations.stuck_running_jobs.length > 0 && (
@@ -1972,6 +2258,11 @@ export default function V2AdminContentPage() {
       <h2>AI Generation Jobs (Phase 1 skeleton)</h2>
       <p>Create queued lesson or question draft jobs, then run them to produce V2 draft content for moderation.</p>
       <p>
+        <a href="/v2/generate">Open V2 Lesson Generator</a>
+        {' | '}
+        <a href="/v2/admin/module">Open V2 Module Planner</a>
+      </p>
+      <p>
         <button type="button" onClick={() => void backfillQuestionBank()} disabled={backfillingQuestions}>
           {backfillingQuestions ? 'Backfilling question bank...' : 'Backfill question bank from published lessons'}
         </button>
@@ -2049,6 +2340,7 @@ export default function V2AdminContentPage() {
           cols={40}
         />
       </p>
+      <p>Job list is prioritized toward missing question coverage, Phase 1 target lessons, retry-exhausted failures, and stale work.</p>
 
       {jobs.length > 0 && (
         <table>
@@ -2066,7 +2358,7 @@ export default function V2AdminContentPage() {
             </tr>
           </thead>
           <tbody>
-            {jobs.map((job) => (
+            {prioritizedGenerationJobs.map((job) => (
               <tr key={job.id}>
                 <td>{job.id.slice(0, 8)}</td>
                 <td>{job.kind}</td>

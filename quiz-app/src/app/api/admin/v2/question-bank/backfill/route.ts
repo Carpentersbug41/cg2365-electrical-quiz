@@ -14,7 +14,7 @@ type PublishedLessonVersionRow = {
 };
 
 export async function POST(request: NextRequest) {
-  const denied = await guardV2AdminAccess(request);
+  const denied = await guardV2AdminAccess(request, 'content_operator');
   if (denied) return denied;
 
   try {

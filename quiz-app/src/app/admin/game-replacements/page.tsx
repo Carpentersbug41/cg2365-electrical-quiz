@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import MatchingGame from '@/components/learning/microbreaks/games/MatchingGame';
 import SortingGame from '@/components/learning/microbreaks/games/SortingGame';
 import AdvancedTextGame from '@/components/learning/microbreaks/games/AdvancedTextGame';
@@ -353,8 +353,8 @@ export default function GameReplacementsPage() {
   const [diagnosisRankedKey, setDiagnosisRankedKey] = useState(0);
   const [classifyTwoBinsKey, setClassifyTwoBinsKey] = useState(0);
   const [fillGapIndex, setFillGapIndex] = useState(0);
-  const [fillGapCompleted, setFillGapCompleted] = useState<Array<{ score?: number; accuracy?: number }>>([]);
-  const [fillGapHandledIndex, setFillGapHandledIndex] = useState<number | null>(null);
+  const fillGapCompletedRef = useRef<Array<{ score?: number; accuracy?: number }>>([]);
+  const fillGapHandledKeysRef = useRef<Set<string>>(new Set());
 
   return (
     <main className="mx-auto w-full max-w-7xl space-y-6 p-6">
@@ -447,8 +447,8 @@ export default function GameReplacementsPage() {
             onClick={() => {
               setFillGapKey((k) => k + 1);
               setFillGapIndex(0);
-              setFillGapCompleted([]);
-              setFillGapHandledIndex(null);
+              fillGapCompletedRef.current = [];
+              fillGapHandledKeysRef.current.clear();
               setFillGapResult({ status: 'idle' });
             }}
             className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100"
@@ -471,8 +471,8 @@ export default function GameReplacementsPage() {
               onClick={() => {
                 setFillGapKey((k) => k + 1);
                 setFillGapIndex(0);
-                setFillGapCompleted([]);
-                setFillGapHandledIndex(null);
+                fillGapCompletedRef.current = [];
+                fillGapHandledKeysRef.current.clear();
                 setFillGapResult({ status: 'idle' });
               }}
               className="mt-4 rounded-md border border-emerald-300 bg-white px-4 py-2 text-sm font-medium text-emerald-800 hover:bg-emerald-100"
@@ -485,25 +485,28 @@ export default function GameReplacementsPage() {
             key={`fill-gap-${fillGapKey}-${fillGapIndex}`}
             content={fillGapQuestions[fillGapIndex]}
             onComplete={(score, accuracy) => {
-              // Ignore duplicate completion events for the same visible question.
-              if (fillGapHandledIndex === fillGapIndex) return;
-              setFillGapHandledIndex(fillGapIndex);
+              const handledKey = `${fillGapKey}:${fillGapIndex}`;
+              if (fillGapHandledKeysRef.current.has(handledKey)) return;
+              fillGapHandledKeysRef.current.add(handledKey);
 
-              const nextCompleted = [...fillGapCompleted, { score, accuracy }];
-              setFillGapCompleted(nextCompleted);
+              const isLastQuestion = fillGapIndex >= fillGapQuestions.length - 1;
+              const nextCompleted = [...fillGapCompletedRef.current, { score, accuracy }];
+              fillGapCompletedRef.current = nextCompleted;
 
-              if (fillGapIndex < fillGapQuestions.length - 1) {
-                setFillGapIndex(fillGapIndex + 1);
-                return;
+              if (isLastQuestion) {
+                const totalScore = nextCompleted.reduce((sum, result) => sum + (result.score ?? 0), 0);
+                const totalGaps = fillGapQuestions.reduce((sum, question) => sum + question.gaps.length, 0);
+                const overallAccuracy = totalGaps > 0 ? (totalScore / totalGaps) * 100 : 0;
+                setFillGapResult({ status: 'completed', score: totalScore, accuracy: overallAccuracy });
               }
 
-              const totalScore = nextCompleted.reduce((sum, r) => sum + (r.score ?? 0), 0);
-              const totalGaps = fillGapQuestions.reduce((sum, q) => sum + q.gaps.length, 0);
-              const overallAccuracy = totalGaps > 0 ? (totalScore / totalGaps) * 100 : 0;
-              setFillGapResult({ status: 'completed', score: totalScore, accuracy: overallAccuracy });
+              if (!isLastQuestion) {
+                setFillGapIndex((index) => index + 1);
+                return;
+              }
             }}
             onSkip={() => {
-              setFillGapHandledIndex(fillGapIndex);
+              fillGapHandledKeysRef.current.add(`${fillGapKey}:${fillGapIndex}`);
               if (fillGapIndex < fillGapQuestions.length - 1) {
                 setFillGapIndex((i) => i + 1);
                 return;

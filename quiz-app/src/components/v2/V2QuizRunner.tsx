@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { isAnswerCorrect, type V2QuizQuestion } from '@/lib/v2/questionRuntime';
 import { v2AuthedFetch } from '@/lib/v2/client';
 
@@ -28,6 +28,8 @@ export default function V2QuizRunner({ lessonId, questions }: V2QuizRunnerProps)
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isStarting, setIsStarting] = useState(true);
+  const [quizSessionId, setQuizSessionId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<SubmitResult | null>(null);
 
@@ -56,9 +58,50 @@ export default function V2QuizRunner({ lessonId, questions }: V2QuizRunnerProps)
     return questions.filter((question) => !(answers[question.stableId] ?? '').trim()).length;
   }, [answers, questions]);
 
+  useEffect(() => {
+    let active = true;
+
+    async function startQuizSessionFlow() {
+      setIsStarting(true);
+      setError(null);
+      try {
+        const response = await v2AuthedFetch('/api/v2/runtime/quiz-session/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            lessonId,
+            sourceContext: 'v2_quiz_runner',
+          }),
+        });
+        const payload = await response.json().catch(() => null);
+        if (!response.ok || !payload?.quizSessionId) {
+          throw new Error(payload?.error || 'Failed to start V2 quiz session.');
+        }
+        if (!active) return;
+        setQuizSessionId(String(payload.quizSessionId));
+      } catch (startError) {
+        if (!active) return;
+        setError(startError instanceof Error ? startError.message : 'Failed to start quiz session.');
+      } finally {
+        if (active) {
+          setIsStarting(false);
+        }
+      }
+    }
+
+    void startQuizSessionFlow();
+    return () => {
+      active = false;
+    };
+  }, [lessonId]);
+
   async function onSubmit() {
     setError(null);
     setResult(null);
+    if (!quizSessionId) {
+      setError('Quiz session has not started yet.');
+      return;
+    }
     setIsSubmitting(true);
     try {
       const response = await v2AuthedFetch('/api/v2/runtime/lesson-quiz/submit', {
@@ -66,6 +109,7 @@ export default function V2QuizRunner({ lessonId, questions }: V2QuizRunnerProps)
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           lessonId,
+          quizSessionId,
           attempts,
           sourceContext: 'v2_quiz_runner',
         }),
@@ -153,11 +197,12 @@ export default function V2QuizRunner({ lessonId, questions }: V2QuizRunnerProps)
 
       {questions.length > 0 && (
         <section>
+          {isStarting && <p>Starting quiz session...</p>}
           <p>Unanswered: {unansweredCount}</p>
           <p>Current matched correct: {questions.length - incorrectCount}/{questions.length}</p>
           <button
             onClick={onSubmit}
-            disabled={isSubmitting || questions.length === 0}
+            disabled={isSubmitting || isStarting || !quizSessionId || questions.length === 0}
           >
             {isSubmitting ? 'Submitting...' : 'Submit V2 Quiz'}
           </button>

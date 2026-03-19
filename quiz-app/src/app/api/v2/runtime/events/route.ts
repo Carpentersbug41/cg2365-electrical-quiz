@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { writeV2CanonicalEvent } from '@/lib/v2/events';
 import { requireV2EnrolledSession } from '@/lib/v2/session';
 
 type RuntimeEventPayload = {
@@ -51,17 +52,23 @@ export async function POST(request: NextRequest) {
   if (versionError) return NextResponse.json({ error: versionError.message }, { status: 500 });
   if (!versionRow?.id) return NextResponse.json({ error: 'Published lesson version not found.' }, { status: 404 });
 
-  const { error: insertError } = await client.from('v2_event_log').insert({
-    event_type: eventType,
-    user_id: userId,
-    lesson_id: lessonRow.id,
-    lesson_version_id: versionRow.id,
-    source_context: sourceContext,
-    payload: {
-      lessonCode,
-    },
-  });
-  if (insertError) return NextResponse.json({ error: insertError.message }, { status: 500 });
+  try {
+    await writeV2CanonicalEvent(client, {
+      eventType,
+      userId,
+      lessonId: lessonRow.id,
+      lessonVersionId: versionRow.id,
+      sourceContext,
+      payload: {
+        lessonCode,
+      },
+    });
+  } catch (insertError) {
+    return NextResponse.json(
+      { error: insertError instanceof Error ? insertError.message : 'Failed to write runtime event.' },
+      { status: 500 }
+    );
+  }
 
   return NextResponse.json({ success: true });
 }

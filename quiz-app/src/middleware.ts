@@ -46,6 +46,13 @@ function isAllowedInV1Mode(pathname: string) {
   return true;
 }
 
+function getDynamic2365RedirectPath(pathname: string): string | null {
+  if (pathname === '/dynamic-generate') return '/2365/admin/dynamic-generate';
+  if (pathname === '/admin/dynamic-generate') return '/2365/admin/dynamic-generate';
+  if (pathname === '/admin/dynamic-module') return '/2365/admin/dynamic-module';
+  return null;
+}
+
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
@@ -75,6 +82,13 @@ export function middleware(req: NextRequest) {
   if (SKIP_PATHS.includes(pathname)) return NextResponse.next();
   if (SKIP_PREFIXES.some((prefix) => pathname.startsWith(prefix))) return NextResponse.next();
   if (isPublicFile(pathname)) return NextResponse.next();
+
+  const dynamic2365RedirectPath = getDynamic2365RedirectPath(pathname);
+  if (dynamic2365RedirectPath) {
+    const url = req.nextUrl.clone();
+    url.pathname = dynamic2365RedirectPath;
+    return NextResponse.redirect(url);
+  }
 
   for (const prefix of SUPPORTED_COURSE_PREFIXES) {
     if (pathname === prefix || pathname.startsWith(`${prefix}/`)) {
@@ -116,6 +130,7 @@ export const config = {
     '/quiz/:path*',
     '/generate',
     '/generate/:path*',
+    '/dynamic-generate',
     '/generate-quiz',
     '/generate-quiz/:path*',
     '/test-generation',

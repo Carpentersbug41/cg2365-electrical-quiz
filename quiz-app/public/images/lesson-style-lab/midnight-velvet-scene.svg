@@ -1,0 +1,26 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="54" fill="#120E1D"/>
+  <rect x="76" y="74" width="1048" height="752" rx="40" fill="url(#bg)"/>
+  <g filter="url(#blur1)">
+    <ellipse cx="593" cy="46" rx="204" ry="116" fill="#FFD8BB" fill-opacity="0.3"/>
+  </g>
+  <rect x="312" y="148" width="576" height="602" rx="34" fill="#171226" stroke="#FF9A7A" stroke-opacity="0.18" stroke-width="2"/>
+  <rect x="368" y="212" width="464" height="302" rx="24" fill="url(#poster)"/>
+  <rect x="246" y="582" width="708" height="94" rx="16" fill="#0D0D17" stroke="#FF9A7A" stroke-opacity="0.16"/>
+  <path d="M400 697H799" stroke="#FF9A7A" stroke-opacity="0.22" stroke-width="6" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="bg" x1="216" y1="92" x2="975" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#221234"/>
+      <stop offset="0.55" stop-color="#141825"/>
+      <stop offset="1" stop-color="#0A0D15"/>
+    </linearGradient>
+    <linearGradient id="poster" x1="368" y1="212" x2="832" y2="514" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3A2358"/>
+      <stop offset="0.52" stop-color="#221735"/>
+      <stop offset="1" stop-color="#D86558"/>
+    </linearGradient>
+    <filter id="blur1" x="229" y="-230" width="728" height="552" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="80"/>
+    </filter>
+  </defs>
+</svg>

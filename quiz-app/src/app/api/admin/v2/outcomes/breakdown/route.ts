@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { listV2PrivilegedUserIds } from '@/lib/v2/access';
 import { createV2AdminClient, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
 
 const DEFAULT_DAYS = 30;
@@ -94,7 +95,7 @@ export async function GET(request: NextRequest) {
     const sortDir = parseSortDir(request.nextUrl.searchParams.get('sortDir'));
     const limit = parseLimit(request.nextUrl.searchParams.get('limit'));
 
-    const [profiles, masteryRows] = await Promise.all([
+    const [profiles, masteryRows, privilegedUserIds] = await Promise.all([
       fetchAllRows<ProfileRow>(async (from, to) => {
         const { data, error } = await adminClient
           .from('profiles')
@@ -110,11 +111,12 @@ export async function GET(request: NextRequest) {
           .range(from, to);
         return { data: data as MasteryBreakdownRow[] | null, error: error as Error | null };
       }),
+      listV2PrivilegedUserIds(adminClient),
     ]);
 
     const studentIds = new Set(
       profiles
-        .filter((profile) => profile.role !== 'admin')
+        .filter((profile) => profile.role !== 'admin' && !privilegedUserIds.has(profile.user_id))
         .map((profile) => profile.user_id)
     );
 

@@ -69,11 +69,38 @@ async function ensureUser(supabase, email, password, role) {
     { onConflict: 'user_id' }
   );
   if (profileError) throw profileError;
+
+  return userId;
+}
+
+async function getDefaultV2CourseId(supabase) {
+  const { data, error } = await supabase
+    .from('v2_courses')
+    .select('id')
+    .eq('code', 'gcse-biology')
+    .limit(1)
+    .maybeSingle();
+  if (error) throw error;
+  if (!data?.id) throw new Error('Default V2 course not found for E2E setup.');
+  return data.id;
+}
+
+async function ensureV2Enrollment(supabase, userId, courseId) {
+  const { error } = await supabase.from('v2_enrollments').upsert(
+    {
+      user_id: userId,
+      course_id: courseId,
+      status: 'active',
+      completed_at: null,
+    },
+    { onConflict: 'user_id,course_id' }
+  );
+  if (error) throw error;
 }
 
 function runPlaywright(env) {
   const command =
-    'npx playwright test tests/e2e/v2-learner-flow.spec.ts tests/e2e/v2-admin-flow.spec.ts';
+    'npx playwright test tests/e2e/v2-learner-flow.spec.ts tests/e2e/v2-admin-flow.spec.ts tests/e2e/v2-role-management.spec.ts tests/e2e/v2-phase1-signoff.spec.ts';
   const cmd = process.platform === 'win32' ? 'cmd.exe' : 'sh';
   const args = process.platform === 'win32' ? ['/c', command] : ['-lc', command];
   return new Promise((resolve, reject) => {
@@ -113,8 +140,11 @@ async function main() {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 
-  await ensureUser(supabase, learnerEmail, learnerPassword, 'student');
-  await ensureUser(supabase, adminEmail, adminPassword, 'admin');
+  const courseId = await getDefaultV2CourseId(supabase);
+  const learnerUserId = await ensureUser(supabase, learnerEmail, learnerPassword, 'student');
+  const adminUserId = await ensureUser(supabase, adminEmail, adminPassword, 'admin');
+  await ensureV2Enrollment(supabase, learnerUserId, courseId);
+  await ensureV2Enrollment(supabase, adminUserId, courseId);
 
   const runnerEnv = {
     ...process.env,

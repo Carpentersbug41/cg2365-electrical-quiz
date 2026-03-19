@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'node:fs';
 import path from 'node:path';
+import { getStaticSimulationDir } from '@/lib/simulations/paths';
 
 export const runtime = 'nodejs';
 
@@ -46,7 +47,7 @@ export async function GET(
     return NextResponse.json({ error: 'Invalid simulation name.' }, { status: 400 });
   }
 
-  const simulationRoot = path.resolve(process.cwd(), 'src', 'app', 'simulations', simulation);
+  const simulationRoot = path.resolve(getStaticSimulationDir(simulation));
   const relativePath = resolveRelativePath(params.path);
   let targetPath = path.resolve(simulationRoot, relativePath);
 

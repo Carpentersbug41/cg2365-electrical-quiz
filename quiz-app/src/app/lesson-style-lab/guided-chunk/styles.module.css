@@ -1,0 +1,428 @@
+.page {
+  --bg: #f3f1ec;
+  --ink: #242e37;
+  --muted: #737d85;
+  --panel: rgba(255, 255, 253, 0.92);
+  --line: rgba(36, 46, 55, 0.07);
+  --accent: #4f5b66;
+  --accent-deep: #38424a;
+  --tutor: #fcfbf8;
+  --user: #2f3a43;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(182, 175, 164, 0.16), transparent 24%),
+    radial-gradient(circle at bottom right, rgba(152, 159, 167, 0.1), transparent 28%),
+    linear-gradient(180deg, #f7f5f0 0%, var(--bg) 100%);
+  color: var(--ink);
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  width: min(880px, calc(100vw - 2rem));
+  margin: 0 auto;
+  padding: 1.8rem 0 2.2rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.backLink,
+.eyebrow,
+.sectionLabel,
+.messageLabel,
+.microbreakTag,
+.headerMeta,
+.controlButton,
+.inputPrompt {
+  font-family: var(--font-space-mono), monospace;
+}
+
+.backLink {
+  display: inline-block;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.73rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.84;
+}
+
+.eyebrow {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.headerMeta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.71rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.84;
+}
+
+.lessonCard {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(250, 249, 245, 0.94) 100%),
+    var(--panel);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 18px 48px rgba(52, 58, 64, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 78vh;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.sectionLabel {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.lessonHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.25rem;
+  padding: 1.5rem 1.5rem 1.15rem;
+  border-bottom: 1px solid rgba(24, 35, 45, 0.08);
+}
+
+.title {
+  margin: 0.7rem 0 0.5rem;
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+  max-width: 12.5ch;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 0.97rem;
+  line-height: 1.68;
+  max-width: 34ch;
+}
+
+.progressBlock {
+  width: min(230px, 100%);
+  padding: 0.9rem 1rem 0.95rem;
+  border: 1px solid rgba(36, 46, 55, 0.06);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.progressRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-manrope), sans-serif;
+}
+
+.progressRow strong {
+  font-size: 1.02rem;
+}
+
+.progressRow span {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.progressTrack {
+  margin-top: 0.7rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: rgba(31, 41, 51, 0.08);
+  overflow: hidden;
+}
+
+.progressFill {
+  display: block;
+  width: 34%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent-deep) 0%, var(--accent) 100%);
+}
+
+.threadBody {
+  display: grid;
+  gap: 1rem;
+  padding: 1.35rem 1.5rem 1.15rem;
+  overflow-y: auto;
+}
+
+.messageRow {
+  display: flex;
+}
+
+.messageRowTutor {
+  justify-content: flex-start;
+}
+
+.messageRowUser {
+  justify-content: flex-end;
+}
+
+.messageBubble {
+  max-width: min(78ch, 84%);
+  border-radius: 22px;
+  padding: 1rem 1.05rem 0.95rem;
+  border: 1px solid rgba(36, 46, 55, 0.05);
+  box-shadow: 0 6px 18px rgba(45, 48, 53, 0.03);
+}
+
+.tutorBubble {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.84) 0%, var(--tutor) 100%);
+}
+
+.userBubble {
+  background: linear-gradient(180deg, #37434c 0%, var(--user) 100%);
+  color: #f4f7f8;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.messageLabel {
+  margin: 0 0 0.42rem;
+  color: inherit;
+  opacity: 0.58;
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.messageText {
+  margin: 0;
+  white-space: pre-wrap;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 1rem;
+  line-height: 1.76;
+}
+
+.streamCaret {
+  display: inline-block;
+  width: 0.62rem;
+  height: 1.05rem;
+  margin-left: 0.18rem;
+  transform: translateY(0.12rem);
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.72;
+  animation: guided-chunk-caret 0.9s steps(1) infinite;
+}
+
+.dividerRow {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: var(--muted);
+  padding: 0.45rem 0.1rem;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.dividerRow::before,
+.dividerRow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(31, 41, 51, 0.1);
+}
+
+.dividerRow strong {
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 0.88rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.microbreakHint {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  background: rgba(79, 91, 102, 0.04);
+  border: 1px dashed rgba(79, 91, 102, 0.12);
+}
+
+.microbreakHint p {
+  margin: 0;
+  font-family: var(--font-manrope), sans-serif;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.microbreakTag {
+  flex: 0 0 auto;
+  align-self: center;
+  padding: 0.32rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(79, 91, 102, 0.1);
+  color: var(--accent-deep);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.transitionNote {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 0.8rem;
+  align-items: center;
+  color: var(--muted);
+}
+
+.transitionLine {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: rgba(79, 91, 102, 0.16);
+}
+
+.transitionNote p {
+  margin: 0;
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.embeddedGame {
+  margin-top: 0.05rem;
+  padding: 0.18rem;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(36, 46, 55, 0.04);
+}
+
+.inputDock {
+  padding: 1rem 1.5rem 1.2rem;
+  border-top: 1px solid rgba(31, 41, 51, 0.08);
+  background: rgba(252, 251, 247, 0.98);
+}
+
+.inputShell {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: 1px solid rgba(31, 41, 51, 0.08);
+  border-radius: 18px;
+  padding: 0.75rem 0.8rem 0.75rem 1rem;
+  background: white;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.inputPrompt {
+  flex: 1;
+  color: #76828a;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sendButton,
+.controlButton {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.sendButton {
+  border-radius: 14px;
+  padding: 0.82rem 1.08rem;
+  background: linear-gradient(180deg, #48545f 0%, #38424a 100%);
+  color: white;
+  font-family: var(--font-space-mono), monospace;
+  font-size: 0.69rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 18px rgba(56, 66, 74, 0.18);
+}
+
+.controlRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+}
+
+.controlButton {
+  border-radius: 999px;
+  padding: 0.52rem 0.75rem;
+  background: rgba(31, 41, 51, 0.05);
+  color: var(--muted);
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@keyframes guided-chunk-caret {
+  0%,
+  48% {
+    opacity: 0.72;
+  }
+  49%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell {
+    width: min(100vw - 1rem, 100%);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .lessonHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.2rem;
+  }
+
+  .lessonCard {
+    border-radius: 24px;
+    min-height: 78vh;
+  }
+
+  .threadBody,
+  .inputDock {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .messageBubble {
+    max-width: 92%;
+  }
+}

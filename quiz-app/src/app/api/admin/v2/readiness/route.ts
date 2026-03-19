@@ -3,6 +3,7 @@ import path from 'path';
 import { NextRequest, NextResponse } from 'next/server';
 import { createV2AdminClient, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
 import { GCSE_BIOLOGY_PHASE1_TARGET } from '@/data/v2/gcse/biology/phase1Target';
+import { getV2GenerationQueueCadenceMinutes, getV2GenerationQueueStaleThresholdMinutes } from '@/lib/v2/operations';
 
 type LessonRow = {
   id: string;
@@ -17,6 +18,12 @@ type LessonVersionRow = {
 
 type QuestionVersionRow = {
   status: 'draft' | 'needs_review' | 'approved' | 'published' | 'retired';
+  v2_questions?: {
+    lesson_id: string | null;
+  } | null;
+};
+
+type PublishedCoverageRow = {
   v2_questions?: {
     lesson_id: string | null;
   } | null;
@@ -70,7 +77,6 @@ function toAgeMinutes(iso: string | null): number | null {
 
 const STUCK_RUNNING_THRESHOLD_MINUTES = 20;
 const STALE_QUEUED_THRESHOLD_MINUTES = 30;
-const STALE_QUEUE_RUN_THRESHOLD_MINUTES = 90;
 
 export async function GET(request: NextRequest) {
   const denied = await guardV2AdminAccess(request);
@@ -85,10 +91,14 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    const queueCadenceMinutes = getV2GenerationQueueCadenceMinutes();
+    const staleQueueRunThresholdMinutes = getV2GenerationQueueStaleThresholdMinutes(queueCadenceMinutes);
+
     const [
       lessonsResult,
       lessonVersionsResult,
       questionVersionsResult,
+      publishedCoverageResult,
       enrollmentsResult,
       generationJobsResult,
       queueRunResult,
@@ -97,10 +107,14 @@ export async function GET(request: NextRequest) {
       adminClient.from('v2_lesson_versions').select('lesson_id, status').returns<LessonVersionRow[]>(),
       adminClient
         .from('v2_question_versions')
-        .select('status, v2_questions!inner(lesson_id)')
+        .select('status, v2_questions(lesson_id)')
+        .returns<QuestionVersionRow[]>(),
+      adminClient
+        .from('v2_question_versions')
+        .select('v2_questions!inner(lesson_id)')
         .eq('status', 'published')
         .eq('is_current', true)
-        .returns<QuestionVersionRow[]>(),
+        .returns<PublishedCoverageRow[]>(),
       adminClient.from('v2_enrollments').select('status').returns<EnrollmentRow[]>(),
       adminClient
         .from('v2_generation_jobs')
@@ -118,6 +132,7 @@ export async function GET(request: NextRequest) {
     if (lessonsResult.error) throw lessonsResult.error;
     if (lessonVersionsResult.error) throw lessonVersionsResult.error;
     if (questionVersionsResult.error) throw questionVersionsResult.error;
+    if (publishedCoverageResult.error) throw publishedCoverageResult.error;
     if (enrollmentsResult.error) throw enrollmentsResult.error;
     if (generationJobsResult.error) throw generationJobsResult.error;
     if (queueRunResult.error) throw queueRunResult.error;
@@ -125,6 +140,7 @@ export async function GET(request: NextRequest) {
     const lessons = lessonsResult.data ?? [];
     const lessonVersions = lessonVersionsResult.data ?? [];
     const questionVersions = questionVersionsResult.data ?? [];
+    const publishedCoverage = publishedCoverageResult.data ?? [];
     const enrollments = enrollmentsResult.data ?? [];
     const generationJobs = generationJobsResult.data ?? [];
     const biologySourceLessonCodes = getBiologySourceLessonCodes();
@@ -133,7 +149,7 @@ export async function GET(request: NextRequest) {
       lessonVersions.filter((row) => row.status === 'published').map((row) => row.lesson_id)
     );
     const questionCoveredLessonIds = new Set(
-      questionVersions
+      publishedCoverage
         .map((row) => row.v2_questions?.lesson_id)
         .filter((lessonId): lessonId is string => Boolean(lessonId))
     );
@@ -199,6 +215,18 @@ export async function GET(request: NextRequest) {
       .filter((row) => (row.age_minutes ?? -1) >= STALE_QUEUED_THRESHOLD_MINUTES)
       .sort((a, b) => (b.age_minutes ?? 0) - (a.age_minutes ?? 0));
     const queueRunAgeMinutes = toAgeMinutes(queueRunResult.data?.event_ts ?? null);
+    const oldestQueuedJobAgeMinutes =
+      staleQueuedJobs.length > 0
+        ? staleQueuedJobs[0]?.age_minutes ?? null
+        : generationJobs
+            .filter((row) => row.status === 'queued')
+            .map((row) => toAgeMinutes(row.created_at))
+            .filter((age): age is number => age != null)
+            .sort((a, b) => b - a)[0] ?? null;
+    const queueRunOverdueMinutes =
+      queueRunAgeMinutes == null
+        ? null
+        : Math.max(queueRunAgeMinutes - queueCadenceMinutes, 0);
 
     const lessonByCode = new Map(lessons.map((lesson) => [lesson.code.toUpperCase(), lesson]));
     const phase1BiologyLessons = GCSE_BIOLOGY_PHASE1_TARGET.map((targetLesson) => {
@@ -251,8 +279,13 @@ export async function GET(request: NextRequest) {
         retry_exhausted_jobs: retryExhaustedJobs,
         last_successful_job_at: lastSuccessfulJobAt,
         queue_run_is_stale:
-          queueRunResult.data != null && (queueRunAgeMinutes ?? 0) >= STALE_QUEUE_RUN_THRESHOLD_MINUTES,
+          queueRunResult.data != null && (queueRunAgeMinutes ?? 0) >= staleQueueRunThresholdMinutes,
         queue_run_age_minutes: queueRunAgeMinutes,
+        queue_run_target_minutes: queueCadenceMinutes,
+        queue_run_stale_after_minutes: staleQueueRunThresholdMinutes,
+        queue_run_overdue_minutes: queueRunOverdueMinutes,
+        queued_jobs_pending: generationJobs.filter((row) => row.status === 'queued').length,
+        oldest_queued_job_age_minutes: oldestQueuedJobAgeMinutes,
         stuck_running_jobs: stuckRunningJobs.map((row) => ({
           id: row.id,
           kind: row.kind,
@@ -281,6 +314,16 @@ export async function GET(request: NextRequest) {
                 succeeded: queueRunResult.data.payload?.succeeded ?? 0,
                 failed: queueRunResult.data.payload?.failed ?? 0,
                 skipped: queueRunResult.data.payload?.skipped ?? 0,
+                queued_total: Number(queueRunResult.data.payload?.queuedTotal ?? 0),
+                remaining_queued: Number(queueRunResult.data.payload?.remainingQueued ?? 0),
+                oldest_queued_age_minutes:
+                  typeof queueRunResult.data.payload?.oldestQueuedAgeMinutes === 'number'
+                    ? queueRunResult.data.payload.oldestQueuedAgeMinutes
+                    : null,
+                cadence_minutes:
+                  typeof queueRunResult.data.payload?.cadenceMinutes === 'number'
+                    ? queueRunResult.data.payload.cadenceMinutes
+                    : queueCadenceMinutes,
               }
             : null,
       },

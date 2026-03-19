@@ -44,7 +44,7 @@ const VALID_STATUSES = new Set<ContentStatus>([
 ]);
 
 export async function GET(request: NextRequest) {
-  const denied = await guardV2AdminAccess(request);
+  const denied = await guardV2AdminAccess(request, 'content_operator');
   if (denied) return denied;
 
   try {

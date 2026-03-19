@@ -347,7 +347,7 @@ export default function AdminSimulationsPage() {
     }
 
     const confirmed = window.confirm(
-      `Delete the linked simulation repo folder for ${lessonId}? This removes files from src/app/simulations.`
+      `Delete the linked simulation repo folder for ${lessonId}? This removes files from src/simulations.`
     );
     if (!confirmed) return;
 
@@ -419,7 +419,7 @@ export default function AdminSimulationsPage() {
           <h1 className="mt-2 text-2xl font-semibold">Explanation Visuals + Simulation Linker</h1>
           <p className="mt-2 text-sm text-slate-600">
             Generate one visual prompt for a specific explanation section, then clone/link a GitHub simulation into
-            <code className="ml-1">src/app/simulations</code> and attach its <code>embedUrl</code> right after that explanation.
+            <code className="ml-1">src/simulations</code> and attach its <code>embedUrl</code> right after that explanation.
           </p>
         </header>
 

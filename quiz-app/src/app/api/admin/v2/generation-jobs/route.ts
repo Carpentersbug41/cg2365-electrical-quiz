@@ -39,7 +39,7 @@ function isUniqueViolation(error: unknown): boolean {
 }
 
 export async function GET(request: NextRequest) {
-  const denied = await guardV2AdminAccess(request);
+  const denied = await guardV2AdminAccess(request, 'content_operator');
   if (denied) return denied;
 
   try {
@@ -96,7 +96,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const denied = await guardV2AdminAccess(request);
+  const denied = await guardV2AdminAccess(request, 'content_operator');
   if (denied) return denied;
 
   try {

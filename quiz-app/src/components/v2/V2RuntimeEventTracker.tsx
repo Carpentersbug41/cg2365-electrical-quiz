@@ -5,21 +5,20 @@ import { v2AuthedFetch } from '@/lib/v2/client';
 
 interface V2RuntimeEventTrackerProps {
   lessonId: string;
-  eventType: 'lesson_started' | 'quiz_started';
+  eventType: 'lesson_started';
 }
 
 export default function V2RuntimeEventTracker({ lessonId, eventType }: V2RuntimeEventTrackerProps) {
   useEffect(() => {
     let cancelled = false;
 
-    async function sendEvent() {
+    async function startSession() {
       try {
-        await v2AuthedFetch('/api/v2/runtime/events', {
+        await v2AuthedFetch('/api/v2/runtime/lesson-session/start', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             lessonId,
-            eventType,
             sourceContext: 'v2_runtime_tracker',
           }),
         });
@@ -30,7 +29,7 @@ export default function V2RuntimeEventTracker({ lessonId, eventType }: V2Runtime
       }
     }
 
-    void sendEvent();
+    void startSession();
 
     return () => {
       cancelled = true;

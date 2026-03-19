@@ -1,0 +1,96 @@
+Lesson: 203.4A - Earthing Systems and ADS Components
+Unit: 203
+Audience: Level 2 electrical learner
+
+Use the attachment one section at a time.
+When teaching a turn, use only the current section and do not pull teaching points forward from later sections.
+
+=== SECTION: Intro ===
+1. Identify the primary types of earthing system arrangements.
+2. Describe the function of specific components within an ADS system.
+3. Classify components according to their role in achieving disconnection.
+Open the lesson naturally and explain that the session will run in short chunks followed by questions.
+
+=== SECTION: Teach/Check 1 ===
+Core idea
+The main difference between TT, TN-S, and TN-C-S is how the installation gets its earth path back to the source.
+
+Must teach
+- TN-S has separate neutral and earth conductors from the source.
+- TN-C-S combines neutral and earth in the supply, then separates them at the intake position.
+- TT does not rely on a supplier earth conductor and instead uses a local earth electrode.
+- The type of earthing arrangement affects the fault path and the likely loop impedance.
+
+Recognition cues
+- TN-S: separate earth provided by the supplier, often via cable sheath.
+- TN-C-S: PEN conductor in the supply, split at the intake.
+- TT: local earth rod or electrode at the installation.
+
+Why it matters
+You must identify the earthing arrangement correctly before testing, fault-finding, or judging whether Automatic Disconnection of Supply will operate properly.
+
+Common misconception
+- A TT system is not automatically safer just because it has its own earth rod. The earth path can have higher impedance and often requires an RCD to achieve ADS safely.
+
+Question targets for this chunk
+1. Name the three earthing system types being compared.
+2. Which arrangement uses a local earth electrode?
+3. In which arrangement are neutral and earth combined in the supply and separated at the intake?
+4. Deeper question: Why does the earthing arrangement matter when deciding whether fault protection will operate correctly?
+
+=== SECTION: Teach/Check 2 ===
+Core idea
+ADS works when the fault current has a complete path back to the source and the protective device disconnects the supply quickly enough.
+
+Must teach
+- The CPC provides the return path from exposed conductive parts to the main earthing terminal.
+- The protective device may be an overcurrent device or an RCD depending on the arrangement and fault conditions.
+- Zs must be low enough, or the protective device may not disconnect quickly enough.
+- Low Zs leads to higher fault current and faster disconnection.
+
+Practical anchor
+- Use a toaster or metal appliance casing to explain what happens when a live conductor touches metalwork.
+
+Why it matters
+If the CPC is missing, damaged, or poorly connected, or if the loop impedance is too high, a fault may leave metalwork live.
+
+Common misconceptions
+- The CPC does not normally carry current all the time; it carries current during a fault.
+- Any fuse or breaker will not do. The protective device must suit the circuit and the fault conditions.
+
+Question targets for this chunk
+1. What is the role of the CPC?
+2. What must be true about Zs for ADS to work properly?
+3. What is the job of the protective device during a fault?
+4. Deeper question: How do the CPC, protective device, and Zs work together to make a fault safe?
+
+=== SECTION: Guided practice 1 ===
+Scenario
+- You are inspecting an installation that uses a local earth electrode and no supplier-provided earth conductor.
+
+Guided prompts
+1. Which earthing arrangement does that describe?
+2. What does that tell you about the fault path compared with a metallic supplier earth?
+3. Why might a more sensitive protective device such as an RCD be needed?
+
+Expected points
+- TT
+- higher impedance through the electrode or ground path
+- an RCD may be needed because the fault current may not be high enough for overcurrent protection alone
+
+=== SECTION: Practice 1 ===
+Independent checks
+1. Why does a TT system often need a more sensitive protective device such as an RCD?
+2. Which arrangement uses a PEN conductor?
+3. In a TN-S system, how many separate supply conductors are provided for line, neutral, and earth?
+4. What is the dedicated conductor that carries fault current from exposed metalwork back to the earthing system?
+
+=== SECTION: Integrative 1 ===
+Prompt
+Explain how the physical earthing arrangement changes the fault path and how that affects the operation of ADS.
+
+Key points
+- the arrangement determines the available earth return path
+- the CPC gives the internal fault-current path from exposed metalwork
+- the protective device disconnects when fault current is high enough
+- low enough Zs is needed for fast disconnection

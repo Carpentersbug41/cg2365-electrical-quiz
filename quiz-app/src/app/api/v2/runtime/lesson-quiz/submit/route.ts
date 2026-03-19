@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { writeV2CanonicalEvent } from '@/lib/v2/events';
 import { isAnswerCorrect } from '@/lib/v2/questionRuntime';
 import { requireV2EnrolledSession } from '@/lib/v2/session';
 
@@ -14,6 +15,7 @@ type AttemptInput = {
 
 type SubmitPayload = {
   lessonId?: string;
+  quizSessionId?: string;
   attempts?: AttemptInput[];
   sourceContext?: string;
 };
@@ -47,6 +49,7 @@ export async function POST(request: NextRequest) {
   }
 
   const lessonCode = typeof body.lessonId === 'string' ? body.lessonId.trim() : '';
+  const quizSessionId = typeof body.quizSessionId === 'string' ? body.quizSessionId.trim() : '';
   const attempts = Array.isArray(body.attempts) ? body.attempts : [];
   const sourceContext =
     typeof body.sourceContext === 'string' && body.sourceContext.trim().length > 0
@@ -55,6 +58,9 @@ export async function POST(request: NextRequest) {
 
   if (!lessonCode) {
     return NextResponse.json({ error: 'lessonId is required' }, { status: 400 });
+  }
+  if (!quizSessionId) {
+    return NextResponse.json({ error: 'quizSessionId is required' }, { status: 400 });
   }
   if (attempts.length === 0) {
     return NextResponse.json({ error: 'attempts must contain at least one item' }, { status: 400 });
@@ -81,8 +87,6 @@ export async function POST(request: NextRequest) {
   }
 
   const lessonId = lessonRow.id;
-  const nowIso = new Date().toISOString();
-
   const { data: lessonVersionRow, error: lessonVersionError } = await client
     .from('v2_lesson_versions')
     .select('id')
@@ -102,19 +106,14 @@ export async function POST(request: NextRequest) {
   }
 
   const lessonVersionId = lessonVersionRow.id;
+  const nowIso = new Date().toISOString();
 
   const normalizedAttempts = attempts.map((attempt, index) => {
     const stable =
       typeof attempt.questionStableId === 'string' && attempt.questionStableId.trim().length > 0
         ? attempt.questionStableId.trim()
-        : typeof attempt.questionId === 'string' && attempt.questionId.trim().length > 0
-          ? attempt.questionId.trim()
-          : `q-${index + 1}`;
+        : `q-${index + 1}`;
     return {
-      question_id:
-        typeof attempt.questionId === 'string' && attempt.questionId.trim().length > 0
-          ? attempt.questionId.trim()
-          : null,
       question_version_id:
         typeof attempt.questionVersionId === 'string' && attempt.questionVersionId.trim().length > 0
           ? attempt.questionVersionId.trim()
@@ -145,17 +144,15 @@ export async function POST(request: NextRequest) {
   const questionByVersionId = new Map(
     (publishedQuestions ?? []).map((row) => [row.id, row])
   );
-  const questionByStableId = new Map(
-    (publishedQuestions ?? [])
-      .filter((row) => typeof row.v2_questions?.stable_key === 'string')
-      .map((row) => [row.v2_questions!.stable_key as string, row])
-  );
 
   const gradedAttempts = normalizedAttempts.map((attempt) => {
-    const publishedQuestion =
-      (attempt.question_version_id ? questionByVersionId.get(attempt.question_version_id) : null) ??
-      questionByStableId.get(attempt.question_stable_id) ??
-      null;
+    const publishedQuestion = attempt.question_version_id ? questionByVersionId.get(attempt.question_version_id) : null;
+    if (!publishedQuestion) {
+      return {
+        invalid: true as const,
+        question_stable_id: attempt.question_stable_id,
+      };
+    }
     const acceptedAnswers = Array.isArray(publishedQuestion?.answer_key?.acceptedAnswers)
       ? publishedQuestion.answer_key!.acceptedAnswers.filter(
           (entry): entry is string => typeof entry === 'string'
@@ -167,9 +164,10 @@ export async function POST(request: NextRequest) {
         : attempt.fallback_is_correct;
 
     return {
-      question_id: publishedQuestion?.question_id ?? attempt.question_id,
-      question_version_id: publishedQuestion?.id ?? attempt.question_version_id,
-      question_stable_id: publishedQuestion?.v2_questions?.stable_key ?? attempt.question_stable_id,
+      invalid: false as const,
+      question_id: publishedQuestion.question_id,
+      question_version_id: publishedQuestion.id,
+      question_stable_id: publishedQuestion.v2_questions?.stable_key ?? attempt.question_stable_id,
       attempt_no: 1,
       is_correct: isCorrect,
       score: isCorrect ? 1 : 0,
@@ -177,49 +175,70 @@ export async function POST(request: NextRequest) {
       response_json: attempt.response_json,
     };
   });
+  const invalidAttempt = gradedAttempts.find((attempt) => attempt.invalid);
+  if (invalidAttempt) {
+    return NextResponse.json(
+      { error: `Attempt references an unpublished or unknown question version (${invalidAttempt.question_stable_id}).` },
+      { status: 409 }
+    );
+  }
 
-  const correctCount = gradedAttempts.filter((attempt) => attempt.is_correct).length;
-  const percentage = (correctCount / gradedAttempts.length) * 100;
+  const validAttempts = gradedAttempts.filter((attempt) => !attempt.invalid);
+
+  const { data: existingQuizSession, error: quizSessionLookupError } = await client
+    .from('v2_quiz_sessions')
+    .select('id, lesson_session_id, submitted_at, score_percent')
+    .eq('id', quizSessionId)
+    .eq('user_id', userId)
+    .eq('lesson_id', lessonId)
+    .eq('lesson_version_id', lessonVersionId)
+    .limit(1)
+    .maybeSingle<{ id: string; lesson_session_id: string | null; submitted_at: string | null; score_percent: number | null }>();
+  if (quizSessionLookupError) {
+    return NextResponse.json({ error: quizSessionLookupError.message }, { status: 500 });
+  }
+  if (!existingQuizSession?.id) {
+    return NextResponse.json({ error: 'Quiz session not found.' }, { status: 404 });
+  }
+
+  if (existingQuizSession.submitted_at) {
+    const { data: existingAttempts, error: existingAttemptsError } = await client
+      .from('v2_attempts')
+      .select('is_correct')
+      .eq('quiz_session_id', existingQuizSession.id)
+      .returns<Array<{ is_correct: boolean }>>();
+    if (existingAttemptsError) {
+      return NextResponse.json({ error: existingAttemptsError.message }, { status: 500 });
+    }
+    const priorCorrectCount = (existingAttempts ?? []).filter((attempt) => attempt.is_correct).length;
+    const priorAttemptsCount = (existingAttempts ?? []).length;
+    const priorPercentage =
+      priorAttemptsCount > 0 ? Number(existingQuizSession.score_percent ?? (priorCorrectCount / priorAttemptsCount) * 100) : 0;
+    return NextResponse.json({
+      ok: true,
+      quizSessionId: existingQuizSession.id,
+      lessonCode,
+      percentage: priorPercentage,
+      correctCount: priorCorrectCount,
+      attemptsCount: priorAttemptsCount,
+      masteryAchieved: priorPercentage >= 80,
+      duplicate: true,
+    });
+  }
+
+  const correctCount = validAttempts.filter((attempt) => attempt.is_correct).length;
+  const percentage = (correctCount / validAttempts.length) * 100;
   const masteryAchieved = percentage >= 80;
 
-  const { data: lessonSessionRow, error: lessonSessionError } = await client
-    .from('v2_lesson_sessions')
-    .insert({
-      user_id: userId,
-      lesson_id: lessonId,
-      lesson_version_id: lessonVersionId,
-      status: 'completed',
-      completed_at: nowIso,
-    })
-    .select('id')
-    .single<{ id: string }>();
-
-  if (lessonSessionError) {
-    return NextResponse.json({ error: lessonSessionError.message }, { status: 500 });
-  }
-
-  const { data: quizSessionRow, error: quizSessionError } = await client
-    .from('v2_quiz_sessions')
-    .insert({
-      user_id: userId,
-      lesson_session_id: lessonSessionRow.id,
-      lesson_id: lessonId,
-      lesson_version_id: lessonVersionId,
-      source_context: sourceContext,
-      submitted_at: nowIso,
-      score_percent: percentage,
-    })
-    .select('id')
-    .single<{ id: string }>();
-
-  if (quizSessionError) {
-    return NextResponse.json({ error: quizSessionError.message }, { status: 500 });
-  }
-
-  const quizSessionId = quizSessionRow.id;
-
-  const attemptsToInsert = gradedAttempts.map((attempt) => ({
-    ...attempt,
+  const attemptsToInsert = validAttempts.map((attempt) => ({
+    question_id: attempt.question_id,
+    question_version_id: attempt.question_version_id,
+    question_stable_id: attempt.question_stable_id,
+    attempt_no: attempt.attempt_no,
+    is_correct: attempt.is_correct,
+    score: attempt.score,
+    max_score: attempt.max_score,
+    response_json: attempt.response_json,
     quiz_session_id: quizSessionId,
     user_id: userId,
     lesson_id: lessonId,
@@ -429,53 +448,97 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: masteryUpsertError.message }, { status: 500 });
   }
 
-  const eventRows = [
-    ...attemptsToInsert.map((attempt) => ({
-      event_type: 'question_attempted',
-      user_id: userId,
-      lesson_id: lessonId,
-      lesson_version_id: lessonVersionId,
-      question_id: attempt.question_id,
-      question_version_id: attempt.question_version_id,
-      session_id: quizSessionId,
+  const { error: quizSessionUpdateError } = await client
+    .from('v2_quiz_sessions')
+    .update({
+      submitted_at: nowIso,
+      score_percent: percentage,
       source_context: sourceContext,
-      payload: {
-        questionStableId: attempt.question_stable_id,
-        isCorrect: attempt.is_correct,
-        score: attempt.score,
-      },
-    })),
-    {
-      event_type: 'quiz_submitted',
-      user_id: userId,
-      lesson_id: lessonId,
-      lesson_version_id: lessonVersionId,
-      session_id: quizSessionId,
-      source_context: sourceContext,
+    })
+    .eq('id', quizSessionId)
+    .is('submitted_at', null);
+  if (quizSessionUpdateError) {
+    return NextResponse.json({ error: quizSessionUpdateError.message }, { status: 500 });
+  }
+
+  if (existingQuizSession.lesson_session_id) {
+    const { error: lessonSessionUpdateError } = await client
+      .from('v2_lesson_sessions')
+      .update({
+        status: 'completed',
+        completed_at: nowIso,
+      })
+      .eq('id', existingQuizSession.lesson_session_id)
+      .eq('user_id', userId);
+    if (lessonSessionUpdateError) {
+      return NextResponse.json({ error: lessonSessionUpdateError.message }, { status: 500 });
+    }
+  }
+
+  try {
+    for (const attempt of attemptsToInsert) {
+      await writeV2CanonicalEvent(client, {
+        eventType: 'question_attempted',
+        userId,
+        lessonId,
+        lessonVersionId,
+        questionId: attempt.question_id,
+        questionVersionId: attempt.question_version_id,
+        sessionId: quizSessionId,
+        sourceContext,
+        payload: {
+          questionStableId: attempt.question_stable_id,
+          isCorrect: attempt.is_correct,
+          score: attempt.score,
+        },
+      });
+    }
+
+    await writeV2CanonicalEvent(client, {
+      eventType: 'quiz_submitted',
+      userId,
+      lessonId,
+      lessonVersionId,
+      sessionId: quizSessionId,
+      sourceContext,
       payload: {
         attemptsCount: attemptsToInsert.length,
         correctCount,
         percentage,
       },
-    },
-    {
-      event_type: 'lesson_completed',
-      user_id: userId,
-      lesson_id: lessonId,
-      lesson_version_id: lessonVersionId,
-      session_id: quizSessionId,
-      source_context: sourceContext,
+    });
+
+    await writeV2CanonicalEvent(client, {
+      eventType: 'lesson_completed',
+      userId,
+      lessonId,
+      lessonVersionId,
+      sessionId: quizSessionId,
+      sourceContext,
       payload: {
         percentage,
         masteryAchieved: masteryAchieved || bestScore >= 80,
+        lessonSessionId: existingQuizSession.lesson_session_id,
       },
-    },
-    ...reviewEventRows,
-  ];
+    });
 
-  const { error: eventError } = await client.from('v2_event_log').insert(eventRows);
-  if (eventError && !isMissingTableError(eventError)) {
-    console.warn('[V2 lesson-quiz submit] Event insert failed:', eventError);
+    for (const reviewEvent of reviewEventRows) {
+      await writeV2CanonicalEvent(client, {
+        eventType: reviewEvent.event_type,
+        userId: reviewEvent.user_id,
+        lessonId: reviewEvent.lesson_id,
+        lessonVersionId: reviewEvent.lesson_version_id,
+        questionId: reviewEvent.question_id,
+        questionVersionId: reviewEvent.question_version_id,
+        sessionId: reviewEvent.session_id,
+        sourceContext: reviewEvent.source_context,
+        payload: reviewEvent.payload,
+      });
+    }
+  } catch (eventError) {
+    if (!isMissingTableError(eventError)) {
+      console.warn('[V2 lesson-quiz submit] Event insert failed:', eventError);
+    }
   }
 
   return NextResponse.json({

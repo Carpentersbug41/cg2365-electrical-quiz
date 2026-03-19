@@ -19,6 +19,7 @@ describe('GET /api/admin/v2/readiness', () => {
   });
 
   it('returns content, access, and operations readiness signals', async () => {
+    let questionVersionsLookupCount = 0;
     const lessonsQuery = {
       select: vi.fn().mockReturnThis(),
       returns: vi.fn().mockResolvedValue({
@@ -41,10 +42,20 @@ describe('GET /api/admin/v2/readiness', () => {
     };
     const questionVersionsQuery = {
       select: vi.fn().mockReturnThis(),
+      returns: vi.fn().mockResolvedValue({
+        data: [
+          { status: 'needs_review', v2_questions: { lesson_id: 'lesson-2' } },
+          { status: 'published', v2_questions: { lesson_id: 'lesson-1' } },
+        ],
+        error: null,
+      }),
+    };
+    const publishedCoverageQuery = {
+      select: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
       returns: vi.fn().mockResolvedValue({
         data: [
-          { status: 'published', v2_questions: { lesson_id: 'lesson-1' } },
+          { v2_questions: { lesson_id: 'lesson-1' } },
         ],
         error: null,
       }),
@@ -120,7 +131,16 @@ describe('GET /api/admin/v2/readiness', () => {
       maybeSingle: vi.fn().mockResolvedValue({
         data: {
           event_ts: '2026-03-09T09:15:00.000Z',
-          payload: { attempted: 2, succeeded: 1, failed: 1, skipped: 0 },
+          payload: {
+            attempted: 2,
+            succeeded: 1,
+            failed: 1,
+            skipped: 0,
+            queuedTotal: 4,
+            remainingQueued: 2,
+            oldestQueuedAgeMinutes: 120,
+            cadenceMinutes: 15,
+          },
         },
         error: null,
       }),
@@ -130,7 +150,10 @@ describe('GET /api/admin/v2/readiness', () => {
       from: (table: string) => {
         if (table === 'v2_lessons') return lessonsQuery;
         if (table === 'v2_lesson_versions') return lessonVersionsQuery;
-        if (table === 'v2_question_versions') return questionVersionsQuery;
+        if (table === 'v2_question_versions') {
+          questionVersionsLookupCount += 1;
+          return questionVersionsLookupCount === 1 ? questionVersionsQuery : publishedCoverageQuery;
+        }
         if (table === 'v2_enrollments') return enrollmentsQuery;
         if (table === 'v2_generation_jobs') return generationJobsQuery;
         if (table === 'v2_event_log') return eventLogQuery;
@@ -153,7 +176,7 @@ describe('GET /api/admin/v2/readiness', () => {
     });
     expect(payload.content.moderation_backlog).toEqual({
       lessons: { draft: 1, needs_review: 0, approved: 0 },
-      questions: { draft: 0, needs_review: 0, approved: 0 },
+      questions: { draft: 0, needs_review: 1, approved: 0 },
     });
     expect(payload.operations.retry_exhausted_jobs).toBe(1);
     expect(payload.operations.stuck_running_jobs).toEqual([
@@ -171,12 +194,20 @@ describe('GET /api/admin/v2/readiness', () => {
       }),
     ]);
     expect(payload.operations.queue_run_is_stale).toBeTypeOf('boolean');
+    expect(payload.operations.queue_run_target_minutes).toBe(15);
+    expect(payload.operations.queue_run_stale_after_minutes).toBe(45);
+    expect(payload.operations.queued_jobs_pending).toBe(1);
+    expect(payload.operations.oldest_queued_job_age_minutes).toBeGreaterThanOrEqual(0);
     expect(payload.operations.last_queue_run).toEqual({
       event_ts: '2026-03-09T09:15:00.000Z',
       attempted: 2,
       succeeded: 1,
       failed: 1,
       skipped: 0,
+      queued_total: 4,
+      remaining_queued: 2,
+      oldest_queued_age_minutes: 120,
+      cadence_minutes: 15,
     });
     expect(payload.phase1_biology.target_lessons_total).toBe(7);
     expect(payload.phase1_biology.source_lessons_available).toBe(7);
