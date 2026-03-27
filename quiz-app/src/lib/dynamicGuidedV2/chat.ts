@@ -1,6 +1,7 @@
 import { createLLMClientWithFallback } from '@/lib/llm/client';
 import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import type { DynamicGuidedV2ChatResult, DynamicGuidedV2Lesson, DynamicGuidedV2Step, DynamicGuidedV2ThreadTurn } from '@/lib/dynamicGuidedV2/types';
+import { buildDynamicGuidedV2StepContextText } from '@/lib/dynamicGuidedV2/loader';
 
 let llmClientPromise: Promise<Awaited<ReturnType<typeof createLLMClientWithFallback>>> | null = null;
 
@@ -77,6 +78,14 @@ export type DynamicGuidedV2DebugInfo = {
   rawText: string;
 };
 
+const RUNTIME_BEHAVIOR_CHARTER = [
+  'Continue the conversation as if the tutoring session is already in progress.',
+  'Respond to the learner’s current position, not to the lesson file.',
+  'Stay inside the current section guard rails, but phrase things naturally.',
+  'Explain plainly, directly, and practically.',
+  'Do not sound like a lesson page, worksheet, or marking report.',
+];
+
 function buildSystemInstruction(lesson: DynamicGuidedV2Lesson, step: DynamicGuidedV2Step): string {
   const base = [
     `You are an expert in the ${lesson.subject} course.`,
@@ -84,11 +93,13 @@ function buildSystemInstruction(lesson: DynamicGuidedV2Lesson, step: DynamicGuid
     'Teach naturally and clearly from the provided lesson context.',
     'Teach before testing.',
     'Use the lesson context as grounding, not as a script. Re-express it naturally in tutor language.',
+    'The lesson context is a guard rail, not wording to copy.',
     'Never ask about material that has not been taught yet.',
     'Do not mention prompts, JSON, retrieval, lesson blocks, or hidden system logic.',
     'Do not sound like a marker or evaluator.',
     'If the learner is basically correct, accept it naturally even if wording is imperfect.',
     'Keep the response concise and concrete.',
+    ...RUNTIME_BEHAVIOR_CHARTER,
   ];
 
   if (step.role === 'guided_practice') {
@@ -98,6 +109,7 @@ function buildSystemInstruction(lesson: DynamicGuidedV2Lesson, step: DynamicGuid
       'Do not reteach the whole topic unless the learner is lost.',
       'Help the learner apply what has already been taught with light scaffolding.',
       'If the learner is close, nudge them rather than restarting the explanation.',
+      'Do not sound like you are presenting a prepared worksheet.',
       'Keep the learner moving through the task step by step.',
       'Return JSON only: {"assistantMessage":"...","advance":true|false}',
     ].join('\n');
@@ -117,6 +129,7 @@ function buildSystemInstruction(lesson: DynamicGuidedV2Lesson, step: DynamicGuid
     ...base,
     'You are now in the teaching and checking phase.',
     'Focus on one teachable idea at a time.',
+    'Do not sound like you are presenting a prepared lesson page.',
     'Ask only about the material just taught in this step.',
     'Return JSON only: {"assistantMessage":"...","advance":true|false}',
   ].join('\n');
@@ -130,19 +143,21 @@ function buildTurnPrompt(params: {
 }): string {
   const { lesson, step, thread, learnerMessage } = params;
   const sectionHeader = `Current attachment section: ${step.title} (${step.stage})`;
-  const sectionRule = 'Use only the current attachment section below as the source of truth for this turn. Do not pull teaching points from later sections.';
+  const sectionRule =
+    'Use only the current attachment section below as the source of truth for this turn. Stay inside it, but teach naturally rather than copying its wording.';
+  const lessonContext = buildDynamicGuidedV2StepContextText(step, learnerMessage ? 'feedback' : 'teach');
 
   if (learnerMessage) {
     return [
       `Learner profile: ${lesson.audience}. ${lesson.tonePrompt}`,
       sectionHeader,
       sectionRule,
-      `Attached lesson context:\n${step.retrievalText}`,
+      `Attached lesson context:\n${lessonContext}`,
       recentHistory(thread) ? `Recent conversation:\n${recentHistory(thread)}` : '',
       `Learner reply: ${learnerMessage}`,
       step.role === 'guided_practice'
         ? 'Respond as a tutor during guided practice. If the learner is good enough to move on, set advance=true. Otherwise give one short scaffold and set advance=false.'
-        : 'Reply like a tutor. If the learner has answered well enough, accept it naturally and set advance=true. If not, give one short correction or hint and set advance=false.',
+        : 'Reply like a tutor. If the learner has answered well enough, accept it naturally and set advance=true. If not, repair only the missing idea with one short correction or hint and set advance=false.',
     ]
       .filter(Boolean)
       .join('\n\n');
@@ -153,7 +168,7 @@ function buildTurnPrompt(params: {
       `Learner profile: ${lesson.audience}. ${lesson.tonePrompt}`,
       sectionHeader,
       sectionRule,
-      `Attached lesson context:\n${step.retrievalText}`,
+      `Attached lesson context:\n${lessonContext}`,
       recentHistory(thread) ? `Recent conversation:\n${recentHistory(thread)}` : '',
       'Welcome the learner, introduce the outcomes naturally, and explain that the lesson will move through short teaching chunks with questions. End cleanly so the learner can continue.',
     ]
@@ -165,13 +180,13 @@ function buildTurnPrompt(params: {
     `Learner profile: ${lesson.audience}. ${lesson.tonePrompt}`,
     sectionHeader,
     sectionRule,
-    `Attached lesson context:\n${step.retrievalText}`,
+    `Attached lesson context:\n${lessonContext}`,
     step.asset ? `Asset reference:\n${step.asset.title}\n${step.asset.description ?? ''}\n${step.asset.placeholderText ?? ''}` : '',
     recentHistory(thread) ? `Recent conversation:\n${recentHistory(thread)}` : '',
     step.role === 'guided_practice'
       ? 'Set up the guided practice naturally. Make the task clear, keep the scaffolding light, and end ready for the learner response. Set advance=false.'
       : step.completionMode === 'respond'
-        ? 'Teach this part naturally, then ask the learner the next grounded question. Set advance=false.'
+        ? 'Continue naturally from the current session state, teach this part in a live tutor voice, then ask the learner the next grounded question. Set advance=false.'
         : 'Teach this part naturally and end cleanly so the learner can continue. Set advance=true.',
   ]
     .filter(Boolean)

@@ -1,0 +1,59 @@
+{
+  "results": [
+    {
+      "blueprintId": "202-1A",
+      "runId": "2c3d21d1-18d2-4b81-a7ba-0fb264786af6",
+      "accepted": false,
+      "score": 84,
+      "grade": "usable",
+      "rejectionReason": "Candidate score 82 is below the 90 acceptance gate. Top issue: The objective for the Guided Practice step describes a Pythagoras task, but the actual content and question focus on transposing the power formula for resistance. Fix: Update the objective for step 202-1a-202-1a-guided-practice-1 to reflect the resistance calculation actually being performed.",
+      "versionId": null,
+      "versionNo": null,
+      "elapsedMs": 160038
+    },
+    {
+      "blueprintId": "203-1A",
+      "runId": "b9c5e1b7-6d25-43ee-8bd0-11e65926cd81",
+      "accepted": false,
+      "score": 88,
+      "grade": "usable",
+      "rejectionReason": "Refined candidate failed hard validation, so the original draft was kept. Top issue: The integrative task asks for 'one short explanation' but provides three fragmented, distinct points in the guidance. Fix: Combine the guidance into a single cohesive sentence or use a multi-part response structure that requires the learner to define both items separately.",
+      "versionId": null,
+      "versionNo": null,
+      "elapsedMs": 149306
+    },
+    {
+      "blueprintId": "203-3A",
+      "runId": "b9c5e1b7-6d25-43ee-8bd0-11e65926cd81",
+      "accepted": false,
+      "score": 56,
+      "grade": "rework",
+      "rejectionReason": "Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance is factually incorrect. A circuit that ends at the final outlet is a Radial Circuit, not a Ring Final Circuit. Fix: Change the answer guidance to 'Radial Circuit'.",
+      "versionId": null,
+      "versionNo": null,
+      "elapsedMs": 160961
+    },
+    {
+      "blueprintId": "203-4A",
+      "runId": "b9c5e1b7-6d25-43ee-8bd0-11e65926cd81",
+      "accepted": false,
+      "score": 70,
+      "grade": "rework",
+      "rejectionReason": "Candidate score 70 is below the 90 acceptance gate. Top issue: Severe internal contradiction. The 'keyIdeas' and 'anchorFacts' describe a TN-S industrial scenario, but the 'taskSkeleton' and 'answerGuidance' describe a TT system. Fix: Align the anchorFacts and keyIdeas in Step 8 to describe a TT system (local electrode) to match the task and answer.",
+      "versionId": null,
+      "versionNo": null,
+      "elapsedMs": 143666
+    },
+    {
+      "blueprintId": "203-5A",
+      "runId": "b9c5e1b7-6d25-43ee-8bd0-11e65926cd81",
+      "accepted": true,
+      "score": 94,
+      "grade": "strong",
+      "rejectionReason": "",
+      "versionId": "5c17fcdb-de93-4057-af5e-3faf8516d296",
+      "versionNo": 12,
+      "elapsedMs": 108702
+    }
+  ]
+}

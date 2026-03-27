@@ -1,6 +1,1246 @@
 {
   "runs": [
     {
+      "id": "ad9c1185-be4d-40c7-981e-167ffff5ff97",
+      "moduleTitle": "2365 Unit 203 Protective Measures",
+      "subject": "C&G 2365",
+      "audience": "Level 2 electrical learner",
+      "sourceName": "203-protective-measures.txt",
+      "sourceText": "Unit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+      "requestedLessonCount": 2,
+      "blueprints": [
+        {
+          "id": "203-4A",
+          "lessonCode": "203-4A",
+          "title": "203-4A - Earthing Systems and ADS Components",
+          "unit": "Unit 203",
+          "topic": "Earthing systems and ADS components",
+          "objectiveSummary": "Explain the main earthing arrangements and how ADS components make a fault safe.",
+          "focusText": "Earthing systems include TN-S (separate earth and neutral), TN-C-S (combined earth and neutral), and TT (earth electrode). Automatic Disconnection of Supply (ADS) relies on the Circuit Protective Conductor (CPC), the protective device (fuse or circuit breaker), and the total earth fault loop impedance (Zs) to clear faults safely.",
+          "sourceRefs": [
+            "203-4A"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4a-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earthing systems and ADS components.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4a-teach-check-1",
+              "title": "TN-S Earthing Systems",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Identify the characteristics of a TN-S system where the earth and neutral are separate throughout the supply.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-2",
+              "title": "TN-C-S Earthing Systems",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain the TN-C-S arrangement where the earth and neutral are combined in the supplier's cable but separated at the intake.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-3",
+              "title": "TT Earthing Systems",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Describe the TT system which uses an earth electrode at the installation to provide a path to earth.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-4",
+              "title": "Components of ADS",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Identify the roles of the Circuit Protective Conductor (CPC) and the protective device in an ADS system.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-5",
+              "title": "The Concept of Zs",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Define Zs as the total earth fault loop impedance that allows fault current to flow.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Identify the earthing system type and its primary components from a provided installation diagram.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Label the earthing arrangement and the CPC path in a secondary installation diagram.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Categorize three different installation scenarios as TN-S, TN-C-S, or TT based on their physical characteristics.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Explain how the CPC and the protective device work together to achieve ADS during a fault.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        },
+        {
+          "id": "203-4C",
+          "lessonCode": "203-4C",
+          "title": "203-4C - Earth Loop Impedance Path",
+          "unit": "Unit 203",
+          "topic": "Earth loop impedance path",
+          "objectiveSummary": "Calculate total earth loop impedance and explain the importance of low impedance for safety.",
+          "focusText": "The total earth fault loop impedance (Zs) is the sum of the external loop impedance (Ze) and the resistance of the installation's line and protective conductors (R1 + R2). Low impedance is critical to ensure fault current is high enough to trigger the protective device quickly.",
+          "sourceRefs": [
+            "203-4C"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4c-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earth loop impedance path.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4c-teach-check-1",
+              "title": "External Earth Loop Impedance (Ze)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Define Ze as the impedance of the loop external to the installation on the supplier's side.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-2",
+              "title": "Installation Resistance (R1 + R2)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain R1 + R2 as the combined resistance of the phase conductor and the circuit protective conductor.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-3",
+              "title": "The Zs Formula",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Apply the formula Zs = Ze + (R1 + R2) to determine total impedance.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-4",
+              "title": "Supplier vs. Installation Sides",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Distinguish between the components of the loop on the supplier's side and the consumer's installation side.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-5",
+              "title": "Impedance and Disconnection Speed",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain why a low Zs value is necessary to ensure the protective device operates within the required time limits.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Calculate the total earth fault loop impedance (Zs) given specific values for Ze, R1, and R2.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Calculate Zs for a new circuit scenario using provided Ze and R1+R2 measurements.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Determine if a calculated Zs value is acceptable for a circuit by comparing it to a maximum permitted value.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Describe the complete path of a fault current from the point of fault back to the transformer, including both supplier and installation sections.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        }
+      ],
+      "phaseArtifacts": [
+        {
+          "phase": "D1_plan_module_blueprints",
+          "status": "completed",
+          "output": {
+            "prompt": "You are designing lesson blueprints for the City & Guilds 2365 electrical course.\nReturn strict JSON only.\nStay grounded in the supplied source text.\nDo not invent biology or unrelated curriculum content.\nProduce a dynamic lesson plan suitable for the dynamic-guided-v2 runtime.\nEach blueprint must be self-contained and scoped to one lesson.\nEach blueprint must include 4 to 6 teach/check sections by default, then worked example, guided practice, practice, and integrative close.\nOnly go below 4 teach/check sections if the topic is genuinely very narrow and still supports a full teaching arc.\nIf a lesson would need more than 6 teach/check sections, split it into another lesson instead.\nEach teach/check section must teach one main idea only.\nGuided practice must mirror the reasoning pattern used in the worked example.\nKeep focusText concise, factual, and scoped only to that lesson.\n\nModule title: 2365 Unit 203 Protective Measures\nSubject: C&G 2365\nAudience: Level 2 electrical learner\nRequested lesson count: 2\n\nReturn JSON in this exact shape:\n{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Explain the main earthing arrangements and how ADS components make a fault safe.\",\n      \"focusText\": \"Scoped grounded text for this lesson only.\",\n      \"sourceRefs\": [\n        \"section 1\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"Teach/Check 1\",\n          \"objective\": \"Teach the first core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 2\",\n          \"objective\": \"Teach the second core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 3\",\n          \"objective\": \"Teach the third core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 4\",\n          \"objective\": \"Teach the fourth core concept.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Walk through one worked example that uses the same reasoning pattern needed later.\",\n      \"guidedPracticeObjective\": \"Set one supported task that mirrors the worked example.\",\n      \"practiceObjective\": \"Set one more independent application task.\",\n      \"integrativeObjective\": \"Ask the learner to pull the lesson together in one explanation.\"\n    }\n  ]\n}\n\nGrounded source text:\nUnit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+            "rawText": "{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Explain the main earthing arrangements and how ADS components make a fault safe.\",\n      \"focusText\": \"Earthing systems include TN-S (separate earth and neutral), TN-C-S (combined earth and neutral), and TT (earth electrode). Automatic Disconnection of Supply (ADS) relies on the Circuit Protective Conductor (CPC), the protective device (fuse or circuit breaker), and the total earth fault loop impedance (Zs) to clear faults safely.\",\n      \"sourceRefs\": [\n        \"203-4A\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"TN-S Earthing Systems\",\n          \"objective\": \"Identify the characteristics of a TN-S system where the earth and neutral are separate throughout the supply.\"\n        },\n        {\n          \"title\": \"TN-C-S Earthing Systems\",\n          \"objective\": \"Explain the TN-C-S arrangement where the earth and neutral are combined in the supplier's cable but separated at the intake.\"\n        },\n        {\n          \"title\": \"TT Earthing Systems\",\n          \"objective\": \"Describe the TT system which uses an earth electrode at the installation to provide a path to earth.\"\n        },\n        {\n          \"title\": \"Components of ADS\",\n          \"objective\": \"Identify the roles of the Circuit Protective Conductor (CPC) and the protective device in an ADS system.\"\n        },\n        {\n          \"title\": \"The Concept of Zs\",\n          \"objective\": \"Define Zs as the total earth fault loop impedance that allows fault current to flow.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Identify the earthing system type and its primary components from a provided installation diagram.\",\n      \"guidedPracticeObjective\": \"Label the earthing arrangement and the CPC path in a secondary installation diagram.\",\n      \"practiceObjective\": \"Categorize three different installation scenarios as TN-S, TN-C-S, or TT based on their physical characteristics.\",\n      \"integrativeObjective\": \"Explain how the CPC and the protective device work together to achieve ADS during a fault.\"\n    },\n    {\n      \"lessonCode\": \"203-4C\",\n      \"title\": \"203-4C - Earth Loop Impedance Path\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earth loop impedance path\",\n      \"objectiveSummary\": \"Calculate total earth loop impedance and explain the importance of low impedance for safety.\",\n      \"focusText\": \"The total earth fault loop impedance (Zs) is the sum of the external loop impedance (Ze) and the resistance of the installation's line and protective conductors (R1 + R2). Low impedance is critical to ensure fault current is high enough to trigger the protective device quickly.\",\n      \"sourceRefs\": [\n        \"203-4C\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"External Earth Loop Impedance (Ze)\",\n          \"objective\": \"Define Ze as the impedance of the loop external to the installation on the supplier's side.\"\n        },\n        {\n          \"title\": \"Installation Resistance (R1 + R2)\",\n          \"objective\": \"Explain R1 + R2 as the combined resistance of the phase conductor and the circuit protective conductor.\"\n        },\n        {\n          \"title\": \"The Zs Formula\",\n          \"objective\": \"Apply the formula Zs = Ze + (R1 + R2) to determine total impedance.\"\n        },\n        {\n          \"title\": \"Supplier vs. Installation Sides\",\n          \"objective\": \"Distinguish between the components of the loop on the supplier's side and the consumer's installation side.\"\n        },\n        {\n          \"title\": \"Impedance and Disconnection Speed\",\n          \"objective\": \"Explain why a low Zs value is necessary to ensure the protective device operates within the required time limits.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Calculate the total earth fault loop impedance (Zs) given specific values for Ze, R1, and R2.\",\n      \"guidedPracticeObjective\": \"Calculate Zs for a new circuit scenario using provided Ze and R1+R2 measurements.\",\n      \"practiceObjective\": \"Determine if a calculated Zs value is acceptable for a circuit by comparing it to a maximum permitted value.\",\n      \"integrativeObjective\": \"Describe the complete path of a fault current from the point of fault back to the transformer, including both supplier and installation sections.\"\n    }\n  ]\n}"
+          },
+          "startedAt": "2026-03-20T11:02:54.792Z",
+          "finishedAt": "2026-03-20T11:03:03.561Z"
+        },
+        {
+          "phase": "D2_normalize_blueprints",
+          "status": "completed",
+          "output": {
+            "moduleTitle": "2365 Unit 203 Protective Measures",
+            "blueprintCount": 2,
+            "blueprintIds": [
+              "203-4A",
+              "203-4C"
+            ]
+          },
+          "startedAt": "2026-03-20T11:03:03.565Z",
+          "finishedAt": "2026-03-20T11:03:03.565Z"
+        }
+      ],
+      "createdBy": null,
+      "createdAt": "2026-03-20T11:03:03.569Z",
+      "updatedAt": "2026-03-20T11:03:03.569Z"
+    },
+    {
+      "id": "24881fed-6ce5-4e4b-b132-38b2ae8db482",
+      "moduleTitle": "2365 Unit 203 Protective Measures",
+      "subject": "C&G 2365",
+      "audience": "Level 2 electrical learner",
+      "sourceName": "203-protective-measures.txt",
+      "sourceText": "Unit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+      "requestedLessonCount": 2,
+      "blueprints": [
+        {
+          "id": "203-4A",
+          "lessonCode": "203-4A",
+          "title": "203-4A - Earthing Systems and ADS Components",
+          "unit": "Unit 203",
+          "topic": "Earthing systems and ADS components",
+          "objectiveSummary": "Explain the main earthing arrangements and how ADS components make a fault safe.",
+          "focusText": "This lesson covers the three primary earthing arrangements (TN-S, TN-C-S, and TT) and the fundamental components of Automatic Disconnection of Supply (ADS), including the Circuit Protective Conductor (CPC) and protective devices.",
+          "sourceRefs": [
+            "203-4A Earthing systems and ADS components"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4a-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earthing systems and ADS components.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4a-teach-check-1",
+              "title": "TN-S Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Identify the characteristics of a TN-S system where neutral and earth are separate throughout.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-2",
+              "title": "TN-C-S Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain the TN-C-S system where neutral and earth are combined in the supply but separated in the installation.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-3",
+              "title": "TT Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Describe the TT system relying on a local earth electrode for the earth connection.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-4",
+              "title": "The Role of the CPC",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Define the Circuit Protective Conductor (CPC) and its role in providing a path for fault current.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-5",
+              "title": "Automatic Disconnection of Supply (ADS)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain how protective devices use fault current to disconnect the supply safely during an earth fault.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Walk through identifying an earthing system from a diagram and tracing the fault path through the CPC to the protective device.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Identify a specific earthing arrangement from a description and list the components required for ADS to function in that scenario.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Categorize different installation scenarios into TN-S, TN-C-S, or TT and identify the correct protective component for each.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Explain in detail how a fault in a TN-S system travels from the point of fault back to the source to trigger disconnection.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        },
+        {
+          "id": "203-4C",
+          "lessonCode": "203-4C",
+          "title": "203-4C - Earth Loop Impedance Path",
+          "unit": "Unit 203",
+          "topic": "Earth loop impedance path",
+          "objectiveSummary": "Calculate total earth loop impedance (Zs) and understand the components of the fault path.",
+          "focusText": "This lesson focuses on the earth fault loop impedance path, specifically the relationship between external impedance (Ze), installation resistance (R1 + R2), and total impedance (Zs).",
+          "sourceRefs": [
+            "203-4C Earth loop impedance path"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4c-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earth loop impedance path.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4c-teach-check-1",
+              "title": "External Impedance (Ze)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Define Ze as the impedance of the fault loop external to the installation on the supplier side.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-2",
+              "title": "Installation Resistance (R1 + R2)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain R1 + R2 as the combined resistance of the line conductor and the circuit protective conductor.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-3",
+              "title": "The Zs Formula",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Apply the formula Zs = Ze + (R1 + R2) to determine total earth fault loop impedance.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-4",
+              "title": "Supplier vs. Installation Sides",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Distinguish which parts of the fault loop belong to the network operator and which belong to the consumer.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-5",
+              "title": "Impedance and Disconnection Speed",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain why low impedance is necessary to ensure the fault current is high enough for fast disconnection.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Demonstrate calculating Zs by adding a given Ze value to measured R1 and R2 values.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Calculate the total Zs for a circuit given specific Ze and (R1 + R2) values, following the step-by-step addition method.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Solve multiple calculation problems to find missing values (Zs, Ze, or R1+R2) within the earth loop impedance formula.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Describe the complete path of an earth fault current from the point of failure back to the transformer, identifying every component that contributes to Zs.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        }
+      ],
+      "phaseArtifacts": [
+        {
+          "phase": "D1_plan_module_blueprints",
+          "status": "completed",
+          "output": {
+            "prompt": "You are designing lesson blueprints for the City & Guilds 2365 electrical course.\nReturn strict JSON only.\nStay grounded in the supplied source text.\nDo not invent biology or unrelated curriculum content.\nProduce a dynamic lesson plan suitable for the dynamic-guided-v2 runtime.\nEach blueprint must be self-contained and scoped to one lesson.\nEach blueprint must include 4 to 6 teach/check sections by default, then worked example, guided practice, practice, and integrative close.\nOnly go below 4 teach/check sections if the topic is genuinely very narrow and still supports a full teaching arc.\nIf a lesson would need more than 6 teach/check sections, split it into another lesson instead.\nEach teach/check section must teach one main idea only.\nGuided practice must mirror the reasoning pattern used in the worked example.\nKeep focusText concise, factual, and scoped only to that lesson.\n\nModule title: 2365 Unit 203 Protective Measures\nSubject: C&G 2365\nAudience: Level 2 electrical learner\nRequested lesson count: 2\n\nReturn JSON in this exact shape:\n{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Explain the main earthing arrangements and how ADS components make a fault safe.\",\n      \"focusText\": \"Scoped grounded text for this lesson only.\",\n      \"sourceRefs\": [\n        \"section 1\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"Teach/Check 1\",\n          \"objective\": \"Teach the first core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 2\",\n          \"objective\": \"Teach the second core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 3\",\n          \"objective\": \"Teach the third core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 4\",\n          \"objective\": \"Teach the fourth core concept.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Walk through one worked example that uses the same reasoning pattern needed later.\",\n      \"guidedPracticeObjective\": \"Set one supported task that mirrors the worked example.\",\n      \"practiceObjective\": \"Set one more independent application task.\",\n      \"integrativeObjective\": \"Ask the learner to pull the lesson together in one explanation.\"\n    }\n  ]\n}\n\nGrounded source text:\nUnit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+            "rawText": "{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Explain the main earthing arrangements and how ADS components make a fault safe.\",\n      \"focusText\": \"This lesson covers the three primary earthing arrangements (TN-S, TN-C-S, and TT) and the fundamental components of Automatic Disconnection of Supply (ADS), including the Circuit Protective Conductor (CPC) and protective devices.\",\n      \"sourceRefs\": [\n        \"203-4A Earthing systems and ADS components\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"TN-S Earthing Arrangement\",\n          \"objective\": \"Identify the characteristics of a TN-S system where neutral and earth are separate throughout.\"\n        },\n        {\n          \"title\": \"TN-C-S Earthing Arrangement\",\n          \"objective\": \"Explain the TN-C-S system where neutral and earth are combined in the supply but separated in the installation.\"\n        },\n        {\n          \"title\": \"TT Earthing Arrangement\",\n          \"objective\": \"Describe the TT system relying on a local earth electrode for the earth connection.\"\n        },\n        {\n          \"title\": \"The Role of the CPC\",\n          \"objective\": \"Define the Circuit Protective Conductor (CPC) and its role in providing a path for fault current.\"\n        },\n        {\n          \"title\": \"Automatic Disconnection of Supply (ADS)\",\n          \"objective\": \"Explain how protective devices use fault current to disconnect the supply safely during an earth fault.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Walk through identifying an earthing system from a diagram and tracing the fault path through the CPC to the protective device.\",\n      \"guidedPracticeObjective\": \"Identify a specific earthing arrangement from a description and list the components required for ADS to function in that scenario.\",\n      \"practiceObjective\": \"Categorize different installation scenarios into TN-S, TN-C-S, or TT and identify the correct protective component for each.\",\n      \"integrativeObjective\": \"Explain in detail how a fault in a TN-S system travels from the point of fault back to the source to trigger disconnection.\"\n    },\n    {\n      \"lessonCode\": \"203-4C\",\n      \"title\": \"203-4C - Earth Loop Impedance Path\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earth loop impedance path\",\n      \"objectiveSummary\": \"Calculate total earth loop impedance (Zs) and understand the components of the fault path.\",\n      \"focusText\": \"This lesson focuses on the earth fault loop impedance path, specifically the relationship between external impedance (Ze), installation resistance (R1 + R2), and total impedance (Zs).\",\n      \"sourceRefs\": [\n        \"203-4C Earth loop impedance path\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"External Impedance (Ze)\",\n          \"objective\": \"Define Ze as the impedance of the fault loop external to the installation on the supplier side.\"\n        },\n        {\n          \"title\": \"Installation Resistance (R1 + R2)\",\n          \"objective\": \"Explain R1 + R2 as the combined resistance of the line conductor and the circuit protective conductor.\"\n        },\n        {\n          \"title\": \"The Zs Formula\",\n          \"objective\": \"Apply the formula Zs = Ze + (R1 + R2) to determine total earth fault loop impedance.\"\n        },\n        {\n          \"title\": \"Supplier vs. Installation Sides\",\n          \"objective\": \"Distinguish which parts of the fault loop belong to the network operator and which belong to the consumer.\"\n        },\n        {\n          \"title\": \"Impedance and Disconnection Speed\",\n          \"objective\": \"Explain why low impedance is necessary to ensure the fault current is high enough for fast disconnection.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Demonstrate calculating Zs by adding a given Ze value to measured R1 and R2 values.\",\n      \"guidedPracticeObjective\": \"Calculate the total Zs for a circuit given specific Ze and (R1 + R2) values, following the step-by-step addition method.\",\n      \"practiceObjective\": \"Solve multiple calculation problems to find missing values (Zs, Ze, or R1+R2) within the earth loop impedance formula.\",\n      \"integrativeObjective\": \"Describe the complete path of an earth fault current from the point of failure back to the transformer, identifying every component that contributes to Zs.\"\n    }\n  ]\n}"
+          },
+          "startedAt": "2026-03-20T10:59:08.031Z",
+          "finishedAt": "2026-03-20T10:59:17.230Z"
+        },
+        {
+          "phase": "D2_normalize_blueprints",
+          "status": "completed",
+          "output": {
+            "moduleTitle": "2365 Unit 203 Protective Measures",
+            "blueprintCount": 2,
+            "blueprintIds": [
+              "203-4A",
+              "203-4C"
+            ]
+          },
+          "startedAt": "2026-03-20T10:59:17.234Z",
+          "finishedAt": "2026-03-20T10:59:17.234Z"
+        }
+      ],
+      "createdBy": null,
+      "createdAt": "2026-03-20T10:59:17.238Z",
+      "updatedAt": "2026-03-20T10:59:17.238Z"
+    },
+    {
+      "id": "2475ad60-b81a-4f32-9c11-3ca550f93172",
+      "moduleTitle": "2365 Unit 203 Protective Measures",
+      "subject": "C&G 2365",
+      "audience": "Level 2 electrical learner",
+      "sourceName": "203-protective-measures.txt",
+      "sourceText": "Unit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+      "requestedLessonCount": 2,
+      "blueprints": [
+        {
+          "id": "203-4A",
+          "lessonCode": "203-4A",
+          "title": "203-4A - Earthing Systems and ADS Components",
+          "unit": "Unit 203",
+          "topic": "Earthing systems and ADS components",
+          "objectiveSummary": "Explain the main earthing arrangements and how ADS components make a fault safe.",
+          "focusText": "This lesson covers the three main earthing arrangements (TN-S, TN-C-S, TT) and the components of Automatic Disconnection of Supply (ADS), including the Circuit Protective Conductor (CPC) and protective devices.",
+          "sourceRefs": [
+            "203-4A"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4a-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earthing systems and ADS components.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4a-teach-check-1",
+              "title": "TN-S Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Identify the characteristics of a TN-S system where earth and neutral are separate throughout.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-2",
+              "title": "TN-C-S Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain the TN-C-S system where neutral and earth are combined in the supply but separate in the installation.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-3",
+              "title": "TT Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Describe the TT system which relies on a local earth electrode for the installation's earth connection.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-4",
+              "title": "The Role of the CPC",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Define the Circuit Protective Conductor (CPC) and its role in providing a path for fault current.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-5",
+              "title": "ADS and Protective Devices",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain how protective devices work with the earthing system to achieve Automatic Disconnection of Supply (ADS).",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Walk through identifying an earthing system based on a diagram of the incoming supply and consumer unit connections.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Identify the earthing arrangement and the specific path the fault current would take through the CPC in a provided scenario.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Categorize three different installation descriptions as TN-S, TN-C-S, or TT and identify the required protective components.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Explain the complete sequence of events from a fault occurring to the protective device disconnecting the supply in a TN-S system.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        },
+        {
+          "id": "203-4C",
+          "lessonCode": "203-4C",
+          "title": "203-4C - Earth Loop Impedance Path",
+          "unit": "Unit 203",
+          "topic": "Earth loop impedance path",
+          "objectiveSummary": "Calculate total earth loop impedance and explain the importance of low impedance for safety.",
+          "focusText": "This lesson defines the components of the earth loop impedance path, including Ze (supplier side) and R1+R2 (installation side), and explains why low Zs values are required for fast disconnection.",
+          "sourceRefs": [
+            "203-4C"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4c-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earth loop impedance path.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4c-teach-check-1",
+              "title": "External Earth Loop Impedance (Ze)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Define Ze as the impedance of the loop external to the installation on the supplier side.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-2",
+              "title": "Installation Resistance (R1 + R2)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain R1 + R2 as the combined resistance of the line conductor and the circuit protective conductor.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-3",
+              "title": "The Zs Formula",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Teach the calculation for total earth loop impedance: Zs = Ze + (R1 + R2).",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-4",
+              "title": "Supplier vs. Installation Side",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Distinguish between the components of the fault loop provided by the supplier and those installed by the electrician.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-5",
+              "title": "Impedance and Disconnection Speed",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain the relationship between low impedance and the ability of a protective device to trip fast enough to prevent danger.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Calculate the total earth loop impedance (Zs) for a circuit given specific values for Ze and R1+R2.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Perform a Zs calculation for a radial circuit using provided Ze and conductor resistance values.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Determine the required R1+R2 value needed to maintain a specific Zs limit when the Ze is already known.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Describe the full physical path of a fault current from the point of fault back to the transformer, identifying every component of Zs.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        }
+      ],
+      "phaseArtifacts": [
+        {
+          "phase": "D1_plan_module_blueprints",
+          "status": "completed",
+          "output": {
+            "prompt": "You are designing lesson blueprints for the City & Guilds 2365 electrical course.\nReturn strict JSON only.\nStay grounded in the supplied source text.\nDo not invent biology or unrelated curriculum content.\nProduce a dynamic lesson plan suitable for the dynamic-guided-v2 runtime.\nEach blueprint must be self-contained and scoped to one lesson.\nEach blueprint must include 4 to 6 teach/check sections by default, then worked example, guided practice, practice, and integrative close.\nOnly go below 4 teach/check sections if the topic is genuinely very narrow and still supports a full teaching arc.\nIf a lesson would need more than 6 teach/check sections, split it into another lesson instead.\nEach teach/check section must teach one main idea only.\nGuided practice must mirror the reasoning pattern used in the worked example.\nKeep focusText concise, factual, and scoped only to that lesson.\n\nModule title: 2365 Unit 203 Protective Measures\nSubject: C&G 2365\nAudience: Level 2 electrical learner\nRequested lesson count: 2\n\nReturn JSON in this exact shape:\n{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Explain the main earthing arrangements and how ADS components make a fault safe.\",\n      \"focusText\": \"Scoped grounded text for this lesson only.\",\n      \"sourceRefs\": [\n        \"section 1\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"Teach/Check 1\",\n          \"objective\": \"Teach the first core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 2\",\n          \"objective\": \"Teach the second core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 3\",\n          \"objective\": \"Teach the third core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 4\",\n          \"objective\": \"Teach the fourth core concept.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Walk through one worked example that uses the same reasoning pattern needed later.\",\n      \"guidedPracticeObjective\": \"Set one supported task that mirrors the worked example.\",\n      \"practiceObjective\": \"Set one more independent application task.\",\n      \"integrativeObjective\": \"Ask the learner to pull the lesson together in one explanation.\"\n    }\n  ]\n}\n\nGrounded source text:\nUnit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+            "rawText": "{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Explain the main earthing arrangements and how ADS components make a fault safe.\",\n      \"focusText\": \"This lesson covers the three main earthing arrangements (TN-S, TN-C-S, TT) and the components of Automatic Disconnection of Supply (ADS), including the Circuit Protective Conductor (CPC) and protective devices.\",\n      \"sourceRefs\": [\n        \"203-4A\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"TN-S Earthing Arrangement\",\n          \"objective\": \"Identify the characteristics of a TN-S system where earth and neutral are separate throughout.\"\n        },\n        {\n          \"title\": \"TN-C-S Earthing Arrangement\",\n          \"objective\": \"Explain the TN-C-S system where neutral and earth are combined in the supply but separate in the installation.\"\n        },\n        {\n          \"title\": \"TT Earthing Arrangement\",\n          \"objective\": \"Describe the TT system which relies on a local earth electrode for the installation's earth connection.\"\n        },\n        {\n          \"title\": \"The Role of the CPC\",\n          \"objective\": \"Define the Circuit Protective Conductor (CPC) and its role in providing a path for fault current.\"\n        },\n        {\n          \"title\": \"ADS and Protective Devices\",\n          \"objective\": \"Explain how protective devices work with the earthing system to achieve Automatic Disconnection of Supply (ADS).\"\n        }\n      ],\n      \"workedExampleObjective\": \"Walk through identifying an earthing system based on a diagram of the incoming supply and consumer unit connections.\",\n      \"guidedPracticeObjective\": \"Identify the earthing arrangement and the specific path the fault current would take through the CPC in a provided scenario.\",\n      \"practiceObjective\": \"Categorize three different installation descriptions as TN-S, TN-C-S, or TT and identify the required protective components.\",\n      \"integrativeObjective\": \"Explain the complete sequence of events from a fault occurring to the protective device disconnecting the supply in a TN-S system.\"\n    },\n    {\n      \"lessonCode\": \"203-4C\",\n      \"title\": \"203-4C - Earth Loop Impedance Path\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earth loop impedance path\",\n      \"objectiveSummary\": \"Calculate total earth loop impedance and explain the importance of low impedance for safety.\",\n      \"focusText\": \"This lesson defines the components of the earth loop impedance path, including Ze (supplier side) and R1+R2 (installation side), and explains why low Zs values are required for fast disconnection.\",\n      \"sourceRefs\": [\n        \"203-4C\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"External Earth Loop Impedance (Ze)\",\n          \"objective\": \"Define Ze as the impedance of the loop external to the installation on the supplier side.\"\n        },\n        {\n          \"title\": \"Installation Resistance (R1 + R2)\",\n          \"objective\": \"Explain R1 + R2 as the combined resistance of the line conductor and the circuit protective conductor.\"\n        },\n        {\n          \"title\": \"The Zs Formula\",\n          \"objective\": \"Teach the calculation for total earth loop impedance: Zs = Ze + (R1 + R2).\"\n        },\n        {\n          \"title\": \"Supplier vs. Installation Side\",\n          \"objective\": \"Distinguish between the components of the fault loop provided by the supplier and those installed by the electrician.\"\n        },\n        {\n          \"title\": \"Impedance and Disconnection Speed\",\n          \"objective\": \"Explain the relationship between low impedance and the ability of a protective device to trip fast enough to prevent danger.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Calculate the total earth loop impedance (Zs) for a circuit given specific values for Ze and R1+R2.\",\n      \"guidedPracticeObjective\": \"Perform a Zs calculation for a radial circuit using provided Ze and conductor resistance values.\",\n      \"practiceObjective\": \"Determine the required R1+R2 value needed to maintain a specific Zs limit when the Ze is already known.\",\n      \"integrativeObjective\": \"Describe the full physical path of a fault current from the point of fault back to the transformer, identifying every component of Zs.\"\n    }\n  ]\n}"
+          },
+          "startedAt": "2026-03-20T10:51:43.100Z",
+          "finishedAt": "2026-03-20T10:51:52.804Z"
+        },
+        {
+          "phase": "D2_normalize_blueprints",
+          "status": "completed",
+          "output": {
+            "moduleTitle": "2365 Unit 203 Protective Measures",
+            "blueprintCount": 2,
+            "blueprintIds": [
+              "203-4A",
+              "203-4C"
+            ]
+          },
+          "startedAt": "2026-03-20T10:51:52.810Z",
+          "finishedAt": "2026-03-20T10:51:52.810Z"
+        }
+      ],
+      "createdBy": null,
+      "createdAt": "2026-03-20T10:51:52.816Z",
+      "updatedAt": "2026-03-20T10:51:52.816Z"
+    },
+    {
+      "id": "204401b7-8c5d-435c-888d-83bb21e68878",
+      "moduleTitle": "2365 Unit 203 Protective Measures",
+      "subject": "C&G 2365",
+      "audience": "Level 2 electrical learner",
+      "sourceName": "203-protective-measures.txt",
+      "sourceText": "Unit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+      "requestedLessonCount": 2,
+      "blueprints": [
+        {
+          "id": "203-4A",
+          "lessonCode": "203-4A",
+          "title": "203-4A - Earthing Systems and ADS Components",
+          "unit": "Unit 203",
+          "topic": "Earthing systems and ADS components",
+          "objectiveSummary": "Identify the three main earthing arrangements and explain how ADS components work together to disconnect a fault.",
+          "focusText": "Earthing systems include TN-S (separate earth), TN-C-S (combined neutral and earth), and TT (earth electrode). Automatic Disconnection of Supply (ADS) relies on the Circuit Protective Conductor (CPC) and protective devices to clear faults safely.",
+          "sourceRefs": [
+            "203-4A Earthing systems and ADS components"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4a-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earthing systems and ADS components.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4a-teach-check-1",
+              "title": "TN-S Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Identify the characteristics of a TN-S system where the earth is separate from the neutral throughout the network.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-2",
+              "title": "TN-C-S Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain the TN-C-S system where the neutral and earth are combined in the supply cable but separate in the installation.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-3",
+              "title": "TT Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Describe the TT system where the consumer provides their own earth connection via an electrode.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-4",
+              "title": "The Role of the CPC",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Define the Circuit Protective Conductor (CPC) and its function in providing a path for fault current.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-5",
+              "title": "ADS and Protective Devices",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain how protective devices like fuses or MCBs achieve Automatic Disconnection of Supply during a fault.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Analyze a diagram of a supply entry to determine if it is TN-S or TN-C-S based on the connection to the cable sheath or a combined terminal.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Given a description of an installation using an earth rod and no supplier earth terminal, identify the system type and the necessary protective components.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Label the components of an ADS loop including the transformer, line conductor, fault point, CPC, and protective device.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Explain how the choice of earthing system (TN-S vs TT) changes the way a fault current returns to the source.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        },
+        {
+          "id": "203-4C",
+          "lessonCode": "203-4C",
+          "title": "203-4C - Earth Loop Impedance Path",
+          "unit": "Unit 203",
+          "topic": "Earth loop impedance path and calculation",
+          "objectiveSummary": "Calculate total earth fault loop impedance (Zs) and explain the importance of low impedance for safety.",
+          "focusText": "Total earth fault loop impedance (Zs) is the sum of external impedance (Ze) and the installation's circuit resistance (R1 + R2). Low impedance is critical for ensuring fault current is high enough to trigger protective devices quickly.",
+          "sourceRefs": [
+            "203-4C Earth loop impedance path"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4c-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earth loop impedance path and calculation.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4c-teach-check-1",
+              "title": "External Impedance (Ze)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Define Ze as the impedance of the supply side of the earth fault loop.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-2",
+              "title": "Installation Resistance (R1 + R2)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain R1 (line conductor) and R2 (CPC) as the installation side of the loop.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-3",
+              "title": "The Zs Formula",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Apply the formula Zs = Ze + (R1 + R2) to find the total loop impedance.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-4",
+              "title": "Impedance and Disconnection Time",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain why a low Zs value is necessary to produce a high enough fault current for fast disconnection.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-5",
+              "title": "Supplier vs Installation Responsibilities",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Distinguish between the components of the loop provided by the distributor and those installed by the electrician.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Calculate Zs for a circuit where Ze is 0.35 ohms and the measured R1 + R2 is 1.2 ohms.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Calculate the total Zs for a TN-S system given a Ze of 0.8 ohms and circuit conductors with a combined resistance of 0.5 ohms.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Determine the required R1+R2 value needed to stay under a maximum Zs limit of 1.1 ohms if the Ze is 0.3 ohms.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Describe the complete path of a fault current starting from the transformer, through the installation, and back to the source, naming all impedance components.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        }
+      ],
+      "phaseArtifacts": [
+        {
+          "phase": "D1_plan_module_blueprints",
+          "status": "completed",
+          "output": {
+            "prompt": "You are designing lesson blueprints for the City & Guilds 2365 electrical course.\nReturn strict JSON only.\nStay grounded in the supplied source text.\nDo not invent biology or unrelated curriculum content.\nProduce a dynamic lesson plan suitable for the dynamic-guided-v2 runtime.\nEach blueprint must be self-contained and scoped to one lesson.\nEach blueprint must include 4 to 6 teach/check sections by default, then worked example, guided practice, practice, and integrative close.\nOnly go below 4 teach/check sections if the topic is genuinely very narrow and still supports a full teaching arc.\nIf a lesson would need more than 6 teach/check sections, split it into another lesson instead.\nEach teach/check section must teach one main idea only.\nGuided practice must mirror the reasoning pattern used in the worked example.\nKeep focusText concise, factual, and scoped only to that lesson.\n\nModule title: 2365 Unit 203 Protective Measures\nSubject: C&G 2365\nAudience: Level 2 electrical learner\nRequested lesson count: 2\n\nReturn JSON in this exact shape:\n{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Explain the main earthing arrangements and how ADS components make a fault safe.\",\n      \"focusText\": \"Scoped grounded text for this lesson only.\",\n      \"sourceRefs\": [\n        \"section 1\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"Teach/Check 1\",\n          \"objective\": \"Teach the first core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 2\",\n          \"objective\": \"Teach the second core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 3\",\n          \"objective\": \"Teach the third core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 4\",\n          \"objective\": \"Teach the fourth core concept.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Walk through one worked example that uses the same reasoning pattern needed later.\",\n      \"guidedPracticeObjective\": \"Set one supported task that mirrors the worked example.\",\n      \"practiceObjective\": \"Set one more independent application task.\",\n      \"integrativeObjective\": \"Ask the learner to pull the lesson together in one explanation.\"\n    }\n  ]\n}\n\nGrounded source text:\nUnit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+            "rawText": "{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Identify the three main earthing arrangements and explain how ADS components work together to disconnect a fault.\",\n      \"focusText\": \"Earthing systems include TN-S (separate earth), TN-C-S (combined neutral and earth), and TT (earth electrode). Automatic Disconnection of Supply (ADS) relies on the Circuit Protective Conductor (CPC) and protective devices to clear faults safely.\",\n      \"sourceRefs\": [\n        \"203-4A Earthing systems and ADS components\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"TN-S Earthing Arrangement\",\n          \"objective\": \"Identify the characteristics of a TN-S system where the earth is separate from the neutral throughout the network.\"\n        },\n        {\n          \"title\": \"TN-C-S Earthing Arrangement\",\n          \"objective\": \"Explain the TN-C-S system where the neutral and earth are combined in the supply cable but separate in the installation.\"\n        },\n        {\n          \"title\": \"TT Earthing Arrangement\",\n          \"objective\": \"Describe the TT system where the consumer provides their own earth connection via an electrode.\"\n        },\n        {\n          \"title\": \"The Role of the CPC\",\n          \"objective\": \"Define the Circuit Protective Conductor (CPC) and its function in providing a path for fault current.\"\n        },\n        {\n          \"title\": \"ADS and Protective Devices\",\n          \"objective\": \"Explain how protective devices like fuses or MCBs achieve Automatic Disconnection of Supply during a fault.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Analyze a diagram of a supply entry to determine if it is TN-S or TN-C-S based on the connection to the cable sheath or a combined terminal.\",\n      \"guidedPracticeObjective\": \"Given a description of an installation using an earth rod and no supplier earth terminal, identify the system type and the necessary protective components.\",\n      \"practiceObjective\": \"Label the components of an ADS loop including the transformer, line conductor, fault point, CPC, and protective device.\",\n      \"integrativeObjective\": \"Explain how the choice of earthing system (TN-S vs TT) changes the way a fault current returns to the source.\"\n    },\n    {\n      \"lessonCode\": \"203-4C\",\n      \"title\": \"203-4C - Earth Loop Impedance Path\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earth loop impedance path and calculation\",\n      \"objectiveSummary\": \"Calculate total earth fault loop impedance (Zs) and explain the importance of low impedance for safety.\",\n      \"focusText\": \"Total earth fault loop impedance (Zs) is the sum of external impedance (Ze) and the installation's circuit resistance (R1 + R2). Low impedance is critical for ensuring fault current is high enough to trigger protective devices quickly.\",\n      \"sourceRefs\": [\n        \"203-4C Earth loop impedance path\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"External Impedance (Ze)\",\n          \"objective\": \"Define Ze as the impedance of the supply side of the earth fault loop.\"\n        },\n        {\n          \"title\": \"Installation Resistance (R1 + R2)\",\n          \"objective\": \"Explain R1 (line conductor) and R2 (CPC) as the installation side of the loop.\"\n        },\n        {\n          \"title\": \"The Zs Formula\",\n          \"objective\": \"Apply the formula Zs = Ze + (R1 + R2) to find the total loop impedance.\"\n        },\n        {\n          \"title\": \"Impedance and Disconnection Time\",\n          \"objective\": \"Explain why a low Zs value is necessary to produce a high enough fault current for fast disconnection.\"\n        },\n        {\n          \"title\": \"Supplier vs Installation Responsibilities\",\n          \"objective\": \"Distinguish between the components of the loop provided by the distributor and those installed by the electrician.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Calculate Zs for a circuit where Ze is 0.35 ohms and the measured R1 + R2 is 1.2 ohms.\",\n      \"guidedPracticeObjective\": \"Calculate the total Zs for a TN-S system given a Ze of 0.8 ohms and circuit conductors with a combined resistance of 0.5 ohms.\",\n      \"practiceObjective\": \"Determine the required R1+R2 value needed to stay under a maximum Zs limit of 1.1 ohms if the Ze is 0.3 ohms.\",\n      \"integrativeObjective\": \"Describe the complete path of a fault current starting from the transformer, through the installation, and back to the source, naming all impedance components.\"\n    }\n  ]\n}"
+          },
+          "startedAt": "2026-03-20T10:41:33.609Z",
+          "finishedAt": "2026-03-20T10:41:42.944Z"
+        },
+        {
+          "phase": "D2_normalize_blueprints",
+          "status": "completed",
+          "output": {
+            "moduleTitle": "2365 Unit 203 Protective Measures",
+            "blueprintCount": 2,
+            "blueprintIds": [
+              "203-4A",
+              "203-4C"
+            ]
+          },
+          "startedAt": "2026-03-20T10:41:42.948Z",
+          "finishedAt": "2026-03-20T10:41:42.948Z"
+        }
+      ],
+      "createdBy": null,
+      "createdAt": "2026-03-20T10:41:42.953Z",
+      "updatedAt": "2026-03-20T10:41:42.953Z"
+    },
+    {
+      "id": "569294ea-ffec-4d00-922d-779c507c4594",
+      "moduleTitle": "2365 Unit 203 Protective Measures",
+      "subject": "C&G 2365",
+      "audience": "Level 2 electrical learner",
+      "sourceName": "203-protective-measures.txt",
+      "sourceText": "Unit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+      "requestedLessonCount": 2,
+      "blueprints": [
+        {
+          "id": "203-4A",
+          "lessonCode": "203-4A",
+          "title": "203-4A - Earthing Systems and ADS Components",
+          "unit": "Unit 203",
+          "topic": "Earthing systems and ADS components",
+          "objectiveSummary": "Explain the main earthing arrangements (TN-S, TN-C-S, TT) and how ADS components function to make a fault safe.",
+          "focusText": "Earthing arrangements define how the installation is connected to the source of energy and earth. TN-S uses separate neutral and earth conductors throughout. TN-C-S uses a combined neutral and earth conductor from the supplier. TT uses an earth electrode at the installation. Automatic Disconnection of Supply (ADS) relies on the Circuit Protective Conductor (CPC) and a protective device to disconnect power during a fault.",
+          "sourceRefs": [
+            "203-4A"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4a-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earthing systems and ADS components.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4a-teach-check-1",
+              "title": "TN-S Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Identify the characteristics of a TN-S system where neutral and earth are separate throughout.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-2",
+              "title": "TN-C-S Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain the TN-C-S (PME) system where neutral and earth are combined on the supplier side.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-3",
+              "title": "TT Earthing Arrangement",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Describe the TT system which relies on a local earth electrode for the consumer's earth connection.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-4",
+              "title": "Components of ADS",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Identify the roles of the Circuit Protective Conductor (CPC) and the protective device (fuse or circuit breaker) in a circuit.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-teach-check-5",
+              "title": "The ADS Mechanism",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain how a fault to earth triggers the protective device to disconnect the supply safely.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Analyze a diagram of a TN-S system to identify the fault path and the specific components that initiate ADS.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Given a diagram of a TN-C-S system, label the combined conductor and the CPC, then describe the path a fault current takes to trigger disconnection.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Compare TN-S, TN-C-S, and TT systems by listing their unique earthing connections and the common ADS components they all share.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4a-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Explain in detail how the choice of earthing arrangement and the presence of a CPC ensure that a fault results in automatic disconnection of the supply.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        },
+        {
+          "id": "203-4C",
+          "lessonCode": "203-4C",
+          "title": "203-4C - Earth Loop Impedance Path",
+          "unit": "Unit 203",
+          "topic": "Earth loop impedance path",
+          "objectiveSummary": "Calculate total earth fault loop impedance (Zs) and explain the importance of low impedance for safety.",
+          "focusText": "Earth fault loop impedance (Zs) is the total resistance of the path a fault current takes. It is comprised of the external impedance (Ze) from the supplier side and the resistance of the installation's conductors (R1 + R2). A low Zs value is critical to ensure enough current flows to trip the protective device within the required disconnection time.",
+          "sourceRefs": [
+            "203-4C"
+          ],
+          "stagePlan": [
+            {
+              "key": "203-4c-intro",
+              "title": "Intro",
+              "role": "outcomes",
+              "stage": "intro",
+              "objective": "Orient the learner to Earth loop impedance path.",
+              "progressionRule": "auto",
+              "completionMode": "continue"
+            },
+            {
+              "key": "203-4c-teach-check-1",
+              "title": "External Impedance (Ze)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Define Ze as the impedance of the fault loop external to the installation on the supplier side.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-2",
+              "title": "Installation Resistance (R1 + R2)",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain R1 (line conductor) and R2 (CPC) as the installation side of the impedance path.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-3",
+              "title": "The Zs Formula",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Apply the formula Zs = Ze + (R1 + R2) to determine total earth fault loop impedance.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-4",
+              "title": "Supplier vs Installation Side",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Distinguish between the components of the loop provided by the electricity supplier and those installed by the electrician.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-teach-check-5",
+              "title": "Impedance and Disconnection Speed",
+              "role": "explanation",
+              "stage": "teach_check",
+              "objective": "Explain the relationship between low impedance, high fault current, and fast disconnection times.",
+              "progressionRule": "feedback_deeper",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-worked-example-1",
+              "title": "Worked Example",
+              "role": "worked_example",
+              "stage": "worked_example",
+              "objective": "Calculate the total Zs for a circuit where Ze is 0.35 ohms and the measured R1 + R2 is 1.2 ohms, then state which part is the supplier side.",
+              "progressionRule": "worked_example_feedback",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-guided-practice-1",
+              "title": "Guided Practice",
+              "role": "guided_practice",
+              "stage": "guided_practice",
+              "objective": "Calculate Zs for a scenario with a Ze of 0.8 ohms and R1 + R2 of 0.5 ohms, identifying the impact on disconnection if the value were to increase.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-practice-1",
+              "title": "Practice",
+              "role": "practice",
+              "stage": "practice",
+              "objective": "Perform multiple Zs calculations using various Ze and R1+R2 values, categorizing each component of the path.",
+              "progressionRule": "auto",
+              "completionMode": "respond"
+            },
+            {
+              "key": "203-4c-integrative-1",
+              "title": "Integrative Close",
+              "role": "integrative",
+              "stage": "integrative",
+              "objective": "Describe the complete path of an earth fault current from the point of the fault back to the transformer, explaining why every milliohm of impedance matters for safety.",
+              "progressionRule": "integrative_feedback",
+              "completionMode": "respond"
+            }
+          ]
+        }
+      ],
+      "phaseArtifacts": [
+        {
+          "phase": "D1_plan_module_blueprints",
+          "status": "completed",
+          "output": {
+            "prompt": "You are designing lesson blueprints for the City & Guilds 2365 electrical course.\nReturn strict JSON only.\nStay grounded in the supplied source text.\nDo not invent biology or unrelated curriculum content.\nProduce a dynamic lesson plan suitable for the dynamic-guided-v2 runtime.\nEach blueprint must be self-contained and scoped to one lesson.\nEach blueprint must include 4 to 6 teach/check sections by default, then worked example, guided practice, practice, and integrative close.\nOnly go below 4 teach/check sections if the topic is genuinely very narrow and still supports a full teaching arc.\nIf a lesson would need more than 6 teach/check sections, split it into another lesson instead.\nEach teach/check section must teach one main idea only.\nGuided practice must mirror the reasoning pattern used in the worked example.\nKeep focusText concise, factual, and scoped only to that lesson.\n\nModule title: 2365 Unit 203 Protective Measures\nSubject: C&G 2365\nAudience: Level 2 electrical learner\nRequested lesson count: 2\n\nReturn JSON in this exact shape:\n{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Explain the main earthing arrangements and how ADS components make a fault safe.\",\n      \"focusText\": \"Scoped grounded text for this lesson only.\",\n      \"sourceRefs\": [\n        \"section 1\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"Teach/Check 1\",\n          \"objective\": \"Teach the first core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 2\",\n          \"objective\": \"Teach the second core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 3\",\n          \"objective\": \"Teach the third core concept.\"\n        },\n        {\n          \"title\": \"Teach/Check 4\",\n          \"objective\": \"Teach the fourth core concept.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Walk through one worked example that uses the same reasoning pattern needed later.\",\n      \"guidedPracticeObjective\": \"Set one supported task that mirrors the worked example.\",\n      \"practiceObjective\": \"Set one more independent application task.\",\n      \"integrativeObjective\": \"Ask the learner to pull the lesson together in one explanation.\"\n    }\n  ]\n}\n\nGrounded source text:\nUnit 203 Protective Measures.\n203-4A Earthing systems and ADS components: TN-S, TN-C-S, and TT arrangements, CPC, protective device, Zs, and how ADS disconnects safely.\n203-4C Earth loop impedance path: Ze, R1 plus R2, Zs, supplier side and installation side, and why impedance must be low enough for fast disconnection.\nUse worked examples and supported practice with practical electrical scenarios.",
+            "rawText": "{\n  \"moduleTitle\": \"2365 Unit 203 Protective Measures\",\n  \"blueprints\": [\n    {\n      \"lessonCode\": \"203-4A\",\n      \"title\": \"203-4A - Earthing Systems and ADS Components\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earthing systems and ADS components\",\n      \"objectiveSummary\": \"Explain the main earthing arrangements (TN-S, TN-C-S, TT) and how ADS components function to make a fault safe.\",\n      \"focusText\": \"Earthing arrangements define how the installation is connected to the source of energy and earth. TN-S uses separate neutral and earth conductors throughout. TN-C-S uses a combined neutral and earth conductor from the supplier. TT uses an earth electrode at the installation. Automatic Disconnection of Supply (ADS) relies on the Circuit Protective Conductor (CPC) and a protective device to disconnect power during a fault.\",\n      \"sourceRefs\": [\n        \"203-4A\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"TN-S Earthing Arrangement\",\n          \"objective\": \"Identify the characteristics of a TN-S system where neutral and earth are separate throughout.\"\n        },\n        {\n          \"title\": \"TN-C-S Earthing Arrangement\",\n          \"objective\": \"Explain the TN-C-S (PME) system where neutral and earth are combined on the supplier side.\"\n        },\n        {\n          \"title\": \"TT Earthing Arrangement\",\n          \"objective\": \"Describe the TT system which relies on a local earth electrode for the consumer's earth connection.\"\n        },\n        {\n          \"title\": \"Components of ADS\",\n          \"objective\": \"Identify the roles of the Circuit Protective Conductor (CPC) and the protective device (fuse or circuit breaker) in a circuit.\"\n        },\n        {\n          \"title\": \"The ADS Mechanism\",\n          \"objective\": \"Explain how a fault to earth triggers the protective device to disconnect the supply safely.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Analyze a diagram of a TN-S system to identify the fault path and the specific components that initiate ADS.\",\n      \"guidedPracticeObjective\": \"Given a diagram of a TN-C-S system, label the combined conductor and the CPC, then describe the path a fault current takes to trigger disconnection.\",\n      \"practiceObjective\": \"Compare TN-S, TN-C-S, and TT systems by listing their unique earthing connections and the common ADS components they all share.\",\n      \"integrativeObjective\": \"Explain in detail how the choice of earthing arrangement and the presence of a CPC ensure that a fault results in automatic disconnection of the supply.\"\n    },\n    {\n      \"lessonCode\": \"203-4C\",\n      \"title\": \"203-4C - Earth Loop Impedance Path\",\n      \"unit\": \"Unit 203\",\n      \"topic\": \"Earth loop impedance path\",\n      \"objectiveSummary\": \"Calculate total earth fault loop impedance (Zs) and explain the importance of low impedance for safety.\",\n      \"focusText\": \"Earth fault loop impedance (Zs) is the total resistance of the path a fault current takes. It is comprised of the external impedance (Ze) from the supplier side and the resistance of the installation's conductors (R1 + R2). A low Zs value is critical to ensure enough current flows to trip the protective device within the required disconnection time.\",\n      \"sourceRefs\": [\n        \"203-4C\"\n      ],\n      \"teachChecks\": [\n        {\n          \"title\": \"External Impedance (Ze)\",\n          \"objective\": \"Define Ze as the impedance of the fault loop external to the installation on the supplier side.\"\n        },\n        {\n          \"title\": \"Installation Resistance (R1 + R2)\",\n          \"objective\": \"Explain R1 (line conductor) and R2 (CPC) as the installation side of the impedance path.\"\n        },\n        {\n          \"title\": \"The Zs Formula\",\n          \"objective\": \"Apply the formula Zs = Ze + (R1 + R2) to determine total earth fault loop impedance.\"\n        },\n        {\n          \"title\": \"Supplier vs Installation Side\",\n          \"objective\": \"Distinguish between the components of the loop provided by the electricity supplier and those installed by the electrician.\"\n        },\n        {\n          \"title\": \"Impedance and Disconnection Speed\",\n          \"objective\": \"Explain the relationship between low impedance, high fault current, and fast disconnection times.\"\n        }\n      ],\n      \"workedExampleObjective\": \"Calculate the total Zs for a circuit where Ze is 0.35 ohms and the measured R1 + R2 is 1.2 ohms, then state which part is the supplier side.\",\n      \"guidedPracticeObjective\": \"Calculate Zs for a scenario with a Ze of 0.8 ohms and R1 + R2 of 0.5 ohms, identifying the impact on disconnection if the value were to increase.\",\n      \"practiceObjective\": \"Perform multiple Zs calculations using various Ze and R1+R2 values, categorizing each component of the path.\",\n      \"integrativeObjective\": \"Describe the complete path of an earth fault current from the point of the fault back to the transformer, explaining why every milliohm of impedance matters for safety.\"\n    }\n  ]\n}"
+          },
+          "startedAt": "2026-03-20T10:30:07.161Z",
+          "finishedAt": "2026-03-20T10:30:17.213Z"
+        },
+        {
+          "phase": "D2_normalize_blueprints",
+          "status": "completed",
+          "output": {
+            "moduleTitle": "2365 Unit 203 Protective Measures",
+            "blueprintCount": 2,
+            "blueprintIds": [
+              "203-4A",
+              "203-4C"
+            ]
+          },
+          "startedAt": "2026-03-20T10:30:17.215Z",
+          "finishedAt": "2026-03-20T10:30:17.215Z"
+        }
+      ],
+      "createdBy": null,
+      "createdAt": "2026-03-20T10:30:17.217Z",
+      "updatedAt": "2026-03-20T10:30:17.217Z"
+    },
+    {
       "id": "27c54692-6b3f-47bb-80ce-c1cabd6c594b",
       "moduleTitle": "2365 dynamic module",
       "subject": "C&G 2365",

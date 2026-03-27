@@ -1,0 +1,40 @@
+[runDynamicModuleE2E] Using run 2c3d21d1-18d2-4b81-a7ba-0fb264786af6 with blueprint candidates: 202-1A, 202-2A, 202-2B, 202-3A, 202-3B, 202-4A, 202-4B, 202-4C, 202-4D, 202-5A, 202-5B, 202-6A
+[runDynamicModuleE2E] planner run resolved from API
+[runDynamicModuleE2E] Attempting blueprint 202-1A
+[runDynamicModuleE2E] Rejected blueprint 202-1A {
+  "score": 79,
+  "grade": "rework",
+  "reason": "Candidate score 79 is below the 90 acceptance gate. Top issue: The question asks for an 'explanation' (qualitative), but the answer guidance only provides scalar values (quantitative). Fix: Change the question to ask for the numerical result only, or update the guidance to include the key steps of the explanation (e.g., '9200 / 230 = 40', '40 * 1.25 = 50')."
+}
+[runDynamicModuleE2E] Falling back to saved accepted dynamic version for preview verification {
+  "lessonCode": "203-5A",
+  "versionNo": 10,
+  "score": 91,
+  "grade": "strong"
+}
+[runDynamicModuleE2E] call simple-chatbot API preview
+{
+  "runId": "2c3d21d1-18d2-4b81-a7ba-0fb264786af6",
+  "runIndex": 0,
+  "attemptLog": [
+    {
+      "blueprintId": "202-1A",
+      "status": 200,
+      "accepted": false,
+      "score": 79,
+      "grade": "rework",
+      "reason": "Candidate score 79 is below the 90 acceptance gate. Top issue: The question asks for an 'explanation' (qualitative), but the answer guidance only provides scalar values (quantitative). Fix: Change the question to ask for the numerical result only, or update the guidance to include the key steps of the explanation (e.g., '9200 / 230 = 40', '40 * 1.25 = 50')."
+    }
+  ],
+  "blueprintId": "203-5A",
+  "versionNo": 10,
+  "score": 91,
+  "grade": "strong",
+  "previewUrl": "http://127.0.0.1:3000/2365/dynamic-guided-v2/203-5A?versionId=9b99e2ad-d2ca-47fd-a9f9-9da981826307&sourceContext=dynamic_module_preview",
+  "simpleChatbotPreviewUrl": "http://127.0.0.1:3000/2365/simple-chatbot?lessonMode=1&lessonCode=203-5A&dynamicVersionId=9b99e2ad-d2ca-47fd-a9f9-9da981826307",
+  "chatbotApiStatus": 200,
+  "stepTitle": "Intro",
+  "stepStage": "intro"
+}
+[runDynamicModuleE2E] teardown start
+[runDynamicModuleE2E] teardown done

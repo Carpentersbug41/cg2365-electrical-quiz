@@ -1,0 +1,237 @@
+{
+  "createdAt": "2026-03-22T01:09:50.396Z",
+  "baseUrl": "http://127.0.0.1:3000",
+  "results": [
+    {
+      "lessonCode": "203-4A",
+      "dynamicVersionId": "019142c4-a2ac-4a70-be37-e0612ebf48db",
+      "lessonStepIndex": 1,
+      "probes": {
+        "control": {
+          "teach": {
+            "status": 200,
+            "runtimeVariant": "control",
+            "replyClass": "",
+            "stepTitle": "Core ADS Components",
+            "stepStage": "teach_check",
+            "feedbackPhase": "teach",
+            "feedbackResolved": "",
+            "feedbackNext": "",
+            "text": "To understand how we keep people safe from electric shocks, we need to look at Automatic Disconnection of Supply, or ADS. It isn't just one single component; it’s a system where everything has to work together to cut the power if a fault occurs.\n\nFirst, you need a clear path for the electricity to take. This starts with the Circuit Protective Conductor (CPC), which is the wire that carries fault current from an appliance back to the consumer unit. From the consumer unit, that current travels through the Earthing Conductor to the main earthing terminal and out to the \"means of earthing,\" such as the ground or the supplier's cable.\n\nFinally, we need something to actually stop the flow. This is the Protective Device, like a fuse or an MCB. When it \"sees\" that massive surge of fault current through the loop we’ve built, it trips or blows instantly. Without all three parts working, a faulty appliance casing could just stay live and dangerous.\n\n1. What does the abbreviation ADS stand for?\n2. Which specific conductor carries fault current from an appliance back to the consumer unit?\n3. What is the general term for a fuse or circuit breaker that detects high current and cuts the power?"
+          },
+          "feedback_basic": {
+            "status": 200,
+            "runtimeVariant": "control",
+            "replyClass": "",
+            "stepTitle": "Core ADS Components",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_basic",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "You've got the right concept, but let's sharpen those technical terms. ADS stands for Automatic Disconnection of Supply. The wire that carries the fault current back to the consumer unit is the Circuit Protective Conductor (CPC), and the fuse or MCB is known as the Protective Device.\n\nThink of it like a team: the CPC provides the path for the current to escape, but you still need the 'boss' (the protective device) to actually step in and cut the power. \n\nWith that in mind, why is the presence of a Circuit Protective Conductor (CPC) alone insufficient to ensure safety during a fault?"
+          },
+          "feedback_deeper": {
+            "status": 200,
+            "runtimeVariant": "control",
+            "replyClass": "",
+            "stepTitle": "Core ADS Components",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_deeper",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "While the path is important, the CPC itself can't stop the electricity. Think of the CPC as a 'motorway' for fault current to travel on; it gives the electricity a safe route back to the consumer unit. However, we still need a 'gate' to shut that flow down. Without a protective device like a fuse or MCB to detect the fault and trip, the electricity will just keep flowing. If the CPC provides the path, what is the specific job of the protective device during a fault?"
+          }
+        },
+        "lean_feedback_v1": {
+          "teach": {
+            "status": 200,
+            "runtimeVariant": "lean_feedback_v1",
+            "replyClass": "",
+            "stepTitle": "Core ADS Components",
+            "stepStage": "teach_check",
+            "feedbackPhase": "teach",
+            "feedbackResolved": "",
+            "feedbackNext": "",
+            "text": "ADS, or Automatic Disconnection of Supply, is our main strategy for preventing electric shocks. It works as a system rather than a single component. When a fault hits the metalwork of an appliance, we need a clear path to send that current back to the source so it doesn't travel through a person.\n\nThe CPC (Circuit Protective Conductor) carries the fault current from the appliance back to the consumer unit. From there, the Earthing Conductor takes it to the actual 'means of earthing,' like the supplier's cable or an earth rod. Finally, a protective device, such as a fuse or MCB, must detect this massive spike in current and 'trip' to cut the power. If any part of this path is missing, the metal casing stays live, which is a major hazard.\n\n1. What does the abbreviation ADS stand for?\n2. Which conductor carries fault current from an appliance back to the consumer unit?\n3. What is the general term for a fuse or circuit breaker that cuts the power during a fault?"
+          },
+          "feedback_basic": {
+            "status": 200,
+            "runtimeVariant": "lean_feedback_v1",
+            "replyClass": "misconception",
+            "stepTitle": "Core ADS Components",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_basic",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "It looks like you might be thinking of specific earthing arrangements like TT or TN-C-S, but ADS actually stands for Automatic Disconnection of Supply. Think of ADS as the overall safety strategy where different parts work together as a team to cut the power. For example, the CPC provides the path for the fault, while the circuit breaker acts as the switch to turn it off. With that in mind, why is the presence of a Circuit Protective Conductor (CPC) alone insufficient to ensure safety during a fault?"
+          },
+          "feedback_deeper": {
+            "status": 200,
+            "runtimeVariant": "lean_feedback_v1",
+            "replyClass": "misconception",
+            "stepTitle": "Core ADS Components",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_deeper",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "Not exactly. While the CPC provides the path for fault current to flow, it is just a wire and cannot stop the electricity itself. You still need a protective device, like a fuse or MCB, to actually 'trip' and cut the power. Without that device, the current would just keep flowing. If the CPC provides the path, what is the specific job of the protective device during a fault?"
+          }
+        }
+      }
+    },
+    {
+      "lessonCode": "203-5A",
+      "dynamicVersionId": "9b99e2ad-d2ca-47fd-a9f9-9da981826307",
+      "lessonStepIndex": 1,
+      "probes": {
+        "control": {
+          "teach": {
+            "status": 200,
+            "runtimeVariant": "control",
+            "replyClass": "",
+            "stepTitle": "The National Grid Supply Chain",
+            "stepStage": "teach_check",
+            "feedbackPhase": "teach",
+            "feedbackResolved": "",
+            "feedbackNext": "",
+            "text": "The journey of the electricity we use starts at the power station, a process technically known as Generation. This is where primary sources—like gas or wind—are converted into electrical energy. Because power stations are often located in remote areas far from the cities that need them, we have to move that power across huge distances.\n\nTo do this efficiently, the electricity enters the Transmission network. You can think of this as the \"motorway\" of the National Grid. It uses very high voltages to transport bulk amounts of electricity across the country. It’s important to remember the sequence: the electricity is generated first and then immediately stepped up to those high voltages for transmission. It hasn't even reached the local distribution cables in your street at this stage.\n\n1. What is the technical term for the 'start point' of the electrical supply chain where energy is converted?\n2. Which network acts as the 'motorway' system to transport bulk electricity over long distances?\n3. What are converted into electrical energy at a power station?"
+          },
+          "feedback_basic": {
+            "status": 200,
+            "runtimeVariant": "control",
+            "replyClass": "",
+            "stepTitle": "The National Grid Supply Chain",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_basic",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "You've got the first part right—'Generation' is indeed the start of the chain at the power station. You also correctly pointed out that it's sent at high voltage, which is the job of the 'Transmission network'. One small detail to add: we call the raw materials used at the start, like gas, coal, or wind, 'primary energy sources'. \n\nTo wrap up this section, what is the main reason electricity has to be moved through a transmission network rather than being sent directly from the power station to the local cables in your street?"
+          },
+          "feedback_deeper": {
+            "status": 200,
+            "runtimeVariant": "control",
+            "replyClass": "",
+            "stepTitle": "The National Grid Supply Chain",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_deeper",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "Not exactly. Think of the power station as a factory and the transmission lines as high-speed motorways. Because power stations are often located far away from cities, we have to move electricity over very long distances. Using high voltages on the transmission network makes this journey efficient by reducing energy losses. If a power station is 100 miles away from a town, why can't we just use the small cables in your street to carry all that bulk power?"
+          }
+        },
+        "lean_feedback_v1": {
+          "teach": {
+            "status": 200,
+            "runtimeVariant": "lean_feedback_v1",
+            "replyClass": "",
+            "stepTitle": "The National Grid Supply Chain",
+            "stepStage": "teach_check",
+            "feedbackPhase": "teach",
+            "feedbackResolved": "",
+            "feedbackNext": "",
+            "text": "When we look at the big picture of the UK’s power, it all starts at the **Generation** stage. This is the very beginning of the supply chain, where power stations convert primary sources—like wind, gas, or nuclear—into electrical energy. Since these stations are usually built far away from where people actually live and work, we can't just run a standard cable to the nearest town.\n\nInstead, the electricity enters the **Transmission network**. You should think of this as the \"motorway\" system of the National Grid. It uses extremely high voltages to move bulk amounts of power over long distances quickly and efficiently. A key point to remember for your exams is the sequence: we generate the power first, then it is moved onto the transmission network before it ever reaches the local distribution cables in your street.\n\n1. What is the technical term for the 'start point' of the supply chain where energy is converted?\n2. Which specific network acts as the 'motorway' for transporting bulk electricity across the country?\n3. What types of sources (like gas or wind) are converted into electrical energy at a power station?"
+          },
+          "feedback_basic": {
+            "status": 200,
+            "runtimeVariant": "lean_feedback_v1",
+            "replyClass": "misconception",
+            "stepTitle": "The National Grid Supply Chain",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_basic",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "Not quite there yet, but let's clear up the sequence. The very first stage is called Generation—this is where power stations turn energy sources like gas or wind into electricity. After that, it enters the Transmission network, which you can think of as the 'motorway' system used to move that power at very high voltages across the country. Why do you think we need to move electricity through this high-voltage transmission network instead of just sending it straight from the power station to the cables in your street?"
+          },
+          "feedback_deeper": {
+            "status": 200,
+            "runtimeVariant": "lean_feedback_v1",
+            "replyClass": "misconception",
+            "stepTitle": "The National Grid Supply Chain",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_deeper",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "Actually, the main reason is distance. Power stations are often built far away from the cities and towns that need the electricity. Think of the transmission network as a motorway; it is designed to move massive amounts of power over very long distances efficiently. Local street cables simply aren't built for that kind of bulk transport over hundreds of miles. If a power station is located far away from a city, why do we need a dedicated transmission network to bridge that gap?"
+          }
+        }
+      }
+    },
+    {
+      "lessonCode": "202-2B",
+      "dynamicVersionId": "8fdc2c16-c7ad-4a0e-9d9d-9b214c28b010",
+      "lessonStepIndex": 1,
+      "probes": {
+        "control": {
+          "teach": {
+            "status": 200,
+            "runtimeVariant": "control",
+            "replyClass": "",
+            "stepTitle": "Measuring Current and Voltage",
+            "stepStage": "teach_check",
+            "feedbackPhase": "teach",
+            "feedbackResolved": "",
+            "feedbackNext": "",
+            "text": "When you're working on live circuits, you need to be precise about what you are measuring. We mainly look at current and voltage, and each requires its own specific instrument. Current is the actual flow of electricity through the wiring, and we measure this in Amperes. The tool for this is the ammeter. You can remember the name easily because it combines \"Am\" from Amperes with \"meter.\"\n\nVoltage, however, isn't about the flow itself, but the electrical pressure or \"potential difference\" between two points. We measure this in Volts using a voltmeter. In the industry, we avoid using the vague term \"tester\" because it doesn't tell anyone what you're actually checking. Choosing the wrong tool or setting can be dangerous for you and destructive to your equipment, so getting the terminology right is the first step in working safely.\n\n1. What is the specific name of the instrument used to measure the flow of current in Amperes?\n2. Which instrument is used to measure the electrical potential difference, or pressure, in a circuit?\n3. What specific electrical quantity is measured in Volts using a Voltmeter?"
+          },
+          "feedback_basic": {
+            "status": 200,
+            "runtimeVariant": "control",
+            "replyClass": "",
+            "stepTitle": "Measuring Current and Voltage",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_basic",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "You've got those spot on. An ammeter measures the flow (Amps) and a voltmeter measures the pressure (Volts). It's much better to use these specific names rather than just calling everything a 'meter' or a 'tester' so everyone knows exactly what you're checking. To follow on from that, why is it technically incorrect to refer to both an ammeter and a voltmeter simply as a 'tester' in a professional electrical environment?"
+          },
+          "feedback_deeper": {
+            "status": 200,
+            "runtimeVariant": "control",
+            "replyClass": "",
+            "stepTitle": "Measuring Current and Voltage",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_deeper",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "Calling everything a 'tester' is too vague for a professional. We use specific names because an ammeter measures flow (Amps) and a voltmeter measures pressure (Volts). They are built differently; for example, an ammeter has very low resistance so it doesn't block the current flow. Using the wrong tool or setting can be dangerous or damage the equipment. Why is it important to use the specific name that matches the unit you are measuring?"
+          }
+        },
+        "lean_feedback_v1": {
+          "teach": {
+            "status": 200,
+            "runtimeVariant": "lean_feedback_v1",
+            "replyClass": "",
+            "stepTitle": "Measuring Current and Voltage",
+            "stepStage": "teach_check",
+            "feedbackPhase": "teach",
+            "feedbackResolved": "",
+            "feedbackNext": "",
+            "text": "In the workshop or on-site, accuracy starts with using the right terminology and the right tool. When we are monitoring a live circuit, we focus on two primary variables: current and voltage. \n\nCurrent is the actual flow of electricity moving through the conductors, and we measure this in Amperes (Amps). To get an accurate reading of this flow, you must use an **ammeter**. \n\nOn the other hand, voltage represents the electrical \"pressure\" or the potential difference between two points. This is measured in Volts using a **voltmeter**. It is important not to just call everything a \"tester.\" In a professional environment, being specific ensures you don't accidentally set your equipment to the wrong range, which could damage the meter or even cause a safety risk when working on live systems.\n\n1. What is the specific name of the instrument used to measure the flow of current in Amperes?\n2. Which instrument is used to measure the electrical potential difference, or pressure, in a circuit?\n3. What specific electrical quantity is measured in Volts using a Voltmeter?"
+          },
+          "feedback_basic": {
+            "status": 200,
+            "runtimeVariant": "lean_feedback_v1",
+            "replyClass": "correct",
+            "stepTitle": "Measuring Current and Voltage",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_basic",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "Spot on. You've correctly linked the ammeter to current (Amps) and the voltmeter to voltage (Volts). It's important to remember that the ammeter measures the flow through the circuit, while the voltmeter measures the electrical pressure between two points. Why is it technically incorrect to refer to both an ammeter and a voltmeter simply as a 'tester' in a professional electrical environment?"
+          },
+          "feedback_deeper": {
+            "status": 200,
+            "runtimeVariant": "lean_feedback_v1",
+            "replyClass": "misconception",
+            "stepTitle": "Measuring Current and Voltage",
+            "stepStage": "teach_check",
+            "feedbackPhase": "feedback_deeper",
+            "feedbackResolved": "false",
+            "feedbackNext": "feedback",
+            "text": "In a professional setting, calling everything a 'tester' is risky because an ammeter and a voltmeter measure different physical quantities. An ammeter measures the flow of current (Amps), while a voltmeter measures the electrical pressure (Volts). If you pick the wrong tool or setting, it can be dangerous or damage the equipment. Why is it technically better to use the specific names for these instruments rather than a generic term like 'tester'?"
+          }
+        }
+      }
+    }
+  ]
+}

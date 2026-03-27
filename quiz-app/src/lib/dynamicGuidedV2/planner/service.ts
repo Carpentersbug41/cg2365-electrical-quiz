@@ -59,14 +59,12 @@ function buildStagePlan(blueprint: {
   lessonCode: string;
   topic: string;
   teachChecks: Array<{ title: string; objective: string }>;
-  workedExampleObjective?: string;
-  guidedPracticeObjective?: string;
-  practiceObjective?: string;
-  integrativeObjective?: string;
 }): DynamicLessonStageDescriptor[] {
-  const teachChecks = blueprint.teachChecks.length > 0 ? blueprint.teachChecks.slice(0, 3) : [
+  const teachChecks = blueprint.teachChecks.length > 0 ? blueprint.teachChecks.slice(0, 6) : [
     { title: 'Teach/Check 1', objective: `Teach the first core idea in ${blueprint.topic}.` },
     { title: 'Teach/Check 2', objective: `Teach the next core idea in ${blueprint.topic}.` },
+    { title: 'Teach/Check 3', objective: `Teach the next distinct idea in ${blueprint.topic}.` },
+    { title: 'Teach/Check 4', objective: `Teach the last core idea needed before application in ${blueprint.topic}.` },
   ];
 
   const stagePlan: DynamicLessonStageDescriptor[] = [
@@ -88,47 +86,6 @@ function buildStagePlan(blueprint: {
       progressionRule: 'feedback_deeper' as const,
       completionMode: 'respond' as const,
     })),
-    {
-      key: 'worked-example-1',
-      title: 'Worked Example',
-      role: 'worked_example',
-      stage: 'worked_example',
-      objective:
-        normalizeWhitespace(blueprint.workedExampleObjective) || `Show one worked example for ${blueprint.topic}.`,
-      progressionRule: 'worked_example_feedback',
-      completionMode: 'respond',
-    },
-    {
-      key: 'guided-practice-1',
-      title: 'Guided Practice',
-      role: 'guided_practice',
-      stage: 'guided_practice',
-      objective:
-        normalizeWhitespace(blueprint.guidedPracticeObjective) ||
-        `Guide the learner through a supported task on ${blueprint.topic}.`,
-      progressionRule: 'auto',
-      completionMode: 'respond',
-    },
-    {
-      key: 'practice-1',
-      title: 'Practice',
-      role: 'practice',
-      stage: 'practice',
-      objective:
-        normalizeWhitespace(blueprint.practiceObjective) || `Check independent understanding of ${blueprint.topic}.`,
-      progressionRule: 'auto',
-      completionMode: 'respond',
-    },
-    {
-      key: 'integrative-1',
-      title: 'Integrative Close',
-      role: 'integrative',
-      stage: 'integrative',
-      objective:
-        normalizeWhitespace(blueprint.integrativeObjective) || `Pull the lesson together for ${blueprint.topic}.`,
-      progressionRule: 'integrative_feedback',
-      completionMode: 'respond',
-    },
   ];
 
   return stagePlan.map((step) => ({
@@ -153,11 +110,9 @@ function coerceDraft(input: DynamicModulePlanRequest, raw: unknown): DynamicModu
       teachChecks: [
         { title: 'Teach/Check 1', objective: 'Teach the first core idea.' },
         { title: 'Teach/Check 2', objective: 'Teach the next core idea.' },
+        { title: 'Teach/Check 3', objective: 'Teach the next distinct idea.' },
+        { title: 'Teach/Check 4', objective: 'Teach the final core idea before application.' },
       ],
-      workedExampleObjective: 'Show one worked example.',
-      guidedPracticeObjective: 'Guide the learner through one supported task.',
-      practiceObjective: 'Set one independent practice task.',
-      integrativeObjective: 'Pull the ideas together in one final explanation.',
     },
   ];
 
@@ -166,7 +121,7 @@ function coerceDraft(input: DynamicModulePlanRequest, raw: unknown): DynamicModu
     blueprints: blueprints.slice(0, Math.max(1, Math.min(input.requestedLessonCount ?? 3, 8))).map((item, index) => {
       const record = item && typeof item === 'object' ? (item as Record<string, unknown>) : {};
       const teachChecksRaw = Array.isArray(record.teachChecks) ? record.teachChecks : [];
-      const teachChecks = teachChecksRaw.slice(0, 3).map((entry, teachIndex) => {
+      const teachChecks = teachChecksRaw.slice(0, 6).map((entry, teachIndex) => {
         const value = entry && typeof entry === 'object' ? (entry as Record<string, unknown>) : {};
         return {
           title: normalizeWhitespace(value.title) || `Teach/Check ${teachIndex + 1}`,
@@ -188,10 +143,6 @@ function coerceDraft(input: DynamicModulePlanRequest, raw: unknown): DynamicModu
             ? [input.sourceName]
             : [],
         teachChecks,
-        workedExampleObjective: normalizeWhitespace(record.workedExampleObjective) || undefined,
-        guidedPracticeObjective: normalizeWhitespace(record.guidedPracticeObjective) || undefined,
-        practiceObjective: normalizeWhitespace(record.practiceObjective) || undefined,
-        integrativeObjective: normalizeWhitespace(record.integrativeObjective) || undefined,
       };
     }),
   };
@@ -213,10 +164,6 @@ function toBlueprints(draft: DynamicModulePlannerDraft): DynamicModulePlannerBlu
         lessonCode,
         topic: normalizeWhitespace(blueprint.topic) || normalizeWhitespace(blueprint.title) || lessonCode,
         teachChecks: blueprint.teachChecks,
-        workedExampleObjective: blueprint.workedExampleObjective,
-        guidedPracticeObjective: blueprint.guidedPracticeObjective,
-        practiceObjective: blueprint.practiceObjective,
-        integrativeObjective: blueprint.integrativeObjective,
       }),
     };
   });

@@ -19,6 +19,8 @@ type ThreadTurn = {
 
 type DebugPayload = {
   mode: 'baseline' | 'lesson';
+  runtimeVariant?: 'control' | 'lean_feedback_v1' | null;
+  replyClass?: 'correct' | 'partial' | 'misconception' | 'unclear' | null;
   userId?: string | null;
   profileFound?: boolean;
   finishReason?: string | null;
@@ -188,6 +190,7 @@ export default function SimpleChatbotPage() {
   const [attachment, setAttachment] = useState<AttachedDocument | null>(null);
   const [uploadingAttachment, setUploadingAttachment] = useState(false);
   const [lessonMode, setLessonMode] = useState(false);
+  const [runtimeVariant, setRuntimeVariant] = useState<'control' | 'lean_feedback_v1'>('lean_feedback_v1');
   const [selectedLessonCode, setSelectedLessonCode] = useState<string>('203-4C');
   const [dynamicVersionId, setDynamicVersionId] = useState<string | null>(null);
   const [dynamicLessonData, setDynamicLessonData] = useState<DynamicGuidedV2Lesson | null>(null);
@@ -281,6 +284,7 @@ export default function SimpleChatbotPage() {
     const lessonModeParam = searchParams?.get('lessonMode') ?? null;
     const lessonCodeParam = searchParams?.get('lessonCode') ?? null;
     const dynamicVersionIdParam = searchParams?.get('dynamicVersionId') ?? null;
+    const runtimeVariantParam = searchParams?.get('runtimeVariant') ?? null;
 
     if (lessonModeParam === '1') {
       setLessonMode(true);
@@ -291,6 +295,7 @@ export default function SimpleChatbotPage() {
     }
 
     setDynamicVersionId(dynamicVersionIdParam?.trim() ? dynamicVersionIdParam.trim() : null);
+    setRuntimeVariant(runtimeVariantParam === 'control' ? 'control' : 'lean_feedback_v1');
   }, [searchParams]);
 
   useEffect(() => {
@@ -456,6 +461,7 @@ export default function SimpleChatbotPage() {
         lessonStepIndex: lessonMode ? params.lessonStepIndexValue : 0,
         lessonSectionPhase: lessonMode ? params.lessonSectionPhaseValue : 'teach',
         lessonDeeperTurnCount: lessonMode ? params.lessonDeeperTurnCountValue : 0,
+        runtimeVariant,
         attachment: attachment
           ? {
               filename: attachment.filename,
@@ -498,6 +504,8 @@ export default function SimpleChatbotPage() {
     const lessonTurnInstructionHeader = decodeURIComponent(
       response.headers.get('x-simple-chatbot-lesson-turn-instruction') ?? ''
     );
+    const runtimeVariantHeader = response.headers.get('x-simple-chatbot-runtime-variant');
+    const replyClassHeader = response.headers.get('x-simple-chatbot-reply-class');
     const geminiRequestHeader = decodeURIComponent(
       response.headers.get('x-simple-chatbot-gemini-request') ?? ''
     );
@@ -525,6 +533,17 @@ export default function SimpleChatbotPage() {
 
     const nextDebugPayload: DebugPayload = {
       mode: lessonMode ? 'lesson' : 'baseline',
+      runtimeVariant:
+        runtimeVariantHeader === 'lean_feedback_v1' || runtimeVariantHeader === 'control'
+          ? runtimeVariantHeader
+          : null,
+      replyClass:
+        replyClassHeader === 'correct' ||
+        replyClassHeader === 'partial' ||
+        replyClassHeader === 'misconception' ||
+        replyClassHeader === 'unclear'
+          ? replyClassHeader
+          : null,
       userId: userIdHeader || null,
       profileFound,
       finishReason: finishReasonHeader || null,
@@ -603,6 +622,7 @@ export default function SimpleChatbotPage() {
     console.log('summary', {
       lessonCode: lessonMode ? selectedLessonCode : null,
       dynamicVersionId: lessonMode ? dynamicVersionId : null,
+      runtimeVariant,
       stepIndex: Number.isFinite(lessonStepIndexHeader) ? lessonStepIndexHeader : null,
       stepTitle: lessonStepTitleHeader || null,
       stepStage: lessonStepStageHeader || null,
@@ -615,6 +635,13 @@ export default function SimpleChatbotPage() {
       nextStepIndex: Number.isFinite(nextStepIndexHeader) ? nextStepIndexHeader : null,
       nextStepRole: nextStepRoleHeader || null,
       nextStepStage: nextStepStageHeader || null,
+      replyClass:
+        replyClassHeader === 'correct' ||
+        replyClassHeader === 'partial' ||
+        replyClassHeader === 'misconception' ||
+        replyClassHeader === 'unclear'
+          ? replyClassHeader
+          : null,
     });
     console.log('payload', nextDebugPayload);
     console.groupEnd();
@@ -1045,6 +1072,18 @@ export default function SimpleChatbotPage() {
             <div className={styles.lessonControls}>
               <select
                 className={styles.select}
+                data-testid="runtime-variant-select"
+                value={runtimeVariant}
+                onChange={(event) =>
+                  setRuntimeVariant(event.target.value === 'lean_feedback_v1' ? 'lean_feedback_v1' : 'control')
+                }
+              >
+                <option value="control">Runtime: control</option>
+                <option value="lean_feedback_v1">Runtime: lean feedback v1</option>
+              </select>
+              <select
+                className={styles.select}
+                data-testid="lesson-select"
                 value={selectedLessonCode}
                 onChange={(event) => {
                   setSelectedLessonCode(event.target.value);
@@ -1070,6 +1109,7 @@ export default function SimpleChatbotPage() {
                       <span className={styles.jumpLabel}>Step</span>
                       <select
                         className={styles.select}
+                        data-testid="jump-step-select"
                         value={jumpStepIndex}
                         onChange={(event) => setJumpStepIndex(Number(event.target.value))}
                       >
@@ -1084,6 +1124,7 @@ export default function SimpleChatbotPage() {
                       <span className={styles.jumpLabel}>Phase</span>
                       <select
                         className={styles.select}
+                        data-testid="jump-phase-select"
                         value={jumpPhase}
                         onChange={(event) =>
                           setJumpPhase(
@@ -1218,6 +1259,8 @@ export default function SimpleChatbotPage() {
                   {JSON.stringify(
                     {
                       mode: debugPayload.mode,
+                      runtimeVariant: debugPayload.runtimeVariant,
+                      replyClass: debugPayload.replyClass,
                       userId: debugPayload.userId,
                       profileFound: debugPayload.profileFound,
                       finishReason: debugPayload.finishReason,

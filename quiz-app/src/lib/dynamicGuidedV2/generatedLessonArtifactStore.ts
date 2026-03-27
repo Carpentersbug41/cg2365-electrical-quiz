@@ -54,12 +54,16 @@ export function writeDynamicGeneratedLessonArtifact(input: {
     createdBy: input.createdBy ?? null,
     version: input.version ?? null,
     score: input.result.score,
+    planScore: input.result.planScore,
+    fidelityScore: input.result.fidelityScore,
     validation: input.result.validation,
     fixPlan: input.result.fixPlan ?? null,
     lesson: input.result.lesson,
     candidateLesson: input.result.candidateLesson ?? null,
     candidateValidation: input.result.candidateValidation ?? null,
     candidateScore: input.result.candidateScore ?? null,
+    postRepairScore: input.result.postRepairScore ?? null,
+    repairSummary: input.result.repairSummary ?? null,
     phases: input.result.phases,
   };
 

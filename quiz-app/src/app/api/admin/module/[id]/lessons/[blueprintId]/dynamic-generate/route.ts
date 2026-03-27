@@ -27,6 +27,8 @@ export async function POST(request: NextRequest, context: Params) {
       runId: id,
       blueprintId,
       score: result.score ?? null,
+      planScore: result.planScore ?? null,
+      fidelityScore: result.fidelityScore ?? null,
       validation: result.validation ?? null,
       version: result.version,
       rejectionReason: result.rejectionReason ?? null,

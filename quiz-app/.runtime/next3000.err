@@ -1,0 +1,367 @@
+[dynamic-generate][202-2B] service reject {
+  score: 70,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 88 is below the 90 acceptance gate. Top issue: The answer guidance for the insulation testing question is factually incorrect and contradicts the teaching text. Fix: Change the answer guidance for this question to 'Insulation Resistance Tester' or 'IR Tester'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-093708z-rejected.json'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 87,
+  grade: 'usable',
+  validationPassed: true,
+  reason: "Candidate score 88 is below the 90 acceptance gate. Top issue: The integrative task is heavily bundled, requiring the learner to identify two different instruments and provide a conceptual explanation in a single response field. Fix: Split the integrative task into three distinct questions: one for the power instrument, one for the energy instrument, and one for the conceptual 'why' explanation.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-093955z-rejected.json'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 65,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 87 is below the 90 acceptance gate. Top issue: The answer guidance provides 'Wattmeter' for a question asking about total energy consumption over time. Fix: Change the answer guidance for this question to 'Energy Meter' or 'kWh meter'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-094446z-rejected.json'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 88,
+  grade: 'usable',
+  validationPassed: true,
+  reason: "Candidate score 88 is below the 90 acceptance gate. Top issue: The answer guidance includes technical synonyms that were not introduced in the explanation text. Fix: Remove 'Service head' and 'Origin of the installation' from the guidance, or add them to the explanation text in Step 4.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-094823z-rejected.json'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 75,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The question asks for a technical term (Voltage/Potential Difference), but the answer guidance provides the name of the instrument (Voltmeter). Fix: Change answerGuidance to ['Voltage', 'Potential Difference'].",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-095316z-rejected.json'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 63,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance is factually incorrect and contradicts the teaching content in the same step. Fix: Change the answer guidance for Step 4, Question 1 to 'Wattmeter'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-095621z-rejected.json'
+}
+ ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[simple-chatbot] stream error TypeError: Invalid state: Controller is already closed
+    at Object.start (src\app\api\simple-chatbot\route.ts:823:24)
+  821 |             if (!text) continue;
+  822 |             aggregatedReply += text;
+> 823 |             controller.enqueue(encoder.encode(text));
+      |                        ^
+  824 |           }
+  825 |
+  826 |           const finalResponse = await result.response; {
+  code: 'ERR_INVALID_STATE'
+}
+[simple-chatbot] stream error TypeError: Invalid state: Controller is already closed
+    at Object.start (src\app\api\simple-chatbot\route.ts:836:22)
+  834 |             usageMetadata: finalResponse.usageMetadata ?? null,
+  835 |           });
+> 836 |           controller.close();
+      |                      ^
+  837 |         } catch (streamError) {
+  838 |           console.error('[simple-chatbot] stream error', streamError);
+  839 |           controller.error(streamError); {
+  code: 'ERR_INVALID_STATE'
+}
+[simple-chatbot] error SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+[simple-chatbot] stream error TypeError: Invalid state: Controller is already closed
+    at Object.start (src\app\api\simple-chatbot\route.ts:920:24)
+  918 |             if (!text) continue;
+  919 |             aggregatedReply += text;
+> 920 |             controller.enqueue(encoder.encode(text));
+      |                        ^
+  921 |           }
+  922 |
+  923 |           const finalResponse = await result.response; {
+  code: 'ERR_INVALID_STATE'
+}
+[simple-chatbot] stream error TypeError: Invalid state: Controller is already closed
+    at Object.start (src\app\api\simple-chatbot\route.ts:920:24)
+  918 |             if (!text) continue;
+  919 |             aggregatedReply += text;
+> 920 |             controller.enqueue(encoder.encode(text));
+      |                        ^
+  921 |           }
+  922 |
+  923 |           const finalResponse = await result.response; {
+  code: 'ERR_INVALID_STATE'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 88,
+  grade: 'usable',
+  validationPassed: true,
+  reason: "Candidate score 78 is below the 90 acceptance gate. Top issue: The answer guidance is factually incorrect for the question asked. It provides instrument names instead of the required factor ('Time'). Fix: Update the answer guidance to ['Time', 'Duration', 't'] to match the question's requirement.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-181004z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 65,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 65 is below the 90 acceptance gate. Top issue: The question asks for a 'short explanation' but the answer guidance only contains the numerical result '20 Ohms'. Fix: Change the question to ask for the numerical value, or update the guidance to include the required explanatory keywords (e.g., 'mean', 'squared', 'divided').",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-181236z-rejected.json'
+}
+[simple-chatbot] stream error TypeError: Invalid state: Controller is already closed
+    at Object.start (src\app\api\simple-chatbot\route.ts:920:24)
+  918 |             if (!text) continue;
+  919 |             aggregatedReply += text;
+> 920 |             controller.enqueue(encoder.encode(text));
+      |                        ^
+  921 |           }
+  922 |
+  923 |           const finalResponse = await result.response; {
+  code: 'ERR_INVALID_STATE'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 86,
+  grade: 'usable',
+  validationPassed: true,
+  reason: 'Candidate score 86 is below the 90 acceptance gate. Top issue: Integrative task uses an open-ended multi-demand explanation that is difficult to mark reliably. Fix: Turn the synthesis task into labeled parts or a constrained explanation so the final response can be marked consistently.',
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-191124z-rejected.json'
+}
+[simple-chatbot] stream error TypeError: Invalid state: Controller is already closed
+    at Object.start (src\app\api\simple-chatbot\route.ts:920:24)
+  918 |             if (!text) continue;
+  919 |             aggregatedReply += text;
+> 920 |             controller.enqueue(encoder.encode(text));
+      |                        ^
+  921 |           }
+  922 |
+  923 |           const finalResponse = await result.response; {
+  code: 'ERR_INVALID_STATE'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 89,
+  grade: 'usable',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance provides the name of the instrument instead of the 'factor' (Time) requested by the question. Fix: Update the answer guidance to include ['Time', 'Duration', 'The passage of time'].",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-191527z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 76,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 76 is below the 90 acceptance gate. Top issue: The question asks the learner to provide an 'explanation', but the answer guidance only contains the numerical value '9.2A'. Fix: Change the question to ask for the numerical value only, or update the guidance to include key phrases required in the explanation.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-191800z-rejected.json'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 86,
+  grade: 'usable',
+  validationPassed: true,
+  reason: "Candidate score 86 is below the 90 acceptance gate. Top issue: The answer guidance contains a factual error and is contaminated by the previous question's target. Fix: Change the answer guidance to 'Voltage' or 'Potential Difference'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-192027z-rejected.json'
+}
+[dynamic-generate][202-2A] service reject {
+  score: 78,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 78 is below the 90 acceptance gate. Top issue: The answer guidance is critically incomplete. The question asks for the unit name and symbol for four distinct quantities (Mass, Voltage, Time, Current), but the guidance only provides 'V'. Fix: Expand the answerGuidance to include all required terms: Kilogram, kg, Volt, V, Second, s, Ampere, A.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2a\\20260321-192031z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 73,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance is factually incorrect. The longest side is the 'Hypotenuse', not the theorem name. Additionally, 'S' in SOH stands for 'Sine', not the category 'Trigonometry'. Fix: Update guidance for Q2 to ['Hypotenuse'] and Q3 to ['Sine', 'Sin'].",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-192311z-rejected.json'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 72,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate regressed on protected score domains: teachingBeforeTesting 25->24 Top issue: The answer guidance provides 'Wattmeter' for a question specifically describing the function of a Power Factor Meter. Fix: Change the answer guidance to 'Power Factor Meter'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-192348z-rejected.json'
+}
+ ⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>) {
+  page: '/admin/dynamic-module'
+}
+ ⚠ You have added a custom /_error page without a custom /404 page. This prevents the 404 page from being auto statically optimized.
+See here for info: https://nextjs.org/docs/messages/custom-error-no-custom-404
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[dynamic-generate][202-2A] service reject {
+  score: 80,
+  grade: 'usable',
+  validationPassed: true,
+  reason: "Candidate score 80 is below the 90 acceptance gate. Top issue: The answer guidance is factually incorrect and contradicts the question. Units created by combining others are 'Derived Units', not 'Base Units'. Fix: Change the answer guidance for the third question in Teach/Check 1 to 'Derived Units'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2a\\20260321-192539z-rejected.json'
+}
+[simple-chatbot] stream error TypeError: Invalid state: Controller is already closed
+    at Object.start (src\app\api\simple-chatbot\route.ts:920:24)
+  918 |             if (!text) continue;
+  919 |             aggregatedReply += text;
+> 920 |             controller.enqueue(encoder.encode(text));
+      |                        ^
+  921 |           }
+  922 |
+  923 |           const finalResponse = await result.response; {
+  code: 'ERR_INVALID_STATE'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 75,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 68 is below the 90 acceptance gate. Top issue: The answer guidance provides the instrument for total energy (Energy Meter) instead of the instrument for the rate of energy transfer (Wattmeter). Fix: Change the answer guidance to 'Wattmeter' or 'A wattmeter'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-192824z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 50,
+  grade: 'rework',
+  validationPassed: true,
+  reason: `Refined candidate failed hard validation, so the original draft was kept. Top issue: The question asks what the 'O' stands for in SOH CAH TOA, but the answer guidance provides the name of the mnemonic/topic instead of the word 'Opposite'. Fix: Change the answer guidance to ["Opposite"].`,
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-193100z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 67,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 67 is below the 90 acceptance gate. Top issue: The mathematical calculation is factually incorrect. 230 divided by 10 is 23, not 46. Fix: Correct the answer guidance and required output to '23 Ohms' or '23Ω'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-193122z-rejected.json'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 82,
+  grade: 'usable',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance is factually incorrect and unrelated to the question asked. Fix: Change the answer guidance to ['Isolated', 'Dead', 'Switched off', 'Disconnected'].",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-193353z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 79,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The question asks for a 'short explanation' (textual reasoning), but the answer guidance only contains the scalar values '23A' and '23 Amps'. Fix: Change the question to ask for the numerical result (e.g., 'Calculate the total current...') or update the answer guidance to include the key steps of the explanation (e.g., 'Z=10', 'I=V/Z').",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-193641z-rejected.json'
+}
+[dynamic-generate][202-2A] service reject {
+  score: 37,
+  grade: 'rework',
+  validationPassed: false,
+  reason: 'Draft fails hard validation. Validation issue: Guided practice answer guidance is missing or placeholder-like.',
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2a\\20260321-193800z-rejected.json'
+}
+[dynamic-generate][202-2B] service reject {
+  score: 84,
+  grade: 'usable',
+  validationPassed: true,
+  reason: "Candidate score 84 is below the 90 acceptance gate. Top issue: The answer guidance provides the name of the instrument instead of the location (e.g., 'Origin' or 'Intake') asked for in the question. Fix: Update answer guidance to include 'Origin', 'Intake', or 'Main supply' to match the question's intent.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2b\\20260321-193915z-rejected.json'
+}
+[dynamic-generate][203-4A] service reject {
+  score: 78,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance is factually incorrect. The supplier's combined conductor is a PEN (Protective Earthed Neutral) conductor. Fix: Change the answer guidance to 'PEN conductor' or 'Combined Neutral and Earth conductor'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\203-4a\\20260321-194342z-rejected.json'
+}
+[dynamic-generate][203-3A] service reject {
+  score: 23,
+  grade: 'rework',
+  validationPassed: false,
+  reason: 'Draft fails hard validation. Validation issue: Explanation A teaching anchors are too thin or placeholder-like.',
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\203-3a\\20260321-194507z-rejected.json'
+}
+[dynamic-generate][203-5A] service reject {
+  score: 84,
+  grade: 'usable',
+  validationPassed: true,
+  reason: `Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance provides the category label 'Micro-generation' instead of the specific term 'Photovoltaic' requested by the question. Fix: Change the answer guidance to ["Photovoltaic", "Photo-voltaic"].`,
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\203-5a\\20260321-194545z-rejected.json'
+}
+[dynamic-generate][203-4A] service reject {
+  score: 41,
+  grade: 'rework',
+  validationPassed: false,
+  reason: 'Draft fails hard validation. Validation issue: Integrative question is missing or generic.',
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\203-4a\\20260321-194645z-rejected.json'
+}
+[dynamic-generate][203-3A] service reject {
+  score: 75,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance for the question 'What specific material is used as insulation inside an MICC cable?' is factually incorrect and appears to be contaminated from a different topic. Fix: Change the answer guidance to 'Magnesium Oxide' or 'Mineral powder'.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\203-3a\\20260321-194847z-rejected.json'
+}
+ ⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>) {
+  page: '/admin/dynamic-module'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 52,
+  grade: 'rework',
+  validationPassed: true,
+  reason: `Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance contains factually incorrect answers. The longest side is the 'Hypotenuse', not the theorem name. 'A' stands for 'Adjacent', not the topic name. Fix: Update answerGuidance to ["Hypotenuse"] for the first question and ["Adjacent"] for the second.`,
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-205142z-rejected.json'
+}
+[dynamic-generate][202-2A] service reject {
+  score: 6,
+  grade: 'rework',
+  validationPassed: false,
+  reason: 'Refined candidate failed hard validation, so the original draft was kept. Validation issue: The SI System and Base Units teaching anchors are too thin or placeholder-like.',
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2a\\20260321-205438z-rejected.json'
+}
+ ⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>) {
+  page: '/simple-chatbot'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 55,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 55 is below the 90 acceptance gate. Top issue: The mathematical calculation in the guided practice is incorrect and contradictory. Fix: Correct the answer guidance to '10m' and ensure the hint (which mentions 9 and 12) matches the scenario values (6 and 8).",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-210032z-rejected.json'
+}
+[dynamic-generate][202-2A] service reject {
+  score: 66,
+  grade: 'rework',
+  validationPassed: true,
+  reason: 'Refined candidate failed hard validation, so the original draft was kept. Top issue: The Guided Practice and Practice steps contain placeholder-like answer guidance that does not match the question prompt. Fix: Replace the generic list of base units with specific answers that correspond to a concrete scenario provided in the task skeleton.',
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-2a\\20260321-210315z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 68,
+  grade: 'rework',
+  validationPassed: true,
+  reason: `Refined candidate failed hard validation, so the original draft was kept. Top issue: The question asks what the letter 'A' stands for in SOH CAH TOA, but the answer guidance provides the topic name instead of the correct term 'Adjacent'. Fix: Change the answer guidance to ["Adjacent", "Adjacent side"].`,
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-211004z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 44,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 44 is below the 90 acceptance gate. Top issue: The answer guidance is factually incorrect. The longest side is the 'Hypotenuse', not the name of the theorem itself. Fix: Change the answer guidance to ['Hypotenuse'].",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-211645z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 87,
+  grade: 'usable',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance for the multi-step integrative task is fragmented into meaningless partial strings and individual digits. Fix: Consolidate the answer guidance into complete, expected responses such as '15A', '15 Amps', or '230V'. Remove partial numeric fragments.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-212956z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 72,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Candidate score 72 is below the 90 acceptance gate. Top issue: The Practice step is a placeholder. It asks for a 'single best technical answer' for a non-existent scenario, and the answer is just a fragment of a mnemonic. Fix: Replace the generic prompt with a specific calculation task (e.g., a percentage efficiency problem) and provide corresponding guidance.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-213422z-rejected.json'
+}
+[dynamic-generate][202-1A] service reject {
+  score: 72,
+  grade: 'rework',
+  validationPassed: true,
+  reason: "Refined candidate failed hard validation, so the original draft was kept. Top issue: The answer guidance (200) is mathematically incorrect for the provided scenario (800W and 600VAr). Fix: Update the answerGuidance and requiredOutputs to '1000' to match the scenario provided in the task skeleton.",
+  artifactPath: 'C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\.runtime\\dynamic-guided-v2-generated-lessons\\202-1a\\20260321-213800z-rejected.json'
+}
+[simple-chatbot] stream error TypeError: Invalid state: Controller is already closed
+    at Object.start (src\app\api\simple-chatbot\route.ts:920:24)
+  918 |             if (!text) continue;
+  919 |             aggregatedReply += text;
+> 920 |             controller.enqueue(encoder.encode(text));
+      |                        ^
+  921 |           }
+  922 |
+  923 |           const finalResponse = await result.response; {
+  code: 'ERR_INVALID_STATE'
+}

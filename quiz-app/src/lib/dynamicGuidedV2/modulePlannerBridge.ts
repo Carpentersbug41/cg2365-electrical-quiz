@@ -133,16 +133,122 @@ function buildDynamicSourceText(input: {
   return sections.join('\n\n');
 }
 
+function titleCase(text: string): string {
+  return normalizeWhitespace(text)
+    .split(' ')
+    .map((word) => (word ? `${word[0].toUpperCase()}${word.slice(1)}` : word))
+    .join(' ');
+}
+
+function slugLike(text: string): string {
+  return normalizeWhitespace(text).toLowerCase();
+}
+
+function pushChunk(
+  chunks: Array<{ title: string; objective: string }>,
+  title: string,
+  objective: string
+) {
+  const normalizedTitle = normalizeWhitespace(title);
+  const normalizedObjective = normalizeWhitespace(objective);
+  if (!normalizedTitle || !normalizedObjective) return;
+  if (chunks.some((item) => slugLike(item.title) === slugLike(normalizedTitle))) return;
+  chunks.push({ title: normalizedTitle, objective: normalizedObjective });
+}
+
+function deriveChunkCandidates(blueprint: LessonBlueprint): Array<{ title: string; objective: string }> {
+  const chunks: Array<{ title: string; objective: string }> = [];
+  const topic = slugLike(blueprint.topic);
+  const mustHave = blueprint.mustHaveTopics.map((item) => normalizeWhitespace(item)).filter(Boolean);
+  const inScope = blueprint.masterBlueprint?.scopeControl?.inScope?.map((item) => normalizeWhitespace(item)).filter(Boolean) ?? [];
+
+  if (topic.includes('electricity generation and transmission')) {
+    pushChunk(chunks, 'Large-Scale Generation Methods', 'Identify the main large-scale generation methods used to supply the grid.');
+    pushChunk(chunks, 'Micro-Generation and Local Supply', 'Explain what micro-generation is and how it differs from large-scale generation.');
+    pushChunk(chunks, 'Why Transmission Uses High Voltage', 'Explain why electricity is transmitted at very high voltage over long distances.');
+    pushChunk(chunks, 'UK Transmission Voltage Levels', 'Identify the three standard UK transmission voltages: 400 kV, 275 kV, and 132 kV.');
+    return chunks;
+  }
+
+  if (topic.includes('earthing systems and ads components')) {
+    pushChunk(chunks, 'TT Earthing Systems', 'Identify TT systems and explain the role of the local earth electrode.');
+    pushChunk(chunks, 'TN-S and TN-C-S Systems', 'Distinguish between TN-S and TN-C-S arrangements using the code letters and supply path.');
+    pushChunk(chunks, 'CPC and Earthing Conductor', 'Explain the difference between a CPC and an Earthing Conductor in ADS.');
+    pushChunk(chunks, 'Bonding and Protective Devices', 'Identify the bonding and protective-device parts that complete ADS.');
+    return chunks;
+  }
+
+  if (topic.includes('circuit types and wiring systems')) {
+    pushChunk(chunks, 'Ring and Radial Circuits', 'Distinguish ring final circuits from radial circuits and explain how each operates.');
+    pushChunk(chunks, 'Control, Data, and Alarm Circuits', 'Identify the purpose of control, data, and alarm circuits.');
+    pushChunk(chunks, 'Wiring Systems by Environment', 'Select suitable wiring systems for domestic, commercial, industrial, and hazardous environments.');
+    pushChunk(chunks, 'Protection, Fire, and Mechanical Risk', 'Explain why systems like MICC, SWA, conduit, and trunking are chosen for specific risks.');
+    return chunks;
+  }
+
+  const sourcePhrases = unique([
+    ...mustHave,
+    ...inScope,
+    ...blueprint.acAnchors.map((item) => normalizeWhitespace(item)),
+  ]);
+
+  sourcePhrases.forEach((phrase) => {
+    if (/;\s*/.test(phrase)) {
+      phrase
+        .split(/\s*;\s*/)
+        .map((part) => normalizeWhitespace(part))
+        .filter(Boolean)
+        .forEach((part) => pushChunk(chunks, titleCase(part), `Teach the core idea: ${part}.`));
+      return;
+    }
+    pushChunk(chunks, titleCase(phrase), `Teach the core idea: ${phrase}.`);
+  });
+
+  return chunks;
+}
+
+function buildTeachChecksFromBlueprint(blueprint: LessonBlueprint): Array<{ title: string; objective: string }> {
+  const entries = Array.isArray(blueprint.masterBlueprint?.blockPlan?.entries)
+    ? [...(blueprint.masterBlueprint?.blockPlan?.entries ?? [])].sort((a, b) => a.order - b.order)
+    : [];
+  const explanationEntries = entries.filter((entry) => entry.type === 'explanation');
+  const chunks: Array<{ title: string; objective: string }> = [];
+
+  explanationEntries.forEach((entry, index) => {
+    pushChunk(
+      chunks,
+      entry.label || `Teach/Check ${index + 1}`,
+      entry.label || `Teach concept ${index + 1} in ${blueprint.topic}.`
+    );
+  });
+
+  deriveChunkCandidates(blueprint).forEach((item) => pushChunk(chunks, item.title, item.objective));
+
+  if (chunks.length < 4) {
+    const fallbackTitles = [
+      `Core Concept 1: ${blueprint.topic}`,
+      `Core Concept 2: ${blueprint.topic}`,
+      `Core Concept 3: ${blueprint.topic}`,
+      `Core Concept 4: ${blueprint.topic}`,
+    ];
+    fallbackTitles.forEach((title, index) =>
+      pushChunk(chunks, title, `Teach the next distinct core idea needed before application in ${blueprint.topic} (${index + 1}).`)
+    );
+  }
+
+  return chunks.slice(0, 5);
+}
+
 function buildStagePlanFromBlueprint(lessonCode: string, blueprint: LessonBlueprint): DynamicLessonStageDescriptor[] {
   const entries = Array.isArray(blueprint.masterBlueprint?.blockPlan?.entries)
     ? [...(blueprint.masterBlueprint?.blockPlan?.entries ?? [])].sort((a, b) => a.order - b.order)
     : [];
   const outcomesEntry = entries.find((entry) => entry.type === 'outcomes');
-  const explanationEntries = entries.filter((entry) => entry.type === 'explanation');
   const workedExampleEntry = entries.find((entry) => entry.type === 'worked-example');
   const guidedPracticeEntry = entries.find((entry) => entry.type === 'guided-practice');
   const practiceEntries = entries.filter((entry) => entry.type === 'practice' && entry.mode !== 'integrative');
   const integrativeEntry = entries.find((entry) => entry.type === 'practice' && entry.mode === 'integrative');
+  const teachChecks = buildTeachChecksFromBlueprint(blueprint);
 
   const stagePlan: DynamicLessonStageDescriptor[] = [
     {
@@ -154,12 +260,12 @@ function buildStagePlanFromBlueprint(lessonCode: string, blueprint: LessonBluepr
       progressionRule: 'auto',
       completionMode: 'continue',
     },
-    ...explanationEntries.map((entry, index) => ({
+    ...teachChecks.map((entry, index) => ({
       key: `teach-check-${index + 1}`,
-      title: entry.label || `Teach/Check ${index + 1}`,
+      title: entry.title || `Teach/Check ${index + 1}`,
       role: 'explanation' as const,
       stage: 'teach_check' as const,
-      objective: entry.label || `Teach/Check ${index + 1}`,
+      objective: entry.objective || `Teach/Check ${index + 1}`,
       progressionRule: 'feedback_deeper' as const,
       completionMode: 'respond' as const,
     })),

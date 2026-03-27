@@ -33,6 +33,18 @@ type DynamicScoreReport = {
   summary: string;
 };
 
+type DynamicDiagnosticScore = {
+  total: number;
+  grade: string;
+  breakdown: Record<string, number>;
+  issues: Array<{
+    category: string;
+    problem: string;
+    suggestion: string;
+  }>;
+  summary: string;
+};
+
 type DynamicValidation = {
   passed: boolean;
   issues: string[];
@@ -56,6 +68,8 @@ type DynamicVersionSummary = {
   createdAt: string;
   report?: DynamicScoreReport | null;
   validation?: DynamicValidation | null;
+  planScore?: DynamicDiagnosticScore | null;
+  fidelityScore?: DynamicDiagnosticScore | null;
 };
 
 type GenerateResult = {
@@ -63,12 +77,59 @@ type GenerateResult = {
   lessonCode: string;
   version: DynamicVersionSummary | null;
   score: DynamicScoreReport | null;
+  planScore: DynamicDiagnosticScore | null;
+  fidelityScore: DynamicDiagnosticScore | null;
   validation: DynamicValidation | null;
   phases: DynamicPhaseArtifact[];
   previewUrl: string | null;
   simpleChatbotPreviewUrl: string | null;
   rejectionReason?: string | null;
 };
+
+function formatMetricLabel(key: string): string {
+  return key
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function DiagnosticBreakdown({
+  title,
+  score,
+}: {
+  title: string;
+  score: DynamicDiagnosticScore | null;
+}) {
+  if (!score) return null;
+
+  return (
+    <div>
+      <div className="font-semibold text-slate-900">{title}</div>
+      <p className="mt-1">{score.summary}</p>
+      <ul className="mt-2 space-y-1 text-slate-700">
+        {Object.entries(score.breakdown).map(([key, value]) => (
+          <li key={key}>
+            {formatMetricLabel(key)}: {value}
+          </li>
+        ))}
+      </ul>
+      <div className="mt-2 text-slate-600">
+        Total: <strong>{score.total}</strong> ({score.grade})
+      </div>
+      {score.issues.length > 0 ? (
+        <ul className="mt-2 space-y-2">
+          {score.issues.map((issue, index) => (
+            <li key={`${issue.category}-${index}`} className="rounded-xl border border-slate-200 bg-white p-3">
+              <div className="font-medium text-slate-900">{issue.category}</div>
+              <div className="mt-1 text-slate-900">{issue.problem}</div>
+              <div className="mt-1 text-slate-700">Fix: {issue.suggestion}</div>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
 
 function ScoreBreakdown({ score, validation }: { score: DynamicScoreReport | null; validation: DynamicValidation | null }) {
   if (!score && !validation) return null;
@@ -217,9 +278,11 @@ export default function DynamicGeneratePage() {
 
   useEffect(() => {
     if (!result) return;
-    console.groupCollapsed('[dynamic-generate] latest-result', `${result.lessonCode} v${result.version.versionNo}`);
+    console.groupCollapsed('[dynamic-generate] latest-result', `${result.lessonCode} ${result.version ? `v${result.version.versionNo}` : 'rejected'}`);
     console.log('version', result.version);
-    console.log('score', result.score);
+    console.log('lessonScore', result.score);
+    console.log('planScore', result.planScore);
+    console.log('fidelityScore', result.fidelityScore);
     console.log('validation', result.validation);
     console.log('phases', result.phases);
     console.groupEnd();
@@ -252,6 +315,8 @@ export default function DynamicGeneratePage() {
         lessonCode?: string;
         version?: DynamicVersionSummary | null;
         score?: DynamicScoreReport | null;
+        planScore?: DynamicDiagnosticScore | null;
+        fidelityScore?: DynamicDiagnosticScore | null;
         validation?: DynamicValidation | null;
         phases?: DynamicPhaseArtifact[] | null;
         previewUrl?: string | null;
@@ -266,6 +331,8 @@ export default function DynamicGeneratePage() {
         lessonCode: data.lessonCode,
         version: data.version ?? null,
         score: data.score ?? null,
+        planScore: data.planScore ?? null,
+        fidelityScore: data.fidelityScore ?? null,
         validation: data.validation ?? null,
         phases: Array.isArray(data.phases) ? data.phases : [],
         previewUrl: data.previewUrl ?? null,
@@ -275,7 +342,9 @@ export default function DynamicGeneratePage() {
       setResult(nextResult);
       console.groupCollapsed('[dynamic-generate] result', `${data.lessonCode} ${data.version ? `v${data.version.versionNo}` : 'rejected'}`);
       console.log('version', data.version);
-      console.log('score', data.score ?? null);
+      console.log('lessonScore', data.score ?? null);
+      console.log('planScore', data.planScore ?? null);
+      console.log('fidelityScore', data.fidelityScore ?? null);
       console.log('validation', data.validation ?? null);
       console.log('phases', Array.isArray(data.phases) ? data.phases : []);
       console.log('accepted', data.accepted ?? data.success ?? false);
@@ -357,7 +426,9 @@ export default function DynamicGeneratePage() {
                 <div className="mt-4 space-y-3 text-sm text-slate-700">
                   <div>Lesson: <strong>{result.lessonCode}</strong></div>
                   <div>Version: <strong>{result.version ? result.version.versionNo : 'not saved'}</strong></div>
-                  <div>Score: <strong>{result.score ? `${result.score.total} (${result.score.grade})` : 'n/a'}</strong></div>
+                  <div>Lesson score: <strong>{result.score ? `${result.score.total} (${result.score.grade})` : 'n/a'}</strong></div>
+                  <div>Plan score: <strong>{result.planScore ? `${result.planScore.total} (${result.planScore.grade})` : 'n/a'}</strong></div>
+                  <div>Fidelity score: <strong>{result.fidelityScore ? `${result.fidelityScore.total} (${result.fidelityScore.grade})` : 'n/a'}</strong></div>
                   <div>Validation: <strong>{result.validation?.passed ? 'passed' : 'needs review'}</strong></div>
                   {result.accepted === false && result.rejectionReason ? (
                     <div className="rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-rose-800">
@@ -365,6 +436,10 @@ export default function DynamicGeneratePage() {
                     </div>
                   ) : null}
                   <ScoreBreakdown score={result.score} validation={result.validation} />
+                  <div className="mt-4 space-y-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
+                    <DiagnosticBreakdown title="Plan score" score={result.planScore} />
+                    <DiagnosticBreakdown title="Plan-to-lesson fidelity" score={result.fidelityScore} />
+                  </div>
                   <PhaseDebug phases={result.phases} />
                   <div className="flex flex-wrap gap-3 pt-2">
                     {result.previewUrl ? (

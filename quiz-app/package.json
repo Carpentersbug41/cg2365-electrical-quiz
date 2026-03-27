@@ -32,7 +32,10 @@
     "phase10:dashboard": "npx tsx scripts/runPhase10Diagnostics.ts dashboard",
     "phase10:summary": "npx tsx scripts/runPhase10Diagnostics.ts summary",
     "score:lessons": "npx tsx scripts/scoreExistingLessons.ts",
-    "score:dynamic-review": "npx tsx scripts/rescoreDynamicGeneratedLessons.ts"
+    "score:dynamic-review": "npx tsx scripts/rescoreDynamicGeneratedLessons.ts",
+    "benchmark:dynamic-generation": "npx tsx scripts/runDynamicGenerationBenchmark.ts",
+    "backfill:dynamic-generation-issues": "npx tsx scripts/backfillDynamicGenerationIssues.ts",
+    "report:dynamic-generation-issues": "npx tsx scripts/reportDynamicGenerationIssues.ts"
   },
   "dependencies": {
     "@google-cloud/vertexai": "^1.4.0",

@@ -2,15 +2,25 @@
 
 ## Purpose
 
-Define the stored lesson object for the new module.
+Define the stored lesson object for the dynamic 2365 module.
 
-## Rule
+The stored object is a runtime teaching spec, not final learner-facing prose.
+It should preserve the planned core-chunk structure clearly enough that the runtime can teach, check, repair, and progress without inventing the lesson shape.
 
-The stored object is a runtime spec, not final lesson prose.
-It must support section-level retrieval cleanly.
-Versioned lesson drafts can be produced by:
-- the native dynamic module planner
-- or the manual dynamic lesson generator
+## Separation Rule
+
+This spec applies only to the dynamic lesson system.
+
+It does not replace the authored static lesson schema used in `src/data/lessons/2365`.
+
+## Design Rule
+
+The stored object should represent two layers at once:
+- pedagogic layer: planned core chunks and later application stages
+- runtime layer: explicit ordered stages for prompt handover
+
+The pedagogic source of truth is the core chunk.
+The runtime stages are the way that chunk is delivered conversationally.
 
 ## Top-Level Shape
 
@@ -33,7 +43,14 @@ Each LO should contain:
 
 ## Step Shape
 
-Each step should contain:
+Each step should contain enough information to support:
+- one clear teaching move
+- its checks or task
+- its answer guidance
+- misconception repair
+- deterministic prompt handover
+
+The currently important stored fields remain:
 - `stepId`
 - `role`
 - `stage`
@@ -49,7 +66,9 @@ Each step should contain:
 - `microbreakMarker`
 - `progressionIntent`
 
-For the first implementation, the important stored `stage` values are:
+## Stage Model
+
+The current important stored stages remain:
 - `intro`
 - `teach_check`
 - `worked_example`
@@ -57,47 +76,60 @@ For the first implementation, the important stored `stage` values are:
 - `practice`
 - `integrative`
 
-The important runtime feedback phases are:
+The important runtime feedback phases remain:
 - `feedback_basic`
 - `feedback_deeper`
 - `worked_example_feedback`
 - `integrative_feedback`
 
-## Roles
+These stages should be understood as runtime delivery stages, not as the pedagogic model itself.
 
-Allowed roles initially:
-- `outcomes`
-- `vocab`
-- `diagram`
-- `explanation`
-- `check`
-- `worked_example`
-- `guided_practice`
-- `practice`
-- `integrative`
-- `spaced_review`
+## Core Chunk Rule
+
+A planned core chunk should usually map to one `teach_check` step.
+
+That step must carry enough detail for the runtime to do all of this without inventing content:
+- teach the current idea
+- ask 3 short-answer checks
+- give basic feedback
+- ask or resolve one deeper probe
+- remain in repair if the learner is still confused
+
+The runtime may spend multiple turns inside the same stored `teach_check` step.
+That does not mean the lesson needs more planned chunks.
 
 ## Ordering Rule
 
 The runtime must display and process steps in stored array order.
 No hidden reordering.
 
+The normal ordered shape is:
+- `Intro`
+- `Teach/Check 1...N`
+- `Worked Example`
+- `Guided Practice`
+- `Practice`
+- `Integrative Close`
+
+Where `N` is normally `4-6` core chunks at planning time.
+
 ## Naming Rule
 
-The attachment should make stage boundaries obvious.
-
+Step titles should make the lesson structure obvious.
 Use labels like:
+- `Intro`
 - `Teach/Check 1`
 - `Teach/Check 2`
-- `Guided practice 1`
-- `Practice 1`
-- `Integrative 1`
+- `Worked Example`
+- `Guided Practice`
+- `Practice`
+- `Integrative Close`
 
-Do not leave the runtime to infer the pedagogic phase from vague titles.
+The title should help the runtime and debug surfaces audit the lesson shape, but the pedagogic quality should come from the step content, not the label itself.
 
 ## Prompt Boundary Rule
 
-The current clean prompt handover is:
+The current prompt handover can stay minimal:
 - Prompt 1 for `intro`
 - Prompt 2 for `teach_check`
 - Prompt 3 for `feedback_basic` and `feedback_deeper`
@@ -106,29 +138,5 @@ The current clean prompt handover is:
 - Prompt 6 for `guided_practice` and `practice`
 - Prompt 7 for `integrative` and `integrative_feedback`
 
-## Current Practical Rule
-
-For now, structure the attachment so the stage boundary is obvious.
-
-Use:
-- `Intro`
-- `Teach/Check 1`
-- `Teach/Check 2`
-- `Worked Example`
-- `Worked Example Feedback`
-- `Guided Practice`
-- `Practice 1`
-- `Integrative 1`
-
-This makes the runtime simpler and keeps the prompt handover auditable.
-
-The immediate goal is not a perfect final schema.
-It is a clean attachment format that supports:
-- Prompt 1 for introduction
-- Prompt 2 for the teach/check cycle
-- Prompt 3 for the feedback cycle
-- Prompt 4 for worked example
-- Prompt 5 for worked example feedback
-- Prompt 6 for guided and independent practice
-- Prompt 7 for integrative close and its feedback
-- one retrieved section at a time
+That prompt split exists to support runtime control.
+It should not force the planner to think in brittle page-block terms.

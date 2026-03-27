@@ -22,18 +22,27 @@ export async function POST(
       createdBy: actorUserId,
     });
 
-    const lessonCode = encodeURIComponent(result.version.lessonCode);
-    const versionId = encodeURIComponent(result.version.id);
+    const lessonCode = result.version ? encodeURIComponent(result.version.lessonCode) : null;
+    const versionId = result.version ? encodeURIComponent(result.version.id) : null;
 
     return NextResponse.json({
       success: true,
+      accepted: result.accepted,
       runId: id,
       blueprintId,
       score: result.score ?? null,
+      planScore: result.planScore ?? null,
+      fidelityScore: result.fidelityScore ?? null,
       validation: result.validation ?? null,
-      version: result.version,
-      previewUrl: `/2365/dynamic-guided-v2/${lessonCode}?versionId=${versionId}&sourceContext=dynamic_module_preview`,
-      simpleChatbotPreviewUrl: `/2365/simple-chatbot?lessonMode=1&lessonCode=${lessonCode}&dynamicVersionId=${versionId}`,
+      version: result.version ?? null,
+      rejectionReason: result.rejectionReason ?? null,
+      phases: result.phases,
+      previewUrl: result.version && lessonCode && versionId
+        ? `/2365/dynamic-guided-v2/${lessonCode}?versionId=${versionId}&sourceContext=dynamic_module_preview`
+        : null,
+      simpleChatbotPreviewUrl: result.version && lessonCode && versionId
+        ? `/2365/simple-chatbot?lessonMode=1&lessonCode=${lessonCode}&dynamicVersionId=${versionId}`
+        : null,
     });
   } catch (error) {
     return toV2ModulePlannerError(error);

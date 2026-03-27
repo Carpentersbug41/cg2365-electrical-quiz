@@ -89,6 +89,8 @@ export async function generateAndStoreDynamicLessonDraft(input: {
     qualityScore: generated.score.total,
     validation: generated.validation,
     report: generated.score,
+    planScore: generated.planScore,
+    fidelityScore: generated.fidelityScore,
     phaseArtifacts: generated.phases,
     source: 'ai',
   });

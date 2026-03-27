@@ -87,6 +87,20 @@ interface GuidedVersionSummary {
     passed: boolean;
     issues: string[];
   } | null;
+  planScore?: DynamicDiagnosticScore | null;
+  fidelityScore?: DynamicDiagnosticScore | null;
+}
+
+interface DynamicDiagnosticScore {
+  total: number;
+  grade: string;
+  breakdown: Record<string, number>;
+  issues: Array<{
+    category: string;
+    problem: string;
+    suggestion: string;
+  }>;
+  summary: string;
 }
 
 interface DynamicPhaseArtifactView {
@@ -127,6 +141,8 @@ interface GuidedDraftState {
   score?: number | null;
   grade?: string | null;
   scoreReport?: GuidedVersionSummary['report'] | null;
+  planScore?: DynamicDiagnosticScore | null;
+  fidelityScore?: DynamicDiagnosticScore | null;
   validation?: GuidedVersionSummary['validation'] | null;
   previewUrl?: string | null;
   secondaryUrl?: string | null;
@@ -159,16 +175,65 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function formatMetricLabel(key: string): string {
+  return key
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/[_-]+/g, ' ')
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function DiagnosticScorePanel({
+  title,
+  score,
+}: {
+  title: string;
+  score?: DynamicDiagnosticScore | null;
+}) {
+  if (!score) return null;
+
+  return (
+    <div>
+      <p className="font-semibold text-slate-900">{title}</p>
+      <p className="mt-1">{score.summary}</p>
+      <ul className="mt-2 space-y-1">
+        {Object.entries(score.breakdown).map(([key, value]) => (
+          <li key={key}>
+            {formatMetricLabel(key)}: {value}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-2">
+        Total: <strong>{score.total}</strong> ({score.grade})
+      </p>
+      {score.issues.length > 0 ? (
+        <ul className="mt-2 space-y-2">
+          {score.issues.map((issue, index) => (
+            <li key={`${issue.category}-${index}`} className="rounded border border-slate-200 bg-slate-50 p-2">
+              <div className="font-medium text-slate-900">{issue.category}</div>
+              <div className="mt-1">{issue.problem}</div>
+              <div className="mt-1 text-slate-700">Fix: {issue.suggestion}</div>
+            </li>
+          ))}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
+
 function DynamicDraftDiagnostics({
   scoreReport,
+  planScore,
+  fidelityScore,
   validation,
   phases,
 }: {
   scoreReport?: GuidedVersionSummary['report'] | null;
+  planScore?: DynamicDiagnosticScore | null;
+  fidelityScore?: DynamicDiagnosticScore | null;
   validation?: GuidedVersionSummary['validation'] | null;
   phases?: DynamicPhaseArtifactView[] | null;
 }) {
-  if (!scoreReport && !validation && (!phases || phases.length === 0)) {
+  if (!scoreReport && !planScore && !fidelityScore && !validation && (!phases || phases.length === 0)) {
     return null;
   }
 
@@ -224,6 +289,8 @@ function DynamicDraftDiagnostics({
           </div>
         </div>
       ) : null}
+      <DiagnosticScorePanel title="Plan score" score={planScore} />
+      <DiagnosticScorePanel title="Plan-to-lesson fidelity" score={fidelityScore} />
       {validation ? (
         <div>
           <p className="font-semibold text-slate-900">Validation</p>
@@ -551,6 +618,14 @@ export default function ModulePlannerPage() {
             typeof version.report === 'object' && version.report
               ? (version.report as GuidedVersionSummary['report'])
               : null,
+          planScore:
+            typeof version.planScore === 'object' && version.planScore
+              ? (version.planScore as DynamicDiagnosticScore)
+              : null,
+          fidelityScore:
+            typeof version.fidelityScore === 'object' && version.fidelityScore
+              ? (version.fidelityScore as DynamicDiagnosticScore)
+              : null,
           validation:
             typeof version.validation === 'object' && version.validation
               ? (version.validation as GuidedVersionSummary['validation'])
@@ -583,6 +658,8 @@ export default function ModulePlannerPage() {
           score: typeof latest.qualityScore === 'number' ? latest.qualityScore : null,
           grade: typeof latest.grade === 'string' ? latest.grade : null,
           scoreReport: latest.report ?? null,
+          planScore: latest.planScore ?? null,
+          fidelityScore: latest.fidelityScore ?? null,
           validation: latest.validation ?? null,
           previewUrl: isDynamicMode
             ? withDevBypass(prefixHref(`/dynamic-guided-v2/${encodeURIComponent(lessonCode)}?versionId=${encodeURIComponent(latest.id)}&sourceContext=dynamic_module_preview`))
@@ -1136,6 +1213,14 @@ export default function ModulePlannerPage() {
             typeof data.score === 'object' && data.score
               ? (data.score as GuidedVersionSummary['report'])
               : null,
+          planScore:
+            typeof data.planScore === 'object' && data.planScore
+              ? (data.planScore as DynamicDiagnosticScore)
+              : null,
+          fidelityScore:
+            typeof data.fidelityScore === 'object' && data.fidelityScore
+              ? (data.fidelityScore as DynamicDiagnosticScore)
+              : null,
           validation:
             typeof data.validation === 'object' && data.validation
               ? (data.validation as GuidedVersionSummary['validation'])
@@ -1150,7 +1235,9 @@ export default function ModulePlannerPage() {
       }));
       if (isDynamicMode) {
         console.groupCollapsed('[dynamic-module] draft', `${blueprintId} ${accepted ? `v${versionNo}` : 'rejected'}`);
-        console.log('score', data.score ?? null);
+        console.log('lessonScore', data.score ?? null);
+        console.log('planScore', data.planScore ?? null);
+        console.log('fidelityScore', data.fidelityScore ?? null);
         console.log('validation', data.validation ?? null);
         console.log('version', data.version ?? null);
         console.log('previewUrl', previewUrl);
@@ -1642,12 +1729,14 @@ export default function ModulePlannerPage() {
                                     <p className="font-semibold">{isDynamicMode ? 'Dynamic draft generated' : 'Guided draft generated'}</p>
                                     <p className="mt-1">
                                       Version: v{guidedState?.versionNo ?? '?'}
-                                      {guidedState?.score != null ? ` | Score: ${guidedState.score}` : ''}
+                                      {guidedState?.score != null ? ` | Lesson score: ${guidedState.score}` : ''}
                                       {guidedState?.grade ? ` | Grade: ${guidedState.grade}` : ''}
                                     </p>
                                     {isDynamicMode ? (
                                       <DynamicDraftDiagnostics
                                         scoreReport={guidedState.scoreReport}
+                                        planScore={guidedState.planScore}
+                                        fidelityScore={guidedState.fidelityScore}
                                         validation={guidedState.validation}
                                         phases={guidedState.phases}
                                       />
@@ -1661,13 +1750,15 @@ export default function ModulePlannerPage() {
                                     <p className="mt-1">{guidedState.error}</p>
                                     {guidedState?.score != null ? (
                                       <p className="mt-1">
-                                        Score: {guidedState.score}
+                                        Lesson score: {guidedState.score}
                                         {guidedState.grade ? ` (${guidedState.grade})` : ''}
                                       </p>
                                     ) : null}
                                     {isDynamicMode ? (
                                       <DynamicDraftDiagnostics
                                         scoreReport={guidedState.scoreReport}
+                                        planScore={guidedState.planScore}
+                                        fidelityScore={guidedState.fidelityScore}
                                         validation={guidedState.validation}
                                         phases={guidedState.phases}
                                       />

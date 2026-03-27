@@ -52,6 +52,8 @@ export async function POST(
       version: result.version,
       validation: result.validation,
       score: result.score,
+      planScore: result.planScore,
+      fidelityScore: result.fidelityScore,
       refined: result.refined,
       phases: result.phases,
       rejectionReason: result.rejectionReason,

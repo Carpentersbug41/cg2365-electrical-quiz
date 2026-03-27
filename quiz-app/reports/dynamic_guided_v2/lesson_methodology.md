@@ -2,116 +2,159 @@
 
 ## Purpose
 
-Define the pedagogic sequence to copy from V1.
+Define the teaching model for the dynamic 2365 lesson module.
 
-## Canonical Sequence
+This methodology is for the dynamic planner, generator, scorer, and runtime only.
+It does not replace the static V1 lesson model.
 
-1. `outcomes`
-2. `vocab`
-3. `diagram` if needed
-4. `explanation_a`
-5. `check_a`
-6. `worked_example_a` if needed
-7. `guided_practice_a` if needed
-8. `explanation_b` optional
-9. `check_b` optional
-10. `worked_example_b` if needed
-11. `guided_practice_b` if needed
-12. `practice`
-13. `integrative`
-14. `integrative_feedback`
+## Core Principle
 
-`spaced_review` should be treated separately as prerequisite retrieval or later review logic, not as the closing step of the live lesson arc.
+A dynamic lesson is not a flat list of fixed learner-facing chunks.
 
-## Why This Sequence
+It is:
+- a small number of planned core chunks
+- plus runtime repair loops when the learner is confused or imprecise
+- followed by modelled and independent application
 
-It preserves the V1 teaching logic:
-- orient the learner
-- define the language
-- ground the concept visually if useful
-- teach before testing
-- check understanding quickly
-- model the process if needed
-- scaffold learner practice
-- move toward independence
-- connect ideas together
-- run a final synthesis check with repair if needed
+The goal is natural tutoring, not a worksheet or a rigid script.
 
-## New Runtime Interpretation
+## Control Principle
 
-These are not page blocks in V2.
-They are instructional roles in a conversational lesson spec.
+The dynamic module should not use one control style everywhere.
 
-The runtime should express them through tutor turns, learner responses, and inline assets.
+Use:
+- rigid planning and generation for consistency
+- rigid scoring for consistency
+- loose runtime tutoring for adaptation
 
-In the current 2365 dynamic system, this sequence is planned either:
-- from native dynamic blueprints created in `/2365/admin/dynamic-module`
-- or directly from grounded lesson source in `/2365/admin/dynamic-generate`
+That means:
+- the lesson artifact should be consistent and predictable
+- the score should be consistent and predictable
+- the live tutoring should be allowed to sound natural and adapt to the learner
 
-## Important Runtime Interpretation
+The runtime should be flexible inside the guard rails, not outside them.
 
-In the new runtime, `vocab` is usually not a separate learner-facing phase.
+Those guard rails should be minimal.
+They exist to keep the runtime:
+- correct
+- in scope
+- aligned to required terminology
+- safe to progress
 
-Instead:
-- the V1 vocab block remains useful as source material
-- key terms are normally introduced inside `teach/check` chunks
-- only create a separate vocab activity if it materially improves understanding
+They do not exist to script tutor wording, explanation rhythm, or repair style.
+If an extra guard rail improves control but degrades dynamic tutoring quality, it should be rejected.
 
-So the old V1 sequence is still the pedagogic reference, but the runtime delivery can merge:
-- `vocab`
-- `explanation`
-- `check`
+## Target Lesson Shape
 
-into one teaching/checking loop.
+A normal dynamic lesson should contain:
+- `4-6` core chunks by default
+- then a worked example
+- then guided practice
+- then independent practice
+- then an integrative close
 
-## Old Roles vs New Stages
+A core chunk contains:
+- one main idea
+- short teaching
+- exactly 3 short-answer checks
+- feedback on those checks
+- one deeper probe when appropriate
+- optional clarification / repair before progression
 
-The old V1 model gives us `roles`.
-The new runtime adds `stages`.
+The important distinction is:
+- core chunk = planned teaching move
+- repair loop = runtime response to learner misunderstanding
 
-Typical mapping:
+Repair loops are expected and desirable.
+They do not mean the planner created too many chunks.
 
-- `outcomes` -> `intro`
-- `vocab` -> `teach_check`
-- `diagram` -> `teach_check`
-- `explanation_*` -> `teach_check`
-- `check_*` -> `teach_check`
-- `worked_example_*` -> `worked_example`
-- `guided_practice_*` -> `guided_practice`
-- `practice` -> `practice`
-- `integrative` -> `integrative`
-- `integrative_feedback` -> `integrative_feedback`
+## Chunk Progression Model
 
-For the current prototype, each `teach_check` section expands at runtime into:
+Within one core chunk, the runtime should behave like this:
+1. teach one idea clearly
+2. ask 3 short-answer questions
+3. give feedback and tighten wording
+4. ask or resolve one deeper question if the chunk needs it
+5. repair misconceptions if needed
+6. only then advance to the next core chunk
 
+That is the teaching rhythm the generator should support.
+
+## Planner Defaults
+
+Planning defaults for the dynamic module:
+- most LOs -> `1` lesson
+- broad or conceptually heavy LOs -> `2` lessons
+- only split further when one LO contains more than one clean teaching arc
+
+Chunk defaults per lesson:
+- compact lesson -> `4` core chunks
+- normal lesson -> `5` core chunks
+- denser lesson -> `6` core chunks
+
+If one lesson would need more than `6` core chunks, split it into two lessons.
+
+Split by teaching arc, not by LO label alone.
+
+## What Counts As One Teaching Arc
+
+A lesson should usually stay within one coherent arc:
+- one conceptual family
+- one worked-example pattern
+- one type of application reasoning
+
+If the content needs a different reasoning mode, a different safety logic, or a different application pattern, that is usually a new lesson.
+
+## Current Runtime Mapping
+
+The runtime still uses these stored stages:
+- `intro`
 - `teach_check`
-- `feedback_basic`
-- `feedback_deeper`
-
-Only `feedback_deeper` is the progression gate for the repeated concept loop.
-
-After the final `teach_check` loop, the live lesson arc becomes:
-
 - `worked_example`
-- `worked_example_feedback`
 - `guided_practice`
 - `practice`
 - `integrative`
+
+And these runtime feedback phases:
+- `feedback_basic`
+- `feedback_deeper`
+- `worked_example_feedback`
 - `integrative_feedback`
 
-This is the key shift:
-- old model = block type / instructional role
-- new model = role plus pedagogic stage for prompt handover
+That stage model is a delivery mechanism.
+It is not the real pedagogic unit.
 
-## Conditional Items
+The real pedagogic unit is the core chunk plus whatever repair is needed before progression.
 
-`diagram`, `worked_example_*`, and `guided_practice_*` should only appear when the topic actually needs them.
+## Role Of V1
 
-Use them for:
-- process
-- wiring flow
-- calculations
-- procedural sequencing
-- dense physical distinctions
+For the dynamic module, V1 is reference material only.
 
-Do not force them into every lesson.
+Useful things to retain from V1:
+- teach before test
+- explicit modelling before independent practice
+- strong answer guidance
+- pedagogic scoring discipline
+
+Things not to copy literally:
+- block-by-block authored lesson shape
+- rigid phase mirroring when it weakens the tutoring flow
+- assuming the planned chunk count must equal the number of learner turns
+
+## Methodology Consequence
+
+Do not try to make generation and runtime behave the same way.
+
+Generation should be strict because structure is a quality requirement.
+Runtime tutoring should be flexible because live learner repair is a quality requirement.
+
+## What Good Looks Like
+
+A strong dynamic lesson should feel like this:
+- concise teaching
+- sharp short-answer checks
+- corrective feedback that improves exam wording
+- clarification loops that stay on the learner's actual misunderstanding
+- smooth movement into example, practice, and synthesis
+
+If a strong GPT tutor would naturally stay on one point for three extra turns, the dynamic lesson should be able to do that without pretending those turns were separate planned chunks.

@@ -25,10 +25,19 @@ export type DynamicGuidedV2Asset = {
   placeholderText?: string;
 };
 
+export type DynamicGuidedV2TaskSkeleton = {
+  scenario?: string;
+  steps?: string[];
+  takeaway?: string;
+  requiredOutputs?: string[];
+};
+
 export type DynamicGuidedV2BasicQuestion = {
   questionText: string;
-  answerGuidance: string[];
+  answerGuidance?: string[];
 };
+
+export type DynamicGuidedV2ArtifactVersion = 'legacy_rich' | 'thin_guard_rails';
 
 export type DynamicGuidedV2Step = {
   id: string;
@@ -39,8 +48,16 @@ export type DynamicGuidedV2Step = {
   progressionRule?: 'auto' | 'feedback_deeper' | 'worked_example_feedback' | 'integrative_feedback';
   nextStepId?: string;
   objective: string;
-  retrievalText: string;
   completionMode: 'continue' | 'respond';
+  retrievalText?: string;
+  keyTerms?: string[];
+  keyIdeas?: string[];
+  anchorFacts?: string[];
+  misconceptionsToWatch?: string[];
+  taskConstraints?: string[];
+  questionIntent?: string;
+  deeperQuestionIntent?: string;
+  taskSkeleton?: DynamicGuidedV2TaskSkeleton;
   basicQuestions?: DynamicGuidedV2BasicQuestion[];
   questionText?: string;
   answerGuidance?: string[];
@@ -59,6 +76,9 @@ export type DynamicGuidedV2Lesson = {
   audience: string;
   tonePrompt: string;
   comparisonSource: 'v1_lesson_json' | 'dynamic_generator';
+  artifactVersion?: DynamicGuidedV2ArtifactVersion;
+  keyTerms?: string[];
+  keyIdeas?: string[];
   steps: DynamicGuidedV2Step[];
 };
 

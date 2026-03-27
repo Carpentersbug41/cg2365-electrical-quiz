@@ -2,180 +2,119 @@
 
 ## Purpose
 
-Define the minimal runtime model for the rebuild.
+Define how the dynamic runtime should deliver a lesson conversationally.
+
+## Separation Rule
+
+This runtime model applies to the dynamic module only.
+It does not govern the static V1 authored lesson runtime.
 
 ## Runtime Inputs
 
 For each tutor turn, give the model:
 - a concise system prompt
 - the learner tone/profile prompt
-- the current attached lesson section
+- the current lesson step as grounding
 - the recent conversation history
-- the current lesson position through the selected section
+- the current lesson position and feedback phase
 
-## Runtime Outputs
+## Runtime Objective
 
-The model produces:
-- the visible tutor teaching turn
-- the required question(s)
-- the next conversational reply only
+The runtime should make one planned core chunk feel like natural tutoring.
+
+The runtime should be the loosest layer in the system.
+Its job is not structural consistency.
+Its job is live explanation, clarification, repair, and progression judgement within the lesson guard rails.
+
+Those lesson guard rails should be minimal.
+They should define boundaries, not delivery style.
+The runtime should have freedom inside those boundaries to explain, rephrase, and repair naturally.
+
+That means it must be able to:
+- teach one idea
+- check understanding
+- give corrective feedback
+- stay on the same chunk while the learner is confused
+- only progress when that chunk is secure enough
+
+## Core Chunk Delivery
+
+A planned core chunk is usually stored as one `teach_check` step.
+
+At runtime, that one step may expand into multiple tutor turns:
+1. teaching plus 3 short-answer checks
+2. feedback on those checks
+3. one deeper probe when appropriate
+4. one or more repair turns if the learner is still confused
+
+The runtime should not confuse:
+- number of stored chunks
+- number of learner turns needed to finish the chunk
 
 ## Minimal State
 
-Track only:
+Track only what is needed for progression:
 - current step index
 - current section phase (`teach`, `feedback_basic`, `feedback_deeper`, `worked_example_feedback`, or `integrative_feedback`)
 - recent thread
 
-Do not add evaluator states or hidden progression counters.
-
-The lesson artifact should carry the ordered step sequence and minimal progression metadata.
-For this prototype, that means each generated step can define:
-
+The lesson artifact should continue to carry:
+- ordered step sequence
 - `progressionRule`
 - `nextStepId`
 
-The runtime should read that structure rather than guessing:
-- how many `teach_check` sections the lesson contains
-- what comes after the final `teach_check`
-- which steps are gated by `feedback_deeper`
-
 ## Prompt Philosophy
 
-Start with minimal constraint and mirror the proven GPT baseline.
+The prompt should support natural tutoring, not scripted page reading.
 
-Use:
-- concise role instruction
-- fixed lesson scope
-- current attached lesson context
-- tone prompt
-- recent history
-
-Do not start with:
-- rigid canned fallbacks
-- dense hidden branching
-- edge-case trees
-
-Add constraints only after seeing real failure.
-
-## Current Prompt Shape
-
-The first runtime should stay close to:
-
-- expert tutor for the target course
-- teach the requested unit only
-- use the attached lesson context as grounding, not as a script
+It should:
 - teach before testing
-- never ask about untaught material
+- stay on the current chunk only
+- tighten learner wording toward exam language
+- repair misunderstanding directly
+- avoid jumping forward just because a stored step exists after this one
 
-The lesson artifact carries the structure.
-The runtime prompt should stay short.
+It should not sound like the generation layer.
+The generator should be rigid.
+The runtime should be adaptive and natural.
 
-## Prompt Separation
+Do not add runtime guard rails whose main effect is to make the tutor wording more scripted.
+Guard rails are justified only when they protect correctness, scope, required terminology, or safe progression.
 
-The active runtime keeps the split minimal:
+## Current Prompt Separation
 
-1. `Prompt 1: intro`
-2. `Prompt 2: teach/check prompt`
-3. `Prompt 3: feedback prompt`
-4. `Prompt 4: worked example prompt`
-5. `Prompt 5: worked example feedback prompt`
-6. `Prompt 6: apply prompt`
-7. `Prompt 7: integrative feedback prompt`
+The current prompt split can stay minimal:
+1. `intro`
+2. `teach_check`
+3. `feedback_basic` and `feedback_deeper`
+4. `worked_example`
+5. `worked_example_feedback`
+6. `guided_practice` and `practice`
+7. `integrative` and `integrative_feedback`
 
-`Prompt 1` handles:
-- welcome
-- lesson orientation
-- natural presentation of the outcomes
-- explanation of how the session will work
-- no main teaching chunk yet
+This split is a runtime control mechanism.
+It should not be mistaken for the real pedagogic chunk count.
 
-`Prompt 2` handles the teaching turn for the current retrieved section.
+## Progression Rule
 
-`Prompt 3` handles the learner's answers on the current section in two passes:
-- `feedback_basic`: feedback on the 3 short questions and asking the attached deeper question
-- `feedback_deeper`: feedback on the deeper answer and deciding whether the learner is ready to move on
-
-`Prompt 4` handles the current worked example only.
-
-`Prompt 5` handles `worked_example_feedback`.
-
-`Prompt 6` handles the later task stages:
-- `guided_practice`
-- `practice`
-- `integrative`
-
-`Prompt 7` handles `integrative_feedback`.
-
-The current lesson cycle is:
-1. intro turn once
-2. retrieve one lesson section
-3. `teach_check` turn on that section with 3 short questions
-4. learner reply
-5. `feedback_basic` turn on that same section
-6. the deeper question is taken from the attached lesson section, not generated on the fly
-7. learner replies to the deeper question
-8. `feedback_deeper` decides:
-   - stay on `feedback_deeper`
-   - or move to the next generated step
-9. if the next step is `worked_example`, run the worked example prompt
-10. the learner replies and `worked_example_feedback` decides whether they are ready to try one themselves
-11. if `worked_example_feedback` resolves, the client auto-requests the next visible step
-12. then continue to `guided_practice`, `practice`, and `integrative` as defined by the lesson data
-13. after `integrative`, run `integrative_feedback` as the final lesson gate
-
-The app controls progression from the tiny control output returned by the active feedback phase.
-
-In this prototype, the app should combine:
-- the generated lesson step metadata
-- the active feedback control output
+The runtime should move on when the learner is secure enough on the current chunk, not just because one reply happened.
 
 That means:
-- the lesson data defines the sequence
-- the active feedback phase decides whether a gated step is complete
-- the runtime then follows the generated `nextStepId`
-- for `worked_example_feedback`, the server returns only control metadata on resolve and the client immediately requests the next visible tutor turn
+- `feedback_basic` should tighten and probe
+- `feedback_deeper` should decide whether to repair again or advance
+- worked example feedback should decide whether the learner is ready to try one themselves
+- integrative feedback should decide whether the final synthesis is good enough
 
-`spaced_review` is not part of the active lesson arc for this prototype.
-Treat it as separate prerequisite retrieval or later review logic.
+## Comparison Standard
 
-Do not add:
-- evaluator layers
-- hidden progression machinery
+The runtime should be judged against a strong GPT tutoring baseline.
 
-## Current Runtime Surfaces
+A good runtime lesson should feel:
+- natural
+- corrective
+- adaptive
+- chunked tightly enough to avoid overload
+- flexible enough to stay on the misconception that actually appeared
 
-The active 2365 runtime surfaces are:
-- `/2365/dynamic-guided-v2/[lessonCode]?versionId=...`
-- `/2365/simple-chatbot?lessonMode=1&lessonCode=...&dynamicVersionId=...`
-
-`simple-chatbot` remains the main comparison/debug surface.
-
-Baseline mode:
-- minimal runtime
-- system prompt plus user profile tone
-- optional attached grounding document
-
-Lesson mode:
-- the same runtime path
-- one intro turn
-- one retrieved lesson section at a time
-
-These surfaces consume versioned dynamic lesson drafts created by:
-- the native dynamic module planner
-- or the manual dynamic lesson generator
-
-## Immediate Next Step
-
-Do not add more runtime logic first.
-
-Next:
-- attach a scored lesson artifact generated from the module/lesson pipeline
-- compare output quality against plain GPT
-- optimize the attachment and prompt until first chunks score `90+`, then `95+`
-- keep feedback and correction simpler than the main explanation language
-
-## Thread Principle
-
-The learner must experience one shared tutor window.
-The tutor and learner stay in the same conversation thread.
+That is where naturalness matters most.
+If the system is going to feel better than a plain GPT tutoring session, it will be because the runtime layer handles the live turn well.

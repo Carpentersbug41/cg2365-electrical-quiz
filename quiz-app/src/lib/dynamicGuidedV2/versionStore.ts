@@ -33,6 +33,7 @@ export type DynamicLessonGenerationScore = {
     problem: string;
     whyItMatters?: string;
     alignmentGap?: string;
+    solution?: string;
     suggestion: string;
   }>;
   phaseFeedback: Array<{
@@ -43,6 +44,18 @@ export type DynamicLessonGenerationScore = {
     strengths: string[];
     issues: string[];
     suggestedFixes: string[];
+  }>;
+  summary: string;
+};
+
+export type DynamicDiagnosticScore = {
+  total: number;
+  grade: 'ship' | 'strong' | 'usable' | 'rework';
+  breakdown: Record<string, number>;
+  issues: Array<{
+    category: string;
+    problem: string;
+    suggestion: string;
   }>;
   summary: string;
 };
@@ -67,6 +80,8 @@ export type DynamicLessonVersionSummary = {
   qualityScore: number | null;
   validation: DynamicLessonGenerationValidation | null;
   report: DynamicLessonGenerationScore | null;
+  planScore?: DynamicDiagnosticScore | null;
+  fidelityScore?: DynamicDiagnosticScore | null;
   comparisonSource: DynamicGuidedV2Lesson['comparisonSource'];
   stepCount: number;
   isCurrent: boolean;
@@ -87,6 +102,8 @@ type LocalDynamicLessonVersion = {
   qualityScore: number | null;
   validation: DynamicLessonGenerationValidation | null;
   report: DynamicLessonGenerationScore | null;
+  planScore?: DynamicDiagnosticScore | null;
+  fidelityScore?: DynamicDiagnosticScore | null;
   lesson: DynamicGuidedV2Lesson;
   phaseArtifacts: DynamicGenerationPhaseArtifact[];
   sourceContext?: string | null;
@@ -114,12 +131,16 @@ function nowIso(): string {
   return new Date().toISOString();
 }
 
+function stripBom(text: string): string {
+  return text.replace(/^\uFEFF/, '');
+}
+
 function readStore(): LocalStore {
   try {
     if (!existsSync(STORE_PATH)) {
       return { versions: [] };
     }
-    const raw = JSON.parse(readFileSync(STORE_PATH, 'utf8')) as Partial<LocalStore>;
+    const raw = JSON.parse(stripBom(readFileSync(STORE_PATH, 'utf8'))) as Partial<LocalStore>;
     return {
       versions: Array.isArray(raw.versions) ? raw.versions : [],
     };
@@ -146,6 +167,8 @@ function summarizeVersion(version: LocalDynamicLessonVersion): DynamicLessonVers
     qualityScore: version.qualityScore,
     validation: version.validation,
     report: version.report,
+    planScore: version.planScore ?? null,
+    fidelityScore: version.fidelityScore ?? null,
     comparisonSource: version.lesson.comparisonSource,
     stepCount: version.lesson.steps.length,
     isCurrent: version.isCurrent,
@@ -163,6 +186,8 @@ export async function createDynamicLessonDraftVersion(input: {
   qualityScore?: number | null;
   validation?: DynamicLessonGenerationValidation | null;
   report?: DynamicLessonGenerationScore | null;
+  planScore?: DynamicDiagnosticScore | null;
+  fidelityScore?: DynamicDiagnosticScore | null;
   phaseArtifacts?: DynamicGenerationPhaseArtifact[];
   source?: 'human' | 'ai';
 }): Promise<DynamicLessonVersionSummary> {
@@ -189,6 +214,8 @@ export async function createDynamicLessonDraftVersion(input: {
     qualityScore: input.qualityScore ?? null,
     validation: input.validation ?? null,
     report: input.report ?? null,
+    planScore: input.planScore ?? null,
+    fidelityScore: input.fidelityScore ?? null,
     lesson: input.lesson,
     phaseArtifacts: input.phaseArtifacts ?? [],
     sourceContext: input.sourceContext ?? null,

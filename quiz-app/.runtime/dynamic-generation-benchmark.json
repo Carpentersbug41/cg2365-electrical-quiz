@@ -1,0 +1,243 @@
+{
+  "generatedAt": "2026-03-27T09:33:01.276Z",
+  "thresholds": {
+    "lessonScore": 90,
+    "planScore": 90,
+    "fidelityScore": 95
+  },
+  "passCount": 1,
+  "failCount": 0,
+  "results": [
+    {
+      "lessonCode": "202-5A",
+      "title": "Magnetism and Electromagnetism",
+      "accepted": true,
+      "lessonScore": 92,
+      "lessonGrade": "strong",
+      "planScore": 92,
+      "planGrade": "strong",
+      "fidelityScore": 100,
+      "fidelityGrade": "ship",
+      "validationPassed": true,
+      "issueCount": 1,
+      "issues": [
+        {
+          "id": "SYN-CLARITY-1",
+          "category": "beginnerClarity",
+          "problem": "Some teaching or question wording is still less clear and direct than the chunk-first contract requires.",
+          "jsonPointers": [
+            "/steps"
+          ],
+          "solution": "Tighten the weakest chunk wording so a beginner can identify the exact concept or response expected without inference.",
+          "suggestion": "Tighten the weakest chunk wording so a beginner can identify the exact concept or response expected without inference."
+        }
+      ],
+      "remainingPatchableIssues": [],
+      "resolvedRepairTargets": [
+        {
+          "repairClass": "exact_replace",
+          "targetPointer": "/steps/2/anchorFacts/5",
+          "round": 1
+        },
+        {
+          "repairClass": "basic_question_rewrite",
+          "targetPointer": "/steps/2/basicQuestions/2/questionText",
+          "round": 2
+        },
+        {
+          "repairClass": "deeper_question_rewrite",
+          "targetPointer": "/steps/1/deeperQuestionText",
+          "round": 3
+        },
+        {
+          "repairClass": "teaching_field_rewrite",
+          "targetPointer": "/steps/2/anchorFacts/6",
+          "round": 4
+        },
+        {
+          "repairClass": "teaching_field_rewrite",
+          "targetPointer": "/steps/2/anchorFacts/7",
+          "round": 13
+        },
+        {
+          "repairClass": "teaching_field_rewrite",
+          "targetPointer": "/steps/2/anchorFacts/0",
+          "round": 14
+        }
+      ],
+      "topIssue": "Some teaching or question wording is still less clear and direct than the chunk-first contract requires.",
+      "rejectionReason": null,
+      "repairSummary": {
+        "phase12Ran": true,
+        "repairRoundsRun": 14,
+        "repairStopReason": "all_patchable_attempted_and_resolved",
+        "patchableIssueCountInitial": 4,
+        "patchableIssueCountFinal": 0,
+        "attemptedPatchCount": 14,
+        "acceptedPatchCount": 6,
+        "lastTargetPointer": "/steps/2/anchorFacts/0",
+        "lastRepairClass": "teaching_field_rewrite",
+        "specificPromptReturnedPatch": true,
+        "fallbackPromptRan": false,
+        "fallbackPromptReturnedPatch": false,
+        "patchAccepted": true,
+        "patchRejectedCode": null,
+        "patchRejectedReason": null,
+        "repairAttempts": [
+          {
+            "round": 1,
+            "attemptMode": "specific",
+            "repairClass": "exact_replace",
+            "targetPointer": "/steps/2/anchorFacts/5",
+            "promptReturnedPatch": true,
+            "patchAccepted": true,
+            "patchRejectedCode": null,
+            "patchRejectedReason": null
+          },
+          {
+            "round": 2,
+            "attemptMode": "specific",
+            "repairClass": "basic_question_rewrite",
+            "targetPointer": "/steps/2/basicQuestions/2/questionText",
+            "promptReturnedPatch": true,
+            "patchAccepted": true,
+            "patchRejectedCode": null,
+            "patchRejectedReason": null
+          },
+          {
+            "round": 3,
+            "attemptMode": "specific",
+            "repairClass": "deeper_question_rewrite",
+            "targetPointer": "/steps/1/deeperQuestionText",
+            "promptReturnedPatch": true,
+            "patchAccepted": true,
+            "patchRejectedCode": null,
+            "patchRejectedReason": null
+          },
+          {
+            "round": 4,
+            "attemptMode": "specific",
+            "repairClass": "teaching_field_rewrite",
+            "targetPointer": "/steps/2/anchorFacts/6",
+            "promptReturnedPatch": true,
+            "patchAccepted": true,
+            "patchRejectedCode": null,
+            "patchRejectedReason": null
+          },
+          {
+            "round": 5,
+            "attemptMode": "specific",
+            "repairClass": "exact_replace",
+            "targetPointer": "/steps/2/anchorFacts/0",
+            "promptReturnedPatch": false,
+            "patchAccepted": false,
+            "patchRejectedCode": "too_vague",
+            "patchRejectedReason": "No patch was returned for the targeted field."
+          },
+          {
+            "round": 6,
+            "attemptMode": "specific",
+            "repairClass": "exact_replace",
+            "targetPointer": "/steps/2/anchorFacts/1",
+            "promptReturnedPatch": false,
+            "patchAccepted": false,
+            "patchRejectedCode": "too_vague",
+            "patchRejectedReason": "No patch was returned for the targeted field."
+          },
+          {
+            "round": 7,
+            "attemptMode": "specific",
+            "repairClass": "exact_replace",
+            "targetPointer": "/steps/2/anchorFacts/2",
+            "promptReturnedPatch": false,
+            "patchAccepted": false,
+            "patchRejectedCode": "too_vague",
+            "patchRejectedReason": "No patch was returned for the targeted field."
+          },
+          {
+            "round": 8,
+            "attemptMode": "specific",
+            "repairClass": "exact_replace",
+            "targetPointer": "/steps/2/anchorFacts/3",
+            "promptReturnedPatch": false,
+            "patchAccepted": false,
+            "patchRejectedCode": "too_vague",
+            "patchRejectedReason": "No patch was returned for the targeted field."
+          },
+          {
+            "round": 9,
+            "attemptMode": "specific",
+            "repairClass": "exact_replace",
+            "targetPointer": "/steps/2/anchorFacts/4",
+            "promptReturnedPatch": false,
+            "patchAccepted": false,
+            "patchRejectedCode": "too_vague",
+            "patchRejectedReason": "No patch was returned for the targeted field."
+          },
+          {
+            "round": 10,
+            "attemptMode": "specific",
+            "repairClass": "exact_replace",
+            "targetPointer": "/steps/2/anchorFacts/5",
+            "promptReturnedPatch": false,
+            "patchAccepted": false,
+            "patchRejectedCode": "too_vague",
+            "patchRejectedReason": "No patch was returned for the targeted field."
+          },
+          {
+            "round": 11,
+            "attemptMode": "specific",
+            "repairClass": "exact_replace",
+            "targetPointer": "/steps/2/anchorFacts/6",
+            "promptReturnedPatch": false,
+            "patchAccepted": false,
+            "patchRejectedCode": "too_vague",
+            "patchRejectedReason": "No patch was returned for the targeted field."
+          },
+          {
+            "round": 12,
+            "attemptMode": "specific",
+            "repairClass": "exact_replace",
+            "targetPointer": "/steps/2/anchorFacts/7",
+            "promptReturnedPatch": false,
+            "patchAccepted": false,
+            "patchRejectedCode": "too_vague",
+            "patchRejectedReason": "No patch was returned for the targeted field."
+          },
+          {
+            "round": 13,
+            "attemptMode": "specific",
+            "repairClass": "teaching_field_rewrite",
+            "targetPointer": "/steps/2/anchorFacts/7",
+            "promptReturnedPatch": true,
+            "patchAccepted": true,
+            "patchRejectedCode": null,
+            "patchRejectedReason": null
+          },
+          {
+            "round": 14,
+            "attemptMode": "specific",
+            "repairClass": "teaching_field_rewrite",
+            "targetPointer": "/steps/2/anchorFacts/0",
+            "promptReturnedPatch": true,
+            "patchAccepted": true,
+            "patchRejectedCode": null,
+            "patchRejectedReason": null
+          }
+        ]
+      },
+      "diagnosis": {
+        "scoreGapTo95": 0,
+        "remainingIssueCount": 1,
+        "remainingPatchableIssueCount": 0,
+        "whyNot95": null,
+        "promptImprovementLikely": false,
+        "repairImprovementLikely": false,
+        "recommendedNextMove": "none",
+        "rationale": "The lesson already cleared the 95 lesson-score gate."
+      },
+      "elapsedMs": 204570,
+      "meetsGate": true
+    }
+  ]
+}
