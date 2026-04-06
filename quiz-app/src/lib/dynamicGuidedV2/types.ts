@@ -37,6 +37,8 @@ export type DynamicGuidedV2BasicQuestion = {
   answerGuidance?: string[];
 };
 
+export type DynamicGuidedV2DeeperQuestionMode = 'connection' | 'synthesis' | 'hypothesis';
+
 export type DynamicGuidedV2ArtifactVersion = 'legacy_rich' | 'thin_guard_rails';
 
 export type DynamicGuidedV2Step = {
@@ -62,6 +64,7 @@ export type DynamicGuidedV2Step = {
   questionText?: string;
   answerGuidance?: string[];
   deeperQuestionText?: string;
+  deeperQuestionMode?: DynamicGuidedV2DeeperQuestionMode;
   deeperAnswerGuidance?: string[];
   hint?: string;
   asset?: DynamicGuidedV2Asset;

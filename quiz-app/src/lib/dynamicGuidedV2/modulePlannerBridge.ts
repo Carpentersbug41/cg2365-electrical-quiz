@@ -164,25 +164,37 @@ function deriveChunkCandidates(blueprint: LessonBlueprint): Array<{ title: strin
 
   if (topic.includes('electricity generation and transmission')) {
     pushChunk(chunks, 'Large-Scale Generation Methods', 'Identify the main large-scale generation methods used to supply the grid.');
+    pushChunk(chunks, 'Renewable and Non-Renewable Sources', 'Distinguish renewable generation sources from non-renewable generation sources.');
     pushChunk(chunks, 'Micro-Generation and Local Supply', 'Explain what micro-generation is and how it differs from large-scale generation.');
+    pushChunk(chunks, 'Photovoltaic and Local Generation', 'Identify photovoltaic generation as a local low-carbon generation method.');
     pushChunk(chunks, 'Why Transmission Uses High Voltage', 'Explain why electricity is transmitted at very high voltage over long distances.');
     pushChunk(chunks, 'UK Transmission Voltage Levels', 'Identify the three standard UK transmission voltages: 400 kV, 275 kV, and 132 kV.');
+    pushChunk(chunks, 'Step-Up and Step-Down Transformers', 'Explain why transformers are used to raise and lower voltage through the supply system.');
+    pushChunk(chunks, 'From Transmission to Distribution', 'Explain how electricity moves from transmission into lower-voltage local distribution.');
     return chunks;
   }
 
   if (topic.includes('earthing systems and ads components')) {
     pushChunk(chunks, 'TT Earthing Systems', 'Identify TT systems and explain the role of the local earth electrode.');
     pushChunk(chunks, 'TN-S and TN-C-S Systems', 'Distinguish between TN-S and TN-C-S arrangements using the code letters and supply path.');
+    pushChunk(chunks, 'The Meaning of TT TN-S and TN-C-S', 'Explain what the code letters in earthing system names describe.');
     pushChunk(chunks, 'CPC and Earthing Conductor', 'Explain the difference between a CPC and an Earthing Conductor in ADS.');
+    pushChunk(chunks, 'Main Earthing Terminal and Fault Path', 'Identify the MET and explain its place in the fault path.');
     pushChunk(chunks, 'Bonding and Protective Devices', 'Identify the bonding and protective-device parts that complete ADS.');
+    pushChunk(chunks, 'Why TT Usually Needs an RCD', 'Explain why TT systems usually need RCD protection rather than relying only on overcurrent devices.');
+    pushChunk(chunks, 'How ADS Becomes Safe', 'Explain how earthing, bonding, CPCs, and protective devices work together in ADS.');
     return chunks;
   }
 
   if (topic.includes('circuit types and wiring systems')) {
     pushChunk(chunks, 'Ring and Radial Circuits', 'Distinguish ring final circuits from radial circuits and explain how each operates.');
+    pushChunk(chunks, 'Lighting and Socket Circuits', 'Identify typical uses of lighting circuits and socket circuits.');
     pushChunk(chunks, 'Control, Data, and Alarm Circuits', 'Identify the purpose of control, data, and alarm circuits.');
     pushChunk(chunks, 'Wiring Systems by Environment', 'Select suitable wiring systems for domestic, commercial, industrial, and hazardous environments.');
+    pushChunk(chunks, 'Conduit Trunking and Tray', 'Distinguish common containment and support systems such as conduit, trunking, and cable tray.');
     pushChunk(chunks, 'Protection, Fire, and Mechanical Risk', 'Explain why systems like MICC, SWA, conduit, and trunking are chosen for specific risks.');
+    pushChunk(chunks, 'Hazardous and High-Risk Locations', 'Identify why special wiring systems are used in hazardous or high-risk locations.');
+    pushChunk(chunks, 'Choosing the Right Wiring System', 'Explain how the environment and risk affect wiring system selection.');
     return chunks;
   }
 
@@ -224,19 +236,23 @@ function buildTeachChecksFromBlueprint(blueprint: LessonBlueprint): Array<{ titl
 
   deriveChunkCandidates(blueprint).forEach((item) => pushChunk(chunks, item.title, item.objective));
 
-  if (chunks.length < 4) {
+  if (chunks.length < 8) {
     const fallbackTitles = [
       `Core Concept 1: ${blueprint.topic}`,
       `Core Concept 2: ${blueprint.topic}`,
       `Core Concept 3: ${blueprint.topic}`,
       `Core Concept 4: ${blueprint.topic}`,
+      `Core Concept 5: ${blueprint.topic}`,
+      `Core Concept 6: ${blueprint.topic}`,
+      `Core Concept 7: ${blueprint.topic}`,
+      `Core Concept 8: ${blueprint.topic}`,
     ];
     fallbackTitles.forEach((title, index) =>
       pushChunk(chunks, title, `Teach the next distinct core idea needed before application in ${blueprint.topic} (${index + 1}).`)
     );
   }
 
-  return chunks.slice(0, 5);
+  return chunks.slice(0, 8);
 }
 
 function buildStagePlanFromBlueprint(lessonCode: string, blueprint: LessonBlueprint): DynamicLessonStageDescriptor[] {

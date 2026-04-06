@@ -1,6 +1,7 @@
 import type {
   DynamicFixPlan,
   DynamicLessonGenerationInput,
+  DynamicPromptVariantId,
   DynamicLessonStageDescriptor,
   DynamicPlanningPhaseOutput,
   DynamicSpacedReviewGroundingPacket,
@@ -182,22 +183,37 @@ export function buildDynamicPlanningPrompt(
   stagePlan: DynamicLessonStageDescriptor[]
 ): { system: string; user: string } {
   return {
-    system: buildPhaseSystemPrompt(input, {
-      phaseName: 'Phase 1 Planning',
-      role: 'plan the lesson structure before any teaching text or learner tasks are written.',
-      actions: [
-        'Lock the lesson to the requested topic and stage plan.',
-        'Choose one clear main idea for each teach/check section.',
-        'Plan a clean chunk-first lesson with teaching, recall, and deeper questioning.',
-      ],
-      rules: [
-        'Keep the plan grounded in the supplied source only.',
-        'Do not invent extra syllabus coverage.',
-        'Do not write final teaching prose or final learner questions in this phase.',
-      ],
-    }),
+    system: [
+      '# System message',
+      '',
+      'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+      'You are planning the lesson structure before any teaching text or learner questions are written.',
+      '',
+      '## This lesson is for',
+      `\`${input.audience}\``,
+      '',
+      '## Writing style',
+      `\`Tone: ${input.tonePrompt}.\``,
+      '',
+      '# Requirement',
+      '- Always return strict JSON only.',
+      '',
+      '## Rules',
+      '- Keep the plan grounded in the supplied source only.',
+      '- Do not invent extra syllabus coverage.',
+      '- Do not write final teaching prose or final learner questions in this phase.',
+      '',
+      '# Steps',
+      '- Lock the lesson to the requested topic and stage plan.',
+      '- Choose one clear main idea for each teach/check section.',
+      '- Plan a clean chunk-first lesson with teaching, recall, and deeper questioning.',
+    ].join('\n'),
     user: [
+      '# Planning Input',
+      '',
       buildPlanningContext(input, stagePlan),
+      '',
+      '## Output shape',
       '',
       'Return JSON in this shape:',
       JSON.stringify(
@@ -223,7 +239,7 @@ export function buildDynamicPlanningPrompt(
         2
       ),
       '',
-      'Critical rules:',
+      '## Critical rules',
       '- teachCheckCount must match the number of teach_check stages.',
       '- Each teach check must focus on one main idea.',
       '- Each teach check must include at least one misconception.',
@@ -235,20 +251,35 @@ export function buildDynamicPlanningPrompt(
 
 export function buildDynamicVocabularyPrompt(input: DynamicLessonGenerationInput): { system: string; user: string } {
   return {
-    system: buildPhaseSystemPrompt(input, {
-      phaseName: 'Phase 2 Vocabulary',
-      role: 'extract only the technical terms that the learner must know for this lesson.',
-      actions: [
-        'Select lesson-specific technical terms only.',
-        'Give each term a plain definition and a concrete anchor.',
-      ],
-      rules: [
-        'Use beginner-safe wording without losing technical correctness.',
-        'Do not turn this into a broad glossary.',
-      ],
-    }),
+    system: [
+      '# System message',
+      '',
+      'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+      'You are extracting only the technical terms that the learner must know for this lesson.',
+      '',
+      '## This lesson is for',
+      `\`${input.audience}\``,
+      '',
+      '## Writing style',
+      `\`Tone: ${input.tonePrompt}.\``,
+      '',
+      '# Requirement',
+      '- Always return strict JSON only.',
+      '',
+      '## Rules',
+      '- Use beginner-safe wording without losing technical correctness.',
+      '- Do not turn this into a broad glossary.',
+      '',
+      '# Steps',
+      '- Select lesson-specific technical terms only.',
+      '- Give each term a plain definition and a concrete anchor.',
+    ].join('\n'),
     user: [
+      '# Vocabulary Input',
+      '',
       buildPhaseUserContext(input),
+      '',
+      '## Output shape',
       '',
       'Return JSON in this shape:',
       JSON.stringify(
@@ -268,7 +299,7 @@ export function buildDynamicVocabularyPrompt(input: DynamicLessonGenerationInput
         2
       ),
       '',
-      'Critical rules:',
+      '## Critical rules',
       '- Terms must be lesson-specific and grounded in the source.',
       '- Definitions must be short and technically defensible.',
       '- anchorPhrases should be phrases that later phases can teach directly.',
@@ -276,22 +307,49 @@ export function buildDynamicVocabularyPrompt(input: DynamicLessonGenerationInput
   };
 }
 
-export function buildDynamicExplanationPrompt(input: DynamicLessonGenerationInput): { system: string; user: string } {
+function buildBaselineExplanationPrompt(input: DynamicLessonGenerationInput): { system: string; user: string } {
   return {
-    system: buildPhaseSystemPrompt(input, {
-      phaseName: 'Phase 3 Explanation',
-      role: 'write the teaching text the learner reads before the teach/check questions.',
-      actions: [
-        'Teach one clear main idea per section.',
-        'Write factual explanation lines that later questions can be answered from.',
-      ],
-      rules: [
-        'Do not write questions in this phase.',
-        'Do not use placeholder filler or prompt-like wording.',
-      ],
-    }),
+    system: [
+      '# System message',
+      '',
+      'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+      'You are writing the Phase 3 explanation content.',
+      '',
+      '## This lesson is for',
+      `\`${input.audience}\``,
+      '',
+      '## Writing style',
+      `\`Tone: ${input.tonePrompt}.\``,
+      '',
+      '# Requirement',
+      '- Always return strict JSON only.',
+      '',
+      '## Rules',
+      '- Do not rewrite earlier locked phases.',
+      '- Do not output placeholder text.',
+      '- Do not output commentary outside the JSON.',
+      '- Do not write questions in this phase.',
+      '- Do not use placeholder filler or prompt-like wording.',
+      '',
+      '# Always follow these steps',
+      '- Step 1: Write one explanation for each teach/check section.',
+      '- Step 2: Give 3-6 short teaching points for each section.',
+      '- Step 3: Only use the exact terms needed for this chunk only.',
+      '- Step 4: Always make sure the later questions can be answered from this explanation.',
+      '- Step 5: Teach one clear main idea per section.',
+      '- Step 6: Write factual explanation lines that later questions can be answered from.',
+    ].join('\n'),
     user: [
-      buildPhaseUserContext(input),
+      '# Phase 3 Input',
+      '',
+      buildLessonReference(input),
+      '',
+      '## Completion requirement',
+      '',
+      '- Do not write questions in this phase.',
+      '- Do not use placeholder filler or prompt-like wording.',
+      '',
+      '## Output shape',
       '',
       'Return JSON in this shape:',
       JSON.stringify(
@@ -309,19 +367,166 @@ export function buildDynamicExplanationPrompt(input: DynamicLessonGenerationInpu
         2
       ),
       '',
-      'Critical rules:',
-      '- Write one explanation for each teach/check section.',
-      '- Give 3-6 short teaching points for each section.',
-      '- Use the exact terms needed for this chunk only.',
-      '- Make sure the later questions can be answered from this explanation.',
+      '## Additional requirements',
+      '',
       '- Do not use placeholder titles, objectives, or teaching text.',
     ].join('\n'),
   };
 }
 
-export function buildDynamicBasicChecksPrompt(
-  input: DynamicLessonGenerationInput
+function buildPlainTextExplanationPrompt(input: DynamicLessonGenerationInput): { system: string; user: string } {
+  return {
+    system: [
+      'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+      'You are writing the Phase 3 explanation content.',
+      `This lesson is for ${input.audience}.`,
+      `Tone: ${input.tonePrompt}.`,
+      'Always return strict JSON only.',
+      'Do not rewrite earlier locked phases.',
+      'Do not output placeholder text.',
+      'Do not output commentary outside the JSON.',
+      'Do not write questions in this phase.',
+      'Do not use placeholder filler or prompt-like wording.',
+      'Write one explanation for each teach/check section.',
+      'Give 3-6 short teaching points for each section.',
+      'Only use the exact terms needed for this chunk only.',
+      'Always make sure the later questions can be answered from this explanation.',
+      'Teach one clear main idea per section.',
+      'Write factual explanation lines that later questions can be answered from.',
+    ].join('\n'),
+    user: [
+      'Phase 3 Input:',
+      buildLessonReference(input),
+      'Completion requirement:',
+      '- Do not write questions in this phase.',
+      '- Do not use placeholder filler or prompt-like wording.',
+      'Output shape:',
+      'Return JSON in this shape:',
+      JSON.stringify(
+        {
+          teachChecks: [
+            {
+              title: 'Teach/Check 1',
+              objective: 'string',
+              retrievalTextLines: ['string'],
+              hint: 'string',
+            },
+          ],
+        },
+        null,
+        2
+      ),
+      'Additional requirements:',
+      '- Do not use placeholder titles, objectives, or teaching text.',
+    ].join('\n'),
+  };
+}
+
+export function buildDynamicExplanationPrompt(
+  input: DynamicLessonGenerationInput,
+  variantId: DynamicPromptVariantId = 'baseline'
 ): { system: string; user: string } {
+  if (variantId === 'p3_markdown_revert') {
+    return buildPlainTextExplanationPrompt(input);
+  }
+
+  const prompt = buildBaselineExplanationPrompt(input);
+  if (variantId === 'baseline') return prompt;
+
+  if (variantId === 'p3_critical_order') {
+    return {
+      system: [
+        '# System message',
+        '',
+        '- Always return strict JSON only.',
+        '- Do not write questions in this phase.',
+        '- Do not output commentary outside the JSON.',
+        '',
+        ...prompt.system
+          .split('\n')
+          .filter(
+            (line) =>
+              ![
+                '# System message',
+                '- Always return strict JSON only.',
+                '- Do not write questions in this phase.',
+                '- Do not output commentary outside the JSON.',
+              ].includes(line)
+          ),
+      ].join('\n'),
+      user: prompt.user,
+    };
+  }
+
+  if (variantId === 'p3_few_shot_mini_example') {
+    return {
+      system: prompt.system,
+      user: [
+        prompt.user,
+        '',
+        '## Mini example',
+        '',
+        '```json',
+        JSON.stringify(
+          {
+            teachChecks: [
+              {
+                title: 'Teach/Check 1',
+                objective: 'Explain what PV means.',
+                retrievalTextLines: [
+                  'PV stands for photovoltaic.',
+                  'Photovoltaic panels convert sunlight into electricity.',
+                  'PV is a common form of micro-generation.',
+                ],
+                hint: 'PV is the abbreviation for photovoltaic.',
+              },
+            ],
+          },
+          null,
+          2
+        ),
+        '```',
+      ].join('\n'),
+    };
+  }
+
+  if (variantId === 'p3_instruction_compression') {
+    return {
+      system: [
+        '# System message',
+        '',
+        'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+        'You are writing the Phase 3 explanation content.',
+        '',
+        '## This lesson is for',
+        `\`${input.audience}\``,
+        '',
+        '## Writing style',
+        `\`Tone: ${input.tonePrompt}.\``,
+        '',
+        '# Requirement',
+        '- Always return strict JSON only.',
+        '',
+        '## Rules',
+        '- Do not rewrite earlier locked phases.',
+        '- Do not output placeholder text.',
+        '- Do not output commentary outside the JSON.',
+        '- Do not write questions in this phase.',
+        '- Do not use placeholder filler or prompt-like wording.',
+        '',
+        '# Always follow these steps',
+        '- Write one explanation per teach/check section with 3-6 short teaching points.',
+        '- Teach one clear main idea only, using only the exact terms needed for that chunk.',
+        '- Make the explanation factual and specific enough that later questions can be answered from it.',
+      ].join('\n'),
+      user: prompt.user,
+    };
+  }
+
+  return prompt;
+}
+
+function buildBaselineBasicChecksPrompt(input: DynamicLessonGenerationInput): { system: string; user: string } {
   return {
     system: buildPhaseSystemPrompt(input, {
       phaseName: 'Phase 4 Basic Checks',
@@ -333,6 +538,9 @@ export function buildDynamicBasicChecksPrompt(
       rules: [
         'Do not write the deeper reasoning question in this phase.',
         'Do not write answers in this phase.',
+        'For each teach/check section, every question must be answerable from that same section\'s explanation only.',
+        'Do not ask about any term, device, method, quantity, or fact unless it is explicitly taught in that same teach/check section.',
+        'Do not borrow ideas from another teach/check section.',
       ],
     }),
     user: [
@@ -367,6 +575,11 @@ export function buildDynamicBasicChecksPrompt(
       ),
       '',
       'Critical rules:',
+      '- For each teach/check section, every question must be answerable from that same section\'s explanation only.',
+      '- Do not ask about any term, device, method, quantity, or fact unless it is explicitly taught in that same teach/check section.',
+      '- Do not borrow ideas from another teach/check section.',
+      '- Every basic question must be answerable from that same teach/check section and must use only terms explicitly taught in that section. Do not introduce untaught named terms, examples, devices, methods, or categories.',
+      '- For each teach/check section, derive the answer target directly from that section\'s explanation and write questions only for those taught targets. If the exact term or fact is not present in that section, do not ask about it.',
       '- basicQuestions must contain exactly 3 items.',
       '- Each basicQuestions item must include questionForm and questionText.',
       '- Each question must test one taught idea only.',
@@ -376,7 +589,215 @@ export function buildDynamicBasicChecksPrompt(
   };
 }
 
-export function buildDynamicDeeperChecksPrompt(
+export function buildDynamicBasicChecksPrompt(
+  input: DynamicLessonGenerationInput,
+  variantId: DynamicPromptVariantId = 'baseline'
+): { system: string; user: string } {
+  const prompt = buildBaselineBasicChecksPrompt(input);
+  if (variantId === 'baseline') return prompt;
+
+  if (variantId === 'p4_context_cleanup') {
+    return {
+      system: [
+        'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+        `This lesson is for ${input.audience}.`,
+        `Tone: ${input.tonePrompt}.`,
+        'Write three short direct questions for each teach/check section.',
+        'Always return strict JSON only.',
+        'Do not rewrite earlier sections.',
+        'Do not output placeholder text.',
+        'Do not output commentary outside the JSON.',
+        'Do not write the deeper reasoning question in this phase.',
+        'Do not write answers in this phase.',
+        'For each teach/check section, every question must be answerable from that same section explanation only.',
+        'Do not ask about any term, device, method, quantity, or fact unless it is explicitly taught in that same teach/check section.',
+        'Do not borrow ideas from another teach/check section.',
+        'Choose a question form for each basic check.',
+        'Write the final learner question from that form.',
+      ].join('\n'),
+      user: [
+        buildLessonReference(input),
+        '',
+        'Use the explanation already provided in the lesson context.',
+        'Return only the basic-question JSON for each teach/check section.',
+        '',
+        'Return JSON in this shape:',
+        JSON.stringify(
+          {
+            teachChecks: [
+              {
+                title: 'Teach/Check 1',
+                basicQuestions: [
+                  {
+                    questionForm: 'exact_term',
+                    questionText: 'string',
+                  },
+                  {
+                    questionForm: 'definition_to_name',
+                    questionText: 'string',
+                  },
+                  {
+                    questionForm: 'unit',
+                    questionText: 'string',
+                  },
+                ],
+                hint: 'string',
+              },
+            ],
+          },
+          null,
+          2
+        ),
+        '',
+        'Critical rules:',
+        '- For each teach/check section, every question must be answerable from that same section explanation only.',
+        '- Do not ask about any term, device, method, quantity, or fact unless it is explicitly taught in that same teach/check section.',
+        '- Do not borrow ideas from another teach/check section.',
+        '- Every basic question must be answerable from that same teach/check section and must use only terms explicitly taught in that section. Do not introduce untaught named terms, examples, devices, methods, or categories.',
+        "- For each teach/check section, derive the answer target directly from that section's explanation and write questions only for those taught targets. If the exact term or fact is not present in that section, do not ask about it.",
+        '- basicQuestions must contain exactly 3 items.',
+        '- Each basicQuestions item must include questionForm and questionText.',
+        '- Each question must test one taught idea only.',
+        '- Name the exact concept, quantity, status, system, or method being checked.',
+        '- Use only words and ideas already taught in the lesson.',
+      ].join('\n'),
+    };
+  }
+
+  if (variantId === 'p4_markdown_only') {
+    return {
+      system: [
+        '# System message',
+        '',
+        'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+        'You are writing three short direct questions for each teach/check section.',
+        '',
+        '## This lesson is for',
+        `\`${input.audience}\``,
+        '',
+        '## Writing style',
+        `\`Tone: ${input.tonePrompt}.\``,
+        '',
+        '# Requirement',
+        '- Always return strict JSON only.',
+        '',
+        '## Critical rules',
+        '- For each teach/check section, every question must be answerable from that same section explanation only.',
+        '- Do not ask about any term, device, method, quantity, or fact unless it is explicitly taught in that same teach/check section.',
+        '- Do not borrow ideas from another teach/check section.',
+        '',
+        '## Prompt hygiene',
+        '- Do not rewrite earlier locked phases.',
+        '- Do not output placeholder text.',
+        '- Do not output commentary outside the JSON.',
+        '- Do not write the deeper reasoning question in this phase.',
+        '- Do not write answers in this phase.',
+        '',
+        '# Steps',
+        '- Choose a question form for each basic check.',
+        '- Write the final learner question from that form.',
+      ].join('\n'),
+      user: [
+        '# Basic Check Input',
+        '',
+        buildLessonReference(input),
+        '',
+        'Use the explanation already provided in the lesson context.',
+        'Return only the basic-question JSON for each teach/check section.',
+        '',
+        '## Output shape',
+        '',
+        'Return JSON in this shape:',
+        JSON.stringify(
+          {
+            teachChecks: [
+              {
+                title: 'Teach/Check 1',
+                basicQuestions: [
+                  {
+                    questionForm: 'exact_term',
+                    questionText: 'string',
+                  },
+                  {
+                    questionForm: 'definition_to_name',
+                    questionText: 'string',
+                  },
+                  {
+                    questionForm: 'unit',
+                    questionText: 'string',
+                  },
+                ],
+                hint: 'string',
+              },
+            ],
+          },
+          null,
+          2
+        ),
+        '',
+        '## Critical rules',
+        '- For each teach/check section, every question must be answerable from that same section explanation only.',
+        '- Do not ask about any term, device, method, quantity, or fact unless it is explicitly taught in that same teach/check section.',
+        '- Do not borrow ideas from another teach/check section.',
+        '- Every basic question must be answerable from that same teach/check section and must use only terms explicitly taught in that section. Do not introduce untaught named terms, examples, devices, methods, or categories.',
+        "- For each teach/check section, derive the answer target directly from that section's explanation and write questions only for those taught targets. If the exact term or fact is not present in that section, do not ask about it.",
+        '- basicQuestions must contain exactly 3 items.',
+        '- Each basicQuestions item must include questionForm and questionText.',
+        '- Each question must test one taught idea only.',
+        '- Name the exact concept, quantity, status, system, or method being checked.',
+        '- Use only words and ideas already taught in the lesson.',
+      ].join('\n'),
+    };
+  }
+
+  if (variantId === 'p4_critical_rule_order') {
+    return {
+      system: [
+        'You are writing Phase 4 Basic Checks content.',
+        'Return strict JSON only.',
+        'For each teach/check section, every question must be answerable from that same section explanation only.',
+        'Do not ask about any term, device, method, quantity, or fact unless it is explicitly taught in that same teach/check section.',
+        'Do not borrow ideas from another teach/check section.',
+        '',
+        prompt.system,
+      ].join('\n'),
+      user: prompt.user,
+    };
+  }
+
+  if (variantId === 'p4_few_shot_positive') {
+    return {
+      system: prompt.system,
+      user: [
+        prompt.user,
+        '',
+        'Positive example:',
+        'Explanation teaches: "PV stands for photovoltaic." "Photovoltaic panels convert sunlight into electricity." "PV is a common micro-generation method."',
+        'Good questions:',
+        '- What does PV stand for?',
+        '- What do photovoltaic panels convert into electricity?',
+        '- What common micro-generation method uses photovoltaic panels?',
+      ].join('\n'),
+    };
+  }
+
+  if (variantId === 'p4_contrastive_example') {
+    return {
+      system: prompt.system,
+      user: [
+        prompt.user,
+        '',
+        'Bad/good contrast:',
+        '- Bad: explanation teaches gas, nuclear, and wind, but the question asks about biomass.',
+        '- Good: explanation teaches gas, nuclear, and wind, and the question asks which method uses uranium as its fuel source.',
+      ].join('\n'),
+    };
+  }
+
+  return prompt;
+}
+
+function buildBaselineDeeperChecksPrompt(
   input: DynamicLessonGenerationInput
 ): { system: string; user: string } {
   return {
@@ -402,6 +823,7 @@ export function buildDynamicDeeperChecksPrompt(
             {
               title: 'Teach/Check 1',
               deeperQuestionText: 'string',
+              deeperQuestionMode: 'connection',
               deeperSourceTeachingPointIds: ['tp1'],
               hint: 'string',
             },
@@ -414,6 +836,7 @@ export function buildDynamicDeeperChecksPrompt(
       'Critical rules:',
       '- Write one deeper question for each teach/check section.',
       '- Every teach/check section must return a non-empty deeperQuestionText.',
+      '- Set deeperQuestionMode to one of: connection, synthesis, hypothesis.',
       '- The deeper question must join taught points from that section.',
       '- Use only words and ideas already taught in the lesson.',
       '- Do not repeat or rewrite the basic questions.',
@@ -422,24 +845,135 @@ export function buildDynamicDeeperChecksPrompt(
   };
 }
 
+export function buildDynamicDeeperChecksPrompt(
+  input: DynamicLessonGenerationInput,
+  variantId: DynamicPromptVariantId = 'baseline'
+): { system: string; user: string } {
+  const prompt = buildBaselineDeeperChecksPrompt(input);
+  if (variantId === 'baseline') return prompt;
+
+  if (variantId === 'p41_markdown_only') {
+    return {
+      system: [
+        '# System message',
+        '',
+        'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+        'You are writing one deeper question for each teach/check section.',
+        '',
+        '## This lesson is for',
+        `\`${input.audience}\``,
+        '',
+        '## Writing style',
+        `\`Tone: ${input.tonePrompt}.\``,
+        '',
+        '# Requirement',
+        '- Always return strict JSON only.',
+        '',
+        '## Rules',
+        '- Do not rewrite the existing basic questions.',
+        '- Make the deeper question ask why, how, or what must be true.',
+      ].join('\n'),
+      user: [
+        '# Deeper Question Input',
+        '',
+        buildLessonReference(input),
+        '',
+        'Use the explanation and basic questions already provided in the lesson context.',
+        'Return only the deeper-question JSON for each teach/check section.',
+        '',
+        '## Output shape',
+        '',
+        'Return JSON in this shape:',
+        JSON.stringify(
+          {
+            teachChecks: [
+              {
+                title: 'Teach/Check 1',
+                deeperQuestionText: 'string',
+                deeperQuestionMode: 'connection',
+                deeperSourceTeachingPointIds: ['tp1'],
+                hint: 'string',
+              },
+            ],
+          },
+          null,
+          2
+        ),
+        '',
+        '## Critical rules',
+        '- Write one deeper question for each teach/check section.',
+        '- Every teach/check section must return a non-empty deeperQuestionText.',
+        '- Set deeperQuestionMode to one of: connection, synthesis, hypothesis.',
+        '- The deeper question must join taught points from that section.',
+        '- Use only words and ideas already taught in the lesson.',
+        '- Do not repeat or rewrite the basic questions.',
+        '- Make each deeper question distinct from the deeper questions in other chunks.',
+      ].join('\n'),
+    };
+  }
+
+  if (variantId === 'p41_anti_meta') {
+    return {
+      system: [
+        prompt.system,
+        '',
+        'Do not write meta questions about why the topic matters in the lesson, how the learner would explain the topic, or why the section is important.',
+        'Make the deeper question test the technical idea itself using cause, effect, condition, comparison, or application.',
+      ].join('\n'),
+      user: prompt.user,
+    };
+  }
+
+  if (variantId === 'p41_few_shot_positive') {
+    return {
+      system: prompt.system,
+      user: [
+        prompt.user,
+        '',
+        'Positive example:',
+        'Teaching explains: "Higher transmission voltage reduces current for the same power." "Lower current reduces I²R losses."',
+        'Good deeper question:',
+        '- Why does increasing transmission voltage reduce heat losses in the cable for the same power transfer?',
+      ].join('\n'),
+    };
+  }
+
+  return prompt;
+}
+
 export function buildDynamicWorkedExamplePrompt(
   input: DynamicLessonGenerationInput
 ): { system: string; user: string } {
   return {
-    system: buildPhaseSystemPrompt(input, {
-      phaseName: 'Phase 5 Worked Example',
-      role: 'write one worked example that models the exact kind of task the learner will do next.',
-      actions: [
-        'Write one practical worked example only.',
-        'Show the method clearly with steps, a result, and a takeaway.',
-      ],
-      rules: [
-        'Do not turn this into guided practice.',
-        'Keep it practical and beginner-readable.',
-      ],
-    }),
+    system: [
+      '# System message',
+      '',
+      'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+      'You are writing one worked example that models the exact kind of task the learner will do next.',
+      '',
+      '## This lesson is for',
+      `\`${input.audience}\``,
+      '',
+      '## Writing style',
+      `\`Tone: ${input.tonePrompt}.\``,
+      '',
+      '# Requirement',
+      '- Always return strict JSON only.',
+      '',
+      '## Rules',
+      '- Do not turn this into guided practice.',
+      '- Keep it practical and beginner-readable.',
+      '',
+      '# Steps',
+      '- Write one practical worked example only.',
+      '- Show the method clearly with steps, a result, and a takeaway.',
+    ].join('\n'),
     user: [
+      '# Worked Example Input',
+      '',
       buildPhaseUserContext(input),
+      '',
+      '## Output shape',
       '',
       'Return JSON in this shape:',
       JSON.stringify(
@@ -453,7 +987,7 @@ export function buildDynamicWorkedExamplePrompt(
         2
       ),
       '',
-      'Critical rules:',
+      '## Critical rules',
       '- retrievalTextLines must contain the worked example prose only.',
       '- Include at least Step 1 and Step 2 explicitly.',
       '- Include an explicit Result or Final Result line.',
@@ -466,21 +1000,36 @@ export function buildDynamicPracticePrompt(
   input: DynamicLessonGenerationInput
 ): { system: string; user: string } {
   return {
-    system: buildPhaseSystemPrompt(input, {
-      phaseName: 'Phase 6 Practice',
-      role: 'write guided practice and independent practice as direct learner tasks.',
-      actions: [
-        'Write one guided practice task and one practice task.',
-        'Keep guided practice close to the worked example and make practice more independent.',
-        'Write direct subject questions, not teaching commentary.',
-      ],
-      rules: [
-        'Do not write meta-instructions or placeholders.',
-        'Do not write answers in this phase.',
-      ],
-    }),
+    system: [
+      '# System message',
+      '',
+      'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+      'You are writing one guided practice task and one independent practice task.',
+      '',
+      '## This lesson is for',
+      `\`${input.audience}\``,
+      '',
+      '## Writing style',
+      `\`Tone: ${input.tonePrompt}.\``,
+      '',
+      '# Requirement',
+      '- Always return strict JSON only.',
+      '',
+      '## Rules',
+      '- Do not write meta-instructions or placeholders.',
+      '- Do not write answers in this phase.',
+      '',
+      '# Steps',
+      '- Write one guided practice task and one practice task.',
+      '- Keep guided practice close to the worked example and make practice more independent.',
+      '- Write direct subject questions, not teaching commentary.',
+    ].join('\n'),
     user: [
+      '# Practice Input',
+      '',
       buildPhaseUserContext(input),
+      '',
+      '## Output shape',
       '',
       'Return JSON in this shape:',
       JSON.stringify(
@@ -504,7 +1053,7 @@ export function buildDynamicPracticePrompt(
         2
       ),
       '',
-      'Critical rules:',
+      '## Critical rules',
       '- Guided practice must follow the worked example.',
       '- Practice must be more independent than guided practice.',
       '- Write one clear learner question for each task.',
@@ -520,20 +1069,35 @@ export function buildDynamicIntegrationPrompt(
   input: DynamicLessonGenerationInput
 ): { system: string; user: string } {
   return {
-    system: buildPhaseSystemPrompt(input, {
-      phaseName: 'Phase 7 Integration',
-      role: 'write the final integrative task as one clear synthesis question.',
-      actions: [
-        'Write one integrative task only.',
-        'Make the learner pull the lesson ideas together in one applied response.',
-      ],
-      rules: [
-        'Do not repeat a simple recall question.',
-        'Do not write answers in this phase.',
-      ],
-    }),
+    system: [
+      '# System message',
+      '',
+      'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+      'You are writing one final integrative task as a single clear synthesis question.',
+      '',
+      '## This lesson is for',
+      `\`${input.audience}\``,
+      '',
+      '## Writing style',
+      `\`Tone: ${input.tonePrompt}.\``,
+      '',
+      '# Requirement',
+      '- Always return strict JSON only.',
+      '',
+      '## Rules',
+      '- Do not repeat a simple recall question.',
+      '- Do not write answers in this phase.',
+      '',
+      '# Steps',
+      '- Write one integrative task only.',
+      '- Make the learner pull the lesson ideas together in one applied response.',
+    ].join('\n'),
     user: [
+      '# Integration Input',
+      '',
       buildPhaseUserContext(input),
+      '',
+      '## Output shape',
       '',
       'Return JSON in this shape:',
       JSON.stringify(
@@ -550,7 +1114,7 @@ export function buildDynamicIntegrationPrompt(
         2
       ),
       '',
-      'Critical rules:',
+      '## Critical rules',
       '- Write one clear integrative task only.',
       '- Use a new applied scenario, not the worked-example scenario again.',
       '- Name the relationship, process, or result the learner must explain or apply.',
@@ -566,20 +1130,35 @@ export function buildDynamicSpacedReviewPrompt(
   grounding: DynamicSpacedReviewGroundingPacket
 ): { system: string; user: string } {
   return {
-    system: buildPhaseSystemPrompt(input, {
-      phaseName: 'Phase 8 Spaced Review',
-      role: 'write short spaced review questions from earlier knowledge in the same 2365 unit.',
-      actions: [
-        'Step 1: output the source LO coverage you are using from the grounding packet.',
-        'Step 2: write 8 spaced review questions from that coverage.',
-      ],
-      rules: [
-        'Use the same unit only.',
-        'Spread the 8 questions as evenly as possible across the source LO groups.',
-      ],
-    }),
+    system: [
+      '# System message',
+      '',
+      'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course.',
+      'You are writing short spaced review questions from earlier knowledge in the same 2365 unit.',
+      '',
+      '## This lesson is for',
+      `\`${input.audience}\``,
+      '',
+      '## Writing style',
+      `\`Tone: ${input.tonePrompt}.\``,
+      '',
+      '# Requirement',
+      '- Always return strict JSON only.',
+      '',
+      '## Rules',
+      '- Use the same unit only.',
+      '- Spread the 8 questions as evenly as possible across the source LO groups.',
+      '',
+      '# Steps',
+      '- Output the source LO coverage you are using from the grounding packet.',
+      '- Write 8 spaced review questions from that coverage.',
+    ].join('\n'),
     user: [
+      '# Spaced Review Input',
+      '',
       buildSpacedReviewUserContext(input, grounding),
+      '',
+      '## Output shape',
       '',
       'Return JSON in this shape:',
       JSON.stringify(
@@ -606,7 +1185,7 @@ export function buildDynamicSpacedReviewPrompt(
         2
       ),
       '',
-      'Critical rules:',
+      '## Critical rules',
       '- Write exactly 8 spaced review questions.',
       '- Use the same unit only and stay inside the grounding packet.',
       '- Spread the questions evenly across the source LO groups when possible.',
@@ -627,25 +1206,29 @@ export function buildDynamicScorePrompt(
 ): { system: string; user: string } {
   return {
     system: [
+      '# System message',
+      '',
       'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course who scores lesson quality rigorously.',
       'Score the lesson quality using the weighted rubric below.',
       'Score what the lesson actually asks the learner to do.',
       'Judge the lesson against the generation contract for each stage, not against hidden stricter style rules.',
-      'Return 0-10 issues only, sorted by impact.',
-      'Be strict, fair, and concrete. Do not hand out perfect scores casually.',
-      'Each issue must include id, category, jsonPointers, excerpt, problem, whyItMatters, alignmentGap, and suggestion.',
-      'You must also return phase-by-phase feedback for every lesson step.',
-      'If validation issues are present, the lesson cannot score above rework level.',
-      'Output strict JSON only.',
       '',
-      'Rubric:',
+      '# Requirement',
+      '- Return strict JSON only.',
+      '- Return 0-10 issues only, sorted by impact.',
+      '- Be strict, fair, and concrete. Do not hand out perfect scores casually.',
+      '- Each issue must include id, category, jsonPointers, excerpt, problem, whyItMatters, alignmentGap, and suggestion.',
+      '- You must also return phase-by-phase feedback for every lesson step.',
+      '- If validation issues are present, the lesson cannot score above rework level.',
+      '',
+      '## Rubric',
       '- beginnerClarity: 0-30',
       '- teachingBeforeTesting: 0-25',
       '- markingRobustness: 0-20',
       '- alignmentToLO: 0-15',
       '- questionQuality: 0-10',
       '',
-      'Strict rules:',
+      '## Strict rules',
       '- total must equal the breakdown sum.',
       '- If content is generic, placeholder-like, or structurally weak, score harshly.',
       '- If validationIssues is non-empty, grade must be rework.',
@@ -674,6 +1257,8 @@ export function buildDynamicScorePrompt(
       '- summary must be 2-3 sentences maximum.',
     ].join('\n'),
     user: [
+      '# Score Input',
+      '',
       `Lesson context:\n${buildFullLessonContext(input, lesson.steps.map((step) => ({
         key: step.id,
         title: step.title,
@@ -684,21 +1269,22 @@ export function buildDynamicScorePrompt(
         completionMode: step.completionMode,
       })))} `,
       '',
-      'Planning output:',
+      '## Planning output',
       JSON.stringify(planning, null, 2),
       '',
-      'Vocabulary output:',
+      '## Vocabulary output',
       JSON.stringify(vocabulary, null, 2),
       '',
-      'Validation issues:',
+      '## Validation issues',
       JSON.stringify(validationIssues, null, 2),
       '',
-      'Spaced review artifact:',
+      '## Spaced review artifact',
       JSON.stringify(spacedReview, null, 2),
       '',
-      'Lesson JSON to score:',
+      '## Lesson JSON to score',
       JSON.stringify(lesson, null, 2),
       '',
+      '## Output shape',
       'Return JSON in this shape:',
       JSON.stringify(
         {
@@ -741,7 +1327,7 @@ export function buildDynamicScorePrompt(
         2
       ),
       '',
-      'Important scoring reminders:',
+      '## Important scoring reminders',
       '- The runtime still needs concrete learner tasks, but question-only dynamic lessons do not need stored answer keys.',
       '- Penalize what would confuse or misdirect the learner, not just wording that is not stylistically ideal.',
       '- Multi-part apply tasks should be penalized mainly when the learner task itself is bundled or unclear.',
@@ -760,21 +1346,28 @@ export function buildDynamicFixPlanPrompt(
 ): { system: string; user: string } {
   return {
     system: [
+      '# System message',
+      '',
       'You are an expert in the City & Guilds 2365 Level 2 Electrical Installation course who writes precise lesson repair plans.',
       'Turn the score issues into a concrete repair plan.',
       'Each fix must target one real lesson field and explain the smallest useful change.',
-      'Output strict JSON only.',
+      '',
+      '# Requirement',
+      '- Output strict JSON only.',
     ].join('\n'),
     user: [
-      'Lesson JSON:',
+      '# Repair Plan Input',
+      '',
+      '## Lesson JSON',
       JSON.stringify(lesson, null, 2),
       '',
-      'Score report:',
+      '## Score report',
       JSON.stringify(score, null, 2),
       '',
-      'Validation issues:',
+      '## Validation issues',
       JSON.stringify(validation.issues, null, 2),
       '',
+      '## Output shape',
       'Return JSON in this shape:',
       JSON.stringify(
         {
@@ -806,7 +1399,7 @@ export function buildDynamicFixPlanPrompt(
         2
       ),
       '',
-      'Critical rules:',
+      '## Critical rules',
       '- Use one targetPointer per fix.',
       '- Use the jsonPointers from the score where possible.',
       '- Do not invent fake fields.',
@@ -845,13 +1438,19 @@ function buildRepairPromptBody(
       : '';
   return {
     system: [
+      '# System message',
+      '',
       'Repair one lesson field.',
       role,
-      'Change only the listed jsonPointer.',
-      'Return only the replacement text for that field.',
-      'Do not return JSON, labels, or commentary.',
+      '',
+      '# Requirement',
+      '- Change only the listed jsonPointer.',
+      '- Return only the replacement text for that field.',
+      '- Do not return JSON, labels, or commentary.',
     ].join('\n'),
     user: [
+      '# Repair Input',
+      '',
       `Target: ${fix.targetPointer}`,
       `Current: ${JSON.stringify(currentValue)}`,
       `Fix: ${requiredFix}`,
@@ -862,7 +1461,7 @@ function buildRepairPromptBody(
       ...(previousRejectionLine ? [`Previous rejection: ${previousRejectionLine}`] : []),
       'Return only the replacement text for the target field.',
       '',
-      'Critical rules:',
+      '## Critical rules',
       `- The only field you are rewriting is ${fix.targetPointer}.`,
       '- Return the replacement text only.',
       '- Do not wrap the answer in JSON, quotes, bullets, or labels.',
@@ -936,4 +1535,3 @@ export function buildDynamicRepairPrompt(
       ]);
   }
 }
-

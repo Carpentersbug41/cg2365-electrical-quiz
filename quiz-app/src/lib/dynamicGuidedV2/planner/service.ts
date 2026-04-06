@@ -60,11 +60,15 @@ function buildStagePlan(blueprint: {
   topic: string;
   teachChecks: Array<{ title: string; objective: string }>;
 }): DynamicLessonStageDescriptor[] {
-  const teachChecks = blueprint.teachChecks.length > 0 ? blueprint.teachChecks.slice(0, 6) : [
+  const teachChecks = blueprint.teachChecks.length > 0 ? blueprint.teachChecks.slice(0, 8) : [
     { title: 'Teach/Check 1', objective: `Teach the first core idea in ${blueprint.topic}.` },
     { title: 'Teach/Check 2', objective: `Teach the next core idea in ${blueprint.topic}.` },
     { title: 'Teach/Check 3', objective: `Teach the next distinct idea in ${blueprint.topic}.` },
-    { title: 'Teach/Check 4', objective: `Teach the last core idea needed before application in ${blueprint.topic}.` },
+    { title: 'Teach/Check 4', objective: `Teach the next distinct idea in ${blueprint.topic}.` },
+    { title: 'Teach/Check 5', objective: `Teach the next distinct idea in ${blueprint.topic}.` },
+    { title: 'Teach/Check 6', objective: `Teach the next distinct idea in ${blueprint.topic}.` },
+    { title: 'Teach/Check 7', objective: `Teach the next distinct idea in ${blueprint.topic}.` },
+    { title: 'Teach/Check 8', objective: `Teach the last core idea needed before application in ${blueprint.topic}.` },
   ];
 
   const stagePlan: DynamicLessonStageDescriptor[] = [
@@ -111,7 +115,11 @@ function coerceDraft(input: DynamicModulePlanRequest, raw: unknown): DynamicModu
         { title: 'Teach/Check 1', objective: 'Teach the first core idea.' },
         { title: 'Teach/Check 2', objective: 'Teach the next core idea.' },
         { title: 'Teach/Check 3', objective: 'Teach the next distinct idea.' },
-        { title: 'Teach/Check 4', objective: 'Teach the final core idea before application.' },
+        { title: 'Teach/Check 4', objective: 'Teach the next distinct idea.' },
+        { title: 'Teach/Check 5', objective: 'Teach the next distinct idea.' },
+        { title: 'Teach/Check 6', objective: 'Teach the next distinct idea.' },
+        { title: 'Teach/Check 7', objective: 'Teach the next distinct idea.' },
+        { title: 'Teach/Check 8', objective: 'Teach the final core idea before application.' },
       ],
     },
   ];
@@ -121,7 +129,7 @@ function coerceDraft(input: DynamicModulePlanRequest, raw: unknown): DynamicModu
     blueprints: blueprints.slice(0, Math.max(1, Math.min(input.requestedLessonCount ?? 3, 8))).map((item, index) => {
       const record = item && typeof item === 'object' ? (item as Record<string, unknown>) : {};
       const teachChecksRaw = Array.isArray(record.teachChecks) ? record.teachChecks : [];
-      const teachChecks = teachChecksRaw.slice(0, 6).map((entry, teachIndex) => {
+      const teachChecks = teachChecksRaw.slice(0, 8).map((entry, teachIndex) => {
         const value = entry && typeof entry === 'object' ? (entry as Record<string, unknown>) : {};
         return {
           title: normalizeWhitespace(value.title) || `Teach/Check ${teachIndex + 1}`,

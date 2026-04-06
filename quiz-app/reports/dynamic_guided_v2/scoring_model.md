@@ -126,6 +126,47 @@ Scoring temperature should be pinned to `0` for repeatability.
 The tutor may be loose in delivery.
 The score should not be loose in judgement.
 
+## Repair And Publish Rule
+
+The live system now separates:
+- repair target
+- publish floor
+- hard rejection floor
+
+Current rule:
+- unrepaired draft must clear the normal acceptance gate
+- repaired lesson should still aim for `90+`
+- repaired lesson is publishable at `80+`
+- repaired lesson is rejected only if its best repaired score stays below `80`
+
+Interpretation:
+- `90+`
+  - strong target
+  - publish
+- `80-89`
+  - publishable after repair
+  - below target, but above the minimum floor
+- `<80`
+  - reject after repair
+
+This means:
+- `90` is still the repair target
+- `80` is the repaired publish floor
+
+## Best-State Retention
+
+The repair loop must keep the best valid repaired candidate seen during the run.
+
+It must not simply keep the latest accepted repair state.
+
+Reason:
+- later accepted patches can lower the score
+- the final published artifact should come from the highest valid repaired score reached in that run
+
+So the live pipeline now uses:
+- current working draft for continued repair exploration
+- best repaired draft for final publish/reject decision
+
 ## Chunk-First Interpretation
 
 For default concept chunks, scoring should not penalize the lesson for lacking:

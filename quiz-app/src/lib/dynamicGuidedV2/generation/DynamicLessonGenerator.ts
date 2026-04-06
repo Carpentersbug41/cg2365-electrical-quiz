@@ -2,7 +2,12 @@ import { createLLMClientWithFallback, type ChatHistoryEntry, type GenerativeMode
 import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { getLessonById, getLessonsByUnit } from '@/data/lessons/lessonIndex';
 import chunksData from '@/lib/syllabus/chunks.json';
-import type { DynamicGuidedV2BasicQuestion, DynamicGuidedV2Lesson, DynamicGuidedV2Step } from '@/lib/dynamicGuidedV2/types';
+import type {
+  DynamicGuidedV2BasicQuestion,
+  DynamicGuidedV2DeeperQuestionMode,
+  DynamicGuidedV2Lesson,
+  DynamicGuidedV2Step,
+} from '@/lib/dynamicGuidedV2/types';
 import {
   buildGenerationGroundingPacket,
   buildDynamicBasicChecksPrompt,
@@ -22,6 +27,7 @@ import type {
   DynamicDeeperChecksPhaseOutput,
   DynamicExplanationPhaseOutput,
   DynamicFixPlan,
+  DynamicLessonGeneratorOptions,
   DynamicIntegrationPhaseOutput,
   DynamicLessonAcceptanceDecision,
   DynamicLessonGenerationInput,
@@ -63,6 +69,8 @@ function createEmptyRepairSummary(): DynamicRepairSummary {
     patchAccepted: false,
     patchRejectedCode: null,
     patchRejectedReason: null,
+    bestRepairedScore: null,
+    bestRepairedRound: null,
     repairAttempts: [],
   };
 }
@@ -221,6 +229,7 @@ const SCORE_MAX = {
 } as const;
 
 const ACCEPTANCE_GATE = 90;
+const REPAIRED_PUBLISH_FLOOR = 80;
 
 type PromptPair = { system: string; user: string };
 type GenerationConversation = {
@@ -230,6 +239,7 @@ type GenerationConversation = {
 type PhaseAcceptanceOptions<T> = {
   maxAttempts?: number;
   validateParsed?: (parsed: T) => string[];
+  shouldProceedOnValidationIssues?: (issues: string[], parsed: T) => boolean;
 };
 
 type JsonPhaseResult<T> = {
@@ -1095,6 +1105,42 @@ function defaultStagePlan(input: DynamicLessonGenerationInput): DynamicLessonSta
     {
       key: 'teach-check-4',
       title: 'Teach/Check 4',
+      role: 'explanation',
+      stage: 'teach_check',
+      objective: `Teach the next distinct idea in ${input.topic}.`,
+      progressionRule: 'feedback_deeper',
+      completionMode: 'respond',
+    },
+    {
+      key: 'teach-check-5',
+      title: 'Teach/Check 5',
+      role: 'explanation',
+      stage: 'teach_check',
+      objective: `Teach the next distinct idea in ${input.topic}.`,
+      progressionRule: 'feedback_deeper',
+      completionMode: 'respond',
+    },
+    {
+      key: 'teach-check-6',
+      title: 'Teach/Check 6',
+      role: 'explanation',
+      stage: 'teach_check',
+      objective: `Teach the next distinct idea in ${input.topic}.`,
+      progressionRule: 'feedback_deeper',
+      completionMode: 'respond',
+    },
+    {
+      key: 'teach-check-7',
+      title: 'Teach/Check 7',
+      role: 'explanation',
+      stage: 'teach_check',
+      objective: `Teach the next distinct idea in ${input.topic}.`,
+      progressionRule: 'feedback_deeper',
+      completionMode: 'respond',
+    },
+    {
+      key: 'teach-check-8',
+      title: 'Teach/Check 8',
       role: 'explanation',
       stage: 'teach_check',
       objective: `Teach the last core idea in ${input.topic}.`,
@@ -3235,6 +3281,28 @@ function coerceBasicChecksOutput(
   };
 }
 
+function inferDeeperQuestionMode(questionText: string): DynamicGuidedV2DeeperQuestionMode {
+  const normalized = normalizeWhitespace(questionText).toLowerCase();
+  if (!normalized) return 'synthesis';
+  if (/\bif\b|\bwhat would happen\b|\bwould happen\b|\bimagine\b|\bsuppose\b|\bpredict\b/.test(normalized)) {
+    return 'hypothesis';
+  }
+  if (/\bdiffer\b|\bdifference\b|\bcompare\b|\bcompared\b|\baffect\b|\binfluence\b|\brelationship\b|\blink\b|\blead to\b|\breduce\b|\bincrease\b|\bcause\b/.test(normalized)) {
+    return 'connection';
+  }
+  return 'synthesis';
+}
+
+function coerceDeeperQuestionMode(
+  raw: unknown,
+  questionText: string
+): DynamicGuidedV2DeeperQuestionMode {
+  if (raw === 'connection' || raw === 'synthesis' || raw === 'hypothesis') {
+    return raw;
+  }
+  return inferDeeperQuestionMode(questionText);
+}
+
 function coerceDeeperChecksOutput(
   raw: unknown,
   planning: DynamicPlanningPhaseOutput
@@ -3249,6 +3317,7 @@ function coerceDeeperChecksOutput(
       return {
         title: normalizeWhitespace(item.title) || planned.title,
         deeperQuestionText: normalizeWhitespace(item.deeperQuestionText),
+        deeperQuestionMode: coerceDeeperQuestionMode(item.deeperQuestionMode, normalizeWhitespace(item.deeperQuestionText)),
         deeperSourceTeachingPointIds: coerceTeachingPointIds(item.deeperSourceTeachingPointIds),
         hint: normalizeWhitespace(item.hint) || undefined,
       };
@@ -3268,6 +3337,7 @@ function mergeBasicAndDeeperChecks(
         || planned.title,
       basicQuestions: basicChecks.teachChecks[index]?.basicQuestions ?? [],
       deeperQuestionText: normalizeWhitespace(deeperChecks.teachChecks[index]?.deeperQuestionText),
+      deeperQuestionMode: deeperChecks.teachChecks[index]?.deeperQuestionMode,
       deeperSourceTeachingPointIds: deeperChecks.teachChecks[index]?.deeperSourceTeachingPointIds,
       hint: normalizeWhitespace(deeperChecks.teachChecks[index]?.hint)
         || normalizeWhitespace(basicChecks.teachChecks[index]?.hint)
@@ -3401,6 +3471,10 @@ function validateBasicChecksPhaseOutput(
   return issues;
 }
 
+function isRepairableBasicChecksValidationIssue(issue: string): boolean {
+  return /is not answerable from the taught chunk\.$/i.test(normalizeWhitespace(issue));
+}
+
 function validateDeeperChecksPhaseOutput(
   parsed: DynamicDeeperChecksPhaseOutput,
   planning: DynamicPlanningPhaseOutput,
@@ -3449,6 +3523,7 @@ function backfillMissingDeeperChecks(
       return {
         title: normalizeWhitespace(current?.title) || plannedChunk.title,
         deeperQuestionText,
+        deeperQuestionMode: current?.deeperQuestionMode ?? inferDeeperQuestionMode(deeperQuestionText),
         deeperSourceTeachingPointIds: current?.deeperSourceTeachingPointIds,
         hint: normalizeWhitespace(current?.hint) || undefined,
       };
@@ -3544,6 +3619,10 @@ function mergeUnderstandingChecks(
         title: normalizeWhitespace(repairedCheck.title) || originalCheck.title,
         basicQuestions: hasValidRepairedBasics ? repairedBasicQuestions : originalCheck.basicQuestions,
         deeperQuestionText: normalizeWhitespace(repairedCheck.deeperQuestionText) || originalCheck.deeperQuestionText,
+        deeperQuestionMode:
+          repairedCheck.deeperQuestionMode ?? originalCheck.deeperQuestionMode ?? inferDeeperQuestionMode(
+            normalizeWhitespace(repairedCheck.deeperQuestionText) || originalCheck.deeperQuestionText
+          ),
         deeperSourceTeachingPointIds:
           (repairedCheck.deeperSourceTeachingPointIds ?? []).length > 0
             ? repairedCheck.deeperSourceTeachingPointIds
@@ -5588,6 +5667,7 @@ function normalizeRuntimeStep(
     });
     const normalizedDeeper = normalizeDeeperQuestion(normalizedStep.deeperQuestionText, normalizedStep.deeperAnswerGuidance);
     normalizedStep.deeperQuestionText = normalizedDeeper.questionText;
+    normalizedStep.deeperQuestionMode = normalizedStep.deeperQuestionMode ?? inferDeeperQuestionMode(normalizedDeeper.questionText);
     normalizedStep.deeperAnswerGuidance = normalizedDeeper.answerGuidance;
     return ensureTeachBeforeTestCoverage(normalizedStep);
   }
@@ -6993,6 +7073,7 @@ function buildLessonFromPhases(
       questionIntent: planning.teachChecks[index]?.conceptFocus || descriptor.objective,
       basicQuestions,
       deeperQuestionText: check?.deeperQuestionText,
+      deeperQuestionMode: check?.deeperQuestionMode ?? inferDeeperQuestionMode(check?.deeperQuestionText ?? ''),
       deeperQuestionIntent: planning.teachChecks[index]?.whyItMatters || descriptor.objective,
       hint: explanation?.hint || check?.hint,
     });
@@ -7845,15 +7926,20 @@ function compareScores(
   const acceptedSource: DynamicLessonAcceptanceDecision['acceptedSource'] = refined ? 'candidate' : 'original';
   const gateScore = refined ? candidateScore : originalScore;
   const gateValidationPassed = refined ? candidateValidationPassed : originalValidationPassed;
-  const accepted = gateScore.total >= ACCEPTANCE_GATE && gateValidationPassed;
+  const requiredScore = refined ? REPAIRED_PUBLISH_FLOOR : ACCEPTANCE_GATE;
+  const accepted = gateScore.total >= requiredScore && gateValidationPassed;
   const reason = !gateValidationPassed
     ? refined
       ? 'Refined lesson failed validation.'
       : 'Draft fails validation.'
-    : gateScore.total < ACCEPTANCE_GATE
-      ? `${refined ? 'Repaired' : 'Draft'} score ${gateScore.total} is below the ${ACCEPTANCE_GATE} acceptance gate.`
+    : gateScore.total < requiredScore
+      ? refined
+        ? `Highest repaired score ${gateScore.total} is below the ${REPAIRED_PUBLISH_FLOOR} publish floor.`
+        : `Draft score ${gateScore.total} is below the ${ACCEPTANCE_GATE} acceptance gate.`
       : refined
-        ? 'Repaired lesson cleared the acceptance gate.'
+        ? gateScore.total >= ACCEPTANCE_GATE
+          ? `Repaired lesson cleared the ${ACCEPTANCE_GATE} target and publish floor.`
+          : `Repaired lesson is below the ${ACCEPTANCE_GATE} target but cleared the ${REPAIRED_PUBLISH_FLOOR} publish floor.`
         : 'Draft cleared the acceptance gate.';
 
   return {
@@ -7864,6 +7950,25 @@ function compareScores(
     candidateScore,
     regressions: [],
   };
+}
+
+function shouldReplaceBestRepairCandidate(params: {
+  currentBestValidation: DynamicLessonGenerationValidation | null;
+  currentBestScore: DynamicLessonGenerationScore | null;
+  candidateValidation: DynamicLessonGenerationValidation;
+  candidateScore: DynamicLessonGenerationScore;
+}): boolean {
+  if (!params.currentBestScore || !params.currentBestValidation) return true;
+  if (params.candidateScore.total !== params.currentBestScore.total) {
+    return params.candidateScore.total > params.currentBestScore.total;
+  }
+  if (params.candidateValidation.passed !== params.currentBestValidation.passed) {
+    return params.candidateValidation.passed && !params.currentBestValidation.passed;
+  }
+  if (params.candidateValidation.issues.length !== params.currentBestValidation.issues.length) {
+    return params.candidateValidation.issues.length < params.currentBestValidation.issues.length;
+  }
+  return params.candidateScore.issues.length < params.currentBestScore.issues.length;
 }
 
 export const __testOnlyDynamicLessonGenerator = {
@@ -7902,6 +8007,8 @@ export const __testOnlyDynamicLessonGenerator = {
 };
 
 export class DynamicLessonGenerator {
+  constructor(private readonly options: DynamicLessonGeneratorOptions = {}) {}
+
   private createGenerationConversation(
     client: Awaited<ReturnType<typeof createLLMClientWithFallback>>,
     input: DynamicLessonGenerationInput,
@@ -8116,7 +8223,10 @@ export class DynamicLessonGenerator {
         const rawText = result.response.text();
         const parsed = coerce(parseJson<unknown>(rawText));
         const validationIssues = acceptance?.validateParsed?.(parsed) ?? [];
-        if (validationIssues.length > 0) {
+        const shouldProceedDespiteValidationIssues =
+          validationIssues.length > 0 &&
+          Boolean(acceptance?.shouldProceedOnValidationIssues?.(validationIssues, parsed));
+        if (validationIssues.length > 0 && !shouldProceedDespiteValidationIssues) {
           lastError = new Error(validationIssues.join(' '));
           continue;
         }
@@ -8133,6 +8243,7 @@ export class DynamicLessonGenerator {
             parsed,
             orchestration: 'conversation-history',
             attempts: attempt,
+            ...(validationIssues.length > 0 ? { validationIssues } : {}),
           },
           startedAt,
           finishedAt: nowIso(),
@@ -8140,6 +8251,7 @@ export class DynamicLessonGenerator {
         logGenerationEvent(input, `${phaseName} completed`, {
           durationMs: durationMs(startedAtMs),
           attempts: attempt,
+          ...(validationIssues.length > 0 ? { validationIssues } : {}),
         });
         return { parsed, rawText, prompt };
       } catch (error) {
@@ -8238,7 +8350,7 @@ export class DynamicLessonGenerator {
       await this.runJsonPhaseInConversation(
         input,
         'Phase 3 Explanation',
-        buildDynamicExplanationPrompt(input),
+        buildDynamicExplanationPrompt(input, this.options.promptVariantId ?? 'baseline'),
         (raw) => coerceExplanationOutput(raw, planning),
         phases,
         generationConversation,
@@ -8254,7 +8366,7 @@ export class DynamicLessonGenerator {
       await this.runJsonPhaseInConversation(
         input,
         'Phase 4 Basic Checks',
-        buildDynamicBasicChecksPrompt(input),
+        buildDynamicBasicChecksPrompt(input, this.options.promptVariantId ?? 'baseline'),
         (raw) => coerceBasicChecksOutput(raw, planning),
         phases,
         generationConversation,
@@ -8262,6 +8374,7 @@ export class DynamicLessonGenerator {
         {
           maxAttempts: 2,
           validateParsed: (parsed) => validateBasicChecksPhaseOutput(parsed, planning, explanations),
+          shouldProceedOnValidationIssues: (issues) => issues.every(isRepairableBasicChecksValidationIssue),
         }
       )
     ).parsed;
@@ -8270,7 +8383,7 @@ export class DynamicLessonGenerator {
       await this.runJsonPhaseInConversation(
         input,
         'Phase 4.1 Deeper Checks',
-        buildDynamicDeeperChecksPrompt(input),
+        buildDynamicDeeperChecksPrompt(input, this.options.promptVariantId ?? 'p41_markdown_only'),
         (raw) => coerceDeeperChecksOutput(raw, planning),
         phases,
         generationConversation,
@@ -8445,7 +8558,6 @@ export class DynamicLessonGenerator {
     let candidateLesson: DynamicGuidedV2Lesson = lesson;
     let candidateValidation = validation;
     let candidateScore = score;
-    const appliedRepairFixes: DynamicFixPlan['fixes'] = [];
     const repairSummary = createEmptyRepairSummary();
 
     let patchableFixes = (fixPlan?.fixes ?? []).filter((fix) => isRepairablePointer(fix.targetPointer));
@@ -8457,7 +8569,11 @@ export class DynamicLessonGenerator {
       let workingValidation = validation;
       let workingScore = score;
       let workingFixPlan: DynamicFixPlan | null = fixPlan;
+      let bestRepairedLesson: DynamicGuidedV2Lesson | null = null;
+      let bestRepairedValidation: DynamicLessonGenerationValidation | null = null;
+      let bestRepairedScore: DynamicLessonGenerationScore | null = null;
       const attemptedTargets = new Set<string>();
+      const acceptedTargets = new Set<string>();
       let repairRound = 0;
 
       while (true) {
@@ -8470,7 +8586,7 @@ export class DynamicLessonGenerator {
 
         const nextFix = patchableFixes.find((fix) => {
           const key = `${fix.repairClass}::${fix.targetPointer}`;
-          return !attemptedTargets.has(key);
+          return !attemptedTargets.has(key) && !acceptedTargets.has(key);
         });
         if (!nextFix) {
           repairSummary.repairStopReason = 'no_progress';
@@ -8531,11 +8647,25 @@ export class DynamicLessonGenerator {
                 workingLesson = roundCandidateLesson;
                 workingValidation = roundCandidateValidation;
                 workingScore = roundCandidateScore;
-                appliedRepairFixes.push(nextFix);
                 refined = true;
+                acceptedTargets.add(`${nextFix.repairClass}::${nextFix.targetPointer}`);
                 attemptedTargets.clear();
                 repairSummary.patchAccepted = true;
                 repairSummary.patchRejectedReason = null;
+                if (
+                  shouldReplaceBestRepairCandidate({
+                    currentBestValidation: bestRepairedValidation,
+                    currentBestScore: bestRepairedScore,
+                    candidateValidation: roundCandidateValidation,
+                    candidateScore: roundCandidateScore,
+                  })
+                ) {
+                  bestRepairedLesson = roundCandidateLesson;
+                  bestRepairedValidation = roundCandidateValidation;
+                  bestRepairedScore = roundCandidateScore;
+                  repairSummary.bestRepairedScore = roundCandidateScore.total;
+                  repairSummary.bestRepairedRound = repairRound;
+                }
               } else {
                 finalPatchIssues.push('Patch did not improve the targeted field without regressing protected scoring domains.');
               }
@@ -8650,11 +8780,25 @@ export class DynamicLessonGenerator {
                 workingLesson = roundCandidateLesson;
                 workingValidation = roundCandidateValidation;
                 workingScore = roundCandidateScore;
-                appliedRepairFixes.push(nextFix);
                 refined = true;
+                acceptedTargets.add(`${nextFix.repairClass}::${nextFix.targetPointer}`);
                 attemptedTargets.clear();
                 repairSummary.patchAccepted = true;
                 repairSummary.patchRejectedReason = null;
+                if (
+                  shouldReplaceBestRepairCandidate({
+                    currentBestValidation: bestRepairedValidation,
+                    currentBestScore: bestRepairedScore,
+                    candidateValidation: roundCandidateValidation,
+                    candidateScore: roundCandidateScore,
+                  })
+                ) {
+                  bestRepairedLesson = roundCandidateLesson;
+                  bestRepairedValidation = roundCandidateValidation;
+                  bestRepairedScore = roundCandidateScore;
+                  repairSummary.bestRepairedScore = roundCandidateScore.total;
+                  repairSummary.bestRepairedRound = repairRound;
+                }
               } else {
                 finalPatchIssues.push('Patch did not improve the targeted field without regressing protected scoring domains.');
               }
@@ -8718,9 +8862,9 @@ export class DynamicLessonGenerator {
         }
       }
 
-      candidateLesson = workingLesson;
-      candidateValidation = workingValidation;
-      candidateScore = workingScore;
+      candidateLesson = bestRepairedLesson ?? workingLesson;
+      candidateValidation = bestRepairedValidation ?? workingValidation;
+      candidateScore = bestRepairedScore ?? workingScore;
     } else {
       repairSummary.repairStopReason = patchableFixes.length === 0 ? 'no_patchable_issues' : null;
       phases.push({
@@ -8802,14 +8946,16 @@ export class DynamicLessonGenerator {
       fixPlan: finalFixPlan,
     };
 
-    await logDynamicGenerationAnalytics({
-      context: {
-        lessonCode: input.lessonCode,
-        sourceContext: input.sourceContext ?? null,
-        origin: 'live_generation',
-      },
-      result,
-    });
+    if (!this.options.disableAnalyticsLogging) {
+      await logDynamicGenerationAnalytics({
+        context: {
+          lessonCode: input.lessonCode,
+          sourceContext: input.sourceContext ?? null,
+          origin: 'live_generation',
+        },
+        result,
+      });
+    }
 
     return result;
   }

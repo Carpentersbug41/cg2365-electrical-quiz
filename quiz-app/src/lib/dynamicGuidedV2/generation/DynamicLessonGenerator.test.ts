@@ -1516,7 +1516,14 @@ describe('dynamic generation normalization regressions', () => {
       ],
     };
 
-    expect(__testOnlyDynamicLessonGenerator.mergeUnderstandingChecks(original, repaired)).toEqual(original);
+    expect(__testOnlyDynamicLessonGenerator.mergeUnderstandingChecks(original, repaired)).toEqual({
+      teachChecks: [
+        {
+          ...original.teachChecks[0],
+          deeperQuestionMode: 'synthesis',
+        },
+      ],
+    });
   });
 
   it('rejects refined lessons that change protected step structure', () => {
@@ -2230,8 +2237,51 @@ describe('dynamic lesson scoring', () => {
 
     expect(decision.accepted).toBe(false);
     expect(decision.acceptedSource).toBe('candidate');
-    expect(decision.reason).toContain('Repaired score 67 is below the 90 acceptance gate.');
+    expect(decision.reason).toContain('Highest repaired score 67 is below the 80 publish floor.');
     expect(decision.regressions).toEqual([]);
+  });
+
+  it('publishes a repaired candidate that misses the 90 target but clears the 80 publish floor', () => {
+    const originalScore: DynamicLessonGenerationScore = {
+      total: 74,
+      grade: 'rework',
+      breakdown: {
+        beginnerClarity: 16,
+        teachingBeforeTesting: 16,
+        markingRobustness: 14,
+        alignmentToLO: 16,
+        questionQuality: 12,
+      },
+      issues: [],
+      phaseFeedback: [],
+      summary: 'original',
+    };
+    const candidateScore: DynamicLessonGenerationScore = {
+      total: 85,
+      grade: 'usable',
+      breakdown: {
+        beginnerClarity: 24,
+        teachingBeforeTesting: 18,
+        markingRobustness: 16,
+        alignmentToLO: 15,
+        questionQuality: 12,
+      },
+      issues: [],
+      phaseFeedback: [],
+      summary: 'candidate',
+    };
+
+    const decision = __testOnlyDynamicLessonGenerator.compareScores(
+      originalScore,
+      candidateScore,
+      true,
+      true,
+      true
+    );
+
+    expect(decision.accepted).toBe(true);
+    expect(decision.acceptedSource).toBe('candidate');
+    expect(decision.reason).toContain('below the 90 target but cleared the 80 publish floor');
   });
 
   it('routes method-teaching gaps to teaching_field_rewrite', () => {

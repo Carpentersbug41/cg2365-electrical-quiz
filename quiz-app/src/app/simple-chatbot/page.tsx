@@ -18,7 +18,7 @@ type ThreadTurn = {
 };
 
 type DebugPayload = {
-  mode: 'baseline' | 'lesson';
+  mode: 'baseline' | 'baseline_v2' | 'lesson' | 'lesson_light';
   runtimeVariant?: 'control' | 'lean_feedback_v1' | null;
   replyClass?: 'correct' | 'partial' | 'misconception' | 'unclear' | null;
   userId?: string | null;
@@ -181,6 +181,7 @@ const THINKING_MESSAGES = [
 
 export default function SimpleChatbotPage() {
   const searchParams = useSearchParams();
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const [thread, setThread] = useState<ThreadTurn[]>([]);
   const [draft, setDraft] = useState('');
   const [loading, setLoading] = useState(false);
@@ -189,9 +190,12 @@ export default function SimpleChatbotPage() {
   const [debugPayload, setDebugPayload] = useState<DebugPayload | null>(null);
   const [attachment, setAttachment] = useState<AttachedDocument | null>(null);
   const [uploadingAttachment, setUploadingAttachment] = useState(false);
-  const [lessonMode, setLessonMode] = useState(false);
+  const [chatMode, setChatMode] = useState<'baseline' | 'baseline_v2' | 'lesson' | 'lesson_light'>('baseline');
   const [runtimeVariant, setRuntimeVariant] = useState<'control' | 'lean_feedback_v1'>('lean_feedback_v1');
   const [selectedLessonCode, setSelectedLessonCode] = useState<string>('203-4C');
+  const [availableLessonOptions, setAvailableLessonOptions] = useState<Array<{ code: string; label: string }>>(
+    [...LESSON_OPTIONS]
+  );
   const [dynamicVersionId, setDynamicVersionId] = useState<string | null>(null);
   const [dynamicLessonData, setDynamicLessonData] = useState<DynamicGuidedV2Lesson | null>(null);
   const [lessonStepIndex, setLessonStepIndex] = useState(0);
@@ -208,6 +212,9 @@ export default function SimpleChatbotPage() {
   const [loadingBars, setLoadingBars] = useState<LoadingBarState[]>(INITIAL_LOADING_BARS);
   const threadRef = useRef<HTMLDivElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const lessonMode = chatMode === 'lesson' || chatMode === 'lesson_light';
+  const lessonLightMode = chatMode === 'lesson_light';
+  const baselineV2Mode = chatMode === 'baseline_v2';
   const currentLessonData = useMemo(
     () =>
       lessonMode
@@ -227,17 +234,18 @@ export default function SimpleChatbotPage() {
     [currentLessonData, lessonMode, lessonStepIndex, lessonSectionPhase]
   );
   const lessonOptions = useMemo(() => {
-    if (currentLessonData && !LESSON_OPTIONS.some((option) => option.code === currentLessonData.lessonCode)) {
+    const baseOptions = availableLessonOptions;
+    if (currentLessonData && !baseOptions.some((option) => option.code === currentLessonData.lessonCode)) {
       return [
-        ...LESSON_OPTIONS,
+        ...baseOptions,
         {
           code: currentLessonData.lessonCode,
           label: `${currentLessonData.lessonCode} ${currentLessonData.title}`,
         },
       ];
     }
-    return LESSON_OPTIONS;
-  }, [currentLessonData]);
+    return baseOptions;
+  }, [availableLessonOptions, currentLessonData]);
   const jumpStep = useMemo(
     () => (currentLessonData ? currentLessonData.steps[jumpStepIndex] ?? null : null),
     [currentLessonData, jumpStepIndex]
@@ -282,12 +290,19 @@ export default function SimpleChatbotPage() {
 
   useEffect(() => {
     const lessonModeParam = searchParams?.get('lessonMode') ?? null;
+    const chatModeParam = searchParams?.get('chatMode') ?? null;
     const lessonCodeParam = searchParams?.get('lessonCode') ?? null;
     const dynamicVersionIdParam = searchParams?.get('dynamicVersionId') ?? null;
     const runtimeVariantParam = searchParams?.get('runtimeVariant') ?? null;
 
-    if (lessonModeParam === '1') {
-      setLessonMode(true);
+    if (chatModeParam === 'baseline_v2') {
+      setChatMode('baseline_v2');
+    } else if (chatModeParam === 'lesson_light') {
+      setChatMode('lesson_light');
+    } else if (lessonModeParam === '1') {
+      setChatMode('lesson');
+    } else {
+      setChatMode('baseline');
     }
 
     if (lessonCodeParam?.trim()) {
@@ -297,6 +312,73 @@ export default function SimpleChatbotPage() {
     setDynamicVersionId(dynamicVersionIdParam?.trim() ? dynamicVersionIdParam.trim() : null);
     setRuntimeVariant(runtimeVariantParam === 'control' ? 'control' : 'lean_feedback_v1');
   }, [searchParams]);
+
+  useEffect(() => {
+    if (!lessonMode) {
+      setSessionId(null);
+      return;
+    }
+
+    const storageKey = `simple-chatbot-${chatMode}-session:${selectedLessonCode}:${dynamicVersionId ?? 'runtime'}`;
+    const existing =
+      typeof window !== 'undefined' ? window.sessionStorage.getItem(storageKey) : null;
+
+    if (existing) {
+      setSessionId(existing);
+      return;
+    }
+
+    const nextId =
+      typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+        ? `dgv2-session-${crypto.randomUUID()}`
+        : `dgv2-session-${Math.random().toString(36).slice(2, 10)}`;
+
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.setItem(storageKey, nextId);
+    }
+    setSessionId(nextId);
+  }, [chatMode, dynamicVersionId, lessonMode, selectedLessonCode]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadLessonOptions() {
+      try {
+        const response = await fetch('/api/dynamic-guided-v2/lesson-codes');
+        const data = (await response.json()) as {
+          success?: boolean;
+          lessons?: Array<{ code?: string; label?: string }>;
+        };
+        if (!response.ok || !data.success || !Array.isArray(data.lessons)) {
+          return;
+        }
+
+        const merged = new Map<string, { code: string; label: string }>();
+        for (const option of LESSON_OPTIONS) {
+          merged.set(option.code, option);
+        }
+        for (const lesson of data.lessons) {
+          const code = typeof lesson.code === 'string' ? lesson.code.trim().toUpperCase() : '';
+          if (!code) continue;
+          merged.set(code, {
+            code,
+            label: typeof lesson.label === 'string' && lesson.label.trim() ? lesson.label.trim() : code,
+          });
+        }
+
+        if (!cancelled) {
+          setAvailableLessonOptions(Array.from(merged.values()).sort((a, b) => a.code.localeCompare(b.code)));
+        }
+      } catch {
+        // Leave the static fallback list in place.
+      }
+    }
+
+    void loadLessonOptions();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -454,15 +536,18 @@ export default function SimpleChatbotPage() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        sessionId: lessonMode ? sessionId : null,
         message: params.message,
         thread: params.conversationHistory,
+        chatMode,
         lessonCode: lessonMode && !lessonComplete ? selectedLessonCode : '',
         dynamicVersionId: lessonMode && !lessonComplete ? dynamicVersionId : null,
         lessonStepIndex: lessonMode ? params.lessonStepIndexValue : 0,
         lessonSectionPhase: lessonMode ? params.lessonSectionPhaseValue : 'teach',
         lessonDeeperTurnCount: lessonMode ? params.lessonDeeperTurnCountValue : 0,
         runtimeVariant,
-        attachment: attachment
+        attachment:
+          attachment && (!baselineV2Mode || params.conversationHistory.length === 0)
           ? {
               filename: attachment.filename,
               text: attachment.text,
@@ -505,6 +590,7 @@ export default function SimpleChatbotPage() {
       response.headers.get('x-simple-chatbot-lesson-turn-instruction') ?? ''
     );
     const runtimeVariantHeader = response.headers.get('x-simple-chatbot-runtime-variant');
+    const chatModeHeader = response.headers.get('x-simple-chatbot-chat-mode');
     const replyClassHeader = response.headers.get('x-simple-chatbot-reply-class');
     const geminiRequestHeader = decodeURIComponent(
       response.headers.get('x-simple-chatbot-gemini-request') ?? ''
@@ -532,7 +618,16 @@ export default function SimpleChatbotPage() {
     }
 
     const nextDebugPayload: DebugPayload = {
-      mode: lessonMode ? 'lesson' : 'baseline',
+      mode:
+        chatModeHeader === 'lesson' || chatModeHeader === 'lesson_light' || chatModeHeader === 'baseline_v2' || chatModeHeader === 'baseline'
+          ? chatModeHeader
+          : lessonMode
+            ? lessonLightMode
+              ? 'lesson_light'
+              : 'lesson'
+            : baselineV2Mode
+              ? 'baseline_v2'
+              : 'baseline',
       runtimeVariant:
         runtimeVariantHeader === 'lean_feedback_v1' || runtimeVariantHeader === 'control'
           ? runtimeVariantHeader
@@ -611,7 +706,7 @@ export default function SimpleChatbotPage() {
     console.groupCollapsed(
       '[simple-chatbot][lesson]',
       formatLessonConsoleLabel({
-        lessonCode: lessonMode ? selectedLessonCode : 'baseline',
+        lessonCode: lessonMode ? selectedLessonCode : baselineV2Mode ? 'baseline_v2' : 'baseline',
         stepIndex: Number.isFinite(lessonStepIndexHeader) ? lessonStepIndexHeader : null,
         stepTitle: lessonStepTitleHeader || null,
         stepStage: lessonStepStageHeader || null,
@@ -890,7 +985,7 @@ export default function SimpleChatbotPage() {
 
   async function submitCurrentMessage(message: string) {
     if (!message || loading) return;
-    if (lessonMode && lessonComplete) {
+      if (lessonMode && lessonComplete) {
       showStatusNotice('Lesson complete. Refresh chat to start again.');
       return;
     }
@@ -917,6 +1012,7 @@ export default function SimpleChatbotPage() {
 
       console.log('[simple-chatbot][client] submit', {
         lessonCode: lessonMode ? selectedLessonCode : null,
+        chatMode,
         attachment: attachment
           ? { filename: attachment.filename, chars: attachment.text.length }
           : null,
@@ -945,7 +1041,18 @@ export default function SimpleChatbotPage() {
         setLessonSectionPhase('teach');
         setLessonDeeperTurnCount(0);
 
-        const autoConversationHistory = nextThread
+        const autoConversationHistory = [
+          ...nextThread,
+          ...(firstResult.assistantText
+            ? [
+                {
+                  id: `assistant-auto-${Date.now()}`,
+                  role: 'assistant' as const,
+                  text: firstResult.assistantText,
+                },
+              ]
+            : []),
+        ]
           .filter((turn) => turn.role !== 'system')
           .map((turn) => ({ role: turn.role === 'assistant' ? 'assistant' : 'user', text: turn.text } satisfies ConversationHistoryTurn));
 
@@ -995,6 +1102,47 @@ export default function SimpleChatbotPage() {
     );
   }
 
+  async function handleCopyPayloadMeta() {
+    if (!debugPayload) return;
+
+    try {
+      await navigator.clipboard.writeText(
+        JSON.stringify(
+          {
+            mode: debugPayload.mode,
+            runtimeVariant: debugPayload.runtimeVariant,
+            replyClass: debugPayload.replyClass,
+            userId: debugPayload.userId,
+            profileFound: debugPayload.profileFound,
+            finishReason: debugPayload.finishReason,
+            attachment: debugPayload.attachment,
+            latestUserMessage: debugPayload.latestUserMessage,
+            lessonCode: debugPayload.lessonCode,
+            dynamicVersionId: debugPayload.dynamicVersionId,
+            lessonStepIndex: debugPayload.lessonStepIndex,
+            lessonSectionPhase: debugPayload.lessonSectionPhase,
+            feedbackPhase: debugPayload.feedbackPhase,
+            feedbackDeeperTurnCount: debugPayload.feedbackDeeperTurnCount,
+            progressionGate: debugPayload.progressionGate,
+            lessonStepTitle: debugPayload.lessonStepTitle,
+            lessonStepStage: debugPayload.lessonStepStage,
+            lessonStepRole: debugPayload.lessonStepRole,
+            lessonStepTotal: debugPayload.lessonStepTotal,
+            feedbackResolved: debugPayload.feedbackResolved,
+            feedbackNext: debugPayload.feedbackNext,
+            conversationHistory: debugPayload.conversationHistory,
+            responseAssistantMessage: debugPayload.responseAssistantMessage,
+          },
+          null,
+          2
+        )
+      );
+      showStatusNotice('Payload meta copied.');
+    } catch {
+      setError('Failed to copy payload meta.');
+    }
+  }
+
   function handleDownloadCurrentAttachment() {
     if (!currentLessonAttachment) return;
     downloadTextFile(currentLessonAttachment.filename, currentLessonAttachment.text);
@@ -1042,16 +1190,16 @@ export default function SimpleChatbotPage() {
         <section className={styles.attachPanel}>
           <div>
             <div className={styles.debugTitle}>Mode</div>
-            <p className={styles.subtle}>Switch between baseline chat and lesson-with-attachment mode.</p>
+            <p className={styles.subtle}>Switch between baseline chat, baseline v2, lesson mode, and lesson light mode.</p>
           </div>
           <div className={styles.modeRow}>
             <label className={styles.modeOption}>
               <input
                 type="radio"
-                checked={!lessonMode}
+                checked={chatMode === 'baseline'}
                 onChange={() => {
                   handleResetChat();
-                  setLessonMode(false);
+                  setChatMode('baseline');
                 }}
               />
               <span>Baseline chat</span>
@@ -1059,13 +1207,35 @@ export default function SimpleChatbotPage() {
             <label className={styles.modeOption}>
               <input
                 type="radio"
-                checked={lessonMode}
+                checked={chatMode === 'baseline_v2'}
                 onChange={() => {
                   handleResetChat();
-                  setLessonMode(true);
+                  setChatMode('baseline_v2');
+                }}
+              />
+              <span>Baseline v2</span>
+            </label>
+            <label className={styles.modeOption}>
+              <input
+                type="radio"
+                checked={chatMode === 'lesson'}
+                onChange={() => {
+                  handleResetChat();
+                  setChatMode('lesson');
                 }}
               />
               <span>Lesson mode</span>
+            </label>
+            <label className={styles.modeOption}>
+              <input
+                type="radio"
+                checked={chatMode === 'lesson_light'}
+                onChange={() => {
+                  handleResetChat();
+                  setChatMode('lesson_light');
+                }}
+              />
+              <span>Lesson light</span>
             </label>
           </div>
           {lessonMode ? (
@@ -1176,6 +1346,9 @@ export default function SimpleChatbotPage() {
                 <p className={styles.subtle}>
                   Attach PDF, DOCX, or TXT and use it as grounding context for comparison tests.
                 </p>
+                {baselineV2Mode ? (
+                  <p className={styles.subtle}>In baseline v2, the attachment is used on the first turn only.</p>
+                ) : null}
               </div>
               <input
                 ref={fileInputRef}
@@ -1254,7 +1427,16 @@ export default function SimpleChatbotPage() {
                 </div>
               ) : null}
               <div className={styles.debugSection}>
-                <div className={styles.debugTitle}>Payload Meta</div>
+                <div className={styles.debugHeaderRow}>
+                  <div className={styles.debugTitle}>Payload Meta</div>
+                  <button
+                    type="button"
+                    className={styles.debugCopyButton}
+                    onClick={() => void handleCopyPayloadMeta()}
+                  >
+                    Copy
+                  </button>
+                </div>
                 <pre className={styles.debugText}>
                   {JSON.stringify(
                     {

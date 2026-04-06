@@ -232,6 +232,38 @@
   margin-bottom: 8px;
 }
 
+.debugHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.debugHeaderRow .debugTitle {
+  margin-bottom: 0;
+}
+
+.debugCopyButton {
+  border: 1px solid #d8d1c7;
+  border-radius: 10px;
+  background: #fff;
+  color: #1e293b;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.debugCopyButton:hover:not(:disabled) {
+  background: #f7f4ef;
+}
+
+.debugCopyButton:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
 .debugText {
   margin: 0;
   font-size: 12px;

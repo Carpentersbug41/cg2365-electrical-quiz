@@ -1,6 +1,7 @@
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import type { DynamicLessonGenerationResult } from '@/lib/dynamicGuidedV2/generation/types';
+import type { DynamicGuidedV2Lesson } from '@/lib/dynamicGuidedV2/types';
 import type { DynamicLessonVersionSummary } from '@/lib/dynamicGuidedV2/versionStore';
 
 const ARTIFACT_ROOT = path.join(process.cwd(), '.runtime', 'dynamic-guided-v2-generated-lessons');
@@ -11,6 +12,10 @@ function ensureDir(dirPath: string): void {
 
 function sanitizeSegment(value: string): string {
   return value.replace(/[^a-z0-9._-]+/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '').toLowerCase();
+}
+
+function stripBom(text: string): string {
+  return text.replace(/^\uFEFF/, '');
 }
 
 function timestampFilePart(date = new Date()): string {
@@ -82,4 +87,62 @@ export function writeDynamicGeneratedLessonArtifact(input: {
     latestFilePath,
     statusFilePath,
   };
+}
+
+export function readLatestDynamicGeneratedLessonArtifact(lessonCode: string): {
+  lesson: DynamicGuidedV2Lesson;
+  accepted: boolean;
+  version: DynamicLessonVersionSummary | null;
+} | null {
+  const lessonDir = path.join(ARTIFACT_ROOT, sanitizeSegment(lessonCode));
+  const latestFilePath = path.join(lessonDir, 'latest.json');
+  if (!existsSync(latestFilePath)) {
+    return null;
+  }
+
+  try {
+    const raw = JSON.parse(stripBom(readFileSync(latestFilePath, 'utf8'))) as {
+      lesson?: DynamicGuidedV2Lesson;
+      accepted?: boolean;
+      version?: DynamicLessonVersionSummary | null;
+    };
+    if (!raw.lesson) {
+      return null;
+    }
+    return {
+      lesson: raw.lesson,
+      accepted: raw.accepted === true,
+      version: raw.version ?? null,
+    };
+  } catch {
+    return null;
+  }
+}
+
+export function listDynamicGeneratedLessonArtifacts(): Array<{
+  lessonCode: string;
+  title: string | null;
+  accepted: boolean;
+}> {
+  if (!existsSync(ARTIFACT_ROOT)) {
+    return [];
+  }
+
+  return readdirSync(ARTIFACT_ROOT)
+    .filter((entry) => {
+      try {
+        return statSync(path.join(ARTIFACT_ROOT, entry)).isDirectory();
+      } catch {
+        return false;
+      }
+    })
+    .map((entry) => {
+      const artifact = readLatestDynamicGeneratedLessonArtifact(entry);
+      return {
+        lessonCode: artifact?.lesson.lessonCode ?? entry.toUpperCase(),
+        title: artifact?.lesson.title ?? null,
+        accepted: artifact?.accepted === true,
+      };
+    })
+    .sort((a, b) => a.lessonCode.localeCompare(b.lessonCode));
 }

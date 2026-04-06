@@ -1,4 +1,8 @@
-import type { DynamicGuidedV2BasicQuestion, DynamicGuidedV2Lesson } from '@/lib/dynamicGuidedV2/types';
+import type {
+  DynamicGuidedV2BasicQuestion,
+  DynamicGuidedV2DeeperQuestionMode,
+  DynamicGuidedV2Lesson,
+} from '@/lib/dynamicGuidedV2/types';
 import type {
   DynamicDiagnosticScore,
   DynamicGenerationPhaseArtifact,
@@ -28,6 +32,26 @@ export type DynamicLessonGenerationInput = {
   sourceRefs?: string[];
   stagePlan?: DynamicLessonStageDescriptor[];
   sourceContext?: string;
+};
+
+export type DynamicPromptVariantId =
+  | 'baseline'
+  | 'p3_markdown_revert'
+  | 'p3_critical_order'
+  | 'p3_few_shot_mini_example'
+  | 'p3_instruction_compression'
+  | 'p4_context_cleanup'
+  | 'p4_markdown_only'
+  | 'p4_critical_rule_order'
+  | 'p4_few_shot_positive'
+  | 'p4_contrastive_example'
+  | 'p41_anti_meta'
+  | 'p41_markdown_only'
+  | 'p41_few_shot_positive';
+
+export type DynamicLessonGeneratorOptions = {
+  promptVariantId?: DynamicPromptVariantId;
+  disableAnalyticsLogging?: boolean;
 };
 
 export type DynamicPlanningPhaseOutput = {
@@ -93,6 +117,7 @@ export type DynamicDeeperChecksPhaseOutput = {
   teachChecks: Array<{
     title: string;
     deeperQuestionText: string;
+    deeperQuestionMode?: DynamicGuidedV2DeeperQuestionMode;
     deeperSourceTeachingPointIds?: string[];
     hint?: string;
   }>;
@@ -103,6 +128,7 @@ export type DynamicUnderstandingChecksPhaseOutput = {
     title: string;
     basicQuestions: DynamicAuthoredBasicCheck[];
     deeperQuestionText: string;
+    deeperQuestionMode?: DynamicGuidedV2DeeperQuestionMode;
     deeperSourceTeachingPointIds?: string[];
     hint?: string;
   }>;
@@ -184,6 +210,7 @@ export type DynamicLessonContentDraft = {
     retrievalTextLines: string[];
     basicQuestions: DynamicAuthoredBasicCheck[];
     deeperQuestionText: string;
+    deeperQuestionMode?: DynamicGuidedV2DeeperQuestionMode;
     deeperSourceTeachingPointIds?: string[];
     hint?: string;
   }>;
@@ -279,6 +306,8 @@ export type DynamicRepairSummary = {
   patchAccepted: boolean;
   patchRejectedCode: string | null;
   patchRejectedReason: string | null;
+  bestRepairedScore: number | null;
+  bestRepairedRound: number | null;
   repairAttempts: DynamicRepairAttemptSummary[];
 };
 

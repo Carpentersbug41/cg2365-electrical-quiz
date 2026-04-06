@@ -21,6 +21,7 @@ export function DynamicGuidedV2LessonClient({
   lesson: DynamicGuidedV2Lesson;
   versionId?: string | null;
 }) {
+  const [sessionId, setSessionId] = useState<string | null>(null);
   const bootedRef = useRef(false);
   const previousStageRef = useRef<string | null>(null);
   const [stepIndex, setStepIndex] = useState(0);
@@ -33,11 +34,32 @@ export function DynamicGuidedV2LessonClient({
   const currentStep = lesson.steps[stepIndex];
 
   useEffect(() => {
-    if (bootedRef.current) return;
+    const storageKey = `dgv2-runtime-session:${lesson.lessonCode}:${versionId ?? 'runtime'}`;
+    const existing =
+      typeof window !== 'undefined' ? window.sessionStorage.getItem(storageKey) : null;
+
+    if (existing) {
+      setSessionId(existing);
+      return;
+    }
+
+    const nextId =
+      typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+        ? `dgv2-session-${crypto.randomUUID()}`
+        : `dgv2-session-${Math.random().toString(36).slice(2, 10)}`;
+
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.setItem(storageKey, nextId);
+    }
+    setSessionId(nextId);
+  }, [lesson.lessonCode, versionId]);
+
+  useEffect(() => {
+    if (bootedRef.current || !sessionId) return;
     bootedRef.current = true;
     void generateTurn(0, [], undefined);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lesson.lessonCode]);
+  }, [lesson.lessonCode, sessionId]);
 
   useEffect(() => {
     if (threadRef.current) {
@@ -71,6 +93,7 @@ export function DynamicGuidedV2LessonClient({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          sessionId,
           lessonCode: lesson.lessonCode,
           versionId: versionId ?? null,
           stepIndex: targetStepIndex,

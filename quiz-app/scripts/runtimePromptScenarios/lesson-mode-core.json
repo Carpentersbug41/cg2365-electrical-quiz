@@ -1,0 +1,200 @@
+{
+  "scenarios": [
+    {
+      "id": "202-5A_intro_progression",
+      "lessonCode": "202-5A",
+      "runtimeVariant": "lean_feedback_v1",
+      "description": "Starts the lesson naturally and checks the first real teach/check chunk for structural stability.",
+      "turns": [
+        {
+          "message": "start",
+          "checks": {
+            "headerEquals": {
+              "stepStage": "intro"
+            },
+            "replyIncludesAny": ["welcome", "lesson"],
+            "noCurriculumReset": true
+          }
+        },
+        {
+          "message": "ok",
+          "checks": {
+            "headerEquals": {
+              "stepStage": "teach_check"
+            },
+            "exactNumberedQuestionCount": 3,
+            "noCurriculumReset": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "202-5A_clarification_challenge",
+      "lessonCode": "202-5A",
+      "runtimeVariant": "lean_feedback_v1",
+      "description": "Checks whether the tutor responds to a direct learner challenge instead of ignoring it.",
+      "initialState": {
+        "stepSelector": {
+          "kind": "first_stage",
+          "stage": "teach_check"
+        },
+        "phase": "feedback_basic",
+        "deeperTurnCount": 0
+      },
+      "turns": [
+        {
+          "message": "have you taught this already?",
+          "checks": {
+            "headerEquals": {
+              "feedbackPhase": "feedback_basic",
+              "stepStage": "teach_check"
+            },
+            "replyIncludesAny": ["taught", "teach", "covered", "already", "just"],
+            "replyNotIncludes": ["to test the relationship", "repair this first", "missing targets"],
+            "maxQuestionMarkCount": 1,
+            "noCurriculumReset": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "202-5A_what_do_you_mean",
+      "lessonCode": "202-5A",
+      "runtimeVariant": "lean_feedback_v1",
+      "description": "Checks whether a direct clarification request gets a clarification rather than a marking-style reply.",
+      "initialState": {
+        "stepSelector": {
+          "kind": "first_stage",
+          "stage": "teach_check"
+        },
+        "phase": "feedback_basic",
+        "deeperTurnCount": 0
+      },
+      "turns": [
+        {
+          "message": "what do you mean by magnetic flux density?",
+          "checks": {
+            "headerEquals": {
+              "feedbackPhase": "feedback_basic",
+              "stepStage": "teach_check"
+            },
+            "replyIncludesAny": ["means", "is", "tells", "describes", "field"],
+            "replyNotIncludes": ["to test the relationship", "repair this first", "missing targets"],
+            "maxQuestionMarkCount": 1,
+            "noCurriculumReset": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "202-5A_fairness_challenge",
+      "lessonCode": "202-5A",
+      "runtimeVariant": "lean_feedback_v1",
+      "description": "Checks whether the tutor handles a fairness challenge before continuing the section.",
+      "initialState": {
+        "stepSelector": {
+          "kind": "first_stage",
+          "stage": "teach_check"
+        },
+        "phase": "feedback_deeper",
+        "deeperTurnCount": 1
+      },
+      "turns": [
+        {
+          "message": "I don't know - have you taught this already?",
+          "checks": {
+            "headerEquals": {
+              "feedbackPhase": "feedback_deeper",
+              "stepStage": "teach_check"
+            },
+            "replyIncludesAny": ["taught", "teach", "covered", "already", "just"],
+            "replyNotIncludes": ["repair this first", "missing deeper targets", "missing targets"],
+            "maxQuestionMarkCount": 1,
+            "noCurriculumReset": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "203-4A_worked_example_yes",
+      "lessonCode": "203-4A",
+      "runtimeVariant": "lean_feedback_v1",
+      "description": "Verifies the worked example readiness gate auto-advances cleanly.",
+      "initialState": {
+        "stepSelector": {
+          "kind": "first_role",
+          "role": "worked_example"
+        },
+        "phase": "worked_example_feedback",
+        "deeperTurnCount": 0
+      },
+      "turns": [
+        {
+          "message": "yes",
+          "checks": {
+            "headerEquals": {
+              "feedbackPhase": "worked_example_feedback",
+              "progressionGate": "true",
+              "autoAdvance": "true"
+            },
+            "noFillerTransition": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "203-5A_first_chunk",
+      "lessonCode": "203-5A",
+      "runtimeVariant": "lean_feedback_v1",
+      "description": "Exercises the first teach/check chunk on a known fragile lesson.",
+      "initialState": {
+        "stepSelector": {
+          "kind": "first_stage",
+          "stage": "teach_check"
+        },
+        "phase": "teach",
+        "deeperTurnCount": 0
+      },
+      "turns": [
+        {
+          "message": "ok",
+          "checks": {
+            "headerEquals": {
+              "stepStage": "teach_check"
+            },
+            "exactNumberedQuestionCount": 3,
+            "noCurriculumReset": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "203-5A_deeper_repair",
+      "lessonCode": "203-5A",
+      "runtimeVariant": "lean_feedback_v1",
+      "description": "Checks the deeper repair loop stays in the current section and asks one retry question.",
+      "initialState": {
+        "stepSelector": {
+          "kind": "first_stage",
+          "stage": "teach_check"
+        },
+        "phase": "feedback_deeper",
+        "deeperTurnCount": 1
+      },
+      "turns": [
+        {
+          "message": "not sure",
+          "checks": {
+            "headerEquals": {
+              "feedbackPhase": "feedback_deeper",
+              "progressionGate": "true",
+              "stepStage": "teach_check"
+            },
+            "replyIncludesAny": ["?"],
+            "noCurriculumReset": true
+          }
+        }
+      ]
+    }
+  ]
+}

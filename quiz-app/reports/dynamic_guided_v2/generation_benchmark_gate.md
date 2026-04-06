@@ -10,15 +10,29 @@ It is not a planner-only benchmark.
 
 ## Score Rule
 
-A lesson is considered generation-ready only if it clears all of these:
+A lesson is considered benchmark-strong only if it clears all of these:
 - `lesson score >= 95`
 - `plan score >= 90`
 - `fidelity score >= 95`
 - validation passed
 
 Interpretation:
-- `lesson score` is the real release gate
+- `lesson score` is the real benchmark gate for this benchmark doc
 - `plan score` and `fidelity score` must remain high, but they are support diagnostics
+
+## Live Publish Rule
+
+This benchmark gate is stricter than the live publish/reject rule in the generator.
+
+Current live generator rule:
+- unrepaired draft must clear the normal acceptance gate
+- repaired lesson should aim for `90+`
+- repaired lesson is publishable at `80+`
+- repaired lesson is rejected only if its best repaired score stays below `80`
+
+So:
+- this doc defines the strong benchmark target
+- it does not describe the live repaired publish floor
 
 ## Benchmark Set
 

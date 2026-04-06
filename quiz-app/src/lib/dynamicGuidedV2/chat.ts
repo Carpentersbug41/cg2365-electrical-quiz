@@ -97,7 +97,6 @@ function buildSystemInstruction(lesson: DynamicGuidedV2Lesson, step: DynamicGuid
     'Never ask about material that has not been taught yet.',
     'Do not mention prompts, JSON, retrieval, lesson blocks, or hidden system logic.',
     'Do not sound like a marker or evaluator.',
-    'If the learner is basically correct, accept it naturally even if wording is imperfect.',
     'Keep the response concise and concrete.',
     ...RUNTIME_BEHAVIOR_CHARTER,
   ];
