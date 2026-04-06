@@ -1550,7 +1550,7 @@ export async function POST(request: NextRequest) {
           (currentLessonStep.answerGuidance ?? []).length === 0)
       );
     const challengeDetected =
-      (chatMode === 'lesson_light' || lessonPromptProfile === 'challenge_aware_v1') &&
+      (chatMode === 'lesson' || chatMode === 'lesson_light' || lessonPromptProfile === 'challenge_aware_v1') &&
       currentLessonStep &&
       currentLessonStep.stage === 'teach_check' &&
       isLessonFeedbackTurn &&
@@ -1845,7 +1845,8 @@ Rules:
 - "assistantMessage" is the learner-facing reply.
 - Answer the learner's direct question first using this current section only.
 - Do not treat the learner's message as a normal marked answer.
-- If the learner asks whether this idea has already been taught, say briefly whether it has already been explained in this section.
+- If the learner asks whether this idea has already been taught, answer that explicitly using the words "taught" or "covered".
+- Say either that it was just taught in this section, or that it has not been taught yet.
 - Clarify the exact point they challenged in simple language.
 - Keep the reply short, direct, and conversational.
 - After answering, end by asking the attached deeper question for this same section.
@@ -1910,7 +1911,8 @@ Output rules:
 - The learner has asked a direct clarification or process question about this same section.
 - Answer that question first using this current section only.
 - Do not treat the learner's message as a normal scored answer.
-- If the learner asks whether this idea has already been taught, say briefly whether it has already been explained in this section.
+- If the learner asks whether this idea has already been taught, answer that explicitly using the words "taught" or "covered".
+- Say either that it was just taught in this section, or that it has not been taught yet.
 - Stay on this same deeper stage.
 - End with exactly one short retry question on the same underlying idea.
 - Keep the reply short, direct, and conversational.
@@ -1976,7 +1978,8 @@ Output rules:
 - "assistantMessage" is the learner-facing reply.
 - Use the attached worked-example readiness classification and support focus.
 - If readiness is "ready", set "resolved" to true and "next" to "teach".
-- When resolved, close the section briefly and move on.
+- When resolved, close the section briefly and stop there.
+- When resolved, do not mention the next stage or say "we can now move on" or similar filler transition lines.
 - If readiness is "needs_support" or "unclear", set "resolved" to false and "next" to "feedback".
 - When unresolved, stay on this same worked example feedback stage.
 - Repair only the one support focus in simpler language.
@@ -1998,6 +2001,8 @@ Output rules:
 - "assistantMessage" is the learner-facing reply.
 - Judge whether the learner is ready to move on from the worked example to guided practice.
 - If the learner is ready, set "resolved" to true and "next" to "teach".
+- When resolved, close the section briefly and stop there.
+- When resolved, do not mention the next stage or use filler transitions such as "we can now move on".
 - If the learner is not ready, set "resolved" to false and "next" to "feedback".
 - When unresolved, stay on this same worked example feedback stage.
 - Do not begin guided practice yourself.
